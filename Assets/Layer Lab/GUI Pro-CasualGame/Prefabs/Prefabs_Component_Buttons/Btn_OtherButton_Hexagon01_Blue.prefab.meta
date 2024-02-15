@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 766697219b1f9467e802797f5c91eeb6
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Component_Buttons/Btn_OtherButton_Hexagon01_Blue.prefab
+  uploadId: 630624

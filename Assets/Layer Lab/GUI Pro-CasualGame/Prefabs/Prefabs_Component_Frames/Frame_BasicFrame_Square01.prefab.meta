@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d51c75cad271d4f95b84c5d1145a653d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Component_Frames/Frame_BasicFrame_Square01.prefab
+  uploadId: 630624

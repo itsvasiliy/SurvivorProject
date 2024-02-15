@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a7842a822701c45e9b14bb068c8ac54b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/LockScreen.prefab
+  uploadId: 630624

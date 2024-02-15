@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: aa27390216c3a4dd89ce5cf5ad82da72
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Component_Buttons/Btn_MainButton_Yellow.prefab
+  uploadId: 630624

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3069c64df0d0848ae96cb2b00d0deb60
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Component_Label/Label_LeftLabel01_Blue.prefab
+  uploadId: 630624

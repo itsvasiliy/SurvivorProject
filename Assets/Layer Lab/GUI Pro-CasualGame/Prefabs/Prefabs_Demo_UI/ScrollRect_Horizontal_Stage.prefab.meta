@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5835c8a04e0d04678840aab47f6c87b2
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Demo_UI/ScrollRect_Horizontal_Stage.prefab
+  uploadId: 630624

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b7b5be0a36661483b98b48cb82ce2625
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Component_Slider/Slider01_BasicType.prefab
+  uploadId: 630624

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b2deeab871b844bf591b2640b501a6c5
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Demo_UI/Button_Sell.prefab
+  uploadId: 630624

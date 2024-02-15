@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 90732b2cd92a64c23aff0fe159949afa
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Component_Label/Label_TitleFlag01_Orange.prefab
+  uploadId: 630624

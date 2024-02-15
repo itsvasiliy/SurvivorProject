@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 094f9d96cb1d744509606aeae5f04cda
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Popup_EUALPrivacy.prefab
+  uploadId: 630624
