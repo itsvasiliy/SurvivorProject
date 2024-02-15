@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3f08128e6870e124d8770ddbd440a48c
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 183370
+  packageName: Feel
+  packageVersion: 3.16
+  assetPath: Assets/Feel/NiceVibrations/Plugins/iOS/LofeltHaptics.framework/Headers/LofeltHaptics.h
+  uploadId: 642159

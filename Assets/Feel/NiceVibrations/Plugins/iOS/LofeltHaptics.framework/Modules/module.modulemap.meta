@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 35189553ddf2c2a4fa0ccf156fd8712e
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 183370
+  packageName: Feel
+  packageVersion: 3.16
+  assetPath: Assets/Feel/NiceVibrations/Plugins/iOS/LofeltHaptics.framework/Modules/module.modulemap
+  uploadId: 642159
