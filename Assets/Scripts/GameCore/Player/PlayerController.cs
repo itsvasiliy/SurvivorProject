@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] FloatingJoystick joystick;
+    [SerializeField] Animator animator;
 
     [SerializeField] float speed;
 
@@ -19,6 +20,14 @@ public class PlayerController : MonoBehaviour
     {
         rb.linearVelocity = new Vector3(joystick.Horizontal * speed, rb.angularVelocity.y * speed,
             joystick.Vertical * speed);
+
+        if (joystick.Horizontal != 0 || joystick.Vertical != 0)
+        {
+            transform.rotation = Quaternion.LookRotation(rb.linearVelocity);
+            animator.SetBool("IsRunning", true);
+        }
+        else
+            animator.SetBool("IsRunning", false);
     }
 
 }
