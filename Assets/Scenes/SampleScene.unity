@@ -680,7 +680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joystick: {fileID: 1367490751}
   animator: {fileID: 941940860}
-  speed: 8
+  speed: 11
 --- !u!65 &941940858
 BoxCollider:
   m_ObjectHideFlags: 0
