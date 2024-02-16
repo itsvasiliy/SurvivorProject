@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceTest : MonoBehaviour
+public class ResourceTest : MonoBehaviour, IDamageable
 {
-    // Start is called before the first frame update
-    void Start()
+    public int Dead()
     {
-        
+        throw new System.NotImplementedException();
     }
 
-    // Update is called once per frame
-    void Update()
+    public int GetDamage()
     {
-        
+        throw new System.NotImplementedException();
     }
 }
