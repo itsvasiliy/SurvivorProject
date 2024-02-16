@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionCubeCentre: {fileID: 107009645}
-  detectionRange: 2
+  detectionRange: 1.5
   gizmoColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &958776110
 GameObject:
