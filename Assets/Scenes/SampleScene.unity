@@ -453,6 +453,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
       insertIndex: -1
       addedObject: {fileID: 941940862}
+    - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 941940863}
   m_SourcePrefab: {fileID: 100100000, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
 --- !u!1 &459440980
 GameObject:
@@ -1003,9 +1006,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 941940854}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c442544d2225140029f7cd65dfd5a262, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &941940863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941940854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9be10e8ee79c0478997abbf36e6709bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transform: {fileID: 941940861}
   detectionCubeCentre: {fileID: 107009645}
   detectionRange: 1.5
   gizmoColor: {r: 1, g: 0, b: 0, a: 1}

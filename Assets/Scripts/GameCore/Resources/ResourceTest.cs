@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ResourceTest : MonoBehaviour, IDamageable
 {
-    public int Dead()
+    public void GetDamage()
     {
-        throw new System.NotImplementedException();
+        print("damaged");
     }
 
-    public int GetDamage()
+    public void Dead()
     {
         throw new System.NotImplementedException();
     }
