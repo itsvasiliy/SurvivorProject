@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using Zenject;
 
 [RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
 public class PlayerController : MonoBehaviour
@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float speed;
 
     Rigidbody rb;
+
+    [Inject] IPlayerStateController playerStateController;
 
     private void Start()
     {
@@ -25,9 +27,13 @@ public class PlayerController : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(rb.linearVelocity);
             animator.SetBool("IsRunning", true);
+            playerStateController.SetState(PlayerStates.Running);
         }
         else
+        {
             animator.SetBool("IsRunning", false);
+            playerStateController.SetState(PlayerStates.Idle); //wrong behavior
+        }
     }
 
 }
