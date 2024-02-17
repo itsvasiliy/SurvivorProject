@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7253043083908785910}
   - component: {fileID: 3999892450215458808}
-  - component: {fileID: 5514849961081954672}
+  - component: {fileID: 8974154405632554384}
   m_Layer: 0
   m_Name: CollectRising
   m_TagString: Untagged
@@ -26,14 +26,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 868484587220949116}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.60049, y: 0, z: 0, w: 0.7996323}
-  m_LocalPosition: {x: -0.092187, y: -50, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -50, z: 0}
   m_LocalScale: {x: 0.18619148, y: 0.18619148, z: 0.18619148}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 345477768587078629}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -73.81, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3999892450215458808
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -89,7 +89,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5514849961081954672
+--- !u!114 &8974154405632554384
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,13 +98,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 868484587220949116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df1181213b98120488f6085fb4362b9a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e0a2fb069d608e4a85ed70880aae8af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  riseSpeed: 2
-  riseHeight: 4
-  lifeTime: 2
-  amount: 3
+  riseSpeed: 6.06
+  riseHeight: 1
+  lifeTime: 0.68
   textAmount: {fileID: 1722518427010229013}
 --- !u!1 &6717596005555943928
 GameObject:

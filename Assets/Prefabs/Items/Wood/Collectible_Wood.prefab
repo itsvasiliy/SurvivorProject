@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5178124279572057730}
-  - component: {fileID: 3593042143312162256}
   - component: {fileID: 3871965684984254606}
+  - component: {fileID: 8039037999083483018}
   m_Layer: 0
   m_Name: Collectible_Wood
   m_TagString: Untagged
@@ -34,21 +34,6 @@ Transform:
   - {fileID: 217578544747900245}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3593042143312162256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5324040862269926700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72a9be8f67b933d4bb8efa2dbd205955, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  collectionDisplayPrefab: {fileID: 868484587220949116, guid: 138c3a9789b8173488b9cdc657507d1e, type: 3}
-  amount: 3
 --- !u!65 &3871965684984254606
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68,8 +53,25 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.55712694, y: 0.5620519, z: 1.0786927}
-  m_Center: {x: 0.026252598, y: 0, z: -0.5647936}
+  m_Size: {x: 0.23037678, y: 0.32471424, z: 0.9049071}
+  m_Center: {x: 0.026252598, y: 0, z: 0.055406153}
+--- !u!114 &8039037999083483018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5324040862269926700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dfdf4a26c4da6b46b041588feaf944d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  collectionDisplayPrefab: {fileID: 868484587220949116, guid: 138c3a9789b8173488b9cdc657507d1e, type: 3}
+  amount: 5
+  gizmoColor: {r: 1, g: 0, b: 0, a: 1}
+  detectionRange: 15
 --- !u!1001 &219211235552746029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104,7 +106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012825835384, guid: 5cab19fdb480c4e94b567019c5375991, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.64
       objectReference: {fileID: 0}
     - target: {fileID: 4000012825835384, guid: 5cab19fdb480c4e94b567019c5375991, type: 3}
       propertyPath: m_LocalRotation.w
