@@ -1,16 +1,9 @@
+using Assets.Scripts.GameCore.Resources;
 using UnityEngine;
-
-public enum ItemTypes
-{
-    WOOD,
-    STONE,
-    FOOD
-}
-
 
 public class CollectibleItem : MonoBehaviour
 {
-    [SerializeField] private ItemTypes type;
+    [SerializeField] private ResourceTypes type;
     [SerializeField] GameObject collectionDisplayPrefab;
     [SerializeField] int amount;
 
