@@ -6,7 +6,7 @@ public class WoodResource : MonoBehaviour, IDamageable
 {
     public void GetDamage()
     {
-
+        
     }
 
     public void Dead()

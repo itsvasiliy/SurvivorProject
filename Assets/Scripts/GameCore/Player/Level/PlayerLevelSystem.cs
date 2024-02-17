@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
+[RequireComponent(typeof(Slider))]
 public class PlayerLevelSystem : MonoBehaviour
 {
     [SerializeField] private Slider levelBar;
@@ -33,24 +34,36 @@ public class PlayerLevelSystem : MonoBehaviour
     {
         if (experience >= nextLevelExperience)
         {
+            experience -= nextLevelExperience;
             LevelUp();
         }
     }
 
     private void LevelUp()
     {
-        int nextExpRequirement = nextLevelExperience + (expIncreaseFactor * (currentLevel + 1));
-
+        nextLevelExperience = nextLevelExperience + (expIncreaseFactor * currentLevel);
         currentLevel++;
-        nextLevelExperience = nextExpRequirement;
 
         levelUp?.Invoke();
     }
 
     private void UpdateLevelBar()
     {
+        levelBar.maxValue = nextLevelExperience;
+        levelBar.value = experience;
+
+        //
         // Your turn Mr. Yura
+        // Add smooth slider
+        //
     }
 
+    //private void Update()
+    //{
+    //    if (Input.GetKeyUp(KeyCode.Space))
+    //    {
+    //        AddExperience = 10;
+    //    }
 
+    //}
 }
