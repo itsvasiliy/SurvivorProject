@@ -2,15 +2,14 @@ using Assets.Scripts.GameCore.Interfaces;
 using Assets.Scripts.GameCore.Resources;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public class ResourceController : MonoBehaviour, IResourceController
+public class ResourceController : IResourceController
 {
-    Dictionary<ResourceTypes, int> resources;
+    private Dictionary<ResourceTypes, int> resources = new Dictionary<ResourceTypes, int>();
 
-    private void Start()
-    {
-        resources = new Dictionary<ResourceTypes, int>();
-    }
+    [Inject] ResourcesUIControl resourcesUIControl;
+
 
     public void AddResource(ResourceTypes type, int amount)
     {
@@ -18,6 +17,8 @@ public class ResourceController : MonoBehaviour, IResourceController
             resources[type] += amount;
         else
             resources[type] = amount;
+
+       resourcesUIControl.UpdateResource(type);
     }
 
     public int GetResourceAmount(ResourceTypes type)
@@ -37,7 +38,10 @@ public class ResourceController : MonoBehaviour, IResourceController
     public void RemoveResource(ResourceTypes type, int amount)
     {
         if (resources.ContainsKey(type))
+        {
             resources[type] -= amount;
+            resourcesUIControl.UpdateResource(type);
+        }
         else
             throw new KeyNotFoundException($"The resource type '{type}' does not exist in the dictionary to remove it.");
     }
