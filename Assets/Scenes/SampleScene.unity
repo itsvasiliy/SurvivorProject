@@ -1448,6 +1448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 941940860}
+  attackingAnimClip: {fileID: -1582444622346850160, guid: 10fa50c59af8fd440a0348904414802a, type: 3}
   tool: {fileID: 1509867525}
 --- !u!114 &941940863
 MonoBehaviour:
@@ -3097,11 +3098,11 @@ SceneRoots:
   m_Roots:
   - {fileID: 232528907}
   - {fileID: 1603134924}
-  - {fileID: 459440981}
   - {fileID: 52047713}
+  - {fileID: 459440981}
   - {fileID: 1229991397}
-  - {fileID: 2121285100}
   - {fileID: 961374674}
+  - {fileID: 715848340}
   - {fileID: 824092350}
   - {fileID: 1602883756}
-  - {fileID: 715848340}
+  - {fileID: 2121285100}
