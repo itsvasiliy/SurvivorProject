@@ -5,11 +5,16 @@ using Zenject;
 public class PlayerManualAttack : MonoBehaviour
 {
     [SerializeField] Animator animator;
+
+    [SerializeField] AnimationClip attackingAnimClip;
+
     [SerializeField] GameObject tool;
 
     private IDamageableDetectionCube damageableDetectionCube;
 
     private float attackSpeed;
+
+    private bool isAttacking = false;
 
     [Inject] IPlayerStateController playerStateController;
 
@@ -21,29 +26,39 @@ public class PlayerManualAttack : MonoBehaviour
             damageableDetectionCube = _damageableDetectionCube;
         }
 
+        attackSpeed = attackingAnimClip.length;
+
         damageableDetectionCube.detected += Attack;
         damageableDetectionCube.leftDetectedAction += StopAttack;
     }
 
     private void Attack()
     {
-        // Add attacking rate and animation 
-        RaycastHit[] hits = damageableDetectionCube.GetHits;
-
-        foreach (RaycastHit hit in hits)
+        if (isAttacking == false)
         {
-            if (hit.collider != null)
+            isAttacking = true;
+
+            RaycastHit[] hits = damageableDetectionCube.GetHits;
+
+            foreach (RaycastHit hit in hits)
             {
-                if (hit.collider.TryGetComponent<IDamageable>(out IDamageable _damageable))
+                if (hit.collider != null)
                 {
-                    _damageable.GetDamage();
-                    playerStateController.SetState(PlayerStates.Mining);
-                    tool.SetActive(true);
-                    animator.SetBool("IsMining", true);
+                    if (hit.collider.TryGetComponent<IDamageable>(out IDamageable _damageable))
+                    {
+                        _damageable.GetDamage();
+                        playerStateController.SetState(PlayerStates.Mining);
+                        tool.SetActive(true);
+                        animator.SetBool("IsMining", true);
+                    }
                 }
             }
+
+            Invoke(nameof(ResetAttackingStatus), attackSpeed);
         }
     }
+
+    private void ResetAttackingStatus() => isAttacking = false;
 
     private void StopAttack()
     {
