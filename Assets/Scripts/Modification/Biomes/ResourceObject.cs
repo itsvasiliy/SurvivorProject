@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MineableObject : MonoBehaviour, IDamageable
+public class ResourceObject : MonoBehaviour, IDamageable
 {
     [SerializeField] private GameObject dropPrefab;
 
