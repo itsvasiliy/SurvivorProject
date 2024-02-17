@@ -1,5 +1,7 @@
+using Assets.Scripts.GameCore.Interfaces;
 using Assets.Scripts.GameCore.Resources;
 using UnityEngine;
+using Zenject;
 
 public class CollectibleItem : MonoBehaviour
 {
@@ -7,13 +9,14 @@ public class CollectibleItem : MonoBehaviour
     [SerializeField] GameObject collectionDisplayPrefab;
     [SerializeField] int amount;
 
+   [Inject] readonly IResourceController resourceController;
 
     public void OnTriggerEnter(Collider collision)
     {
         if (collision.tag == "Player")
         {
             Instantiate(collectionDisplayPrefab, transform.position, transform.rotation);
-            //add item to inventory
+            resourceController.AddResource(type, amount);
             Destroy(gameObject);
         }
     }

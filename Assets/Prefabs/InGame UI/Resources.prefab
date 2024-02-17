@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1.4k
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8d34560b6d49c4469b2174ccd34ae34b, type: 2}
   m_sharedMaterial: {fileID: 8690591861142563998, guid: 8d34560b6d49c4469b2174ccd34ae34b, type: 2}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 4588152664743677414}
   - component: {fileID: 7454251245572649242}
   m_Layer: 5
-  m_Name: Stoun_Icon
+  m_Name: Stone_Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -220,6 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2039754886766168404}
+  - component: {fileID: 6445428201796404482}
   m_Layer: 5
   m_Name: Resources
   m_TagString: Untagged
@@ -249,6 +250,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6445428201796404482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466094891409210227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6188c5c06666e1e4fb3ceba1a3c7523e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceItems:
+  - {fileID: 7302278392702492589}
+  - {fileID: 5392639550185646821}
+  - {fileID: 8052680789959136159}
 --- !u!1 &1931023195734558625
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +352,7 @@ GameObject:
   - component: {fileID: 1624366606242208921}
   - component: {fileID: 3376232252250354643}
   - component: {fileID: 109396563452011192}
+  - component: {fileID: 5392639550185646821}
   m_Layer: 5
   m_Name: Wood_BG
   m_TagString: Untagged
@@ -401,6 +419,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5392639550185646821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985301205547268253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471640d4f55aad64985805e4b8c25211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  amountText: {fileID: 5362703916244495152}
 --- !u!1 &4923243311714743303
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,7 +498,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1.4k
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8d34560b6d49c4469b2174ccd34ae34b, type: 2}
   m_sharedMaterial: {fileID: 8690591861142563998, guid: 8d34560b6d49c4469b2174ccd34ae34b, type: 2}
@@ -548,6 +580,7 @@ GameObject:
   - component: {fileID: 2891150800028528566}
   - component: {fileID: 8200545666744703072}
   - component: {fileID: 2234069728437181824}
+  - component: {fileID: 7302278392702492589}
   m_Layer: 5
   m_Name: Food_BG
   m_TagString: Untagged
@@ -614,6 +647,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7302278392702492589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6117155379844128889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471640d4f55aad64985805e4b8c25211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  amountText: {fileID: 907227569601261089}
 --- !u!1 &6640070886742226734
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,8 +672,9 @@ GameObject:
   - component: {fileID: 8525183130853280364}
   - component: {fileID: 6583116364732072235}
   - component: {fileID: 5942634635400284131}
+  - component: {fileID: 8052680789959136159}
   m_Layer: 5
-  m_Name: Stoun_BG
+  m_Name: Stone_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -691,6 +739,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8052680789959136159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6640070886742226734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471640d4f55aad64985805e4b8c25211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  amountText: {fileID: 447506890196173561}
 --- !u!1 &7058413619347350050
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,7 +818,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1.4k
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8d34560b6d49c4469b2174ccd34ae34b, type: 2}
   m_sharedMaterial: {fileID: 8690591861142563998, guid: 8d34560b6d49c4469b2174ccd34ae34b, type: 2}
