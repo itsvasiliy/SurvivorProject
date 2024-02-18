@@ -5,9 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(DetectShootingTarget))]
 public class PlayerShooting : MonoBehaviour
 {
+    [SerializeField] private AnimationClip shootingAnimClip;
+
     private DetectShootingTarget shootingTarget;
 
     private IAimTarget aimTarget;
+
+    private float shootingSpeed;
 
     private void Start()
     {
@@ -16,6 +20,8 @@ public class PlayerShooting : MonoBehaviour
             shootingTarget = _shootingTarget;
         }
 
+        shootingSpeed = shootingAnimClip.length;
+
         shootingTarget.targetDetectedEvent += SetTarget;
     }
 
@@ -23,7 +29,6 @@ public class PlayerShooting : MonoBehaviour
     {
         if(shootingTarget.GetCurrentTargetCollider.TryGetComponent<IAimTarget>(out IAimTarget _aimTarget))
         {
-            print("Bom");
             _aimTarget.GetDamage();
         }
     }
