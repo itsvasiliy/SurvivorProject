@@ -20,7 +20,7 @@ public class PlayerShooting : MonoBehaviour
             shootingTarget = _shootingTarget;
         }
 
-        shootingSpeed = shootingAnimClip.length;
+        //shootingSpeed = shootingAnimClip.length;
 
         shootingTarget.targetDetectedEvent += SetTarget;
     }
