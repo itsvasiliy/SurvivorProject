@@ -52,6 +52,11 @@ public class DetectShootingTarget : MonoBehaviour
         targetDetectedEvent?.Invoke();
     }
 
+    public void resetCurrentTarget()
+    {
+        currentTargetCollider = null;
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
