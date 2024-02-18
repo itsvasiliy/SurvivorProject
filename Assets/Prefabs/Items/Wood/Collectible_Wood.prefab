@@ -71,6 +71,7 @@ MonoBehaviour:
   collectionDisplayPrefab: {fileID: 868484587220949116, guid: 138c3a9789b8173488b9cdc657507d1e, type: 3}
   amount: 5
   gizmoColor: {r: 1, g: 0, b: 0, a: 1}
+  moveSpeed: 7
   detectionRange: 15
 --- !u!1001 &219211235552746029
 PrefabInstance:

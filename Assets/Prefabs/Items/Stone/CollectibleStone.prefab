@@ -136,6 +136,7 @@ MonoBehaviour:
   collectionDisplayPrefab: {fileID: 868484587220949116, guid: d25f3b88435166f4bafae35672a57c05, type: 3}
   amount: 10
   gizmoColor: {r: 1, g: 0, b: 0, a: 1}
+  moveSpeed: 7
   detectionRange: 15
 --- !u!65 &8283488695504821735
 BoxCollider:

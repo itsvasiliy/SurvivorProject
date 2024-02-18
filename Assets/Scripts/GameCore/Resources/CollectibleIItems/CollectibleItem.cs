@@ -10,6 +10,8 @@ public class CollectibleItem : MonoBehaviour
     [SerializeField] GameObject collectionDisplayPrefab;
     [SerializeField] int amount;
     [SerializeField] Color gizmoColor = Color.red;
+    [SerializeField] private float moveSpeed = 5f;
+
     [Range(5, 20)] public float detectionRange = 20;
 
 
@@ -17,7 +19,6 @@ public class CollectibleItem : MonoBehaviour
 
     Vector3 castShape = new Vector3(0.5f, 0.1f, 0.5f);
     private RaycastHit[] hits;
-    private float moveSpeed = 3f;
 
 
     private void Update()
