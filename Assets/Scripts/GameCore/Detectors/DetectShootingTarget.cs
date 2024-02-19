@@ -30,8 +30,15 @@ public class DetectShootingTarget : MonoBehaviour
             {
                 float distance = Vector3.Distance(centreOfTheSphere.position, collider.transform.position);
 
+                if (currentTargetCollider != null)
+                {
+                    closestTarget = Vector3.Distance(centreOfTheSphere.position, currentTargetCollider.transform.position);
+                }
+
                 if (distance < closestTarget)
                 {
+                    print("Closest one is " + collider.name);
+
                     closestTarget = distance;
                     currentTargetCollider = collider;
                     TargetDetected();
@@ -43,6 +50,11 @@ public class DetectShootingTarget : MonoBehaviour
     private void TargetDetected()
     {
         targetDetectedEvent?.Invoke();
+    }
+
+    public void resetCurrentTarget()
+    {
+        currentTargetCollider = null;
     }
 
     void OnDrawGizmosSelected()

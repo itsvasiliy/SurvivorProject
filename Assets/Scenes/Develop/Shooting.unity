@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9bf21cc9e264516b89e29c6d66d82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootingAnimClip: {fileID: -1169289577551834828, guid: 9cbb2a4d135c31e4cbeadac255ba4ecb, type: 3}
 --- !u!1 &490956436
 GameObject:
   m_ObjectHideFlags: 0

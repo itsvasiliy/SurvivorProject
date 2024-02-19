@@ -9,9 +9,13 @@ public class PlayerShooting : MonoBehaviour
 
     private DetectShootingTarget shootingTarget;
 
-    private IAimTarget aimTarget;
+    private Transform playerTransform;
+
+    private Collider aimTargetCollider;
 
     private float shootingSpeed;
+
+    private bool isShooting = false;
 
     private void Start()
     {
@@ -22,14 +26,28 @@ public class PlayerShooting : MonoBehaviour
 
         shootingSpeed = shootingAnimClip.length;
 
+        playerTransform = GetComponent<Transform>();
+
         shootingTarget.targetDetectedEvent += SetTarget;
     }
 
     private void SetTarget()
     {
-        if(shootingTarget.GetCurrentTargetCollider.TryGetComponent<IAimTarget>(out IAimTarget _aimTarget))
+        aimTargetCollider = shootingTarget.GetCurrentTargetCollider;
+        ShotTheTarget();
+    }
+
+    private void ShotTheTarget()
+    {
+        if(aimTargetCollider != null)
         {
-            _aimTarget.GetDamage();
+            float distance = Vector3.Distance(playerTransform.position, aimTargetCollider.transform.position);
+
+            if(distance < shootingTarget.detectionRadius)
+            {
+                print("Shoot: " + aimTargetCollider.name);
+                Invoke(nameof(ShotTheTarget), shootingSpeed);
+            }
         }
     }
 
