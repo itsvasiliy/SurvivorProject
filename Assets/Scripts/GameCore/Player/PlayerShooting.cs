@@ -5,7 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(DetectShootingTarget))]
 public class PlayerShooting : MonoBehaviour
 {
+    [SerializeField] private Transform bulletMuzzle;
+
     [SerializeField] private AnimationClip shootingAnimClip;
+
+    [SerializeField] private Bullet bulletPrefab;
 
     private DetectShootingTarget shootingTarget;
 
@@ -45,6 +49,10 @@ public class PlayerShooting : MonoBehaviour
 
             if(distance < shootingTarget.detectionRadius)
             {
+                Bullet bullet = (Bullet)Instantiate(bulletPrefab, bulletMuzzle.position, Quaternion.identity);
+                bullet.transform.LookAt(aimTargetCollider.transform.position);
+
+                 
                 Invoke(nameof(ShotTheTarget), shootingSpeed);
             }
         }
