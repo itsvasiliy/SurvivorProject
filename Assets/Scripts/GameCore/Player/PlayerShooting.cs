@@ -45,7 +45,6 @@ public class PlayerShooting : MonoBehaviour
 
             if(distance < shootingTarget.detectionRadius)
             {
-                print("Shoot: " + aimTargetCollider.name);
                 Invoke(nameof(ShotTheTarget), shootingSpeed);
             }
         }
