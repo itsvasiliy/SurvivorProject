@@ -6,23 +6,26 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private Transform _transform;
 
+    [SerializeField] private float damage;
+    [SerializeField] private float damageRadius;
     [SerializeField] private float speed;
+    [SerializeField] private float lifeTime;
 
-    public Vector3 targetPosition;
+    private Vector3 targetPosition;
+
+    public Vector3 SetTargetPOsition
+    {
+        set
+        {
+            targetPosition = value;
+            StartCoroutine(MoveToTarget());
+        }
+    }
 
     private void Start()
     {
-        StartCoroutine(MoveToTarget());
+        Invoke(nameof(Explode), lifeTime);
     }
-
-    //public Vector3 SetTargetPOsition
-    //{
-    //    set
-    //    {
-    //        targetPosition = value;
-    //        StartCoroutine(MoveToTarget());
-    //    }
-    //}
 
     private IEnumerator MoveToTarget()
     {
@@ -31,11 +34,25 @@ public class Bullet : MonoBehaviour
             Vector3 direction = (targetPosition - _transform.position).normalized;
             float distanceToMove = speed * Time.fixedDeltaTime;
 
-            // Move towards the target
             _transform.position += direction * distanceToMove;
 
             yield return null;
         }
-    }
+
+        Explode();
 
     }
+
+    private void Explode()
+    {
+        Collider[] colliders = Physics.OverlapSphere(_transform.position, damageRadius);
+
+        foreach (Collider collider in colliders)
+        {
+            if (collider.TryGetComponent<IAimTarget>(out IAimTarget _aimTarget))
+            {
+                _aimTarget.GetDamage();
+            }
+        }
+    }
+}
