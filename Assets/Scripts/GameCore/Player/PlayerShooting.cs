@@ -49,9 +49,11 @@ public class PlayerShooting : MonoBehaviour
 
             if(distance < shootingTarget.detectionRadius)
             {
+                playerTransform.LookAt(aimTargetCollider.transform.position);
+
                 Bullet bullet = (Bullet)Instantiate(bulletPrefab, bulletMuzzle.position, Quaternion.identity);
                 bullet.transform.LookAt(aimTargetCollider.transform.position);
-
+                bullet.SetTargetPOsition = aimTargetCollider.transform.position;
                  
                 Invoke(nameof(ShotTheTarget), shootingSpeed);
             }

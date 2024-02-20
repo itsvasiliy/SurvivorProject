@@ -29,18 +29,20 @@ public class Bullet : MonoBehaviour
 
     private IEnumerator MoveToTarget()
     {
-        while (Vector3.Distance(_transform.position, targetPosition) > 0.1f)
+        while (true)
         {
             Vector3 direction = (targetPosition - _transform.position).normalized;
             float distanceToMove = speed * Time.fixedDeltaTime;
 
             _transform.position += direction * distanceToMove;
 
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
+    }
 
+    private void OnCollisionEnter(Collision collision)
+    {
         Explode();
-
     }
 
     private void Explode()
