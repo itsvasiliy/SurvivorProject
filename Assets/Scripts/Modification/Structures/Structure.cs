@@ -47,7 +47,6 @@ public class Structure : MonoBehaviour
     public void Build()
     {
         playerStateController.SetState(PlayerStates.Idle);
-        structurePlacement.PlaceStructure(gameObject);
-        //
+        structurePlacement.PlaceStructure();
     }
 }

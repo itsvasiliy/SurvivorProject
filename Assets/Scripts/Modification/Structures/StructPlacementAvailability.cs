@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 public class StructPlacementAvailability : MonoBehaviour
 {
@@ -7,7 +8,8 @@ public class StructPlacementAvailability : MonoBehaviour
     private Color green035alpha = new Color(0.0f, 1.0f, 0.0f, 0.35f);
     private Material material;
 
-    public bool canBuild = true;
+    [Inject] StructurePlacement structurePlacement;
+
 
     private void Start()
     {
@@ -21,13 +23,13 @@ public class StructPlacementAvailability : MonoBehaviour
 
     private void SetColorAndBuildStatus(Color color, bool buildStatus)
     {
-        canBuild = buildStatus;
+        structurePlacement.canBuild = buildStatus;
         material.color = color;
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (canBuild)
+        if (structurePlacement.canBuild)
             SetColorAndBuildStatus(red035alpha, false);
     }
 
