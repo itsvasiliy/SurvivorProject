@@ -242,7 +242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8311244694646434161}
   m_Layer: 0
-  m_Name: NetworkPlayer
+  m_Name: NetworkPlayer_OfflineOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
