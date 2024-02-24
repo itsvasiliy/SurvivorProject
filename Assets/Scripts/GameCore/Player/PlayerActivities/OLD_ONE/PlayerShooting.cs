@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 [RequireComponent(typeof(DetectShootingTarget))]
 public class PlayerShooting : MonoBehaviour
 {
+    [Inject] readonly IPlayerStateController playerStateController;
+
     [SerializeField] private Transform bulletMuzzle;
 
     [SerializeField] private AnimationClip shootingAnimClip;
@@ -43,7 +46,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void ShotTheTarget()
     {
-        if(aimTargetCollider != null)
+        if(playerStateController.GetState() == PlayerStates.Idle && aimTargetCollider != null)
         {
             float distance = Vector3.Distance(playerTransform.position, aimTargetCollider.transform.position);
 
