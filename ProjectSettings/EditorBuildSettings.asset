@@ -4,5 +4,9 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Develop/Online/OnlinePrototype.unity
+    guid: bdf7da7c41a114d6c86213c8a79f54af
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

@@ -1,6 +1,5 @@
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class NETWORK_CONNECTION_UI : MonoBehaviour
 {
@@ -13,5 +12,4 @@ public class NETWORK_CONNECTION_UI : MonoBehaviour
     {
         NetworkManager.Singleton.StartClient();
     }
-
 }
