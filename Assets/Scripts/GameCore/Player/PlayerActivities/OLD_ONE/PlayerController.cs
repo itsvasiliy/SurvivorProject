@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody rb;
 
-    [Inject] IPlayerStateController playerStateController;
+   // [Inject] IPlayerStateController playerStateController;
 
     private void Start()
     {
@@ -27,12 +27,12 @@ public class PlayerController : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(rb.linearVelocity);
             animator.SetBool("IsRunning", true);
-            playerStateController.SetState(PlayerStates.Running);
+         //   playerStateController.SetState(PlayerStates.Running);
         }
         else
         {
             animator.SetBool("IsRunning", false);
-            playerStateController.SetState(PlayerStates.Idle); //wrong behavior
+          //  playerStateController.SetState(PlayerStates.Idle); //wrong behavior
         }
     }
 
