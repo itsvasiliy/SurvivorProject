@@ -5270,8 +5270,8 @@ GameObject:
   - component: {fileID: 2832675426610180739}
   - component: {fileID: 258049343708953441}
   - component: {fileID: 839464199467566276}
-  - component: {fileID: 6678424754755665221}
-  - component: {fileID: 9211037714509233353}
+  - component: {fileID: 2356237818585306855}
+  - component: {fileID: 5271151895102544898}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5457,7 +5457,7 @@ MonoBehaviour:
   bulletMuzzle: {fileID: 8005877711135013998}
   shootingAnimClip: {fileID: -1169289577551834828, guid: 9cbb2a4d135c31e4cbeadac255ba4ecb, type: 3}
   bulletPrefab: {fileID: 6609165626740961551, guid: fe6cd1636f8f1492a976c0fa88e0f16f, type: 3}
---- !u!114 &6678424754755665221
+--- !u!114 &2356237818585306855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5466,7 +5466,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7025709780423544513}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: df2868252ab5c4d1da357e8f11f1b524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SyncPositionX: 1
@@ -5487,7 +5487,7 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &9211037714509233353
+--- !u!114 &5271151895102544898
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
