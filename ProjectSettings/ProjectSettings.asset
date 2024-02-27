@@ -852,10 +852,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 53fcd87b-6ee8-41e6-87cc-48fbea7496bc
+  cloudProjectId: 4c541078-e7fd-41b8-ad95-090de8df7ba0
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: SurvivorProject 2024-02-15_10-54-08
+  projectName: SurvivorProject
   organizationId: vasyl-kyrlyk
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
