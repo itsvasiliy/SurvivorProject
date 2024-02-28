@@ -5264,7 +5264,6 @@ GameObject:
   - component: {fileID: 4650381421548942229}
   - component: {fileID: 6749681554766280675}
   - component: {fileID: 5841606987201184694}
-  - component: {fileID: 5568281852880835123}
   - component: {fileID: 544780185581800773}
   - component: {fileID: 4318723210467693668}
   - component: {fileID: 2832675426610180739}
@@ -5369,21 +5368,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.75386643, y: 1.9885042, z: 0.76298517}
   m_Center: {x: 0.038830638, y: 0.97149515, z: -0.06343368}
---- !u!114 &5568281852880835123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7025709780423544513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d06746d647dc0a04aa0cf9a423c2223c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  joystick: {fileID: 0}
-  animator: {fileID: 4650381421548942229}
-  speed: 11
 --- !u!114 &544780185581800773
 MonoBehaviour:
   m_ObjectHideFlags: 0
