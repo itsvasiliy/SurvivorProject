@@ -5,8 +5,16 @@ using Unity.Netcode;
 
 public class PlayerNetwork : NetworkBehaviour
 {
+    [SerializeField] private GameObject[] localObjects;
+
     public override void OnNetworkSpawn()
     {
-        if (!IsOwner) GetComponentInChildren<Camera>().gameObject.SetActive(false);
+        if (!IsOwner)
+        {
+            for (int i = 0; i < localObjects.Length; i++)
+            {
+                Destroy(localObjects[i]);
+            }
+        }
     }
 }
