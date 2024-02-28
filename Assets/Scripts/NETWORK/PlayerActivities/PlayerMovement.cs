@@ -13,12 +13,9 @@ public class PlayerMovement : NetworkBehaviour
 
     [SerializeField] float speed;
 
-    private void Start()
+    public override void OnNetworkSpawn()
     {
-        if (IsOwner == false)
-        {
-            Destroy(this);
-        }
+        if (!IsOwner) Destroy(this);
     }
 
     private void FixedUpdate()
