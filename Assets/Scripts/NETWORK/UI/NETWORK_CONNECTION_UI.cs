@@ -8,12 +8,12 @@ public class NETWORK_CONNECTION_UI : MonoBehaviour
     public void StartHost()
     {
         NetworkManager.Singleton.StartHost();
-        accessNetworkElement.SetActive(false);
+        Destroy(accessNetworkElement);
     }
 
     public void StartClient()
     {
         NetworkManager.Singleton.StartClient();
-        accessNetworkElement.SetActive(false);
+        Destroy(accessNetworkElement);
     }
 }
