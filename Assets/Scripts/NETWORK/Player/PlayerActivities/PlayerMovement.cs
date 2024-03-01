@@ -1,5 +1,5 @@
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
 
 public class PlayerMovement : NetworkBehaviour
 {
@@ -19,7 +19,7 @@ public class PlayerMovement : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        if (!IsOwner) Destroy(this);
+        // if (!IsOwner) Destroy(this);
     }
 
     private void FixedUpdate()
@@ -38,6 +38,7 @@ public class PlayerMovement : NetworkBehaviour
         }
         else
         {
+            if (!IsOwner) return;
             animator.SetBool("IsRunning", false);
             playerStateController.SetState(PlayerStates.Idle);
         }
