@@ -1,7 +1,6 @@
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(IDamageableDetectionCube))]
 public class PlayerManualAttack : MonoBehaviour
 {
     [SerializeField] Animator animator;
@@ -10,22 +9,17 @@ public class PlayerManualAttack : MonoBehaviour
 
     [SerializeField] GameObject tool;
 
-    private IDamageableDetectionCube damageableDetectionCube;
+    [SerializeField] IDamageableDetectionCube damageableDetectionCube;
 
     private float attackSpeed;
 
     private bool isAttacking = false;
 
-    [Inject] IPlayerStateController playerStateController;
+    [SerializeField] PlayerStateController playerStateController;
 
 
     private void Start()
     {
-        if (gameObject.TryGetComponent<IDamageableDetectionCube>(out IDamageableDetectionCube _damageableDetectionCube))
-        {
-            damageableDetectionCube = _damageableDetectionCube;
-        }
-
         attackSpeed = attackingAnimClip.length;
 
         damageableDetectionCube.detected += Attack;

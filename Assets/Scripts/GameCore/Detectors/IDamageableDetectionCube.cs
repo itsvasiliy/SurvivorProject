@@ -1,24 +1,25 @@
 using System;
 using UnityEngine;
-using Zenject;
 
 public class IDamageableDetectionCube : MonoBehaviour
 {
-    [SerializeField] private Transform _transform;
+    [SerializeField] private Transform playerTransform;
+
     [SerializeField] private Transform detectionCubeCentre;
 
     [Range(0, 10)] public float detectionRange;
 
+    [SerializeField] PlayerStateController playerStateController;
+
     public Color gizmoColor = Color.red;
 
     public event Action detected;
+
     public event Action leftDetectedAction;
 
     private RaycastHit[] hits;
 
     private bool playerInDetectionArea = false;
-
-    [Inject] IPlayerStateController playerStateController;
 
 
     public RaycastHit[] GetHits
@@ -28,7 +29,7 @@ public class IDamageableDetectionCube : MonoBehaviour
 
     private void Update()
     {
-        hits = Physics.BoxCastAll(_transform.position, Vector3.one * 0.5f, _transform.forward, _transform.rotation, detectionRange);
+        hits = Physics.BoxCastAll(playerTransform.position, Vector3.one * 0.5f, playerTransform.forward, playerTransform.rotation, detectionRange);
 
         bool playerPreviouslyInDetectionArea = playerInDetectionArea;
         playerInDetectionArea = false;
