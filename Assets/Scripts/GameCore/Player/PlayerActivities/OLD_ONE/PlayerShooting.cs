@@ -1,24 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 [RequireComponent(typeof(DetectShootingTarget))]
 public class PlayerShooting : MonoBehaviour
 {
-    [Inject] readonly IPlayerStateController playerStateController;
-
     [SerializeField] private Transform bulletMuzzle;
 
     [SerializeField] private AnimationClip shootingAnimClip;
 
     [SerializeField] private Bullet bulletPrefab;
 
+    [SerializeField] private PlayerStateController playerStateController;
+
+    [SerializeField] private Transform playerTransform;
+
     private DetectShootingTarget shootingTarget;
 
-    private Transform playerTransform;
-
-    private Collider aimTargetCollider;
+    public Collider aimTargetCollider;
 
     private float shootingSpeed;
 
@@ -32,9 +29,6 @@ public class PlayerShooting : MonoBehaviour
         }
 
         shootingSpeed = shootingAnimClip.length;
-
-        playerTransform = GetComponent<Transform>();
-
         shootingTarget.targetDetectedEvent += SetTarget;
     }
 
@@ -46,22 +40,33 @@ public class PlayerShooting : MonoBehaviour
 
     private void ShotTheTarget()
     {
-        if(playerStateController.GetState() == PlayerStates.Idle && aimTargetCollider != null)
+        if ( playerStateController.GetState() == PlayerStates.Idle &&
+            aimTargetCollider != null && isShooting == false)
         {
+            isShooting = true;
             float distance = Vector3.Distance(playerTransform.position, aimTargetCollider.transform.position);
 
-            if(distance < shootingTarget.detectionRadius)
+            if (distance < shootingTarget.detectionRadius)
             {
                 playerTransform.LookAt(aimTargetCollider.transform.position);
 
                 Bullet bullet = (Bullet)Instantiate(bulletPrefab, bulletMuzzle.position, Quaternion.identity);
                 bullet.transform.LookAt(aimTargetCollider.transform.position);
                 bullet.SetTargetPOsition = aimTargetCollider.transform.position;
-                 
-                Invoke(nameof(ShotTheTarget), shootingSpeed);
+
             }
+            else
+                aimTargetCollider = null;
+            Invoke(nameof(Reload), shootingSpeed);
         }
+
+        if (aimTargetCollider != null)
+            Invoke(nameof(ShotTheTarget), shootingSpeed);
+
     }
+
+    private void Reload() => isShooting = false;
+
 
     private void OnDestroy()
     {

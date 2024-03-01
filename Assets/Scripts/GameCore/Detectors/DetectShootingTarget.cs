@@ -13,6 +13,8 @@ public class DetectShootingTarget : MonoBehaviour
 
     private float closestTarget = Mathf.Infinity;
 
+    private float distanceSpread = 1.5f;
+
     public event Action targetDetectedEvent;
 
     public Collider GetCurrentTargetCollider
@@ -22,7 +24,7 @@ public class DetectShootingTarget : MonoBehaviour
 
     void Update()
     {
-        Collider[] colliders = Physics.OverlapSphere(centreOfTheSphere.position, detectionRadius);
+        Collider[] colliders = Physics.OverlapSphere(centreOfTheSphere.position, detectionRadius - distanceSpread);
 
         foreach (Collider collider in colliders)
         {
@@ -42,6 +44,7 @@ public class DetectShootingTarget : MonoBehaviour
                     closestTarget = distance;
                     currentTargetCollider = collider;
                     TargetDetected();
+                    break;
                 }
             }
         }

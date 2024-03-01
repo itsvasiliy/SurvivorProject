@@ -21,6 +21,7 @@ public class IDamageableDetectionCube : MonoBehaviour
 
     private bool playerInDetectionArea = false;
 
+    private bool playerPreviouslyInDetectionArea;
 
     public RaycastHit[] GetHits
     {
@@ -31,7 +32,7 @@ public class IDamageableDetectionCube : MonoBehaviour
     {
         hits = Physics.BoxCastAll(playerTransform.position, Vector3.one * 0.5f, playerTransform.forward, playerTransform.rotation, detectionRange);
 
-        bool playerPreviouslyInDetectionArea = playerInDetectionArea;
+        playerPreviouslyInDetectionArea = playerInDetectionArea;
         playerInDetectionArea = false;
 
         foreach (RaycastHit hit in hits)

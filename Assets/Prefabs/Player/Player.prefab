@@ -6095,9 +6095,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8294810432756891241}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.97149515, z: -0.06343368}
-  m_LocalScale: {x: 0.58823526, y: 0.58823526, z: 0.58823526}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8005877711135013998}
@@ -6116,7 +6116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centreOfTheSphere: {fileID: 3210376992948258348}
-  detectionRadius: 0
+  detectionRadius: 10.8
 --- !u!114 &4228898758901431966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6132,6 +6132,8 @@ MonoBehaviour:
   bulletMuzzle: {fileID: 8005877711135013998}
   shootingAnimClip: {fileID: -1169289577551834828, guid: 9cbb2a4d135c31e4cbeadac255ba4ecb, type: 3}
   bulletPrefab: {fileID: 6609165626740961551, guid: fe6cd1636f8f1492a976c0fa88e0f16f, type: 3}
+  playerStateController: {fileID: 2832675426610180739}
+  playerTransform: {fileID: 3210376992948258348}
 --- !u!1 &8366291776373057130
 GameObject:
   m_ObjectHideFlags: 0
