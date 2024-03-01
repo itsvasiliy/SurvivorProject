@@ -10,7 +10,7 @@ public class ResourceItemInfo : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI amountText;
 
-    [Inject] readonly IResourceController resourceController;
+    [SerializeField] ResourceController resourceController;
 
     public void UpdateAmountFromRepository() =>
         amountText.text = resourceController.GetResourceAmount(type).ToString();

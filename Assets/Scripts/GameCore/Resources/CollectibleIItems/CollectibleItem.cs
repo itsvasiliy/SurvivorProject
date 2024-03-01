@@ -1,8 +1,6 @@
 using Assets.Scripts.GameCore.Interfaces;
 using Assets.Scripts.GameCore.Resources;
-using TMPro;
 using UnityEngine;
-using Zenject;
 
 public class CollectibleItem : MonoBehaviour
 {
@@ -14,8 +12,7 @@ public class CollectibleItem : MonoBehaviour
 
     [Range(5, 20)] public float detectionRange = 20;
 
-
-    [Inject] readonly IResourceController resourceController;
+    private IResourceController resourceController;
 
     Vector3 castShape = new Vector3(0.5f, 0.1f, 0.5f);
     private RaycastHit[] hits;
@@ -29,9 +26,11 @@ public class CollectibleItem : MonoBehaviour
         {
             if (hit.collider != null)
             {
-                if (hit.collider.TryGetComponent<PlayerController>(out PlayerController player))
+                if (hit.collider.TryGetComponent<ResourceController>(out ResourceController resourcePlayerControl))
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+                    if (resourceController == null)
+                        resourceController = resourcePlayerControl;
+                    transform.position = Vector3.MoveTowards(transform.position, resourcePlayerControl.transform.position, moveSpeed * Time.deltaTime);
                 }
             }
         }
@@ -47,15 +46,13 @@ public class CollectibleItem : MonoBehaviour
 
     public void CollectItem()
     {
-        var collectItemRising = Instantiate(collectionDisplayPrefab, transform.position, 
+        var collectItemRising = Instantiate(collectionDisplayPrefab, transform.position,
             transform.rotation).GetComponent<CollectItemRising>();
         collectItemRising.SetAmount(amount);
 
         resourceController.AddResource(type, amount);
         Destroy(gameObject);
     }
-
-
 
     private void OnDrawGizmosSelected()
     {

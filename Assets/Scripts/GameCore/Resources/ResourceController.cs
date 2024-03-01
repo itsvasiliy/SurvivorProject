@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class ResourceController : IResourceController
+public class ResourceController : MonoBehaviour, IResourceController
 {
-    private Dictionary<ResourceTypes, int> resources = new Dictionary<ResourceTypes, int>();
+    [SerializeField] ResourcesUIControl resourcesUIControl;
 
-    [Inject] ResourcesUIControl resourcesUIControl;
+    private Dictionary<ResourceTypes, int> resources = new Dictionary<ResourceTypes, int>();
 
 
     public void AddResource(ResourceTypes type, int amount)
