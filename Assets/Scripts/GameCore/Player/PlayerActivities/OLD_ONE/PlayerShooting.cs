@@ -53,17 +53,16 @@ public class PlayerShooting : NetworkBehaviour
                 Quaternion targetRotation = Quaternion.LookRotation(relativePosition, Vector3.up);
                 playerTransform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
 
-               if(IsOwner) SpawnTheBulletServerRpc();
-
-                //NetworkObject bullet = (NetworkObject)Instantiate(bulletPrefab, bulletMuzzle.position, Quaternion.identity);
-                //bullet.Spawn();
-
-                //bullet.transform.LookAt(aimTargetCollider.transform.position);
-                //bullet.GetComponent<Bullet>().SetTargetPOsition = aimTargetCollider.transform.position;
-
+                if (IsOwner)
+                {
+                    SpawnTheBulletServerRpc();
+                }
             }
             else
+            {
                 aimTargetCollider = null;
+            }
+
             Invoke(nameof(Reload), shootingSpeed);
         }
 
@@ -79,11 +78,9 @@ public class PlayerShooting : NetworkBehaviour
         bullet.Spawn();
     }
 
+
     private void Reload() => isShooting = false;
 
 
-    private void OnDestroy()
-    {
-        shootingTarget.targetDetectedEvent -= SetTarget;
-    }
+    private void OnDestroy() => shootingTarget.targetDetectedEvent -= SetTarget;
 }

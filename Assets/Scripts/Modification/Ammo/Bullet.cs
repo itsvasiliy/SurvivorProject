@@ -12,19 +12,39 @@ public class Bullet : NetworkBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float lifeTime;
 
-    private Vector3 targetPosition;
+    private List<IAimTarget> aimTargets = new List<IAimTarget>();
 
-    public Vector3 SetTargetPOsition
-    {
-        set
-        {
-            targetPosition = value;
-            StartCoroutine(MoveToTarget());
-        }
-    }
+    private Vector3 targetPosition;
 
     private void Start()
     {
+        Collider[] colliders = Physics.OverlapSphere(_transform.position, 20f);
+
+        float closestDistance = float.MaxValue;
+        Collider closestCollider = null;
+
+        foreach (Collider collider in colliders)
+        {
+            IAimTarget aimTarget = collider.GetComponent<IAimTarget>();
+
+            if (aimTarget != null)
+            {
+                float distance = Vector3.Distance(_transform.position, collider.transform.position);
+
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestCollider = collider;
+                }
+            }
+        }
+
+        if (closestCollider != null)
+        {
+            targetPosition = closestCollider.transform.position;
+            StartCoroutine(MoveToTarget());
+        }
+
         Invoke(nameof(Explode), lifeTime);
     }
 
