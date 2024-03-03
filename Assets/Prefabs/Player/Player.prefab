@@ -6131,7 +6131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletMuzzle: {fileID: 8005877711135013998}
   shootingAnimClip: {fileID: -1169289577551834828, guid: 9cbb2a4d135c31e4cbeadac255ba4ecb, type: 3}
-  bulletPrefab: {fileID: 6609165626740961551, guid: fe6cd1636f8f1492a976c0fa88e0f16f, type: 3}
+  bulletPrefab: {fileID: 5945125968245101885, guid: e8dc7de54de8748b39faab91e9d57d08, type: 3}
   playerStateController: {fileID: 2832675426610180739}
   playerTransform: {fileID: 3210376992948258348}
   aimTargetCollider: {fileID: 0}

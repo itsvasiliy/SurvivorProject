@@ -1,13 +1,14 @@
 using UnityEngine;
+using Unity.Netcode;
 
 [RequireComponent(typeof(DetectShootingTarget))]
-public class PlayerShooting : MonoBehaviour
+public class PlayerShooting : NetworkBehaviour
 {
     [SerializeField] private Transform bulletMuzzle;
 
     [SerializeField] private AnimationClip shootingAnimClip;
 
-    [SerializeField] private Bullet bulletPrefab;
+    [SerializeField] private NetworkObject bulletPrefab;
 
     [SerializeField] private PlayerStateController playerStateController;
 
@@ -48,17 +49,17 @@ public class PlayerShooting : MonoBehaviour
 
             if (distance < shootingTarget.detectionRadius)
             {
-                #region Player LookAt target
-
                 Vector3 relativePosition = aimTargetCollider.transform.position - playerTransform.position;
                 Quaternion targetRotation = Quaternion.LookRotation(relativePosition, Vector3.up);
                 playerTransform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
 
-                #endregion
+               if(IsOwner) SpawnTheBulletServerRpc();
 
-                Bullet bullet = (Bullet)Instantiate(bulletPrefab, bulletMuzzle.position, Quaternion.identity);
-                bullet.transform.LookAt(aimTargetCollider.transform.position);
-                bullet.SetTargetPOsition = aimTargetCollider.transform.position;
+                //NetworkObject bullet = (NetworkObject)Instantiate(bulletPrefab, bulletMuzzle.position, Quaternion.identity);
+                //bullet.Spawn();
+
+                //bullet.transform.LookAt(aimTargetCollider.transform.position);
+                //bullet.GetComponent<Bullet>().SetTargetPOsition = aimTargetCollider.transform.position;
 
             }
             else
@@ -71,9 +72,11 @@ public class PlayerShooting : MonoBehaviour
 
     }
 
-    private void spawnTheBullet()
+    [ServerRpc(RequireOwnership = false)]
+    private void SpawnTheBulletServerRpc()
     {
-
+        NetworkObject bullet = (NetworkObject)Instantiate(bulletPrefab, bulletMuzzle.position, Quaternion.identity);
+        bullet.Spawn();
     }
 
     private void Reload() => isShooting = false;
