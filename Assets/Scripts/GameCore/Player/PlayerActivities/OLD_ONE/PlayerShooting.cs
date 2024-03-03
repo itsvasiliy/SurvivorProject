@@ -48,7 +48,13 @@ public class PlayerShooting : MonoBehaviour
 
             if (distance < shootingTarget.detectionRadius)
             {
-                playerTransform.LookAt(aimTargetCollider.transform.position);
+                #region Player LookAt target
+
+                Vector3 relativePosition = aimTargetCollider.transform.position - playerTransform.position;
+                Quaternion targetRotation = Quaternion.LookRotation(relativePosition, Vector3.up);
+                playerTransform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
+
+                #endregion
 
                 Bullet bullet = (Bullet)Instantiate(bulletPrefab, bulletMuzzle.position, Quaternion.identity);
                 bullet.transform.LookAt(aimTargetCollider.transform.position);
@@ -62,6 +68,11 @@ public class PlayerShooting : MonoBehaviour
 
         if (aimTargetCollider != null)
             Invoke(nameof(ShotTheTarget), shootingSpeed);
+
+    }
+
+    private void spawnTheBullet()
+    {
 
     }
 
