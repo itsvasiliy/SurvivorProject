@@ -219,6 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1668148999509830039}
   shootingMuzzle: {fileID: 6102781207393276885}
+  playerStateController: {fileID: 2081884835191954744}
   ammoPrefab: {fileID: 5945125968245101885, guid: e8dc7de54de8748b39faab91e9d57d08, type: 3}
   shootingAnimClip: {fileID: -1169289577551834828, guid: 9cbb2a4d135c31e4cbeadac255ba4ecb, type: 3}
   shootingRadius: 15

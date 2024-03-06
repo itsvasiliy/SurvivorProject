@@ -7,6 +7,9 @@ public class PlayerShooting : NetworkBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform shootingMuzzle;
 
+    [Header("PlayerController")]
+    [SerializeField] private PlayerStateController playerStateController;
+
     [Header("Player's unit of ammunation")]
     [SerializeField] private NetworkObject ammoPrefab;
 
@@ -25,9 +28,11 @@ public class PlayerShooting : NetworkBehaviour
         fireRate = shootingAnimClip.length;
     }
 
-    void Update()
+    private void Update()
     {
         if (!IsOwner) return;
+
+        if (playerStateController.GetState() != PlayerStates.Idle) return;
 
         if (isShooting == false)
         {
