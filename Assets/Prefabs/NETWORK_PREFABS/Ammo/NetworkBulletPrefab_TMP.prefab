@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3588069390821463066}
   - component: {fileID: 5714521601790135462}
   - component: {fileID: 6759388374959823117}
-  - component: {fileID: 3741173392485425607}
   - component: {fileID: 5945125968245101885}
+  - component: {fileID: 3741173392485425607}
   - component: {fileID: 2574437525981729379}
   m_Layer: 0
   m_Name: NetworkBulletPrefab_TMP
@@ -111,6 +111,26 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5945125968245101885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986034130674809408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 1073503438
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &3741173392485425607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,26 +148,6 @@ MonoBehaviour:
   damageRadius: 1
   speed: 20
   lifeTime: 3
---- !u!114 &5945125968245101885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 986034130674809408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 242801188
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!114 &2574437525981729379
 MonoBehaviour:
   m_ObjectHideFlags: 0

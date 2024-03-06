@@ -6078,8 +6078,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8070098597994729406}
-  - component: {fileID: 7337393798952731021}
-  - component: {fileID: 4228898758901431966}
   m_Layer: 0
   m_Name: ShootingPart
   m_TagString: Untagged
@@ -6103,38 +6101,6 @@ Transform:
   - {fileID: 8005877711135013998}
   m_Father: {fileID: 3210376992948258348}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7337393798952731021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8294810432756891241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba36e17eeca754d64b7a3f0fe144b09d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  centreOfTheSphere: {fileID: 3210376992948258348}
-  detectionRadius: 10.8
---- !u!114 &4228898758901431966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8294810432756891241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e9bf21cc9e264516b89e29c6d66d82a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletMuzzle: {fileID: 8005877711135013998}
-  shootingAnimClip: {fileID: -1169289577551834828, guid: 9cbb2a4d135c31e4cbeadac255ba4ecb, type: 3}
-  bulletPrefab: {fileID: 5945125968245101885, guid: e8dc7de54de8748b39faab91e9d57d08, type: 3}
-  playerStateController: {fileID: 2832675426610180739}
-  playerTransform: {fileID: 3210376992948258348}
-  aimTargetCollider: {fileID: 0}
 --- !u!1 &8366291776373057130
 GameObject:
   m_ObjectHideFlags: 0
