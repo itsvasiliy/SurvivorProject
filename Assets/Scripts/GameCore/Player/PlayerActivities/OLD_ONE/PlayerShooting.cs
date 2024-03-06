@@ -64,10 +64,18 @@ public class PlayerShooting : NetworkBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(relativePosition, Vector3.up);
         playerTransform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
 
-        print(targetPosition);
+        ShotTheTargetServerRpc(shootingMuzzle.position);
 
         Invoke(nameof(Reload), fireRate);
     }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void ShotTheTargetServerRpc(Vector3 ammoOrigin)
+    {
+        NetworkObject ammo = (NetworkObject)Instantiate(ammoPrefab, ammoOrigin, Quaternion.identity);
+        ammo.Spawn();
+    }
+
 
     private void Reload() => isShooting = false;
 
