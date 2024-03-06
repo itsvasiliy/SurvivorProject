@@ -22,13 +22,13 @@ public class PlayerShooting : NetworkBehaviour
 
     private void Start()
     {
-        if (!IsOwner) Destroy(this);
-
         fireRate = shootingAnimClip.length;
     }
 
     void Update()
     {
+        if (!IsOwner) return;
+
         if (isShooting == false)
         {
             Collider[] colliders = Physics.OverlapSphere(playerTransform.position, shootingRadius);
