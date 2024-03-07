@@ -8,8 +8,7 @@ public class StructPlacementAvailability : MonoBehaviour
     private Color green035alpha = new Color(0.0f, 1.0f, 0.0f, 0.35f);
     private Material material;
 
-    [Inject] StructurePlacement structurePlacement;
-
+    public bool canBuild;
 
     private void Start()
     {
@@ -23,13 +22,13 @@ public class StructPlacementAvailability : MonoBehaviour
 
     private void SetColorAndBuildStatus(Color color, bool buildStatus)
     {
-        structurePlacement.canBuild = buildStatus;
+        canBuild = buildStatus;
         material.color = color;
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (structurePlacement.canBuild)
+        if (canBuild)
             SetColorAndBuildStatus(red035alpha, false);
     }
 

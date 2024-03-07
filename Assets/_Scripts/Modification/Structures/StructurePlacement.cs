@@ -1,16 +1,13 @@
 using UnityEngine;
-using Zenject;
 
 public class StructurePlacement : MonoBehaviour
 {
     private GameObject structurePrefab;
     private Transform structureViewingTransform;
+    private StructPlacementAvailability placementAvailability;
 
     [SerializeField] GameObject buildButton;
 
-    public bool canBuild = true;
-
-    [Inject] DiContainer container;
 
     public void PreviewBuildingPlacement(GameObject gameObject)
     {
@@ -19,10 +16,14 @@ public class StructurePlacement : MonoBehaviour
         structurePrefab = gameObject;
 
         GameObject gameObjectCopy = Instantiate(gameObject);
+
+        var viewPosition = new Vector3(transform.position.x, gameObject.transform.position.y + 0.01f, transform.position.z);
+
         gameObjectCopy.AddComponent<StructPlacementAvailability>();
-        var obj = container.InstantiatePrefab(gameObjectCopy, transform.position, Quaternion.identity, transform);
+        var obj = Instantiate(gameObjectCopy, viewPosition, Quaternion.identity, transform);
         Destroy(gameObjectCopy);
 
+        placementAvailability = obj.GetComponent<StructPlacementAvailability>();
         var collider = obj.GetComponent<MeshCollider>();
         collider.isTrigger = true;
 
@@ -42,11 +43,17 @@ public class StructurePlacement : MonoBehaviour
 
     public void PlaceStructure()
     {
-        if (canBuild)
+        if (placementAvailability.canBuild)
         {
+            Debug.Log("Pllacing building");
+
             Instantiate(structurePrefab, structureViewingTransform.position, structureViewingTransform.rotation);
             ClearViewer();
             buildButton.SetActive(false);
+        }
+        else if (placementAvailability == null)
+        {
+            Debug.Log("cant buld");
         }
     }
 }
