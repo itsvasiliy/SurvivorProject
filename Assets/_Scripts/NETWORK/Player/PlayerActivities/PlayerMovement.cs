@@ -38,7 +38,7 @@ public class PlayerMovement : NetworkBehaviour
         }
         else
         {
-           // if (!IsOwner) return;
+            if (!IsOwner) return;
             animator.SetBool("IsRunning", false);
             playerStateController.SetState(PlayerStates.Idle);
         }
