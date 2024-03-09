@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 75176830393940048}
   - component: {fileID: 9075263199499533329}
   - component: {fileID: 6176819442211198245}
+  - component: {fileID: -7502992221352869769}
   - component: {fileID: 5201075566196438278}
   m_Layer: 0
   m_Name: Fence
@@ -110,6 +111,26 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 0aee836645b89374583afeb4ca36b969, type: 3}
+--- !u!114 &-7502992221352869769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7971249499718688860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 3747076688
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &5201075566196438278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3dd0f55e04a2e45bfe85a1595e28ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  structureName: Fence
   maxHealth: 1200
   health: 1200
   constructionCost:

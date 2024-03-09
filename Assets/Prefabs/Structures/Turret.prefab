@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8587297656418393316}
   - component: {fileID: 5545568444138853482}
   - component: {fileID: 2205749269076457673}
+  - component: {fileID: -725803927132755699}
   - component: {fileID: 5770352433202865645}
   m_Layer: 0
   m_Name: Turret
@@ -110,6 +111,26 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1479564186548422197, guid: fee612e812f32694cabb756eab39742e, type: 3}
+--- !u!114 &-725803927132755699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8984204461827033038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 1266957437
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &5770352433202865645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3dd0f55e04a2e45bfe85a1595e28ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  structureName: Turret
   maxHealth: 600
   health: 600
   constructionCost:

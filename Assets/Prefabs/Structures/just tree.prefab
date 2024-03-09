@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 821937743629263388}
   - component: {fileID: 9001360978334334772}
   - component: {fileID: 1399924665342417571}
+  - component: {fileID: -7711143906303537154}
   - component: {fileID: 4672361257266405247}
   m_Layer: 0
   m_Name: just tree
@@ -110,6 +111,26 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300012, guid: e4f5221417155426cac91dcb85524f5a, type: 3}
+--- !u!114 &-7711143906303537154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4751848957554412110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 549910380
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &4672361257266405247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3dd0f55e04a2e45bfe85a1595e28ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  structureName: Tree
   maxHealth: 12
   health: 12
   constructionCost:

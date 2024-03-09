@@ -1,10 +1,11 @@
 using Assets.Scripts.GameCore.Resources;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
+using Unity.Netcode;
 
-public class Structure : MonoBehaviour
+public class Structure : NetworkBehaviour
 {
+    public string structureName;
     public int maxHealth;
     public int health;
 

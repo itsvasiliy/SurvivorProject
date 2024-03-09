@@ -1,8 +1,9 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class StructureUISelection : MonoBehaviour
+public class StructureUISelection : NetworkBehaviour
 {
-    [SerializeField] GameObject structure;
+    [SerializeField] NetworkObject structure;
     [SerializeField] StructurePlacement structurePlacement;
     [SerializeField] ResourceController resourceController;
 
@@ -19,15 +20,10 @@ public class StructureUISelection : MonoBehaviour
         return true;
     }
 
+
     public void PreviewBuilding()
     {
-      //  playerStateController.SetState(PlayerStates.BuildViewing);
+        //  playerStateController.SetState(PlayerStates.BuildViewing);
         structurePlacement.PreviewBuildingPlacement(structure);
-    }
-
-    public void Build()
-    {
-      //  playerStateController.SetState(PlayerStates.Idle);
-        structurePlacement.PlaceStructure();
     }
 }

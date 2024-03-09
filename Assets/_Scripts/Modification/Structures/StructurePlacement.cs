@@ -1,37 +1,58 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class StructurePlacement : MonoBehaviour
+public class StructurePlacementParams : INetworkSerializable
 {
-    private GameObject structurePrefab;
-    private Transform structureViewingTransform;
-    private StructPlacementAvailability placementAvailability;
+    public string structureName;
+    public Vector3 position;
+    public Quaternion rotation;
+    public bool canBuild;
 
+    public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+    {
+        serializer.SerializeValue(ref structureName);
+        serializer.SerializeValue(ref position);
+        serializer.SerializeValue(ref rotation);
+        serializer.SerializeValue(ref canBuild);
+    }
+}
+
+
+public class StructurePlacement : NetworkBehaviour
+{
+    [SerializeField] private NetworkObject structurePrefab;
     [SerializeField] GameObject buildButton;
 
+    private StructurePrefabFactory structurePrefabFactory;
+    private Transform viewingStructureTransform;
+    private StructPlacementAvailability placementAvailability;
 
-    public void PreviewBuildingPlacement(GameObject gameObject)
+
+    private void Start() => structurePrefabFactory = FindFirstObjectByType<StructurePrefabFactory>();
+
+    public void PreviewBuildingPlacement(NetworkObject netStructureOrigin)
     {
         ClearViewer();
 
-        structurePrefab = gameObject;
+        GameObject gameObjectPreview = Instantiate(netStructureOrigin.gameObject);
 
-        GameObject gameObjectCopy = Instantiate(gameObject);
+        var viewPosition = new Vector3(transform.position.x, netStructureOrigin.transform.position.y + 0.01f, transform.position.z);
 
-        var viewPosition = new Vector3(transform.position.x, gameObject.transform.position.y + 0.01f, transform.position.z);
+        gameObjectPreview.AddComponent<StructPlacementAvailability>();
+        var obj = Instantiate(gameObjectPreview, viewPosition, Quaternion.identity, transform);
+        Destroy(gameObjectPreview);
 
-        gameObjectCopy.AddComponent<StructPlacementAvailability>();
-        var obj = Instantiate(gameObjectCopy, viewPosition, Quaternion.identity, transform);
-        Destroy(gameObjectCopy);
-
-        placementAvailability = obj.GetComponent<StructPlacementAvailability>();
         var collider = obj.GetComponent<MeshCollider>();
         collider.isTrigger = true;
 
-        structureViewingTransform = obj.transform;
         buildButton.SetActive(true);
+
+        structurePrefab = netStructureOrigin;
+        viewingStructureTransform = obj.transform;
+        placementAvailability = obj.GetComponent<StructPlacementAvailability>();
     }
 
-    private void ClearViewer()
+    public void ClearViewer()
     {
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
@@ -43,17 +64,31 @@ public class StructurePlacement : MonoBehaviour
 
     public void PlaceStructure()
     {
-        if (placementAvailability.canBuild)
-        {
-            Debug.Log("Pllacing building");
+        if (placementAvailability.canBuild == false)
+            return;
 
-            Instantiate(structurePrefab, structureViewingTransform.position, structureViewingTransform.rotation);
-            ClearViewer();
-            buildButton.SetActive(false);
-        }
-        else if (placementAvailability == null)
+        var structureScript = structurePrefab.GetComponent<Structure>();
+        var _structParams = new StructurePlacementParams()
         {
-            Debug.Log("cant buld");
-        }
+            position = viewingStructureTransform.position,
+            rotation = viewingStructureTransform.rotation,
+            structureName = structureScript.structureName,
+        };
+
+        PlaceStructureServerRpc(_structParams);
+        ClearViewer();
+        buildButton.SetActive(false);
+    }
+
+
+    [ServerRpc(RequireOwnership = false)]
+    public void PlaceStructureServerRpc(StructurePlacementParams _params)
+    {
+        var _structurePrefab = structurePrefabFactory.GetNetworkPrefab(_params.structureName);
+
+        NetworkObject netStructure = Instantiate(_structurePrefab, _params.position,
+            _params.rotation);
+        netStructure.Spawn();
     }
 }
+
