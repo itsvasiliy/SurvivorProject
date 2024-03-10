@@ -4,7 +4,7 @@ using UnityEngine;
 public class NetworkObjectHealth : NetworkBehaviour
 {
     [SerializeField] public int maxHealth = 100;
-    private NetworkVariable<int> _health = new NetworkVariable<int>();
+    public NetworkVariable<int> _health = new NetworkVariable<int>();
 
     void Start() => _health.Value = maxHealth;
 
