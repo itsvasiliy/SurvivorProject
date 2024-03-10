@@ -1,15 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AimTarget : MonoBehaviour, IAimTarget
 {
-    public void GetDamage()
+    NetworkObjectHealth health;
+
+    private void Start() => health = GetComponent<NetworkObjectHealth>();
+
+    public void GetDamage(int damage)
     {
+        health.GetDamage(damage);
     }
 
     public void Dead()
     {
+        throw new System.NotImplementedException();
     }
-
 }

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
 
 public class Bullet : NetworkBehaviour
 {
@@ -15,6 +15,8 @@ public class Bullet : NetworkBehaviour
     private List<IAimTarget> aimTargets = new List<IAimTarget>();
 
     private Vector3 targetPosition;
+
+    private bool isExploded = false;
 
     private void Start()
     {
@@ -66,15 +68,21 @@ public class Bullet : NetworkBehaviour
         Explode();
     }
 
+
     private void Explode()
     {
+        if (isExploded)
+            return;
+
+        isExploded = true;
+
         Collider[] colliders = Physics.OverlapSphere(_transform.position, damageRadius);
 
         foreach (Collider collider in colliders)
         {
             if (collider.TryGetComponent<IAimTarget>(out IAimTarget _aimTarget))
             {
-                _aimTarget.GetDamage();
+                _aimTarget.GetDamage(20);
             }
         }
 
