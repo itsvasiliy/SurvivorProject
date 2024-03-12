@@ -1,9 +1,9 @@
+using System.Linq;
 using UnityEngine;
-using Zenject;
 
 public class StructPlacementAvailability : MonoBehaviour
 {
-    private MeshRenderer meshRenderer;
+    private MeshRenderer[] meshRenderers;
     private Color red035alpha = new Color(1.0f, 0.0f, 0.0f, 0.35f);
     private Color green035alpha = new Color(0.0f, 1.0f, 0.0f, 0.35f);
     private Material material;
@@ -12,12 +12,14 @@ public class StructPlacementAvailability : MonoBehaviour
 
     private void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
         material = new Material(Shader.Find("Standard"));
-        meshRenderer.material = material;
-        SetColorAndBuildStatus(green035alpha, true);
-        material.SetFloat("_Mode", 3); //Transparent render mode
 
+        meshRenderers = GetComponentsInChildren<MeshRenderer>();
+        foreach (var renderer in meshRenderers)
+            renderer.material = material;
+
+        material.SetFloat("_Mode", 3); //Transparent render mode
+        SetColorAndBuildStatus(green035alpha, true);
     }
 
     private void SetColorAndBuildStatus(Color color, bool buildStatus)
@@ -32,8 +34,5 @@ public class StructPlacementAvailability : MonoBehaviour
             SetColorAndBuildStatus(red035alpha, false);
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        SetColorAndBuildStatus(green035alpha, true);
-    }
+    private void OnTriggerExit(Collider other) => SetColorAndBuildStatus(green035alpha, true);
 }

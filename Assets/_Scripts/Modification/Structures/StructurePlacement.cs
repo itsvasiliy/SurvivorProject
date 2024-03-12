@@ -34,16 +34,14 @@ public class StructurePlacement : NetworkBehaviour
     {
         ClearViewer();
 
-        GameObject gameObjectPreview = Instantiate(netStructureOrigin.gameObject);
+        var viewPosition = new Vector3(transform.position.x, netStructureOrigin.transform.position.y + 0.04f, transform.position.z);
 
-        var viewPosition = new Vector3(transform.position.x, netStructureOrigin.transform.position.y + 0.01f, transform.position.z);
+        var obj = Instantiate(netStructureOrigin.gameObject, viewPosition, Quaternion.identity, transform);
+        obj.AddComponent<StructPlacementAvailability>();
 
-        gameObjectPreview.AddComponent<StructPlacementAvailability>();
-        var obj = Instantiate(gameObjectPreview, viewPosition, Quaternion.identity, transform);
-        Destroy(gameObjectPreview);
-
-        var collider = obj.GetComponent<MeshCollider>();
-        collider.isTrigger = true;
+        var colliders = obj.GetComponentsInChildren<MeshCollider>();
+        foreach (var collider in colliders)
+            collider.isTrigger = true;
 
         buildButton.SetActive(true);
 
