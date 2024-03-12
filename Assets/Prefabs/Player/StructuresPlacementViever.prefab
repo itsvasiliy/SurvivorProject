@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63736b9a91c5824b8dc0489da60d6bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  structurePrefab: {fileID: 0}
   buildButton: {fileID: 5399913990793737929}
 --- !u!1 &415409386146702004
 GameObject:
@@ -191,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1944a74c59cab354c92b4fd0b47d4eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  structure: {fileID: -725803927132755699, guid: a74fe3dcc78176a4aa9bef3c18dfc973, type: 3}
+  structure: {fileID: -477975465892850425, guid: 225ec3a514992bb46ad98af09a3f1459, type: 3}
   structurePlacement: {fileID: 8909116233313095917}
   resourceController: {fileID: 0}
 --- !u!1 &1933354536615652605

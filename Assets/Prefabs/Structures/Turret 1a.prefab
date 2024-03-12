@@ -198,8 +198,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2585761135045536062}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -444,8 +444,8 @@ GameObject:
   - component: {fileID: 6986706500893716372}
   - component: {fileID: 3406072250941390536}
   - component: {fileID: 5346444877658498967}
-  - component: {fileID: 2963965180604857906}
-  - component: {fileID: 2154196002887043053}
+  - component: {fileID: 2283236353013981603}
+  - component: {fileID: 7461771154379554140}
   m_Layer: 0
   m_Name: Pylon
   m_TagString: Untagged
@@ -523,7 +523,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &2963965180604857906
+--- !u!54 &2283236353013981603
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -545,12 +545,12 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
+  m_UseGravity: 1
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2154196002887043053
+--- !u!114 &7461771154379554140
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -563,7 +563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingTracking: {fileID: 8876965885347093948}
-  rotationSpeed: 380
+  rotationSpeed: 500
 --- !u!1 &6675144914559932779
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,6 +573,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2339783001239413253}
+  - component: {fileID: -477975465892850425}
+  - component: {fileID: -6632526123233755905}
+  - component: {fileID: 8352386336364978324}
   - component: {fileID: 8876965885347093948}
   m_Layer: 0
   m_Name: Turret 1a
@@ -590,13 +593,75 @@ Transform:
   m_GameObject: {fileID: 6675144914559932779}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7169, y: 0, z: -15.16}
-  m_LocalScale: {x: 0.26638, y: 0.26638, z: 0.26638}
+  m_LocalPosition: {x: 0, y: 0.20270997, z: 0}
+  m_LocalScale: {x: 0.21222763, y: 0.21222763, z: 0.21222763}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1850152146493145895}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-477975465892850425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6675144914559932779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 2869531782
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+--- !u!114 &-6632526123233755905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6675144914559932779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3dd0f55e04a2e45bfe85a1595e28ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  structureName: Turret
+  maxHealth: 100
+  health: 0
+  constructionCost:
+  - resourceType: 0
+    cost: 5
+  - resourceType: 1
+    cost: 25
+--- !u!64 &8352386336364978324
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6675144914559932779}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 3e1a7ffe880429841b31fe7c5b5239be, type: 3}
 --- !u!114 &8876965885347093948
 MonoBehaviour:
   m_ObjectHideFlags: 0
