@@ -2,19 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyArcheryShooting : EnemyShooting
+public class EnemyArcheryShooting : EnemyShooting, IEnemyShooting
 {
     [SerializeField] private float arrowSpeed;
 
-    private void Update()
+    public void ShootTheBullet(Transform _bulletTransform, Vector3 _targetPosition)
     {
-        if(Input.GetKeyUp(KeyCode.S))
-        {
-            Vector3 spawnOrigin = transform.position;
-            spawnOrigin.y += 5f;
-
-            SpawnBulletServerRpc(spawnOrigin);
-        }
+        
     }
-
 }
