@@ -8,6 +8,6 @@ public class EnemyArcheryShooting : EnemyShooting, IEnemyShooting
 
     public void ShootTheBullet(Transform _bulletTransform, Vector3 _targetPosition)
     {
-        
+        _bulletTransform.LookAt(_targetPosition);
     }
 }
