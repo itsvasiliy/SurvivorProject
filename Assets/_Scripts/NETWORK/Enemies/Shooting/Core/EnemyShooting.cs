@@ -7,7 +7,10 @@ public class EnemyShooting : NetworkBehaviour
 {
     [SerializeField] private NetworkObject bullet;
 
-    protected void SpawnBullet(Vector3 spanwOrigin)
+    [SerializeField] private float lifeTime;
+
+    [ServerRpc(RequireOwnership = false)]
+    protected void SpawnBulletServerRpc(Vector3 spanwOrigin)
     {
         NetworkObject bulletClone = Instantiate(bullet, spanwOrigin, Quaternion.identity);
         bulletClone.Spawn();

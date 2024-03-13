@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyArcheryShooting : MonoBehaviour
+public class EnemyArcheryShooting : EnemyShooting
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float arrowSpeed;
+
+    private void Update()
     {
-        
+        if(Input.GetKeyUp(KeyCode.S))
+        {
+            Vector3 spawnOrigin = transform.position;
+            spawnOrigin.y += 5f;
+
+            SpawnBulletServerRpc(spawnOrigin);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
