@@ -268,7 +268,6 @@ GameObject:
   - component: {fileID: 123088344}
   - component: {fileID: 123088343}
   - component: {fileID: 123088345}
-  - component: {fileID: 123088346}
   m_Layer: 0
   m_Name: BetaEnemy
   m_TagString: Untagged
@@ -442,23 +441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62fa55dc6837d4424a8fce7a7d8649d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &123088346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123088337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 614135c5fe42149e681e89ee5891cf8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
-  playerTransform: {fileID: 0}
-  shootingRadius: 0
-  lifeTime: 0
-  arrowSpeed: 12
 --- !u!1 &135623587
 GameObject:
   m_ObjectHideFlags: 0
