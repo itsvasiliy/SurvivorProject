@@ -8,5 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Develop/Online/OnlinePrototype.unity
     guid: bdf7da7c41a114d6c86213c8a79f54af
+  - enabled: 1
+    path: Assets/Scenes/Develop/GameWorldMap.unity
+    guid: 97ee383e57b84154daf9ffa9df2240be
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
