@@ -1,5 +1,5 @@
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
 
 public class PlayerShooting : NetworkBehaviour
 {
@@ -24,50 +24,65 @@ public class PlayerShooting : NetworkBehaviour
     private bool isShooting = false;
 
     private WeaponBase weaponScript;
+    private Transform closestTarget;
+    public float fireRate;
 
-    private void Start() => weaponScript = weaponGameobject.GetComponent<WeaponBase>();
+
+    private void Start() => fireRate = shootingAnimClip.length;
 
     private void Update()
     {
         if (!IsOwner) return;
-
         if (playerStateController.GetState() != PlayerStates.Idle) return;
+        if (isShooting) return;
 
-        if (isShooting == false)
+        Collider[] colliders = Physics.OverlapSphere(playerTransform.position, shootingRadius);
+
+        closestTarget = null;
+        float distanceToClosestTarget = Mathf.Infinity;
+
+        foreach (Collider collider in colliders)
         {
-            Collider[] colliders = Physics.OverlapSphere(playerTransform.position, shootingRadius);
-
-            Transform closestTarget = null;
-            float distanceToClosestTarget = Mathf.Infinity;
-
-            foreach (Collider collider in colliders)
+            if (collider.TryGetComponent<IAimTarget>(out IAimTarget _aimTarget))
             {
-                if (collider.TryGetComponent<IAimTarget>(out IAimTarget _aimTarget))
-                {
-                    float distance = Vector3.Distance(playerTransform.position, collider.transform.position);
+                float distance = Vector3.Distance(playerTransform.position, collider.transform.position);
 
-                    if (distance < distanceToClosestTarget)
-                    {
-                        closestTarget = collider.transform;
-                        distanceToClosestTarget = distance;
-                    }
+                if (distance < distanceToClosestTarget)
+                {
+                    closestTarget = collider.transform;
+                    distanceToClosestTarget = distance;
                 }
             }
-
-            if(closestTarget != null)
-            {
-                ShotTheTarget(closestTarget.position);
-                isShooting = true;
-            }
         }
+
+        if (closestTarget != null)
+            ShotTheTarget(closestTarget.position);
+        else
+            StopShooting();
     }
+
+    private void StopShooting()
+    {
+        isShooting = false;
+        animator.SetBool("IsShooting", isShooting);
+        Invoke("DeactivateWeapon", 0.15f);
+    }
+
 
     private void ShotTheTarget(Vector3 targetPosition)
     {
-        weaponGameobject.SetActive(true);
+        isShooting = true;
         RotateToTarget(targetPosition);
-        weaponScript.Shoot(shootingMuzzle.position);
-        Invoke(nameof(Reload), weaponScript.fireRate);
+
+        weaponGameobject.SetActive(true);
+        if (weaponScript == null)
+            weaponScript = weaponGameobject.GetComponent<WeaponBase>();
+
+        ShotTheTargetServerRpc(shootingMuzzle.position);  // !! weaponScript.Shoot(shootingMuzzle.position); !!
+
+        animator.SetBool("IsShooting", isShooting);
+
+        Invoke(nameof(Reload), fireRate);   // Invoke(nameof(Reload), weaponScript.fireRate);
     }
 
     private void RotateToTarget(Vector3 targetPosition)
@@ -79,8 +94,17 @@ public class PlayerShooting : NetworkBehaviour
 
     private void DeactivateWeapon() => weaponGameobject.SetActive(false);
 
-
     private void Reload() => isShooting = false;
+
+
+
+    [ServerRpc(RequireOwnership = false)]
+    private void ShotTheTargetServerRpc(Vector3 muzzleOfShot) //tmp solution
+    {
+        NetworkObject ammo = Instantiate(weaponScript.ammoPrefab, muzzleOfShot,
+            weaponScript.ammoPrefab.transform.rotation);
+        ammo.Spawn();
+    }
 
     private void OnDrawGizmosSelected()
     {

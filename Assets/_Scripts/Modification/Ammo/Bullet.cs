@@ -44,10 +44,19 @@ public class Bullet : NetworkBehaviour
         if (closestCollider != null)
         {
             targetPosition = closestCollider.transform.position;
+            RotateToTarget(targetPosition);
             StartCoroutine(MoveToTarget());
         }
 
         Invoke(nameof(Explode), lifeTime);
+    }
+
+    private void RotateToTarget(Vector3 targetPosition)
+    {
+        Vector3 relativePosition = targetPosition - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(relativePosition);
+        transform.rotation = Quaternion.Euler(targetRotation.eulerAngles.x + transform.rotation.eulerAngles.x, 
+            targetRotation.eulerAngles.y, targetRotation.eulerAngles.z);
     }
 
     private IEnumerator MoveToTarget()
