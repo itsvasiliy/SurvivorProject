@@ -11,22 +11,21 @@ public class PlayerShooting : NetworkBehaviour
     [SerializeField] private PlayerStateController playerStateController;
 
     [Header("Player's unit of ammunation")]
-    [SerializeField] private NetworkObject ammoPrefab;
+    [SerializeField] private GameObject weaponGameobject;
 
     [Header("The lenght of the clip will be the fire rate speed")]
     [SerializeField] private AnimationClip shootingAnimClip;
 
+    [SerializeField] private Animator animator;
+
     [Header("The shooting distance")]
     [SerializeField] private float shootingRadius;
 
-    private float fireRate;
-
     private bool isShooting = false;
 
-    private void Start()
-    {
-        fireRate = shootingAnimClip.length;
-    }
+    private WeaponBase weaponScript;
+
+    private void Start() => weaponScript = weaponGameobject.GetComponent<WeaponBase>();
 
     private void Update()
     {
@@ -65,21 +64,20 @@ public class PlayerShooting : NetworkBehaviour
 
     private void ShotTheTarget(Vector3 targetPosition)
     {
+        weaponGameobject.SetActive(true);
+        RotateToTarget(targetPosition);
+        weaponScript.Shoot(shootingMuzzle.position);
+        Invoke(nameof(Reload), weaponScript.fireRate);
+    }
+
+    private void RotateToTarget(Vector3 targetPosition)
+    {
         Vector3 relativePosition = targetPosition - playerTransform.position;
         Quaternion targetRotation = Quaternion.LookRotation(relativePosition, Vector3.up);
         playerTransform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
-
-        ShotTheTargetServerRpc(shootingMuzzle.position);
-
-        Invoke(nameof(Reload), fireRate);
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    private void ShotTheTargetServerRpc(Vector3 ammoOrigin)
-    {
-        NetworkObject ammo = (NetworkObject)Instantiate(ammoPrefab, ammoOrigin, Quaternion.identity);
-        ammo.Spawn();
-    }
+    private void DeactivateWeapon() => weaponGameobject.SetActive(false);
 
 
     private void Reload() => isShooting = false;
