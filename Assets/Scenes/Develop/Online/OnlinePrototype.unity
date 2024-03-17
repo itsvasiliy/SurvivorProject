@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 123088344}
   - component: {fileID: 123088343}
   - component: {fileID: 123088345}
+  - component: {fileID: 123088346}
   m_Layer: 0
   m_Name: BetaEnemy
   m_TagString: Untagged
@@ -378,7 +379,7 @@ Transform:
   m_GameObject: {fileID: 123088337}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.94, y: 0.5, z: 11.3}
+  m_LocalPosition: {x: -20.06, y: 0.5, z: 11.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -441,6 +442,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62fa55dc6837d4424a8fce7a7d8649d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &123088346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123088337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 614135c5fe42149e681e89ee5891cf8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 5519337832827899683, guid: 57cf798ac2dd6495d888157da7c76dcf, type: 3}
+  EnemyTransform: {fileID: 123088342}
+  shootingRadius: 15
+  reloadingTime: 3
+  lifeTime: 3
+  arrowSpeed: 10
+  arrowDamage: 5
 --- !u!1 &135623587
 GameObject:
   m_ObjectHideFlags: 0
@@ -2410,6 +2430,10 @@ PrefabInstance:
     - target: {fileID: 4062067282385823908, guid: 57cf798ac2dd6495d888157da7c76dcf, type: 3}
       propertyPath: m_Name
       value: BetaArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 4062067282385823908, guid: 57cf798ac2dd6495d888157da7c76dcf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5519337832827899683, guid: 57cf798ac2dd6495d888157da7c76dcf, type: 3}
       propertyPath: GlobalObjectIdHash
