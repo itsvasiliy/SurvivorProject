@@ -463,6 +463,10 @@ PrefabInstance:
       propertyPath: _MMWiggle
       value: 
       objectReference: {fileID: -4103613380942311450}
+    - target: {fileID: 277411249365517476, guid: 9d3a9922821e8ff4dbce1909a3cebbaa, type: 3}
+      propertyPath: '_MMWiggle.Array.data[0]'
+      value: 
+      objectReference: {fileID: -4103613380942311450}
     - target: {fileID: 4111060575898448775, guid: 9d3a9922821e8ff4dbce1909a3cebbaa, type: 3}
       propertyPath: m_Name
       value: PlayerNearDetector

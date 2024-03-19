@@ -277,8 +277,8 @@ MonoBehaviour:
       m_RotationOrder: 4
     FrequencyMin: 0.2
     FrequencyMax: 0.2
-    AmplitudeMin: {x: -2, y: -2, z: -2}
-    AmplitudeMax: {x: 2, y: 2, z: 2}
+    AmplitudeMin: {x: -1.3, y: -1.3, z: -1.3}
+    AmplitudeMax: {x: 1.3, y: 1.3, z: 1.3}
     RelativeAmplitude: 1
     UniformValues: 0
     ForceVectorLength: 0
@@ -461,6 +461,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 277411249365517476, guid: 9d3a9922821e8ff4dbce1909a3cebbaa, type: 3}
       propertyPath: _MMWiggle
+      value: 
+      objectReference: {fileID: 5004862572923011159}
+    - target: {fileID: 277411249365517476, guid: 9d3a9922821e8ff4dbce1909a3cebbaa, type: 3}
+      propertyPath: '_MMWiggle.Array.data[0]'
       value: 
       objectReference: {fileID: 5004862572923011159}
     - target: {fileID: 4111060575898448775, guid: 9d3a9922821e8ff4dbce1909a3cebbaa, type: 3}

@@ -3,24 +3,32 @@ using UnityEngine;
 
 public class PlayerNearDetector_ForTrees : MonoBehaviour
 {
-    [SerializeField] MMWiggle _MMWiggle;
+    [SerializeField] MMWiggle[] _MMWiggle;
     private bool isPlayerNear = false;
 
-    private void Start() => TurnOffMMWiggle();
+    private void Start() => ChangeMMWigleState(isPlayerNear);
+
 
     private void OnTriggerStay(Collider other)
     {
         if (isPlayerNear)
             return;
 
+        isPlayerNear = true;
         if (other.tag == "Player")
-            TurnOnMMWiggle();
+            ChangeMMWigleState(isPlayerNear);
     }
 
-    private void OnTriggerExit(Collider other) => TurnOffMMWiggle();
+    private void OnTriggerExit(Collider other)
+    {
+        isPlayerNear = false;
+        ChangeMMWigleState(isPlayerNear);
+    }
 
-    private void TurnOffMMWiggle() => _MMWiggle.enabled = false;
 
-    private void TurnOnMMWiggle() => _MMWiggle.enabled = true;
-
+    private void ChangeMMWigleState(bool value)
+    {
+        foreach (var m in _MMWiggle)
+            m.enabled = value;
+    }
 }
