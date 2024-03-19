@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6176819442211198245}
   - component: {fileID: -7502992221352869769}
   - component: {fileID: 5201075566196438278}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fence
   m_TagString: Untagged
   m_Icon: {fileID: 0}

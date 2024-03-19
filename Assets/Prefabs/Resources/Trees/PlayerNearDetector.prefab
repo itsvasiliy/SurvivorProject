@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7001668951033403985}
   - component: {fileID: 6061265256511007021}
   - component: {fileID: 277411249365517476}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerNearDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,4 +66,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3e2247d6499b041b3746a706dc2888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MMWiggle: {fileID: 0}
+  _MMWiggle:
+  - {fileID: 0}

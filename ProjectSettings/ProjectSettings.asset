@@ -162,6 +162,7 @@ PlayerSettings:
   androidMinAspectRatio: 1
   applicationIdentifier:
     Android: com.DefaultCompany.SurvivorProject
+    Standalone: com.DefaultCompany.SurvivorProject
   buildNumber:
     Standalone: 0
     VisionOS: 0

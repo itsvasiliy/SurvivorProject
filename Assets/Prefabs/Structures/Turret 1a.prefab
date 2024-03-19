@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7162341733177360167}
   - component: {fileID: 687358826420107395}
   - component: {fileID: 3975019310422478341}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PylonElement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 7515220396398417869}
   - component: {fileID: 2268102581473006285}
   - component: {fileID: 6433692000452526930}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BaseElement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 1850152146493145895}
   - component: {fileID: 1203786281725727119}
   - component: {fileID: 4206448860472270115}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 5970985505233246541}
   - component: {fileID: 3581157249993275988}
   - component: {fileID: 3590187956085795562}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 69781982266399947}
   - component: {fileID: 5761017006532393711}
   - component: {fileID: 306836867787656838}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -446,7 +446,7 @@ GameObject:
   - component: {fileID: 5346444877658498967}
   - component: {fileID: 2283236353013981603}
   - component: {fileID: 7461771154379554140}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pylon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -577,7 +577,7 @@ GameObject:
   - component: {fileID: -6632526123233755905}
   - component: {fileID: 8352386336364978324}
   - component: {fileID: 8876965885347093948}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Turret 1a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -612,7 +612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2869531782
+  GlobalObjectIdHash: 3990675817
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
