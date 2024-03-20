@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 123088343}
   - component: {fileID: 123088345}
   - component: {fileID: 123088346}
+  - component: {fileID: 123088347}
   m_Layer: 0
   m_Name: BetaEnemy
   m_TagString: Untagged
@@ -461,6 +462,23 @@ MonoBehaviour:
   lifeTime: 3
   arrowSpeed: 10
   arrowDamage: 5
+--- !u!114 &123088347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123088337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bae5c8e114dc4011a463e78575314dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTransform: {fileID: 123088342}
+  detectionRadius: 15
+  moveSpeed: 4
+  attackRate: 5
+  accelerationDuration: 2
 --- !u!1 &135623587
 GameObject:
   m_ObjectHideFlags: 0
