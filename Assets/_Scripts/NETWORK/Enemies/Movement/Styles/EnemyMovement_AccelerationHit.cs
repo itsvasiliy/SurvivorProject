@@ -39,8 +39,6 @@ public class EnemyMovement_AccelerationHit : EnemyMovement
 
         while (duration >= 0f)
         {
-            print("E is moving");
-
             Vector3 direction = (aimPosition - enemyTransform.position).normalized;
             enemyTransform.Translate(direction * moveSpeed * Time.fixedDeltaTime);
 
