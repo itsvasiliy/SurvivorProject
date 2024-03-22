@@ -5,9 +5,6 @@ using Unity.Netcode;
 
 public class EnemyMovement_AccelerationHit : EnemyMovement
 {
-    [Header("Set the attack rate in seconds")]
-    [SerializeField] private float attackRate;
-
     [Header("Set for how long will the enemy accelerate in the plyaer direction")]
     [SerializeField] private float accelerationDuration;
 
