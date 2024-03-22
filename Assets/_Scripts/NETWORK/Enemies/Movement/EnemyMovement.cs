@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : NetworkBehaviour
 {
     [SerializeField] protected Transform enemyTransform;
+
+    [Header("Set the attack rate in seconds")]
+    [SerializeField] protected float attackRate;
 
     [SerializeField] protected float detectionRadius;
 
