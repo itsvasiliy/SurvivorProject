@@ -1,5 +1,3 @@
-namespace Layer.Editor
-{
 public class Queries
 {
 
@@ -23,12 +21,24 @@ public class Queries
       ... on User {
         name
         email
-        memberships(input: { pagination: { limit: 50 } }) {
-          list {
-            workspace {
-              id,
-              name,
-              styles(input:{}) { list {id, name}}
+        memberships(input: { first: 100 }) {
+          edges {
+            node {
+              __typename
+              id
+              workspace {
+                __typename
+                id
+                name
+                styles(input:{}) {
+                  edges {
+                    node {
+                      id,
+                      name,
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -44,9 +54,8 @@ public class Queries
       workspaceId: ""_WORKSPACEID"",
       styleId: ""_STYLEID""
     }) {
-      
       __typename
-      ... on StyleInference {
+      ... on Inference {
         id,
         files {id, url}
       }
@@ -60,12 +69,12 @@ public class Queries
   public static string removeBackground = @"
   mutation removeBackground {
     removeBackground (input:{
-      imageId:""_IMAGEID"",
+      workspaceId: ""_WORKSPACEID"",
+      imageId: ""_IMAGEID""
     }) {
-      
       __typename
       ... on RawImage {
-        base64
+        dataUri
       }
       ... on Error {
         type, code, message
@@ -73,5 +82,4 @@ public class Queries
     }
   }
   ";
-}
 }

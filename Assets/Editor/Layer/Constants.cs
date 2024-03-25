@@ -1,4 +1,3 @@
-namespace Layer.Editor {
 public static class Constants
 {
   // Access token constant
@@ -11,5 +10,4 @@ public static class Constants
   public const string CreateAccessTokenUrl = "https://app.layer.ai/settings/tokens?utm_source=unity&utm_medium=sdk";
 
 
-}
 }
