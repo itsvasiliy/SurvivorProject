@@ -6,9 +6,9 @@ public class NetworkObjectHealth : NetworkBehaviour
     [SerializeField] public int maxHealth = 100;
     public NetworkVariable<int> _health = new NetworkVariable<int>();
 
-    void Start() => SetMaxHealthServerRpc();
+    void Start() => _health.Value = maxHealth;
 
-
+     
     public void GetDamage(int damage) => GetDamageServerRpc(damage);
 
     public void Dead()
@@ -27,10 +27,7 @@ public class NetworkObjectHealth : NetworkBehaviour
             Dead();
     }
 
+
     [ServerRpc(RequireOwnership = false)]
-    private void SetMaxHealthServerRpc() => _health.Value = maxHealth;
-
-
-    [ServerRpc]
     private void DespawnServerRpc() => GetComponent<NetworkObject>().Despawn();
 }

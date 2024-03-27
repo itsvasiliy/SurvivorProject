@@ -231,9 +231,9 @@ GameObject:
   - component: {fileID: 5675896857310808948}
   - component: {fileID: 1900526516208280557}
   - component: {fileID: 4675665954523136799}
-  - component: {fileID: 7983867604728506033}
   - component: {fileID: 883030057104816935}
   - component: {fileID: 2480117389889872539}
+  - component: {fileID: 4841103604741037252}
   m_Layer: 0
   m_Name: NetworkPlayer
   m_TagString: Untagged
@@ -319,25 +319,6 @@ MonoBehaviour:
   - {fileID: 2828957187357410795}
   - {fileID: 4238772129656061295}
   - {fileID: 7901273936507689743}
---- !u!114 &7983867604728506033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3718327506131536881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e9bf21cc9e264516b89e29c6d66d82a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 1668148999509830039}
-  shootingMuzzle: {fileID: 6102781207393276885}
-  playerStateController: {fileID: 2081884835191954744}
-  weaponGameobject: {fileID: 99818814883396995}
-  shootingAnimClip: {fileID: -1169289577551834828, guid: 9cbb2a4d135c31e4cbeadac255ba4ecb, type: 3}
-  animator: {fileID: 8872796273970797614}
-  shootingRadius: 12
 --- !u!114 &883030057104816935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,6 +347,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 3243023485972845724}
+--- !u!114 &4841103604741037252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3718327506131536881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aee35390e6413d48879d51507b8773d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 1668148999509830039}
+  shootingMuzzle: {fileID: 6102781207393276885}
+  weaponGameobject: {fileID: 99818814883396995}
+  ammoPrefab: {fileID: 3598240771978171148, guid: c01e70b26ee5a994bad16ca3c6ce743a, type: 3}
+  shootingAnimClip: {fileID: -1169289577551834828, guid: 9cbb2a4d135c31e4cbeadac255ba4ecb, type: 3}
+  animator: {fileID: 8872796273970797614}
+  playerStateController: {fileID: 2081884835191954744}
+  shootingRadius: 10
+  fireRate: 0
 --- !u!1 &3921874426839128100
 GameObject:
   m_ObjectHideFlags: 0
