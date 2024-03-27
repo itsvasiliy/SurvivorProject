@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.VSAttribution.Layer;
-using Layer.Editor;
 
-namespace Layer.Editor {
 public class Settings : EditorWindow
 {
     string accessToken = "Paste your access token here";
@@ -67,5 +65,4 @@ public class Settings : EditorWindow
             Application.OpenURL(Constants.DocumentationUrl);
         }
     }
-}
 }

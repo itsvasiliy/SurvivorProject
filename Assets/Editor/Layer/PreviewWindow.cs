@@ -2,9 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
-using Layer.Editor;
 
-namespace Layer.Editor {
 public class PreviewWindow: EditorWindow {
 
   public Asset asset;
@@ -23,5 +21,3 @@ public class PreviewWindow: EditorWindow {
   }
 
 }  
-
-}

@@ -1,5 +1,4 @@
-namespace Layer.Editor
-{
+
 public class Workspace
 {
   public string id;
@@ -10,5 +9,4 @@ public class Workspace
     this.id = workspace.id;
     this.name = workspace.name;
   }
-}
 }

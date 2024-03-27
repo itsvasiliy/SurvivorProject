@@ -13,6 +13,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 257854
   packageName: Layer AI
-  packageVersion: 1.1
+  packageVersion: 1.2.0
   assetPath: Assets/Editor/Layer/PreviewWindow.cs
-  uploadId: 594761
+  uploadId: 650316
