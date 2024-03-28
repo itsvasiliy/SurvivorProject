@@ -4,12 +4,19 @@ using UnityEngine;
 public class NetworkObjectHealth : NetworkBehaviour
 {
     [SerializeField] public int maxHealth = 100;
-    public NetworkVariable<int> _health = new NetworkVariable<int>();
+    public NetworkVariable<int> _health = new NetworkVariable<int>(writePerm: NetworkVariableWritePermission.Server);
 
-    void Start() => _health.Value = maxHealth;
+    void Start()
+    {
+        if (IsServer)
+            _health.Value = maxHealth;
+    }
 
-     
-    public void GetDamage(int damage) => GetDamageServerRpc(damage);
+    public void GetDamage(int damage)
+    {
+        if (IsServer)
+            GetDamageServerRpc(damage);
+    }
 
     public void Dead()
     {

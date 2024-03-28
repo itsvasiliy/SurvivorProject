@@ -362,7 +362,7 @@ MonoBehaviour:
   playerTransform: {fileID: 1668148999509830039}
   shootingMuzzle: {fileID: 6102781207393276885}
   weaponGameobject: {fileID: 99818814883396995}
-  ammoPrefab: {fileID: 3598240771978171148, guid: c01e70b26ee5a994bad16ca3c6ce743a, type: 3}
+  ammoPrefab: {fileID: 997274244054869736, guid: c01e70b26ee5a994bad16ca3c6ce743a, type: 3}
   shootingAnimClip: {fileID: -1169289577551834828, guid: 9cbb2a4d135c31e4cbeadac255ba4ecb, type: 3}
   animator: {fileID: 8872796273970797614}
   playerStateController: {fileID: 2081884835191954744}
@@ -759,6 +759,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PlaceStructure
       objectReference: {fileID: 0}
+    - target: {fileID: 3501519745268501564, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
+      propertyPath: ammoPrefab
+      value: 
+      objectReference: {fileID: 997274244054869736, guid: c01e70b26ee5a994bad16ca3c6ce743a, type: 3}
     - target: {fileID: 3567563880559691906, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.093
