@@ -99,6 +99,7 @@ public class PlayerShootingHARDCODED : NetworkBehaviour
     {
         NetworkObject ammo = Instantiate(ammoPrefab, muzzleOfShot,
             ammoPrefab.transform.rotation);
+        ammo.GetComponent<Bullet>().SetTarget(closestTarget.position);
         ammo.Spawn();
     }
 
