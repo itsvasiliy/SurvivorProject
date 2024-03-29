@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -12,50 +11,25 @@ public class Bullet : NetworkBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float lifeTime;
 
-    private List<IAimTarget> aimTargets = new List<IAimTarget>();
-
-    private Vector3 targetPosition;
+    [HideInInspector] public Vector3 targetPosition;
 
     private bool isExploded = false;
 
     private void Start()
     {
-        Collider[] colliders = Physics.OverlapSphere(_transform.position, 20f);
-
-        float closestDistance = float.MaxValue;
-        Collider closestCollider = null;
-
-        foreach (Collider collider in colliders)
-        {
-            IAimTarget aimTarget = collider.GetComponent<IAimTarget>();
-
-            if (aimTarget != null)
-            {
-                float distance = Vector3.Distance(_transform.position, collider.transform.position);
-
-                if (distance < closestDistance)
-                {
-                    closestDistance = distance;
-                    closestCollider = collider;
-                }
-            }
-        }
-
-        if (closestCollider != null)
-        {
-            targetPosition = closestCollider.transform.position;
-            RotateToTarget(targetPosition);
-            StartCoroutine(MoveToTarget());
-        }
+        RotateToTarget(targetPosition);
+        StartCoroutine(MoveToTarget());
 
         Invoke(nameof(Explode), lifeTime);
     }
+
+   public void SetTarget(Vector3 vector3) => targetPosition = vector3;
 
     private void RotateToTarget(Vector3 targetPosition)
     {
         Vector3 relativePosition = targetPosition - transform.position;
         Quaternion targetRotation = Quaternion.LookRotation(relativePosition);
-        transform.rotation = Quaternion.Euler(targetRotation.eulerAngles.x + transform.rotation.eulerAngles.x, 
+        transform.rotation = Quaternion.Euler(targetRotation.eulerAngles.x + transform.rotation.eulerAngles.x,
             targetRotation.eulerAngles.y, targetRotation.eulerAngles.z);
     }
 
@@ -72,10 +46,7 @@ public class Bullet : NetworkBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Explode();
-    }
+    private void OnCollisionEnter(Collision collision) => Explode();
 
 
     private void Explode()
