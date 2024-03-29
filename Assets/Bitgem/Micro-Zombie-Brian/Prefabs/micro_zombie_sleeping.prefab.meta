@@ -1,15 +1,7 @@
 fileFormatVersion: 2
-guid: 1d89bd0c02a6a1e4dbf927ec28d6fbab
-NativeFormatImporter:
+guid: cda13f1a0366def45adae93d96a1c089
+PrefabImporter:
   externalObjects: {}
-  mainObjectFileID: 100100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 147722
-  packageName: Micro Monster Bundle - Faceted Style
-  packageVersion: 1.0
-  assetPath: Assets/Bitgem/Micro-Zombie-Brian/Prefabs/micro_zombie_sleeping.prefab
-  uploadId: 314192
