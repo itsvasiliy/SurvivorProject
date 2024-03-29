@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTraveling : MonoBehaviour
+public class EnemyMovement_UntilHit : EnemyMovement
 {
-
+    
 }
