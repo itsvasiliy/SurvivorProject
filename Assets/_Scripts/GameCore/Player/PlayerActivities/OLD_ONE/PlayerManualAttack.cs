@@ -38,7 +38,7 @@ public class PlayerManualAttack : MonoBehaviour
             {
                 if (hit.collider != null)
                 {
-                    if (hit.collider.TryGetComponent<IDamageable>(out IDamageable _damageable))
+                    if (hit.collider.TryGetComponent<IMineable>(out IMineable _damageable))
                     {
                         _damageable.GetDamage(0);
                         playerStateController.SetState(PlayerStates.Mining);

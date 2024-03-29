@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public class ResourceObject : MonoBehaviour, IDamageable
+public class ResourceObject : MonoBehaviour, IMineable
 {
     [SerializeField] private GameObject dropPrefab;
 

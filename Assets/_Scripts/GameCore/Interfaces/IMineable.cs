@@ -1,0 +1,4 @@
+interface IMineable : IDamageable
+{
+
+}
