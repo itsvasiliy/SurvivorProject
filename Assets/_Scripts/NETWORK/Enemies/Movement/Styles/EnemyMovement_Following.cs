@@ -38,7 +38,6 @@ public class EnemyMovement_Following : EnemyMovement
                 _navMeshAgent.SetDestination(detectedPlayer.position);
             }
 
-
             yield return new WaitForSeconds(0.2f);
         }
     }
