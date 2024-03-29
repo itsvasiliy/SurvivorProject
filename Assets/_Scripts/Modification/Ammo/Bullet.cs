@@ -11,20 +11,23 @@ public class Bullet : NetworkBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float lifeTime;
 
-  //  [HideInInspector] 
+    //  [HideInInspector] 
     public Vector3 targetPosition;
 
     private bool isExploded = false;
 
     private void Start()
     {
+        if (targetPosition == Vector3.zero)
+            Debug.LogError("Set target position first before spawn bullet");
+
         RotateToTarget(targetPosition);
         StartCoroutine(MoveToTarget());
 
         Invoke(nameof(Explode), lifeTime);
     }
 
-   public void SetTarget(Vector3 vector3) => targetPosition = vector3;
+    public void SetTarget(Vector3 vector3) => targetPosition = vector3;
 
     private void RotateToTarget(Vector3 targetPosition)
     {
