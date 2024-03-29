@@ -1,7 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 
-public class NetworkObjectHealth : NetworkBehaviour
+public class NetworkObjectHealth : NetworkBehaviour, IDamageable
 {
     [SerializeField] public int maxHealth = 100;
     public NetworkVariable<int> _health = new NetworkVariable<int>(writePerm: NetworkVariableWritePermission.Server);
