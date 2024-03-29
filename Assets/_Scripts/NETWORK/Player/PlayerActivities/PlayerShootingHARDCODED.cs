@@ -74,7 +74,7 @@ public class PlayerShootingHARDCODED : NetworkBehaviour
 
         weaponGameobject.SetActive(true);
 
-        ShotTheTargetServerRpc(shootingMuzzle.position);
+        ShotTheTargetServerRpc(shootingMuzzle.position, closestTarget.position);
 
         animator.SetBool("IsShooting", isShooting);
 
@@ -95,11 +95,11 @@ public class PlayerShootingHARDCODED : NetworkBehaviour
 
 
     [ServerRpc(RequireOwnership = false)]
-    private void ShotTheTargetServerRpc(Vector3 muzzleOfShot)
+    private void ShotTheTargetServerRpc(Vector3 muzzleOfShot, Vector3 target)
     {
         NetworkObject ammo = Instantiate(ammoPrefab, muzzleOfShot,
             ammoPrefab.transform.rotation);
-        ammo.GetComponent<Bullet>().SetTarget(closestTarget.position);
+        ammo.GetComponent<Bullet>().SetTarget(target);
         ammo.Spawn();
     }
 

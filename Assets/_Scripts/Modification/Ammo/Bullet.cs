@@ -6,12 +6,13 @@ public class Bullet : NetworkBehaviour
 {
     [SerializeField] private Transform _transform;
 
-    [SerializeField] private float damage;
+    [SerializeField] private int damage;
     [SerializeField] private float damageRadius;
     [SerializeField] private float speed;
     [SerializeField] private float lifeTime;
 
-    [HideInInspector] public Vector3 targetPosition;
+  //  [HideInInspector] 
+    public Vector3 targetPosition;
 
     private bool isExploded = false;
 
@@ -60,9 +61,9 @@ public class Bullet : NetworkBehaviour
 
         foreach (Collider collider in colliders)
         {
-            if (collider.TryGetComponent<IAimTarget>(out IAimTarget _aimTarget))
+            if (collider.TryGetComponent<IDamageable>(out IDamageable _aimTarget))
             {
-                _aimTarget.GetDamage(20);
+                _aimTarget.GetDamage(damage);
             }
         }
 
