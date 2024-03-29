@@ -10,6 +10,5 @@ public class EnemyAttack : MonoBehaviour
         {
             // player get damage here...
         }
-
     }
 }
