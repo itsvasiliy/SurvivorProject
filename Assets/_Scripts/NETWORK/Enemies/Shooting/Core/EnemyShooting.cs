@@ -5,15 +5,15 @@ using Unity.Netcode;
 
 public class EnemyShooting : NetworkBehaviour
 {
-    [SerializeField] private NetworkObject bullet;
+    [SerializeField] protected NetworkObject bullet;
 
-    [SerializeField] private Transform EnemyTransform;
+    [SerializeField] protected Transform EnemyTransform;
 
-    [SerializeField] private float shootingRadius;
-    [SerializeField] private float reloadingTime;
-    [SerializeField] private float lifeTime;
+    [SerializeField] protected float shootingRadius;
+    [SerializeField] protected float reloadingTime;
+    [SerializeField] protected float lifeTime;
 
-    private Transform detectedPlayer;
+   [SerializeField] protected Transform detectedPlayer;
 
     private IEnemyShooting enemyShooting;
 
@@ -53,6 +53,7 @@ public class EnemyShooting : NetworkBehaviour
             spawnOrigin.y += 5f;
 
             detectedPlayer = closestCollider.transform;
+            RotateToTarget(detectedPlayer.position);
             SpawnBulletServerRpc(spawnOrigin, detectedPlayer.position);
         }
 
@@ -66,5 +67,13 @@ public class EnemyShooting : NetworkBehaviour
         bulletClone.Spawn();
 
         GetComponent<IEnemyShooting>().ShootTheBullet(bulletClone.transform, _targetPosition);
+    }
+
+
+    private void RotateToTarget(Vector3 targetPosition)
+    {
+        Vector3 relativePosition = targetPosition - EnemyTransform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(relativePosition, Vector3.up);
+        EnemyTransform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
     }
 }
