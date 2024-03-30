@@ -8,6 +8,9 @@ public class EnemyMovement_AccelerationHit : EnemyMovement
     [Header("Set for how long will the enemy accelerate in the plyaer direction")]
     [SerializeField] private float accelerationDuration;
 
+    [Header("Set how often enemy will accelerating")]
+    [SerializeField] private float accelerationRate;
+
     private Vector3 aimPosition;
 
     private void Start()
@@ -27,7 +30,7 @@ public class EnemyMovement_AccelerationHit : EnemyMovement
                 StartCoroutine(AccelerateEnemy());
             }
 
-            yield return new WaitForSeconds(attackRate);
+            yield return new WaitForSeconds(accelerationRate);
         }
     }
 
