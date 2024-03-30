@@ -39,7 +39,7 @@ public class IDamageableDetectionCube : MonoBehaviour
         {
             if (hit.collider != null)
             {
-                if (hit.collider.TryGetComponent<IDamageable>(out IDamageable _damageable))
+                if (hit.collider.TryGetComponent<IMineable>(out IMineable _damageable))
                 {
                     playerInDetectionArea = true;
                     DamageableDetected();
