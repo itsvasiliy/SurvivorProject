@@ -6,6 +6,10 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMovement_ShortWalk : EnemyMovement
 {
+    [Header("EnemyMovement_ShortWalk")]
+
+    [SerializeField] private Animator animator;
+
     [SerializeField] private float maxWalkDistance;
     [SerializeField] private float goForWalkRate;
 
@@ -36,8 +40,22 @@ public class EnemyMovement_ShortWalk : EnemyMovement
 
     private void Walk()
     {
+        animator.SetBool("IsWalking", true);
         _navMeshAgent.SetDestination(GetRandomPositionAround());
 
+        StartCoroutine(CheckForStop());
+
         Invoke(nameof(Walk), goForWalkRate);
+    }
+
+    private IEnumerator CheckForStop()
+    {
+        while(_navMeshAgent.isStopped == true)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        animator.SetBool("IsWalking", false);
+        StopCoroutine(CheckForStop());
     }
 }
