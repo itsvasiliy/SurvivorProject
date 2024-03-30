@@ -39,4 +39,14 @@ public class EnemyMovement : NetworkBehaviour
 
         return null;
     }
+
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(enemyTransform.position, detectionRadius);
+    }
+#endif
+
 }
