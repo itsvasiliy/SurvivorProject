@@ -9,8 +9,6 @@ public class EnemyMovement : NetworkBehaviour
 
     [SerializeField] protected float detectionRadius;
 
-    [SerializeField] protected float moveSpeed;
-
     protected Transform GetClosestPlayer()
     {
         Collider[] colliders = Physics.OverlapSphere(enemyTransform.position, detectionRadius);
