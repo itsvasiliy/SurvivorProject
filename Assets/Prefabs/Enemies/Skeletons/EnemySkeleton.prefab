@@ -139,6 +139,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1917173877881794726}
   - {fileID: 7283007770569511475}
   - {fileID: 6405505458221932429}
   - {fileID: 1130161812580136707}
@@ -163,8 +164,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Size: {x: 1.0343537, y: 1, z: 1.0517044}
+  m_Center: {x: 0, y: 0.5, z: 0.06336689}
 --- !u!195 &2132856160015077539
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1032,6 +1033,75 @@ Transform:
   - {fileID: 2330283820713626193}
   m_Father: {fileID: 426292374426341924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8674530204703786880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1917173877881794726}
+  - component: {fileID: 9122201029937338582}
+  - component: {fileID: 8342029490534528325}
+  m_Layer: 0
+  m_Name: Melee attack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1917173877881794726
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8674530204703786880}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 2.4369106, y: 2.282179, z: 2.4337726}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 237086053037073085}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9122201029937338582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8674530204703786880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dac0fe65d3a745428b86333d854a27b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyDamage: 30
+  attackClip: {fileID: 7400004, guid: 9c0d466fa9c1a73449a3cc928261a2f9, type: 3}
+  animator: {fileID: 819945521472461007}
+--- !u!65 &8342029490534528325
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8674530204703786880}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1.21244}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8953474058408297771
 GameObject:
   m_ObjectHideFlags: 0
