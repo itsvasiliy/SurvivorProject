@@ -43,22 +43,18 @@ public class EnemyMovement_ShortWalk : EnemyMovement
         animator.SetBool("IsWalking", true);
         _navMeshAgent.SetDestination(GetRandomPositionAround());
 
-        //StartCoroutine(CheckForStop());
-
+        StartCoroutine(CheckForStop());
         Invoke(nameof(Walk), goForWalkRate);
     }
 
+    private IEnumerator CheckForStop()
+    {
+        while(_navMeshAgent.remainingDistance > 0.1f)
+        {
+            yield return new WaitForFixedUpdate();
+        }
 
-    // Not fucking working
-
-    //private IEnumerator CheckForStop()
-    //{
-    //    while (_navMeshAgent.isStopped == true)
-    //    {
-    //        yield return new WaitForFixedUpdate();
-    //    }
-
-    //    animator.SetBool("IsWalking", false);
-    //    StopCoroutine(CheckForStop());
-    //}
+        animator.SetBool("IsWalking", false);
+        StopCoroutine(CheckForStop());
+    }
 }
