@@ -3605,7 +3605,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1872115031079811531}
-  - component: {fileID: 5591607918178382422}
   m_Layer: 0
   m_Name: AttackPart
   m_TagString: Untagged
@@ -3629,23 +3628,6 @@ Transform:
   - {fileID: 6824485227339585431}
   m_Father: {fileID: 3210376992948258348}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5591607918178382422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4107507050765384283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c442544d2225140029f7cd65dfd5a262, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 4650381421548942229}
-  attackingAnimClip: {fileID: -1582444622346850160, guid: 10fa50c59af8fd440a0348904414802a, type: 3}
-  tool: {fileID: 5170869748643882335}
-  damageableDetectionCube: {fileID: 1422814698290509163}
-  playerStateController: {fileID: 2832675426610180739}
 --- !u!1 &4153097254288228386
 GameObject:
   m_ObjectHideFlags: 0
@@ -6482,11 +6464,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 533838b33b1001b4688d1c09b7118840, type: 3}
---- !u!1 &5170869748643882335 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 533838b33b1001b4688d1c09b7118840, type: 3}
-  m_PrefabInstance: {fileID: 5170869748643849215}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5170869748643985791 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 533838b33b1001b4688d1c09b7118840, type: 3}

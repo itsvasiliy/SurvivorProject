@@ -1,7 +1,8 @@
 using UnityEngine;
+using Unity.Netcode;
 using Zenject;
 
-public class PlayerManualAttack : MonoBehaviour
+public class PlayerManualAttack : NetworkBehaviour
 {
     [SerializeField] Animator animator;
 
@@ -11,12 +12,11 @@ public class PlayerManualAttack : MonoBehaviour
 
     [SerializeField] IDamageableDetectionCube damageableDetectionCube;
 
+    [SerializeField] PlayerStateController playerStateController;
+
     private float attackSpeed;
 
     private bool isAttacking = false;
-
-    [SerializeField] PlayerStateController playerStateController;
-
 
     private void Start()
     {
@@ -42,7 +42,9 @@ public class PlayerManualAttack : MonoBehaviour
                     {
                         _damageable.GetDamage(0);
                         playerStateController.SetState(PlayerStates.Mining);
+
                         tool.SetActive(true);
+
                         animator.SetBool("IsMining", true);
                     }
                 }
@@ -56,11 +58,14 @@ public class PlayerManualAttack : MonoBehaviour
 
     private void StopAttack()
     {
-        Invoke("DeactivateTool", 2.5f);
+        Invoke(nameof(DeactivateTool), 2.5f);
         animator.SetBool("IsMining", false);
     }
 
-    private void DeactivateTool() => tool.SetActive(false);
+    private void DeactivateTool()
+    {
+        tool.SetActive(false);
+    }
 
     private void OnDestroy()
     {
