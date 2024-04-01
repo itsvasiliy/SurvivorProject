@@ -1,54 +1,77 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
+using Unity.Netcode;
 
-public class SpawnEnemy : MonoBehaviour
+public class SpawnEnemy : NetworkBehaviour
 {
-    public GameObject prefabToSpawn;
-    public int totalEnemiesToSpawn = 12;
-    public int enemiesPerGroup = 3;
-    public float spawnInterval = 1f;
-    public float spawnRadius = 5f;
+    [SerializeField] private GameObject spawnArea; 
+    public GameObject[] PrefabsToSpawn; 
+    public bool DestroyWithSpawner;
+    public int SpawnCount = 1;
+    public float SpawnInterval = 1f;
+    private NetworkObject[] m_SpawnedNetworkObjects;
 
-    private int enemiesSpawned = 0;
-    private int enemiesInCurrentGroup = 0;
-    private float nextSpawnTime;
-
-    private void Start()
+    private IEnumerator StartSpawningCoroutine()
     {
-        nextSpawnTime = Time.time + spawnInterval;
+        for (int i = 0; i < SpawnCount; i++)
+        {
+            Vector3 spawnPosition = GetRandomPositionInSpawnArea(); 
+            Quaternion spawnRotation = Quaternion.identity;
+
+            GameObject prefab = PrefabsToSpawn[Random.Range(0, PrefabsToSpawn.Length)]; 
+            GameObject spawnedObject = Instantiate(prefab, spawnPosition, spawnRotation);
+            m_SpawnedNetworkObjects[i] = spawnedObject.GetComponent<NetworkObject>();
+            m_SpawnedNetworkObjects[i].Spawn();
+
+            yield return new WaitForSeconds(SpawnInterval);
+        }
     }
 
-    private void Update()
+    private Vector3 GetRandomPositionInSpawnArea()
     {
-        if (enemiesSpawned < totalEnemiesToSpawn)
+     
+        if (spawnArea == null || spawnArea.GetComponent<Collider>() == null)
         {
-            if (Time.time >= nextSpawnTime)
+            Debug.LogError("Spawn area or its collider is not assigned.");
+            return Vector3.zero;
+        }
+
+      
+        Bounds bounds = spawnArea.GetComponent<Collider>().bounds;
+
+        float randomX = Random.Range(bounds.min.x, bounds.max.x);
+        float randomY = Random.Range(bounds.min.y, bounds.max.y);
+        float randomZ = Random.Range(bounds.min.z, bounds.max.z);
+
+      
+        return new Vector3(randomX, randomY, randomZ);
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        enabled = IsServer;
+        if (!enabled || PrefabsToSpawn.Length == 0 || spawnArea == null)
+        {
+            return;
+        }
+
+        m_SpawnedNetworkObjects = new NetworkObject[SpawnCount]; 
+
+        StartCoroutine(StartSpawningCoroutine());
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        if (IsServer && DestroyWithSpawner && m_SpawnedNetworkObjects != null)
+        {
+            for (int i = 0; i < SpawnCount; i++)
             {
-                if (enemiesInCurrentGroup < enemiesPerGroup)
+                if (m_SpawnedNetworkObjects[i] != null && m_SpawnedNetworkObjects[i].IsSpawned)
                 {
-                    Vector3 spawnPosition = transform.position + Random.insideUnitSphere * spawnRadius;
-                    spawnPosition.y = 0.5f;
-                    GameObject newEnemy = Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
-                    newEnemy.transform.parent = transform; 
-                    enemiesSpawned++;
-                    enemiesInCurrentGroup++;
-                    nextSpawnTime = Time.time + spawnInterval;
-                }
-                else
-                {
-                    enemiesInCurrentGroup = 0;
-                    nextSpawnTime = Time.time + spawnInterval * 3;
+                    m_SpawnedNetworkObjects[i].Despawn();
                 }
             }
         }
-        else
-        {
-            
-            int remainingEnemies = transform.childCount - totalEnemiesToSpawn;
-            if (remainingEnemies < 0)
-            {
-                totalEnemiesToSpawn += Mathf.Abs(remainingEnemies);
-            }
-        }
+        base.OnNetworkDespawn();
     }
 }
