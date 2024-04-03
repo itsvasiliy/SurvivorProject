@@ -683,6 +683,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7976445424137734083}
     m_Modifications:
+    - target: {fileID: 1252558660677823993, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 95259708
+      objectReference: {fileID: 0}
     - target: {fileID: 1327043017844553587, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 95259708
@@ -695,6 +699,10 @@ PrefabInstance:
       propertyPath: structurePrefab
       value: 
       objectReference: {fileID: -725803927132755699, guid: a74fe3dcc78176a4aa9bef3c18dfc973, type: 3}
+    - target: {fileID: 1566034792490920354, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
+      propertyPath: resourceController
+      value: 
+      objectReference: {fileID: 8088873630574627842}
     - target: {fileID: 1828657481450135304, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 95259708
@@ -807,6 +815,10 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 4755527051483916112}
+    - target: {fileID: 6209377380375853819, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
+      propertyPath: resourceController
+      value: 
+      objectReference: {fileID: 8088873630574627842}
     - target: {fileID: 7025709780423544513, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
       propertyPath: m_Name
       value: Player

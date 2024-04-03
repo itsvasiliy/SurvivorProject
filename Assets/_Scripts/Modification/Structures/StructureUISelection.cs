@@ -1,7 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 
-public class StructureUISelection : NetworkBehaviour
+public class StructureUISelection : MonoBehaviour
 {
     [SerializeField] NetworkObject structure;
     [SerializeField] StructurePlacement structurePlacement;
@@ -23,6 +23,12 @@ public class StructureUISelection : NetworkBehaviour
 
     public void PreviewBuilding()
     {
+        if (IsEnoughResources() == false)
+        {
+            Debug.Log("Not enough resources");
+            return;
+        }
+
         //  playerStateController.SetState(PlayerStates.BuildViewing);
         structurePlacement.PreviewBuildingPlacement(structure);
     }

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   structurePrefab: {fileID: 0}
   buildButton: {fileID: 5399913990793737929}
+  resourceController: {fileID: 0}
 --- !u!1 &415409386146702004
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   structure: {fileID: 7836667670780662829, guid: 1dbf677198248a14bbd7b51c08b34bd9, type: 3}
-  structurePlacement: {fileID: 0}
+  structurePlacement: {fileID: 8909116233313095917}
   resourceController: {fileID: 0}
 --- !u!1 &3459896605491763165
 GameObject:

@@ -1,3 +1,4 @@
+using Assets.Scripts.GameCore.Interfaces;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -21,11 +22,14 @@ public class StructurePlacementParams : INetworkSerializable
 public class StructurePlacement : NetworkBehaviour
 {
     [SerializeField] private NetworkObject structurePrefab;
-    [SerializeField] GameObject buildButton;
+    [SerializeField] private GameObject buildButton;
+    [SerializeField] private ResourceController resourceController;
+
 
     private StructurePrefabFactory structurePrefabFactory;
     private Transform viewingStructureTransform;
     private StructPlacementAvailability placementAvailability;
+
 
 
     private void Start() => structurePrefabFactory = FindFirstObjectByType<StructurePrefabFactory>();
@@ -50,12 +54,21 @@ public class StructurePlacement : NetworkBehaviour
         placementAvailability = obj.GetComponent<StructPlacementAvailability>();
     }
 
-    public void ClearViewer()
+    private void ClearViewer()
     {
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
             Transform child = transform.GetChild(i);
             Destroy(child.gameObject);
+        }
+    }
+
+    private void SpendResources(Structure structureScript)
+    {
+        foreach (var requiredResource in structureScript.constructionCost)
+        {
+            resourceController.RemoveResource(requiredResource.resourceType,
+                requiredResource.cost);
         }
     }
 
@@ -73,6 +86,7 @@ public class StructurePlacement : NetworkBehaviour
             structureName = structureScript.structureName,
         };
 
+        SpendResources(structureScript);
         PlaceStructureServerRpc(_structParams);
         ClearViewer();
         buildButton.SetActive(false);
