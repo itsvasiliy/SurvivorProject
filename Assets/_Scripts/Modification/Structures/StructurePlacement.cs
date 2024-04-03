@@ -1,6 +1,5 @@
 using Unity.Netcode;
 using UnityEngine;
-using TMPro;
 
 public class StructurePlacementParams : INetworkSerializable
 {
@@ -18,32 +17,25 @@ public class StructurePlacementParams : INetworkSerializable
     }
 }
 
+
 public class StructurePlacement : NetworkBehaviour
 {
     [SerializeField] private NetworkObject structurePrefab;
-    [SerializeField] private GameObject buildButton;
-    [SerializeField] private int cost;
-    [SerializeField] private TMP_Text costText;
-
-    private int currentCost;
-    private int initialCost;
+    [SerializeField] GameObject buildButton;
 
     private StructurePrefabFactory structurePrefabFactory;
     private Transform viewingStructureTransform;
     private StructPlacementAvailability placementAvailability;
 
-    private void Start()
-    {
-        structurePrefabFactory = FindFirstObjectByType<StructurePrefabFactory>();
-        initialCost = cost;
-        currentCost = initialCost;
-    }
+
+    private void Start() => structurePrefabFactory = FindFirstObjectByType<StructurePrefabFactory>();
 
     public void PreviewBuildingPlacement(NetworkObject netStructureOrigin)
     {
         ClearViewer();
 
         var viewPosition = new Vector3(transform.position.x, netStructureOrigin.transform.position.y + 0.04f, transform.position.z);
+
         var obj = Instantiate(netStructureOrigin.gameObject, viewPosition, Quaternion.identity, transform);
         obj.AddComponent<StructPlacementAvailability>();
 
@@ -56,8 +48,6 @@ public class StructurePlacement : NetworkBehaviour
         structurePrefab = netStructureOrigin;
         viewingStructureTransform = obj.transform;
         placementAvailability = obj.GetComponent<StructPlacementAvailability>();
-
-
     }
 
     public void ClearViewer()
@@ -69,9 +59,10 @@ public class StructurePlacement : NetworkBehaviour
         }
     }
 
+
     public void PlaceStructure()
     {
-        if (placementAvailability.canBuild == false || currentCost < cost)
+        if (placementAvailability.canBuild == false)
             return;
 
         var structureScript = structurePrefab.GetComponent<Structure>();
@@ -84,12 +75,9 @@ public class StructurePlacement : NetworkBehaviour
 
         PlaceStructureServerRpc(_structParams);
         ClearViewer();
-
-        currentCost -= cost;
-        costText.text = currentCost.ToString();
-
-        buildButton.SetActive(currentCost >= cost && currentCost >= 0);
+        buildButton.SetActive(false);
     }
+
 
     [ServerRpc(RequireOwnership = false)]
     public void PlaceStructureServerRpc(StructurePlacementParams _params)
@@ -101,3 +89,4 @@ public class StructurePlacement : NetworkBehaviour
         netStructure.Spawn();
     }
 }
+
