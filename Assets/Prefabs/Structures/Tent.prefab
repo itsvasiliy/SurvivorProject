@@ -144,8 +144,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   structureName: Tree
-  maxHealth: 12
-  health: 12
+  maxHealth: 1200
+  health: 1200
   constructionCost:
   - resourceType: 0
+    cost: 45
+  - resourceType: 1
+    cost: 10
+  - resourceType: 2
     cost: 15
