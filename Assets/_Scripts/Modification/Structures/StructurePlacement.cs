@@ -39,7 +39,7 @@ public class StructurePlacement : NetworkBehaviour
         var obj = Instantiate(netStructureOrigin.gameObject, viewPosition, Quaternion.identity, transform);
         obj.AddComponent<StructPlacementAvailability>();
 
-        var colliders = obj.GetComponentsInChildren<MeshCollider>();
+        var colliders = obj.GetComponentsInChildren<Collider>();
         foreach (var collider in colliders)
             collider.isTrigger = true;
 
