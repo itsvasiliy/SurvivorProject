@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2490089440
+  GlobalObjectIdHash: 978924729
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -150,6 +150,4 @@ MonoBehaviour:
   - resourceType: 0
     cost: 10
   - resourceType: 1
-    cost: 5
-  - resourceType: 2
     cost: 5

@@ -148,8 +148,6 @@ MonoBehaviour:
   health: 1200
   constructionCost:
   - resourceType: 0
-    cost: 45
+    cost: 5
   - resourceType: 1
     cost: 10
-  - resourceType: 2
-    cost: 15
