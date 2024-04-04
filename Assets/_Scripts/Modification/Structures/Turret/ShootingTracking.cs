@@ -56,14 +56,16 @@ public class ShootingTracking : MonoBehaviour
     private void ShotTheTarget(Vector3 targetPosition)
     {
         isShooting = true;
-        ShotTheTargetServerRpc(shootingMuzzle.position);
+        ShotTheTargetServerRpc(shootingMuzzle.position, targetPosition);
 
         Invoke(nameof(Reload), fireRate);
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void ShotTheTargetServerRpc(Vector3 ammoOrigin)
+    private void ShotTheTargetServerRpc(Vector3 ammoOrigin, Vector3 targetPosition)
     {
+        var ammoScript = ammoPrefab.GetComponent<Bullet>();
+        ammoScript.SetTarget(targetPosition);
         NetworkObject ammo = Instantiate(ammoPrefab, ammoOrigin, Quaternion.identity);
         ammo.Spawn();
     }

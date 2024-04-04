@@ -145,10 +145,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transform: {fileID: 3281995216681665474}
-  damage: 100
+  damage: 25
   damageRadius: 1
   speed: 20
   lifeTime: 3
+  targetPosition: {x: -49.463146, y: 0.1645036, z: 5.0839467}
 --- !u!114 &2574437525981729379
 MonoBehaviour:
   m_ObjectHideFlags: 0

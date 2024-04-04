@@ -19,7 +19,7 @@ public class Bullet : NetworkBehaviour
     private void Start()
     {
         if (targetPosition == Vector3.zero)
-            Debug.LogError("Set target position first before spawn bullet");
+            Debug.LogError($"Set target position first before spawn bullet.\n Error caused by {name}");
 
         RotateToTarget(targetPosition);
         StartCoroutine(MoveToTarget());
