@@ -10741,7 +10741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &477499155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10774,12 +10774,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c946adba6adc1046a51c17d5c4b4ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnArea: {fileID: 1853542574}
+  spawnArea: {fileID: 441735706}
   PrefabsToSpawn:
   - {fileID: 309845213933244417, guid: 350ce625792724936ab6cf6b49990b97, type: 3}
   DestroyWithSpawner: 0
   SpawnCount: 10
-  SpawnInterval: 2.32
+  SpawnInterval: 4
 --- !u!4 &477499157
 Transform:
   m_ObjectHideFlags: 0
@@ -42463,11 +42463,6 @@ PrefabInstance:
 --- !u!4 &1853542573 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8041496101142182103, guid: 5712fd2b9b42a5448bd60aa3bc9fae30, type: 3}
-  m_PrefabInstance: {fileID: 1853542572}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1853542574 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7265136011090649709, guid: 5712fd2b9b42a5448bd60aa3bc9fae30, type: 3}
   m_PrefabInstance: {fileID: 1853542572}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1854821741 stripped

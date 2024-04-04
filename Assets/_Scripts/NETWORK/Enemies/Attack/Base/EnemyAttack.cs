@@ -19,7 +19,6 @@ public class EnemyAttack : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (isAttacking) return;
-        Debug.Log(other.name);
         if (other.gameObject.TryGetComponent<PlayerStateController>(out PlayerStateController player))
             TryToAttack(other.gameObject);
     }
