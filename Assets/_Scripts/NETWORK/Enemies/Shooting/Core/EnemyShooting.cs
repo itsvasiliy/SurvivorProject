@@ -1,19 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
 
 public class EnemyShooting : NetworkBehaviour
 {
+    [Header("Shooting properties")]
     [SerializeField] protected NetworkObject bullet;
+    [SerializeField] protected float shootingRadius;
+    [SerializeField] protected Transform muzzleOfShot;
+    [SerializeField] protected float lifeTime;
+    [SerializeField] protected float reloadingTime;
 
+    [Header("Animation")]
+    [SerializeField] protected Animator animator;
+    [SerializeField] protected AnimationClip attackClip;
+
+    [Header("Enemy")]
     [SerializeField] protected Transform EnemyTransform;
 
-    [SerializeField] protected float shootingRadius;
-    [SerializeField] protected float reloadingTime;
-    [SerializeField] protected float lifeTime;
-
-   [SerializeField] protected Transform detectedPlayer;
+    protected Vector3 detectedPlayer;
 
     private IEnemyShooting enemyShooting;
 
@@ -22,6 +26,8 @@ public class EnemyShooting : NetworkBehaviour
         enemyShooting = GetComponent<IEnemyShooting>();
 
         Invoke(nameof(PlayerDetector), reloadingTime);
+
+        reloadingTime = attackClip.length;
     }
 
     private void PlayerDetector()
@@ -47,27 +53,30 @@ public class EnemyShooting : NetworkBehaviour
             }
         }
 
-        if(closestCollider != null)
+        if (closestCollider != null)
         {
             Vector3 spawnOrigin = transform.position;
             spawnOrigin.y += 5f;
+            detectedPlayer = new Vector3(closestCollider.transform.position.x,
+                closestCollider.transform.position.y + 1.8f, closestCollider.transform.position.z);
 
-            detectedPlayer = closestCollider.transform;
-            RotateToTarget(detectedPlayer.position);
-            SpawnBulletServerRpc(spawnOrigin, detectedPlayer.position);
+            StartShooting();
         }
 
         Invoke(nameof(PlayerDetector), reloadingTime);
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    protected void SpawnBulletServerRpc(Vector3 spanwOrigin,Vector3 _targetPosition)
+    private void StartShooting()
     {
-        NetworkObject bulletClone = Instantiate(bullet, spanwOrigin, Quaternion.identity);
-        bulletClone.Spawn();
-
-        GetComponent<IEnemyShooting>().ShootTheBullet(bulletClone.transform, _targetPosition);
+        StartShootingAnimation();
+        RotateToTarget(detectedPlayer);
+        Invoke("ShootTarget_UseWithDelay", reloadingTime - 0.75f);
     }
+
+    private void StartShootingAnimation() => animator.SetBool("Attack", true);
+
+    private void ShootTarget_UseWithDelay() =>
+                GetComponent<IEnemyShooting>().ShootTheBullet(muzzleOfShot.position, detectedPlayer);
 
 
     private void RotateToTarget(Vector3 targetPosition)

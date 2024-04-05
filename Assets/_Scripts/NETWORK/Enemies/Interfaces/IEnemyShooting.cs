@@ -4,5 +4,5 @@ using UnityEngine;
 
 interface IEnemyShooting
 {
-    public void ShootTheBullet(Transform _bulletTransform, Vector3 _targetPosition);
+    public void ShootTheBullet(Vector3 muzzleOfShot, Vector3 _targetPosition);
 }
