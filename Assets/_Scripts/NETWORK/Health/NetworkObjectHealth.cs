@@ -1,7 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 
-public class NetworkObjectHealth : NetworkBehaviour, IDamageable
+public class NetworkObjectHealth : NetworkBehaviour
 {
     [SerializeField] public int maxHealth = 100;
 
@@ -20,7 +20,7 @@ public class NetworkObjectHealth : NetworkBehaviour, IDamageable
             GetDamageServerRpc(damage);
     }
 
-    public void Dead()
+    public void Death()
     {
         if (IsOwner)
             DespawnServerRpc();
@@ -32,8 +32,8 @@ public class NetworkObjectHealth : NetworkBehaviour, IDamageable
     {
         _health.Value -= damage;
 
-        if (_health.Value <= 0)
-            Dead();
+        //if (_health.Value <= 0)
+        //    Death();
     }
 
 
