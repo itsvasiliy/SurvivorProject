@@ -39,9 +39,9 @@ public class EnemyShooting : NetworkBehaviour
 
         foreach (Collider collider in colliders)
         {
-            PlayerStateController aimTarget = collider.GetComponent<PlayerStateController>();
+            PlayerHealthController aimTarget = collider.GetComponent<PlayerHealthController>();
 
-            if (aimTarget != null)
+            if (aimTarget != null && aimTarget.enabled) //aimTarget.enabled means player is alive
             {
                 float distance = Vector3.Distance(EnemyTransform.position, collider.transform.position);
 
@@ -50,6 +50,10 @@ public class EnemyShooting : NetworkBehaviour
                     closestDistance = distance;
                     closestCollider = collider;
                 }
+            }
+            else
+            {
+                StopShooting();
             }
         }
 
@@ -73,6 +77,7 @@ public class EnemyShooting : NetworkBehaviour
         Invoke("ShootTarget_UseWithDelay", reloadingTime - 0.75f);
     }
 
+    private void StopShooting() => animator.SetBool("Attack", false);
     private void StartShootingAnimation() => animator.SetBool("Attack", true);
 
     private void ShootTarget_UseWithDelay() =>

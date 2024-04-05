@@ -19,25 +19,25 @@ public class EnemyAttack : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (isAttacking) return;
-        if (other.gameObject.TryGetComponent<PlayerStateController>(out PlayerStateController player))
-            TryToAttack(other.gameObject);
+        if (other.gameObject.TryGetComponent<PlayerHealthController>(out PlayerHealthController _playerHealthController))
+            TryToAttack(_playerHealthController);
     }
 
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.TryGetComponent<PlayerStateController>(out PlayerStateController player))
+        if (other.gameObject.TryGetComponent<PlayerHealthController>(out PlayerHealthController player))
             StopToAttack();
     }
 
 
-    private void TryToAttack(GameObject _gameobject)
+    private void TryToAttack(PlayerHealthController _playerHealthController)
     {
         try
         {
             isAttacking = true;
             animator.SetBool("IsAttacking", true);
-            StartCoroutine(DamagePlayerWithDelay(_gameobject.GetComponent<NetworkObjectHealth>()));
+            StartCoroutine(DamagePlayerWithDelay(_playerHealthController));
             Invoke("ResetAttackStatus", attackSpeed);
 
         }
@@ -48,7 +48,7 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
-    private IEnumerator DamagePlayerWithDelay(NetworkObjectHealth _playerHealth)
+    private IEnumerator DamagePlayerWithDelay(PlayerHealthController _playerHealth)
     {
         yield return new WaitForSeconds(attackSpeed - 0.15f);
         _playerHealth.GetDamage(bodyDamage);
