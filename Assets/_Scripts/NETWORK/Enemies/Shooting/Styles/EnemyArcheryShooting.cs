@@ -1,44 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
 
 public class EnemyArcheryShooting : EnemyShooting, IEnemyShooting
 {
-    [SerializeField] private float arrowSpeed;
-
-    [SerializeField] private int arrowDamage;
-
-    private bool isExplode = false;
-
-    public void ShootTheBullet(Transform _bulletTransform, Vector3 _targetPosition)
+    public void ShootTheBullet(Vector3 muzzleOfShot, Vector3 _targetPosition)
     {
-        StartCoroutine(FlyTowardsTarget(_bulletTransform, _targetPosition));
+        ShotTheTargetServerRpc(muzzleOfShot, _targetPosition);
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+    [ServerRpc(RequireOwnership = false)]
+    private void ShotTheTargetServerRpc(Vector3 muzzleOfShot, Vector3 target)
     {
-        if(collision.gameObject.TryGetComponent<NetworkObjectHealth>(out NetworkObjectHealth _networkObjectHealth))
-        {
-            _networkObjectHealth.GetDamage(arrowDamage);
-        }
-
-        isExplode = true;
-    }
-
-    private IEnumerator FlyTowardsTarget(Transform _bulletTransform, Vector3 _targetPosition)
-    {
-        while (isExplode)
-        {
-            Vector3 direction = _targetPosition - _bulletTransform.position;
-            direction.Normalize();
-            _bulletTransform.Translate(direction * arrowSpeed * Time.deltaTime, Space.World);
-
-            _bulletTransform.LookAt(_targetPosition);
-
-            yield return new WaitForFixedUpdate(); 
-        }
-
-        _bulletTransform.GetComponent<NetworkObject>().Despawn();
+        NetworkObject ammo = Instantiate(bullet, muzzleOfShot, bullet.transform.rotation);
+        ammo.GetComponent<Bullet>().SetTarget(target);
+        ammo.Spawn();
     }
 }
