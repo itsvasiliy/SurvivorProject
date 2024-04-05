@@ -10776,10 +10776,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnArea: {fileID: 758507163}
   PrefabsToSpawn:
-  - {fileID: 4368949948753525110, guid: ea603bf157981844fbcd9c3be8cb7fab, type: 3}
+  - {fileID: 1102687545674684928, guid: ea603bf157981844fbcd9c3be8cb7fab, type: 3}
   DestroyWithSpawner: 0
-  SpawnCount: 1
-  SpawnInterval: 1
+  SpawnCount: 3
+  SpawnInterval: 6.24
 --- !u!4 &477499157
 Transform:
   m_ObjectHideFlags: 0

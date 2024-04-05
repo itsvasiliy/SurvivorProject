@@ -1,11 +1,11 @@
-using UnityEngine;
 using System.Collections;
 using Unity.Netcode;
+using UnityEngine;
 
 public class SpawnEnemy : NetworkBehaviour
 {
-    [SerializeField] private GameObject spawnArea; 
-    public GameObject[] PrefabsToSpawn; 
+    [SerializeField] private GameObject spawnArea;
+    public NetworkObject[] PrefabsToSpawn;
     public bool DestroyWithSpawner;
     public int SpawnCount = 1;
     public float SpawnInterval = 1f;
@@ -15,37 +15,41 @@ public class SpawnEnemy : NetworkBehaviour
     {
         for (int i = 0; i < SpawnCount; i++)
         {
-            Vector3 spawnPosition = GetRandomPositionInSpawnArea(); 
-            Quaternion spawnRotation = Quaternion.identity;
-
-            GameObject prefab = PrefabsToSpawn[Random.Range(0, PrefabsToSpawn.Length)]; 
-            GameObject spawnedObject = Instantiate(prefab, spawnPosition, spawnRotation);
-            m_SpawnedNetworkObjects[i] = spawnedObject.GetComponent<NetworkObject>();
-            m_SpawnedNetworkObjects[i].Spawn();
-
+            SpawnWithServerRpc();
             yield return new WaitForSeconds(SpawnInterval);
         }
     }
 
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SpawnWithServerRpc()
+    {
+        var randomPrefab = PrefabsToSpawn[Random.Range(0, PrefabsToSpawn.Length)];
+        NetworkObject no = Instantiate(randomPrefab, GetRandomPositionInSpawnArea(), Quaternion.identity);
+        no.Spawn();
+    }
+
+
     private Vector3 GetRandomPositionInSpawnArea()
     {
-     
+
         if (spawnArea == null || spawnArea.GetComponent<Collider>() == null)
         {
             Debug.LogError("Spawn area or its collider is not assigned.");
             return Vector3.zero;
         }
 
-      
+
         Bounds bounds = spawnArea.GetComponent<Collider>().bounds;
 
         float randomX = Random.Range(bounds.min.x, bounds.max.x);
         float randomY = Random.Range(bounds.min.y, bounds.max.y);
         float randomZ = Random.Range(bounds.min.z, bounds.max.z);
 
-      
+
         return new Vector3(randomX, randomY, randomZ);
     }
+
 
     public override void OnNetworkSpawn()
     {
@@ -55,7 +59,7 @@ public class SpawnEnemy : NetworkBehaviour
             return;
         }
 
-        m_SpawnedNetworkObjects = new NetworkObject[SpawnCount]; 
+        m_SpawnedNetworkObjects = new NetworkObject[SpawnCount];
 
         StartCoroutine(StartSpawningCoroutine());
     }
