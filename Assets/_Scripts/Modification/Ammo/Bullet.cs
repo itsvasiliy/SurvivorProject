@@ -11,7 +11,8 @@ public class Bullet : NetworkBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float lifeTime;
 
-    private Vector3 targetPosition;
+    //  [HideInInspector] 
+    public Vector3 targetPosition;
 
     private bool isExploded = false;
 
@@ -20,15 +21,13 @@ public class Bullet : NetworkBehaviour
         if (targetPosition == Vector3.zero)
             Debug.LogError($"Set target position first before spawn bullet.\n Error caused by {name}");
 
+        RotateToTarget(targetPosition);
         StartCoroutine(MoveToTarget());
+
         Invoke(nameof(Explode), lifeTime);
     }
 
-    public void SetTarget(Vector3 target)
-    {
-        targetPosition = target;
-        RotateToTarget(target);
-    }
+    public void SetTarget(Vector3 vector3) => targetPosition = vector3;
 
     private void RotateToTarget(Vector3 targetPosition)
     {
@@ -40,32 +39,19 @@ public class Bullet : NetworkBehaviour
 
     private IEnumerator MoveToTarget()
     {
-        while (!isExploded)
+        while (true)
         {
             Vector3 direction = (targetPosition - _transform.position).normalized;
             float distanceToMove = speed * Time.fixedDeltaTime;
 
             _transform.position += direction * distanceToMove;
 
-            // Check if the bullet is close enough to the target to explode
-            float distanceToTarget = Vector3.Distance(_transform.position, targetPosition);
-            if (distanceToTarget <= damageRadius)
-            {
-                Explode();
-                yield break; // Exit the coroutine
-            }
-
             yield return new WaitForFixedUpdate();
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (!isExploded)
-        {
-            Explode();
-        }
-    }
+    private void OnCollisionEnter(Collision collision) => Explode();
+
 
     private void Explode()
     {
