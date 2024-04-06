@@ -39,9 +39,9 @@ public class Bullet : NetworkBehaviour
 
     private IEnumerator MoveToTarget()
     {
+        Vector3 direction = (targetPosition - _transform.position).normalized;
         while (true)
         {
-            Vector3 direction = (targetPosition - _transform.position).normalized;
             float distanceToMove = speed * Time.fixedDeltaTime;
 
             _transform.position += direction * distanceToMove;
