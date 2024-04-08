@@ -23,6 +23,9 @@ public class EnemyShooting : NetworkBehaviour
 
     private void Start()
     {
+        if (IsServer == false)
+            return;
+
         enemyShooting = GetComponent<IEnemyShooting>();
 
         Invoke(nameof(PlayerDetector), reloadingTime);
