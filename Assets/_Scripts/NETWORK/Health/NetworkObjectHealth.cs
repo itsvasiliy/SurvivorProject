@@ -1,7 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 
-public class NetworkObjectHealth : NetworkBehaviour
+public class NetworkObjectHealth : NetworkBehaviour, IHealthController
 {
     [SerializeField] public int maxHealth = 100;
 
@@ -32,11 +32,17 @@ public class NetworkObjectHealth : NetworkBehaviour
     {
         _health.Value -= damage;
 
-        //if (_health.Value <= 0)
-        //    Death();
+        if (_health.Value <= 0)
+            Death();
     }
 
 
     [ServerRpc(RequireOwnership = false)]
     private void DespawnServerRpc() => GetComponent<NetworkObject>().Despawn();
+
+    public int GetMaxHealth() => maxHealth;
+
+    public int GetCurrentHealth() => _health.Value;
+
+    public NetworkVariable<int> GetHealthVariable() => _health;
 }
