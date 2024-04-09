@@ -1,48 +1,77 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerHealthController : MonoBehaviour, IDamageable
+public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthController
 {
+    [SerializeField] public int maxHealth;
     [SerializeField] PlayerMovement playerMovementScript;
     [SerializeField] AnimationClip getHitClip;
 
-    Animator animator;
-    NetworkObjectHealth health;
+    private Animator animator;
+
+    private NetworkVariable<int> _health = new NetworkVariable<int>(writePerm: NetworkVariableWritePermission.Server);
 
 
     void Start()
     {
-        health = GetComponent<NetworkObjectHealth>();
+        if (IsServer)
+            _health.Value = maxHealth;
+
         animator = GetComponent<Animator>();
     }
 
-
     public void GetDamage(int damage)
     {
-        animator.SetBool("IsGetHit", true);
-        Invoke("ResetGetHit", getHitClip.length);
+        PlayGetHitAnimation();
+        GetDamageServerRpc(damage);
 
-        health.GetDamage(damage);
-        if (health._health.Value <= 0)
+        if (_health.Value <= 0)
             Dead();
     }
 
 
-    public void Dead()
+    [ServerRpc(RequireOwnership = false)]
+    private void GetDamageServerRpc(int damage)
     {
-        playerMovementScript.enabled = false;
-        animator.SetTrigger("Death");
-        this.enabled = false;
+        _health.Value -= damage;
     }
 
-    public void Reincarnate()
+    public void Dead()
     {
-        playerMovementScript.enabled = true;
-        animator.ResetTrigger("Death");
-        this.enabled = true;
+        animator.SetTrigger("Death");
+        SetDeathStatusServerRpc(false);
+    }
 
+    [ServerRpc(RequireOwnership = false)]
+    private void SetDeathStatusServerRpc(bool status)
+    {
+
+        playerMovementScript.enabled = status;
+        this.enabled = status;
+        SetDeathStatusClientRpc(status);
+    }
+
+    [ClientRpc]
+    private void SetDeathStatusClientRpc(bool status)
+    {
+        playerMovementScript.enabled = status;
+        this.enabled = status;
+    }
+
+   
+
+    public void PlayGetHitAnimation()
+    {
+        animator.SetBool("IsGetHit", true);
+        Invoke(nameof(ResetGetHit), getHitClip.length);
     }
 
 
     public void ResetGetHit() => animator.SetBool("IsGetHit", false);
 
+    public int GetMaxHealth() => maxHealth;
+
+    public int GetCurrentHealth() => _health.Value;
+
+    public NetworkVariable<int> GetHealthVariable() => _health;
 }

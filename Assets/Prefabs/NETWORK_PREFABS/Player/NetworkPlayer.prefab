@@ -840,9 +840,6 @@ PrefabInstance:
       addedObject: {fileID: 6780016102449918150}
     - targetCorrespondingSourceObject: {fileID: 7025709780423544513, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 16680347291304151}
-    - targetCorrespondingSourceObject: {fileID: 7025709780423544513, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 4482666119143832372}
   m_SourcePrefab: {fileID: 100100000, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
 --- !u!1 &99818814883396995 stripped
@@ -911,21 +908,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 3243023485972845724}
---- !u!114 &16680347291304151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6497477801574293882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a562158e885b2744a3ffb64a14e353a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  _health:
-    m_InternalValue: 0
 --- !u!114 &4482666119143832372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -938,8 +920,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2ab609923b68e4ab102f14023482ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 70
   playerMovementScript: {fileID: 1900526516208280557}
   getHitClip: {fileID: -7880898593064695190, guid: 83e28e7ec15604e4e936c71d31a7ebad, type: 3}
+  animator: {fileID: 0}
+  _health:
+    m_InternalValue: 0
 --- !u!54 &7349971264018700376 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6749681554766280675, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
