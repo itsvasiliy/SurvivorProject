@@ -14,6 +14,8 @@ public class PlayerManualAttack : NetworkBehaviour
 
     [SerializeField] PlayerStateController playerStateController;
 
+    [SerializeField] private PlayerLevelSystem playerLevelSystem;
+
     private float attackSpeed;
 
     private bool isAttacking = false;
@@ -42,6 +44,8 @@ public class PlayerManualAttack : NetworkBehaviour
                     {
                         _damageable.GetDamage(0);
                         playerStateController.SetState(PlayerStates.Mining);
+
+                        playerLevelSystem.AddExperience = 10;
 
                         tool.SetActive(true);
 

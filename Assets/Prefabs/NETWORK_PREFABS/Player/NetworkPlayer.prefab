@@ -356,6 +356,7 @@ MonoBehaviour:
   tool: {fileID: 8964809590559148772}
   damageableDetectionCube: {fileID: 2888252252152077008}
   playerStateController: {fileID: 2081884835191954744}
+  playerLevelSystem: {fileID: 5761590759926257498}
 --- !u!1 &3921874426839128100
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,9 +924,6 @@ MonoBehaviour:
   maxHealth: 70
   playerMovementScript: {fileID: 1900526516208280557}
   getHitClip: {fileID: -7880898593064695190, guid: 83e28e7ec15604e4e936c71d31a7ebad, type: 3}
-  animator: {fileID: 0}
-  _health:
-    m_InternalValue: 0
 --- !u!54 &7349971264018700376 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6749681554766280675, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
@@ -1075,6 +1073,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a47f546fc70ec8428172694e78e4288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5761590759926257498 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3406581312523822063, guid: 646e6bca719d40d4683fddb54cf45cef, type: 3}
+  m_PrefabInstance: {fileID: 6968146019274241205}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa488b1ee173436487bdb5dd0e1807e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &7625088026559971261 stripped

@@ -30,6 +30,12 @@ public class PlayerLevelSystem : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        levelBar.value = experience;
+        levelBar.maxValue = nextLevelExperience;
+    }
+
     private void CheckNextLevelRequirements()
     {
         if (experience >= nextLevelExperience)
