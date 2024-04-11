@@ -547,6 +547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelBar: {fileID: 6123164401612484540}
+  levelText: {fileID: 6853513245157797417}
 --- !u!1 &7913419713594379587
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 [RequireComponent(typeof(Slider))]
 public class PlayerLevelSystem : MonoBehaviour
 {
     [SerializeField] private Slider levelBar;
+
+    [SerializeField] private TextMeshProUGUI levelText;
 
     private int currentLevel = 1;
 
@@ -49,6 +52,8 @@ public class PlayerLevelSystem : MonoBehaviour
     {
         nextLevelExperience = nextLevelExperience + (expIncreaseFactor * currentLevel);
         currentLevel++;
+
+        levelText.text = ("Lv. " + currentLevel);
 
         levelUp?.Invoke();
     }
