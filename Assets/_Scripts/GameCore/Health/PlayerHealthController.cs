@@ -20,6 +20,15 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
         animator = GetComponent<Animator>();
     }
 
+    public bool IsHealthMax() => maxHealth == _health.Value;
+    public void Heal(int value)
+    {
+        _health.Value += value;
+        if (_health.Value > maxHealth)
+            _health.Value = maxHealth;
+    }
+
+
     public void GetDamage(int damage)
     {
         PlayGetHitAnimation();
@@ -58,7 +67,7 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
         this.enabled = status;
     }
 
-   
+
 
     public void PlayGetHitAnimation()
     {
