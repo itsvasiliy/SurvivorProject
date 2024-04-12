@@ -1,4 +1,3 @@
-using Assets.Scripts.GameCore.Interfaces;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -40,7 +39,10 @@ public class StructurePlacement : NetworkBehaviour
 
         var viewPosition = new Vector3(transform.position.x, netStructureOrigin.transform.position.y + 0.04f, transform.position.z);
 
+
         var obj = Instantiate(netStructureOrigin.gameObject, viewPosition, Quaternion.identity, transform);
+        obj.GetComponent<Structure>().isViewing = true;
+
         obj.AddComponent<StructPlacementAvailability>();
 
         var colliders = obj.GetComponentsInChildren<Collider>();
@@ -97,7 +99,7 @@ public class StructurePlacement : NetworkBehaviour
     public void PlaceStructureServerRpc(StructurePlacementParams _params)
     {
         var _structurePrefab = structurePrefabFactory.GetNetworkPrefab(_params.structureName);
-
+       
         NetworkObject netStructure = Instantiate(_structurePrefab, _params.position,
             _params.rotation);
         netStructure.Spawn();

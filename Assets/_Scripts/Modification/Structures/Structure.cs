@@ -9,6 +9,8 @@ public class Structure : NetworkBehaviour
     public int maxHealth;
     public int health;
 
+    public bool isViewing = false;
+
     [Serializable]
     public class ResourceCost
     {
