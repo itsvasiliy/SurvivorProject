@@ -7,6 +7,9 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
     [SerializeField] PlayerMovement playerMovementScript;
     [SerializeField] AnimationClip getHitClip;
 
+
+    [SerializeField] GameObject respawnButton;
+
     private Animator animator;
 
     private NetworkVariable<int> _health = new NetworkVariable<int>(writePerm: NetworkVariableWritePermission.Server);
@@ -40,16 +43,36 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
 
 
     [ServerRpc(RequireOwnership = false)]
-    private void GetDamageServerRpc(int damage)
-    {
-        _health.Value -= damage;
-    }
+    private void GetDamageServerRpc(int damage) => _health.Value -= damage;
 
     public void Dead()
     {
-        animator.SetTrigger("Death");
         SetDeathStatusServerRpc(false);
+        respawnButton.SetActive(true);
+
+        animator.SetBool("IsRunning", false);
+        animator.SetTrigger("Death");
+
     }
+
+    public void Respawn()
+    {
+        var tentPosition = TentPlayerRespawner.GetLastTentPosition();
+        if (tentPosition == Vector3.zero)
+            Debug.Log("Need tent to respawn the player");
+
+        animator.ResetTrigger("Death");
+        SetDeathStatusServerRpc(true);
+        respawnButton.SetActive(false);
+
+        HealMaxServerRpc();
+        transform.position = tentPosition;
+    }
+
+
+    [ServerRpc(RequireOwnership = false)]
+    private void HealMaxServerRpc() => _health.Value = maxHealth;
+
 
     [ServerRpc(RequireOwnership = false)]
     private void SetDeathStatusServerRpc(bool status)
