@@ -1,6 +1,5 @@
-using UnityEngine;
 using Unity.Netcode;
-using Zenject;
+using UnityEngine;
 
 public class PlayerManualAttack : NetworkBehaviour
 {
@@ -47,7 +46,8 @@ public class PlayerManualAttack : NetworkBehaviour
 
                         playerLevelSystem.AddExperience = 10;
 
-                        tool.SetActive(true);
+                        if (tool.activeSelf == false)
+                            ActivateTool();
 
                         animator.SetBool("IsMining", true);
                     }
@@ -66,10 +66,40 @@ public class PlayerManualAttack : NetworkBehaviour
         animator.SetBool("IsMining", false);
     }
 
-    private void DeactivateTool()
+
+    private void ActivateTool()
     {
-        tool.SetActive(false);
+        if (tool.activeSelf)
+            return;
+        SetToolActiveStatus(true);
+
+        if (tool.activeSelf == false)
+            tool.SetActive(true);
     }
+
+    private void DeactivateTool() => SetToolActiveStatus(false);
+
+    private void SetToolActiveStatus(bool status)
+    {
+        SetToolStatusServerRpc(status);
+        SetToolStatusClientRpc(status);
+    }
+
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SetToolStatusServerRpc(bool status)
+    {
+        Debug.Log("Server changed status");
+        tool.SetActive(status);
+    }
+
+    [ClientRpc]
+    private void SetToolStatusClientRpc(bool status)
+    {
+        Debug.Log("Client changed status");
+        tool.SetActive(status);
+    }
+
 
     private void OnDestroy()
     {
