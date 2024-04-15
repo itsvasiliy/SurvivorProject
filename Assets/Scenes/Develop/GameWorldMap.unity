@@ -10576,7 +10576,7 @@ MonoBehaviour:
     Prefabs:
       NetworkPrefabsLists:
       - {fileID: 11400000, guid: b42cd037e6707428497c4b3387e3afd1, type: 2}
-    TickRate: 30
+    TickRate: 70
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
     ConnectionData: 
@@ -14548,8 +14548,8 @@ MonoBehaviour:
   PrefabsToSpawn:
   - {fileID: 1102687545674684928, guid: ea603bf157981844fbcd9c3be8cb7fab, type: 3}
   DestroyWithSpawner: 0
-  SpawnCount: 3
-  SpawnInterval: 6.24
+  SpawnCount: 1
+  SpawnInterval: 4
 --- !u!4 &477499157
 Transform:
   m_ObjectHideFlags: 0
