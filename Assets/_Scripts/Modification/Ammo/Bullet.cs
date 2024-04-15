@@ -69,12 +69,10 @@ public class Bullet : NetworkBehaviour
                 _aimTarget.GetDamage(damage);
             }
         }
-
-        if (IsOwner)
-            DespawnServerRpc();
+        DespawnServerRpc();
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void DespawnServerRpc()
     {
         GetComponent<NetworkObject>().Despawn();
