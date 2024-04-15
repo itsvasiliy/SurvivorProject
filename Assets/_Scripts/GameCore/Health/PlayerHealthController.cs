@@ -47,6 +47,9 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
 
     public void Dead()
     {
+        if (!IsOwner)
+            return;
+
         SetDeathStatusServerRpc(false);
         respawnButton.SetActive(true);
 
