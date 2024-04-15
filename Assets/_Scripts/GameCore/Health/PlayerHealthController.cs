@@ -34,6 +34,9 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
 
     public void GetDamage(int damage)
     {
+        if (!IsOwner)
+            return;
+
         PlayGetHitAnimation();
         GetDamageServerRpc(damage);
 
@@ -60,6 +63,9 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
 
     public void Respawn()
     {
+        if (!IsOwner)
+            return;
+
         var tentPosition = TentPlayerRespawner.GetLastTentPosition();
         if (tentPosition == Vector3.zero)
             Debug.Log("Need tent to respawn the player");
