@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class EnemyFireballShooting : MonoBehaviour
+public class EnemyFireballShooting : EnemyShooting, IEnemyShooting
 {
-    // Start is called before the first frame update
-    void Start()
+    public void ShootTheBullet(Vector3 muzzleOfShot, Vector3 _targetPosition)
     {
-        
+        SpawnTheBulletServerRpc(muzzleOfShot);
+
+
     }
 
-    // Update is called once per frame
-    void Update()
+    [ServerRpc(RequireOwnership = false)]
+    private void SpawnTheBulletServerRpc(Vector3 muzzleOfShot)
     {
-        
+        NetworkObject fireballClone = Instantiate(base.bullet, muzzleOfShot, Quaternion.identity);
+        fireballClone.Spawn();
     }
 }
