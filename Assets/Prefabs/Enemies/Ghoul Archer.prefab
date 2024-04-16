@@ -1418,7 +1418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 614135c5fe42149e681e89ee5891cf8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 997274244054869736, guid: c01e70b26ee5a994bad16ca3c6ce743a, type: 3}
+  bullet: {fileID: 6148801845604655073, guid: c01e70b26ee5a994bad16ca3c6ce743a, type: 3}
   shootingRadius: 15
   muzzleOfShot: {fileID: 6040959091796024762}
   lifeTime: 2

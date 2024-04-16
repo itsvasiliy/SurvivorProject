@@ -2,7 +2,7 @@ using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
-public class Bullet : NetworkBehaviour
+public class Bullet : MonoBehaviour
 {
     [SerializeField] private Transform _transform;
 
@@ -69,12 +69,7 @@ public class Bullet : NetworkBehaviour
                 _aimTarget.GetDamage(damage);
             }
         }
-        DespawnServerRpc();
+        Destroy(gameObject);
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    private void DespawnServerRpc()
-    {
-        GetComponent<NetworkObject>().Despawn();
-    }
 }

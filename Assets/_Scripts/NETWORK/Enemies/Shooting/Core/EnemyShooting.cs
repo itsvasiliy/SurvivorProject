@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyShooting : NetworkBehaviour
 {
     [Header("Shooting properties")]
-    [SerializeField] protected NetworkObject bullet;
+    [SerializeField] protected GameObject bullet;
     [SerializeField] protected float shootingRadius;
     [SerializeField] protected Transform muzzleOfShot;
     [SerializeField] protected float lifeTime;

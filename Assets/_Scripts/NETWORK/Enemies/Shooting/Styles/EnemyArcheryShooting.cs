@@ -5,15 +5,14 @@ public class EnemyArcheryShooting : EnemyShooting, IEnemyShooting
 {
     public void ShootTheBullet(Vector3 muzzleOfShot, Vector3 _targetPosition)
     {
-        ShotTheTargetServerRpc(muzzleOfShot, _targetPosition);
+        ShotTheTargetClientRpc(muzzleOfShot, _targetPosition);
     }
 
 
-    [ServerRpc(RequireOwnership = false)]
-    private void ShotTheTargetServerRpc(Vector3 muzzleOfShot, Vector3 target)
+    [ClientRpc]
+    private void ShotTheTargetClientRpc(Vector3 muzzleOfShot, Vector3 target)
     {
-        NetworkObject ammo = Instantiate(bullet, muzzleOfShot, bullet.transform.rotation);
-        ammo.GetComponent<Bullet>().SetTarget(target);
-        ammo.Spawn();
+        bullet.GetComponent<Bullet>().SetTarget(target);
+        Instantiate(bullet, muzzleOfShot, bullet.transform.rotation);
     }
 }
