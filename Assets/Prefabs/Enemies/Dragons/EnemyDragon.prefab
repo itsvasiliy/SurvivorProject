@@ -396,6 +396,7 @@ GameObject:
   - component: {fileID: 9192211134279281211}
   - component: {fileID: 5517632801755177022}
   - component: {fileID: 6347582894558004873}
+  - component: {fileID: 1343020977033315285}
   m_Layer: 0
   m_Name: EnemyDragon
   m_TagString: Untagged
@@ -418,6 +419,7 @@ Transform:
   m_Children:
   - {fileID: 2391229343089073481}
   - {fileID: 710934917122937952}
+  - {fileID: 1027644857667555562}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &357261560488305956
@@ -545,6 +547,26 @@ MonoBehaviour:
   animator: {fileID: 357261560488305956}
   maxWalkDistance: 10
   goForWalkRate: 5
+--- !u!114 &1343020977033315285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5555186574207222244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c11bf3d2046314b26992989389dc59b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 8213972654515278194, guid: 6da3ec6170dd04e2b84712bddf625838, type: 3}
+  shootingRadius: 15
+  muzzleOfShot: {fileID: 1027644857667555562}
+  lifeTime: 3
+  reloadingTime: 10
+  animator: {fileID: 357261560488305956}
+  attackClip: {fileID: 7400004, guid: eefd1a05969455744913d50c785b91e5, type: 3}
+  EnemyTransform: {fileID: 3360937867465860228}
 --- !u!1 &5719416806342526271
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,6 +630,37 @@ Transform:
   m_Children:
   - {fileID: 5396005005838119292}
   m_Father: {fileID: 4697070377872633614}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7869701265981483857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1027644857667555562}
+  m_Layer: 0
+  m_Name: FireballOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1027644857667555562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7869701265981483857}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3360937867465860228}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7888381485465109063
 GameObject:
