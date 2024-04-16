@@ -6,7 +6,7 @@ public delegate void Vector3Delegate(Vector3 position);
 
 public class ShootingTracking : MonoBehaviour
 {
-    [SerializeField] private NetworkObject ammoPrefab;
+    [SerializeField] private GameObject ammoPrefab;
 
     [SerializeField] private float shootingRadius;
     [SerializeField] private float fireRate = 1.3f;
@@ -21,8 +21,8 @@ public class ShootingTracking : MonoBehaviour
 
     private void Update()
     {
-        if(closestTarget != null)
-        rotatorDelegate?.Invoke(closestTarget.position);
+        if (closestTarget != null)
+            rotatorDelegate?.Invoke(closestTarget.position);
 
         if (isShooting == false)
         {
@@ -56,18 +56,16 @@ public class ShootingTracking : MonoBehaviour
     private void ShotTheTarget(Vector3 targetPosition)
     {
         isShooting = true;
-        ShotTheTargetServerRpc(shootingMuzzle.position, targetPosition);
+        ShotTheTargetliientRpc(shootingMuzzle.position, targetPosition);
 
         Invoke(nameof(Reload), fireRate);
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    private void ShotTheTargetServerRpc(Vector3 ammoOrigin, Vector3 targetPosition)
+    [ClientRpc]
+    private void ShotTheTargetliientRpc(Vector3 ammoOrigin, Vector3 targetPosition)
     {
-        var ammoScript = ammoPrefab.GetComponent<Bullet>();
-        ammoScript.SetTarget(targetPosition);
-        NetworkObject ammo = Instantiate(ammoPrefab, ammoOrigin, Quaternion.identity);
-        ammo.Spawn();
+        ammoPrefab.GetComponent<Bullet>().SetTarget(targetPosition);
+        Instantiate(ammoPrefab, ammoOrigin, Quaternion.identity);
     }
 
     private void Reload() => isShooting = false;

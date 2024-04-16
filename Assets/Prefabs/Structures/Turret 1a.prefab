@@ -612,7 +612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2869531782
+  GlobalObjectIdHash: 3990675817
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -635,6 +635,7 @@ MonoBehaviour:
   structureName: Turret
   maxHealth: 100
   health: 0
+  isViewing: 0
   constructionCost:
   - resourceType: 0
     cost: 5
@@ -674,7 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449ea4e07f170584fa24e9eb89c50487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoPrefab: {fileID: 5945125968245101885, guid: e8dc7de54de8748b39faab91e9d57d08, type: 3}
+  ammoPrefab: {fileID: 556971294840989878, guid: 615769d1343678c478cee6d600c1116c, type: 3}
   shootingRadius: 11
   fireRate: 1.3
   shootingMuzzle: {fileID: 69781982266399947}
