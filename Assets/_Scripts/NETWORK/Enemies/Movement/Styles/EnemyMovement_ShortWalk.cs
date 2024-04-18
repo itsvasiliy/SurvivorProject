@@ -19,7 +19,7 @@ public class EnemyMovement_ShortWalk : EnemyMovement
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
 
-        Invoke(nameof(Walk), goForWalkRate);
+        InvokeRepeating(nameof(Walk), 0f, goForWalkRate);
     }
 
     private Vector3 GetRandomPositionAround()
@@ -44,7 +44,6 @@ public class EnemyMovement_ShortWalk : EnemyMovement
         _navMeshAgent.SetDestination(GetRandomPositionAround());
 
         StartCoroutine(CheckForStop());
-        Invoke(nameof(Walk), goForWalkRate);
     }
 
     private IEnumerator CheckForStop()
