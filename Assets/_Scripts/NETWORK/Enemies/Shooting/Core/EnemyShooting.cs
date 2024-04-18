@@ -7,7 +7,6 @@ public class EnemyShooting : NetworkBehaviour
     [SerializeField] protected GameObject bullet;
     [SerializeField] protected float shootingRadius;
     [SerializeField] protected Transform muzzleOfShot;
-    [SerializeField] protected float lifeTime;
     [SerializeField] protected float reloadingTime;
 
     [Header("Animation")]
@@ -28,7 +27,7 @@ public class EnemyShooting : NetworkBehaviour
 
         enemyShooting = GetComponent<IEnemyShooting>();
 
-        Invoke(nameof(PlayerDetector), reloadingTime);
+        InvokeRepeating(nameof(PlayerDetector), 0f, reloadingTime);
 
         reloadingTime = attackClip.length;
     }
@@ -69,8 +68,6 @@ public class EnemyShooting : NetworkBehaviour
 
             StartShooting();
         }
-
-        Invoke(nameof(PlayerDetector), reloadingTime);
     }
 
     private void StartShooting()
