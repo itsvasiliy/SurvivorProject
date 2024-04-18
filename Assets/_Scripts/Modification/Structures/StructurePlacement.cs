@@ -22,6 +22,7 @@ public class StructurePlacement : NetworkBehaviour
 {
     [SerializeField] private NetworkObject structurePrefab;
     [SerializeField] private GameObject buildButton;
+    [SerializeField] private GameObject cancelButton;
     [SerializeField] private ResourceController resourceController;
 
 
@@ -49,7 +50,7 @@ public class StructurePlacement : NetworkBehaviour
         foreach (var collider in colliders)
             collider.isTrigger = true;
 
-        buildButton.SetActive(true);
+        SetButtonStatus(true);
 
         structurePrefab = netStructureOrigin;
         viewingStructureTransform = obj.transform;
@@ -64,6 +65,8 @@ public class StructurePlacement : NetworkBehaviour
             Destroy(child.gameObject);
         }
     }
+
+
 
     private void SpendResources(Structure structureScript)
     {
@@ -91,7 +94,7 @@ public class StructurePlacement : NetworkBehaviour
         SpendResources(structureScript);
         PlaceStructureServerRpc(_structParams);
         ClearViewer();
-        buildButton.SetActive(false);
+        SetButtonStatus(false);
     }
 
 
@@ -99,10 +102,22 @@ public class StructurePlacement : NetworkBehaviour
     public void PlaceStructureServerRpc(StructurePlacementParams _params)
     {
         var _structurePrefab = structurePrefabFactory.GetNetworkPrefab(_params.structureName);
-       
+
         NetworkObject netStructure = Instantiate(_structurePrefab, _params.position,
             _params.rotation);
         netStructure.Spawn();
+    }
+
+    public void CancelPlacing()
+    {
+        ClearViewer();
+        SetButtonStatus(false);
+    }
+
+    private void SetButtonStatus(bool status)
+    {
+        buildButton.SetActive(status);
+        cancelButton.SetActive(status);
     }
 }
 
