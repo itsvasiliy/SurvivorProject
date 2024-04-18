@@ -12,6 +12,8 @@ public class EnemyShooting : NetworkBehaviour
     [Header("Animation")]
     [SerializeField] protected Animator animator;
     [SerializeField] protected AnimationClip attackClip;
+    [SerializeField] protected float bulletSpawnDelay;
+
 
     [Header("Enemy")]
     [SerializeField] protected Transform EnemyTransform;
@@ -27,9 +29,9 @@ public class EnemyShooting : NetworkBehaviour
 
         enemyShooting = GetComponent<IEnemyShooting>();
 
-        InvokeRepeating(nameof(PlayerDetector), 0f, reloadingTime);
-
         reloadingTime = attackClip.length;
+
+        InvokeRepeating(nameof(PlayerDetector), 0f, reloadingTime);
     }
 
     private void PlayerDetector()
@@ -74,7 +76,7 @@ public class EnemyShooting : NetworkBehaviour
     {
         StartShootingAnimation();
         RotateToTarget(detectedPlayer);
-        Invoke("ShootTarget_UseWithDelay", reloadingTime - 0.75f);
+        Invoke("ShootTarget_UseWithDelay", bulletSpawnDelay);
     }
 
     private void StopShooting() => animator.SetBool("Attack", false);
@@ -89,5 +91,11 @@ public class EnemyShooting : NetworkBehaviour
         Vector3 relativePosition = targetPosition - EnemyTransform.position;
         Quaternion targetRotation = Quaternion.LookRotation(relativePosition, Vector3.up);
         EnemyTransform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, shootingRadius);
     }
 }
