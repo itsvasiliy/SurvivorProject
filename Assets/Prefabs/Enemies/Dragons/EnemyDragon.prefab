@@ -559,13 +559,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11bf3d2046314b26992989389dc59b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 8213972654515278194, guid: 6da3ec6170dd04e2b84712bddf625838, type: 3}
-  shootingRadius: 15
+  bullet: {fileID: 4872098413557925136, guid: 6da3ec6170dd04e2b84712bddf625838, type: 3}
+  shootingRadius: 11
   muzzleOfShot: {fileID: 1027644857667555562}
-  lifeTime: 3
   reloadingTime: 10
   animator: {fileID: 357261560488305956}
-  attackClip: {fileID: 7400004, guid: eefd1a05969455744913d50c785b91e5, type: 3}
+  attackClip: {fileID: 7400000, guid: 5b6c8248889b1dd4584697ab74258d57, type: 2}
+  bulletSpawnDelay: 0.2
   EnemyTransform: {fileID: 3360937867465860228}
 --- !u!1 &5719416806342526271
 GameObject:

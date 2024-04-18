@@ -14546,10 +14546,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnArea: {fileID: 758507163}
   PrefabsToSpawn:
-  - {fileID: 1102687545674684928, guid: ea603bf157981844fbcd9c3be8cb7fab, type: 3}
+  - {fileID: 8342934021001339538, guid: 107a889486bcf4fccbb8b809841ecca5, type: 3}
   DestroyWithSpawner: 0
-  SpawnCount: 3
-  SpawnInterval: 6.24
+  SpawnCount: 1
+  SpawnInterval: 1
 --- !u!4 &477499157
 Transform:
   m_ObjectHideFlags: 0
@@ -24110,8 +24110,8 @@ Transform:
   m_GameObject: {fileID: 758507163}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.9, y: 0.1, z: 6}
-  m_LocalScale: {x: 3.0329, y: 0.7928304, z: 3.0329}
+  m_LocalPosition: {x: -17.9, y: 0.1, z: 6}
+  m_LocalScale: {x: 2.3090985, y: 0.6036214, z: 2.3090985}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -33478,7 +33478,9 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 69012532
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8213972654515278194, guid: 6da3ec6170dd04e2b84712bddf625838, type: 3}
+    - {fileID: 583256305920104395, guid: 6da3ec6170dd04e2b84712bddf625838, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -63634,6 +63636,10 @@ PrefabInstance:
       propertyPath: bullet
       value: 
       objectReference: {fileID: 4872098413557925136, guid: 6da3ec6170dd04e2b84712bddf625838, type: 3}
+    - target: {fileID: 1343020977033315285, guid: 107a889486bcf4fccbb8b809841ecca5, type: 3}
+      propertyPath: bulletSpawnDelay
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3360937867465860228, guid: 107a889486bcf4fccbb8b809841ecca5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -63684,7 +63690,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5555186574207222244, guid: 107a889486bcf4fccbb8b809841ecca5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8342934021001339538, guid: 107a889486bcf4fccbb8b809841ecca5, type: 3}
       propertyPath: GlobalObjectIdHash
