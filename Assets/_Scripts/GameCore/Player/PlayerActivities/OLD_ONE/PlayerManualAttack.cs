@@ -87,18 +87,10 @@ public class PlayerManualAttack : NetworkBehaviour
 
 
     [ServerRpc(RequireOwnership = false)]
-    private void SetToolStatusServerRpc(bool status)
-    {
-        Debug.Log("Server changed status");
-        tool.SetActive(status);
-    }
+    private void SetToolStatusServerRpc(bool status) => tool.SetActive(status);
 
     [ClientRpc]
-    private void SetToolStatusClientRpc(bool status)
-    {
-        Debug.Log("Client changed status");
-        tool.SetActive(status);
-    }
+    private void SetToolStatusClientRpc(bool status) => tool.SetActive(status);
 
 
     private void OnDestroy()
