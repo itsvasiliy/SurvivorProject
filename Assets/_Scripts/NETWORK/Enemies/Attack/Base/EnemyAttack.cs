@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,6 +5,9 @@ public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] int bodyDamage;
     [SerializeField] AnimationClip attackClip;
+
+    [SerializeField] EnemyMovement movement;
+
 
     public Animator animator;
 
@@ -20,7 +22,9 @@ public class EnemyAttack : MonoBehaviour
     {
         if (isAttacking) return;
         if (other.gameObject.TryGetComponent<PlayerHealthController>(out PlayerHealthController _playerHealthController))
-            TryToAttack(_playerHealthController);
+            if (_playerHealthController.enabled)
+                Attack(_playerHealthController);
+            else StopToAttack();
     }
 
 
@@ -31,21 +35,13 @@ public class EnemyAttack : MonoBehaviour
     }
 
 
-    private void TryToAttack(PlayerHealthController _playerHealthController)
+    private void Attack(PlayerHealthController _playerHealthController)
     {
-        try
-        {
-            isAttacking = true;
-            animator.SetBool("IsAttacking", true);
-            StartCoroutine(DamagePlayerWithDelay(_playerHealthController));
-            Invoke("ResetAttackStatus", attackSpeed);
-
-        }
-        catch (Exception e)
-        {
-            Debug.LogError("NetworkObjectHealth not found in PlayerController object");
-            Debug.LogException(e);
-        }
+        movement.SetCanMoveStatus(false);
+        isAttacking = true;
+        animator.SetBool("IsAttacking", true);
+        StartCoroutine(DamagePlayerWithDelay(_playerHealthController));
+        Invoke("ResetAttackStatus", attackSpeed);
     }
 
     private IEnumerator DamagePlayerWithDelay(PlayerHealthController _playerHealth)
@@ -54,7 +50,11 @@ public class EnemyAttack : MonoBehaviour
         _playerHealth.GetDamage(bodyDamage);
     }
 
-    private void StopToAttack() => animator.SetBool("IsAttacking", false);
+    private void StopToAttack()
+    {
+        animator.SetBool("IsAttacking", false);
+        movement.SetCanMoveStatus(true);
+    }
 
     private void ResetAttackStatus() => isAttacking = false;
 }
