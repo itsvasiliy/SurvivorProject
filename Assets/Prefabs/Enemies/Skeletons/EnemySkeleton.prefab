@@ -120,8 +120,8 @@ GameObject:
   - component: {fileID: 2907830928655686329}
   - component: {fileID: 432337408725377227}
   - component: {fileID: -3299142029327150291}
-  - component: {fileID: 2029745345288065978}
   - component: {fileID: 7272261485754269828}
+  - component: {fileID: 7729046558461084797}
   m_Layer: 0
   m_Name: EnemySkeleton
   m_TagString: Untagged
@@ -319,7 +319,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTransform: {fileID: 237086053037073085}
   detectionRadius: 10
---- !u!54 &2029745345288065978
+--- !u!114 &7272261485754269828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309845213933244417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1980a8f171884791a1882de5b5ec09e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &7729046558461084797
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -341,23 +353,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
+  m_UseGravity: 1
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7272261485754269828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 309845213933244417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1980a8f171884791a1882de5b5ec09e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &692565548243726236
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,6 +1132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyDamage: 30
   attackClip: {fileID: 7400004, guid: 9c0d466fa9c1a73449a3cc928261a2f9, type: 3}
+  movement: {fileID: -3299142029327150291}
   animator: {fileID: 819945521472461007}
 --- !u!65 &8342029490534528325
 BoxCollider:
