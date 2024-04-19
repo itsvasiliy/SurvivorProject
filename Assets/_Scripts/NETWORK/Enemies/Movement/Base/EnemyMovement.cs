@@ -9,6 +9,14 @@ public class EnemyMovement : NetworkBehaviour
 
     [SerializeField] protected float detectionRadius;
 
+    protected bool canMove = true;
+
+
+    public bool IsCanMove() => canMove;
+
+    public void SetCanMoveStatus(bool status) => canMove = status;  
+  
+
     protected Transform GetClosestPlayer()
     {
         Collider[] colliders = Physics.OverlapSphere(enemyTransform.position, detectionRadius);
@@ -18,9 +26,9 @@ public class EnemyMovement : NetworkBehaviour
 
         foreach (Collider collider in colliders)
         {
-            PlayerStateController aimTarget = collider.GetComponent<PlayerStateController>();
+            var aimTarget = collider.GetComponent<PlayerHealthController>();
 
-            if (aimTarget != null)
+            if (aimTarget != null && aimTarget.enabled)
             {
                 float distance = Vector3.Distance(enemyTransform.position, collider.transform.position);
 

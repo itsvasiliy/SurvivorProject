@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,13 +7,14 @@ public class EnemyMovement_Following : EnemyMovement
 {
     private NavMeshAgent _navMeshAgent;
 
+    private Animator animator;
+
     private Transform detectedPlayer;
 
     private void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-
-        detectedPlayer = GetClosestPlayer();
+        animator = GetComponent<Animator>();
 
         StartCoroutine(SearchForPlayer());
         StartCoroutine(CheckPlayerDistance());
@@ -25,17 +25,17 @@ public class EnemyMovement_Following : EnemyMovement
         while (true)
         {
             if (detectedPlayer == null)
-            {
                 detectedPlayer = GetClosestPlayer();
 
-                if(detectedPlayer != null)
+            if (detectedPlayer != null)
+            {
+                if (detectedPlayer.gameObject.GetComponent<PlayerHealthController>().enabled)
                 {
+                    animator.SetBool("IsWalking", true);
                     _navMeshAgent.SetDestination(detectedPlayer.position);
                 }
-            }
-            else
-            {
-                _navMeshAgent.SetDestination(detectedPlayer.position);
+                else
+                    ResetDestination();
             }
 
             yield return new WaitForSeconds(0.2f);
@@ -53,10 +53,15 @@ public class EnemyMovement_Following : EnemyMovement
                 float distance = Vector3.Distance(detectedPlayer.position, base.enemyTransform.position);
 
                 if (distance > base.detectionRadius)
-                {
-                    detectedPlayer = null;
-                }
+                    ResetDestination();
             }
         }
+    }
+
+    private void ResetDestination()
+    {
+        animator.SetBool("IsWalking", false);
+        detectedPlayer = null;
+        _navMeshAgent.SetDestination(transform.position);
     }
 }

@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Unity.Netcode;
 
 public class EnemyMovement_AccelerationHit : EnemyMovement
 {
@@ -24,12 +22,15 @@ public class EnemyMovement_AccelerationHit : EnemyMovement
     {
         while (true)
         {
-            Transform closestPlayer = GetClosestPlayer();
-
-            if (closestPlayer != null)
+            if (IsCanMove())
             {
-                aimPosition = closestPlayer.transform.position;
-                StartCoroutine(AccelerateEnemy());
+                Transform closestPlayer = GetClosestPlayer();
+
+                if (closestPlayer != null)
+                {
+                    aimPosition = closestPlayer.transform.position;
+                    StartCoroutine(AccelerateEnemy());
+                }
             }
 
             yield return new WaitForSeconds(accelerationRate);
