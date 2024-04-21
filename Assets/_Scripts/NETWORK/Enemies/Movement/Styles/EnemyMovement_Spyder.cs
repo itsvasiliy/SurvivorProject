@@ -6,16 +6,25 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMovement_Spyder : EnemyMovement
 {
+    [Header("Spyder")]
+
+    [SerializeField] private Animator _animator;
+
+    [SerializeField] private AnimationClip accelerationClip;
+
     [SerializeField] private float accelerationSpeed;
-    [SerializeField] private float accelerationDuration;
 
     private NavMeshAgent _navMeshAgent;
 
+    private float accelerationDuration;
     private float checkForPlayerRate = 0.4f;
 
     private void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _navMeshAgent.avoidancePriority = Random.Range(1, 99);
+
+        accelerationDuration = accelerationClip.length;
 
         StartCoroutine(CheckForPlayer());
     }
@@ -37,8 +46,14 @@ public class EnemyMovement_Spyder : EnemyMovement
                 }
                 else
                 {
+                    _animator.SetBool("Following", true);
                     _navMeshAgent.SetDestination(closestPlayer.position);
                 }
+            }
+
+            if(_navMeshAgent.remainingDistance < 0.1f)
+            {
+                _animator.SetBool("Following", false);
             }
         }
     }
@@ -52,12 +67,15 @@ public class EnemyMovement_Spyder : EnemyMovement
 
         while (timer < duration)
         {
+            _animator.SetBool("Acceleration", true);
+
             _navMeshAgent.SetDestination(playerTransform.position);
+            timer += Time.fixedDeltaTime;
 
             yield return new WaitForFixedUpdate();
-            timer += Time.fixedDeltaTime;
         }
 
         _navMeshAgent.speed = regularSpeed;
+        _animator.SetBool("Acceleration", false);
     }
 }
