@@ -45,8 +45,10 @@ public class EnemyAttack : MonoBehaviour
         movement.SetCanMoveStatus(false);
         isAttacking = true;
         animator.SetBool("IsAttacking", true);
+
+
         StartCoroutine(DamagePlayerWithDelay(_playerHealthController));
-        Invoke("ResetAttackStatus", attackSpeed);
+        Invoke(nameof(ResetAttackStatus), attackSpeed);
     }
 
     private IEnumerator DamagePlayerWithDelay(PlayerHealthController _playerHealth)
