@@ -333,8 +333,9 @@ MonoBehaviour:
   playerTransform: {fileID: 1668148999509830039}
   shootingMuzzle: {fileID: 6102781207393276885}
   weaponGameobject: {fileID: 99818814883396995}
-  ammoPrefab: {fileID: 997274244054869736, guid: c01e70b26ee5a994bad16ca3c6ce743a, type: 3}
+  ammoPrefab: {fileID: 6148801845604655073, guid: c01e70b26ee5a994bad16ca3c6ce743a, type: 3}
   shootingAnimClip: {fileID: -1169289577551834828, guid: 9cbb2a4d135c31e4cbeadac255ba4ecb, type: 3}
+  ammoShotAnimationDelay: 0.6
   animator: {fileID: 8872796273970797614}
   playerStateController: {fileID: 2081884835191954744}
   shootingRadius: 10
@@ -1196,6 +1197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 70
   playerMovementScript: {fileID: 1900526516208280557}
+  playerShooting: {fileID: 4841103604741037252}
   getHitClip: {fileID: -7880898593064695190, guid: 83e28e7ec15604e4e936c71d31a7ebad, type: 3}
   respawnButton: {fileID: 5947559085956474994}
 --- !u!54 &7349971264018700376 stripped

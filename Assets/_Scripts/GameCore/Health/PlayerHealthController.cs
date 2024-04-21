@@ -5,6 +5,7 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
 {
     [SerializeField] public int maxHealth;
     [SerializeField] PlayerMovement playerMovementScript;
+    [SerializeField] PlayerShootingHARDCODED playerShooting;
     [SerializeField] AnimationClip getHitClip;
 
 
@@ -88,6 +89,7 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
     {
 
         playerMovementScript.enabled = status;
+        playerShooting.enabled = status;
         this.enabled = status;
         SetDeathStatusClientRpc(status);
     }
@@ -96,9 +98,9 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
     private void SetDeathStatusClientRpc(bool status)
     {
         playerMovementScript.enabled = status;
+        playerShooting.enabled = status;
         this.enabled = status;
     }
-
 
 
     public void PlayGetHitAnimation()
