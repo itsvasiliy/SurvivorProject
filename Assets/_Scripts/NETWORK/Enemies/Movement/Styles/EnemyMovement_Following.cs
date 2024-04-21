@@ -24,19 +24,24 @@ public class EnemyMovement_Following : EnemyMovement
     {
         while (true)
         {
-            if (detectedPlayer == null)
-                detectedPlayer = GetClosestPlayer();
-
-            if (detectedPlayer != null)
+            if (IsCanMove())
             {
-                if (detectedPlayer.gameObject.GetComponent<PlayerHealthController>().enabled)
+                if (detectedPlayer == null)
+                    detectedPlayer = GetClosestPlayer();
+
+                if (detectedPlayer != null)
                 {
-                    animator.SetBool("IsWalking", true);
-                    _navMeshAgent.SetDestination(detectedPlayer.position);
+                    if (detectedPlayer.gameObject.GetComponent<PlayerHealthController>().enabled)
+                    {
+                        animator.SetBool("IsWalking", true);
+                        _navMeshAgent.SetDestination(detectedPlayer.position);
+                    }
+                    else
+                        ResetDestination();
                 }
-                else
-                    ResetDestination();
             }
+            else
+                ResetDestination();
 
             yield return new WaitForSeconds(0.2f);
         }
