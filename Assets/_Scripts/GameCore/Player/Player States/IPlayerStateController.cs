@@ -11,4 +11,5 @@ public enum PlayerStates
     Running,
     Mining,
     BuildViewing,
+    Shooting,
 }

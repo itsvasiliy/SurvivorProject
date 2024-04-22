@@ -9,15 +9,15 @@ public class PlayerShootingHARDCODED : NetworkBehaviour
 
     [Header("Player's unit of ammunation")]
     [SerializeField] private GameObject weaponGameobject;
-    [SerializeField] private NetworkObject ammoPrefab;
+    [SerializeField] private GameObject ammoPrefab;
 
     [Header("The lenght of the clip will be the fire rate speed")]
     [SerializeField] private AnimationClip shootingAnimClip;
+    [SerializeField] private float ammoShotAnimationDelay;
 
+    [Header("Others")]
     [SerializeField] private Animator animator;
-
     [SerializeField] private PlayerStateController playerStateController;
-
     [SerializeField] private float shootingRadius;
 
     public float fireRate;
@@ -30,8 +30,9 @@ public class PlayerShootingHARDCODED : NetworkBehaviour
 
     private void Update()
     {
-        if (!IsOwner) return;
-        if (playerStateController.GetState() != PlayerStates.Idle) return;
+        var playerState = playerStateController.GetState();
+        if (playerState != PlayerStates.Idle &&
+            playerState != PlayerStates.Shooting) return;
         if (isShooting) return;
 
         Collider[] colliders = Physics.OverlapSphere(playerTransform.position, shootingRadius);
@@ -54,7 +55,7 @@ public class PlayerShootingHARDCODED : NetworkBehaviour
         }
 
         if (closestTarget != null)
-            ShotTheTarget(closestTarget.position);
+            ShotTheTarget();
         else
             StopShooting();
     }
@@ -63,21 +64,21 @@ public class PlayerShootingHARDCODED : NetworkBehaviour
     {
         isShooting = false;
         animator.SetBool("IsShooting", isShooting);
-        Invoke("DeactivateWeapon", 0.15f);
+        Invoke(nameof(DeactivateWeapon), 0.15f);
     }
 
 
-    private void ShotTheTarget(Vector3 targetPosition)
+    private void ShotTheTarget()
     {
         isShooting = true;
-        RotateToTarget(targetPosition);
+        playerStateController.SetState(PlayerStates.Shooting);
+
+        RotateToTarget(closestTarget.position);
 
         weaponGameobject.SetActive(true);
-
-        ShotTheTargetServerRpc(shootingMuzzle.position, closestTarget.position);
-
         animator.SetBool("IsShooting", isShooting);
 
+        Invoke(nameof(ShootTarget_UseWithDelay), ammoShotAnimationDelay);
         Invoke(nameof(Reload), fireRate);
     }
 
@@ -88,19 +89,30 @@ public class PlayerShootingHARDCODED : NetworkBehaviour
         playerTransform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
     }
 
+
+    private void ShootTarget_UseWithDelay()
+    {
+        Vector3 targetPos = Vector3.zero;
+        if (closestTarget != null)
+            targetPos = closestTarget.position;
+        else return;
+
+        if (playerStateController.GetState() != PlayerStates.Shooting)
+            return;
+
+        ShotTheTarget(shootingMuzzle.position, targetPos);
+    }
+
     private void DeactivateWeapon() => weaponGameobject.SetActive(false);
 
     private void Reload() => isShooting = false;
 
 
-
-    [ServerRpc(RequireOwnership = false)]
-    private void ShotTheTargetServerRpc(Vector3 muzzleOfShot, Vector3 target)
+    private void ShotTheTarget(Vector3 muzzleOfShot, Vector3 target)
     {
-        NetworkObject ammo = Instantiate(ammoPrefab, muzzleOfShot,
-            ammoPrefab.transform.rotation);
-        ammo.GetComponent<Bullet>().SetTarget(target);
-        ammo.Spawn();
+        target.y = 1.8f;
+        ammoPrefab.GetComponent<Bullet>().SetTarget(target);
+        Instantiate(ammoPrefab, muzzleOfShot, ammoPrefab.transform.rotation);
     }
 
 
