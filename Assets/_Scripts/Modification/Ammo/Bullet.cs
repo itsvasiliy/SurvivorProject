@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.Netcode;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -7,12 +6,10 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Transform _transform;
 
     [SerializeField] private int damage;
-    [SerializeField] private float damageRadius;
     [SerializeField] private float speed;
     [SerializeField] private float lifeTime;
 
-    //  [HideInInspector] 
-    public Vector3 targetPosition;
+    [HideInInspector] public Vector3 targetPosition;
 
     private bool isExploded = false;
 
@@ -24,7 +21,7 @@ public class Bullet : MonoBehaviour
         RotateToTarget(targetPosition);
         StartCoroutine(MoveToTarget());
 
-        Invoke(nameof(Explode), lifeTime);
+        Invoke(nameof(DestroyThis), lifeTime);
     }
 
     public void SetTarget(Vector3 vector3) => targetPosition = vector3;
@@ -50,26 +47,19 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision) => Explode();
+    private void OnCollisionEnter(Collision collision) => Explode(collision.gameObject);
 
+    private void DestroyThis() => Destroy(gameObject);
 
-    private void Explode()
+    private void Explode(GameObject _go)
     {
         if (isExploded)
             return;
 
         isExploded = true;
 
-        Collider[] colliders = Physics.OverlapSphere(_transform.position, damageRadius);
-
-        foreach (Collider collider in colliders)
-        {
-            if (collider.TryGetComponent<IDamageable>(out IDamageable _aimTarget))
-            {
-                _aimTarget.GetDamage(damage);
-            }
-        }
+        if (_go.TryGetComponent<IDamageable>(out IDamageable _aimTarget))
+            _aimTarget.GetDamage(damage);
         Destroy(gameObject);
     }
-
 }
