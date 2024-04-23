@@ -14,7 +14,6 @@ public class EnemyShooting : NetworkBehaviour
     [SerializeField] protected AnimationClip attackClip;
     [SerializeField] protected float bulletSpawnDelay;
 
-
     [Header("Enemy")]
     [SerializeField] protected Transform EnemyTransform;
 
@@ -28,11 +27,10 @@ public class EnemyShooting : NetworkBehaviour
             return;
 
         enemyShooting = GetComponent<IEnemyShooting>();
-
         reloadingTime = attackClip.length;
-
-        InvokeRepeating(nameof(PlayerDetector), 0f, reloadingTime);
     }
+
+    private void OnEnable() => InvokeRepeating(nameof(PlayerDetector), 0f, reloadingTime);
 
     private void PlayerDetector()
     {
@@ -98,4 +96,12 @@ public class EnemyShooting : NetworkBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, shootingRadius);
     }
+
+    private void OnDisable()
+    {
+        CancelInvoke(nameof(PlayerDetector));
+        CancelInvoke(nameof(ShootTarget_UseWithDelay));
+        StopShooting();
+    }
+
 }
