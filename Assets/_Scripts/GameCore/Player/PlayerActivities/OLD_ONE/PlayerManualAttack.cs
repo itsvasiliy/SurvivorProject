@@ -3,21 +3,25 @@ using UnityEngine;
 
 public class PlayerManualAttack : NetworkBehaviour
 {
+    [Header("Animations")]
     [SerializeField] Animator animator;
-
     [SerializeField] AnimationClip attackingAnimClip;
+    [SerializeField] float dropResourceDelay;
 
+    [Header("Tool properties")]
     [SerializeField] GameObject tool;
-
     [SerializeField] IDamageableDetectionCube damageableDetectionCube;
 
+    [Header("Player properties")]
     [SerializeField] PlayerStateController playerStateController;
-
+    [SerializeField] ResourceController playerResourceController;
     [SerializeField] private PlayerLevelSystem playerLevelSystem;
 
     private float attackSpeed;
-
     private bool isAttacking = false;
+    private bool isAttackAborted = false;
+
+    IMineable mineableResource;
 
     private void Start()
     {
@@ -29,6 +33,7 @@ public class PlayerManualAttack : NetworkBehaviour
 
     private void Attack()
     {
+        isAttackAborted = false;
         if (isAttacking == false)
         {
             isAttacking = true;
@@ -39,17 +44,10 @@ public class PlayerManualAttack : NetworkBehaviour
             {
                 if (hit.collider != null)
                 {
-                    if (hit.collider.TryGetComponent<IMineable>(out IMineable _damageable))
+                    if (hit.collider.TryGetComponent<IMineable>(out IMineable _mineable))
                     {
-                        _damageable.GetDamage(0);
-                        playerStateController.SetState(PlayerStates.Mining);
-
-                        playerLevelSystem.AddExperience = 10;
-
-                        if (tool.activeSelf == false)
-                            ActivateTool();
-
-                        animator.SetBool("IsMining", true);
+                        mineableResource = _mineable;
+                        MineResource();
                     }
                 }
             }
@@ -62,10 +60,30 @@ public class PlayerManualAttack : NetworkBehaviour
 
     private void StopAttack()
     {
+        isAttackAborted = true;
         Invoke(nameof(DeactivateTool), 2.5f);
         animator.SetBool("IsMining", false);
     }
 
+    private void MineResource()
+    {
+        if (tool.activeSelf == false)
+            ActivateTool();
+        animator.SetBool("IsMining", true);
+
+        playerStateController.SetState(PlayerStates.Mining);
+        playerLevelSystem.AddExperience = 10;
+
+        Invoke(nameof(MineResourceAfterAnimation), dropResourceDelay);
+    }
+
+    private void MineResourceAfterAnimation()
+    {
+        if (isAttackAborted)
+            return;
+
+        mineableResource.MineResource(playerResourceController);
+    }
 
     private void ActivateTool()
     {

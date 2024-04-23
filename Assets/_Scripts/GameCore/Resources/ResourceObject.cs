@@ -1,17 +1,12 @@
+using Assets.Scripts.GameCore.Resources;
 using UnityEngine;
-using Zenject;
 
 public class ResourceObject : MonoBehaviour, IMineable
 {
-    [SerializeField] private GameObject dropPrefab;
+    [SerializeField] private ResourceTypes resourceType;
+    [SerializeField] private int resourceDropAmount;
 
-    public void GetDamage(int damage)
-    {
-        Vector3 randomPos = new Vector3(transform.position.x + Random.RandomRange(-1.0f, 1.0f),
-               0.5f, transform.position.z + Random.RandomRange(-1.0f, 1.0f));
 
-       Instantiate(dropPrefab, randomPos, Quaternion.identity);
-    }
-
-    public void Dead() => throw new System.NotImplementedException();
+    public void MineResource(ResourceController playerResourceController) =>
+        playerResourceController.AddResource(resourceType, resourceDropAmount);
 }

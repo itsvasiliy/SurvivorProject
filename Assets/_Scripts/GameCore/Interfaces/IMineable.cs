@@ -1,4 +1,5 @@
-interface IMineable : IDamageable
+interface IMineable
 {
+    void MineResource(ResourceController playerResourceController);
 
 }

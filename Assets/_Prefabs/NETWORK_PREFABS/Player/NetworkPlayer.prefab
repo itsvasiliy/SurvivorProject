@@ -354,9 +354,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 8872796273970797614}
   attackingAnimClip: {fileID: -1582444622346850160, guid: 10fa50c59af8fd440a0348904414802a, type: 3}
+  dropResourceDelay: 1
   tool: {fileID: 8964809590559148772}
   damageableDetectionCube: {fileID: 2888252252152077008}
   playerStateController: {fileID: 2081884835191954744}
+  playerResourceController: {fileID: 8088873630574627842}
   playerLevelSystem: {fileID: 5761590759926257498}
 --- !u!1 &3921874426839128100
 GameObject:
@@ -969,7 +971,7 @@ PrefabInstance:
     - target: {fileID: 1566034792490920354, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
       propertyPath: structurePrefab
       value: 
-      objectReference: {fileID: -725803927132755699, guid: a74fe3dcc78176a4aa9bef3c18dfc973, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 1566034792490920354, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
       propertyPath: resourceController
       value: 
@@ -1033,7 +1035,7 @@ PrefabInstance:
     - target: {fileID: 3501519745268501564, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
       propertyPath: ammoPrefab
       value: 
-      objectReference: {fileID: 997274244054869736, guid: c01e70b26ee5a994bad16ca3c6ce743a, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3567563880559691906, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.093
