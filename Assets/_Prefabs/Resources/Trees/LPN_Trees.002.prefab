@@ -124,7 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66be94a299585194c90ab346157090d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropPrefab: {fileID: 5324040862269926700, guid: cabaed97fcc16a641941b440692cdffd, type: 3}
+  resourceType: 0
+  resourceDropAmount: 4
 --- !u!114 &4921213693638234766
 MonoBehaviour:
   m_ObjectHideFlags: 0
