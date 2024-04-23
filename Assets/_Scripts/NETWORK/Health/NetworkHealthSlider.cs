@@ -9,9 +9,7 @@ public class NetworkHealthSlider : MonoBehaviour
 
     void Awake()
     {
-        networkObjectHealth = GetComponent<NetworkObjectHealth>();
-        if(networkObjectHealth == null )
-            networkObjectHealth = GetComponent<PlayerHealthController>();
+        networkObjectHealth = GetComponent<IHealthController>();
 
         healthSlider.maxValue = networkObjectHealth.GetMaxHealth();
         healthSlider.value = networkObjectHealth.GetCurrentHealth();
@@ -22,6 +20,5 @@ public class NetworkHealthSlider : MonoBehaviour
     private void HealthChanged(int previousValue, int newValue) => healthSlider.value = networkObjectHealth.GetCurrentHealth();
 
     private void OnDisable() => networkObjectHealth.GetHealthVariable().OnValueChanged -= HealthChanged;
-
-
 }
+ 
