@@ -1243,14 +1243,13 @@ GameObject:
   - component: {fileID: 6108563788788199500}
   - component: {fileID: 6975506713950652162}
   - component: {fileID: 9082734614929198623}
-  - component: {fileID: 643463120471119300}
-  - component: {fileID: 2122984033095839805}
   - component: {fileID: 2072846098978036770}
   - component: {fileID: 4913418838270142918}
   - component: {fileID: 1936705993078936164}
   - component: {fileID: 8541832270946394996}
   - component: {fileID: 5772545932253892897}
-  - component: {fileID: 7017345389714773637}
+  - component: {fileID: 2880465976386444256}
+  - component: {fileID: 2122984033095839805}
   m_Layer: 0
   m_Name: Melee Orc
   m_TagString: Untagged
@@ -1333,7 +1332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1251791155
+  GlobalObjectIdHash: 88289221
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -1341,34 +1340,6 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &643463120471119300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8770353609937194773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a562158e885b2744a3ffb64a14e353a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  _health:
-    m_InternalValue: 0
---- !u!114 &2122984033095839805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8770353609937194773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3129caee9e6bd0648bc408cf35ee84ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 2407726443972071636}
 --- !u!114 &2072846098978036770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1411,7 +1382,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad8deae8091111f4eb30a56c1f4e0d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TransitionStateInfoList: []
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 2081823275
+    DestinationState: 20298039
+    TransitionDuration: 0.25
+    TriggerNameHash: 646380074
+    TransitionIndex: 2
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 1331344109
+    DestinationState: 20298039
+    TransitionDuration: 0.25
+    TriggerNameHash: 646380074
+    TransitionIndex: 2
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 1748754976
+    DestinationState: 20298039
+    TransitionDuration: 0.25
+    TriggerNameHash: 646380074
+    TransitionIndex: 2
   m_Animator: {fileID: 6108563788788199500}
 --- !u!114 &1936705993078936164
 MonoBehaviour:
@@ -1477,7 +1469,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &7017345389714773637
+--- !u!114 &2880465976386444256
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1486,9 +1478,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 8770353609937194773}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1980a8f171884791a1882de5b5ec09e, type: 3}
+  m_Script: {fileID: 11500000, guid: f578196405549a047affa4aefe22d639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  movementScript: {fileID: 1936705993078936164}
+  shootingScript: {fileID: 407024225308237321}
+--- !u!114 &2122984033095839805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8770353609937194773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3129caee9e6bd0648bc408cf35ee84ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 2407726443972071636}
 --- !u!1 &8806181772332457676
 GameObject:
   m_ObjectHideFlags: 0
