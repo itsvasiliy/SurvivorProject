@@ -44,13 +44,17 @@ public class PlayerShootingHARDCODED : NetworkBehaviour
         {
             if (collider.TryGetComponent<IAimTarget>(out IAimTarget _aimTarget))
             {
-                float distance = Vector3.Distance(playerTransform.position, collider.transform.position);
-
-                if (distance < distanceToClosestTarget)
+                if (_aimTarget.IsEnabled())
                 {
-                    closestTarget = collider.transform;
-                    distanceToClosestTarget = distance;
+                    float distance = Vector3.Distance(playerTransform.position, collider.transform.position);
+
+                    if (distance < distanceToClosestTarget)
+                    {
+                        closestTarget = collider.transform;
+                        distanceToClosestTarget = distance;
+                    }
                 }
+
             }
         }
 
@@ -110,7 +114,7 @@ public class PlayerShootingHARDCODED : NetworkBehaviour
 
     private void ShotTheTarget(Vector3 muzzleOfShot, Vector3 target)
     {
-        target.y = 1.8f;
+        target.y += 0.3f;
         ammoPrefab.GetComponent<Bullet>().SetTarget(target);
         Instantiate(ammoPrefab, muzzleOfShot, ammoPrefab.transform.rotation);
     }

@@ -28,9 +28,10 @@ public class EnemyShooting : NetworkBehaviour
 
         enemyShooting = GetComponent<IEnemyShooting>();
         reloadingTime = attackClip.length;
+
+        InvokeRepeating(nameof(PlayerDetector), 0f, reloadingTime);
     }
 
-    private void OnEnable() => InvokeRepeating(nameof(PlayerDetector), 0f, reloadingTime);
 
     private void PlayerDetector()
     {
@@ -96,6 +97,8 @@ public class EnemyShooting : NetworkBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, shootingRadius);
     }
+
+    private void OnEnable() => InvokeRepeating(nameof(PlayerDetector), 0f, reloadingTime);
 
     private void OnDisable()
     {
