@@ -24,7 +24,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (isAttacking) return;
+        if (isAttacking || !enabled) return;
         if (other.gameObject.TryGetComponent<PlayerHealthController>(out PlayerHealthController _playerHealthController))
             if (_playerHealthController.enabled)
                 Attack(_playerHealthController);

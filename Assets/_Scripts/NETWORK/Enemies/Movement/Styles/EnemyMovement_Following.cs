@@ -24,7 +24,7 @@ public class EnemyMovement_Following : EnemyMovement
     {
         while (true)
         {
-            if (IsCanMove())
+            if (IsCanMove() && enabled)
             {
                 if (detectedPlayer == null)
                     detectedPlayer = GetClosestPlayer();
