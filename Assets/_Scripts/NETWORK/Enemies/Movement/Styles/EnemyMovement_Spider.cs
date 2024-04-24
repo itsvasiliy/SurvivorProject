@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class EnemyMovement_Spyder : EnemyMovement
+public class EnemyMovement_Spider : EnemyMovement
 {
     [Header("Spyder")]
 
