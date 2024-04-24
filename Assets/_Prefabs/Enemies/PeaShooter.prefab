@@ -453,10 +453,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8.065558
-  m_Height: 19.92975
+  m_Radius: 12.608458
+  m_Height: 32.881104
   m_Direction: 1
-  m_Center: {x: 0, y: 7.7540236, z: 0}
+  m_Center: {x: 0, y: 12.08942, z: 0}
 --- !u!1 &2169579851323703101
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,7 +933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 4872098413557925136, guid: 37a8d0bf11f6d0a458324a589b132288, type: 3}
-  shootingRadius: 10
+  shootingRadius: 14
   muzzleOfShot: {fileID: 6463025025898077753}
   reloadingTime: 0
   animator: {fileID: 2744483633067241307}
