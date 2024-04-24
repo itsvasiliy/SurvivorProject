@@ -1,32 +1,32 @@
-using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerShootingHARDCODED : NetworkBehaviour
+public class PlayerShootingHARDCODED : MonoBehaviour
 {
     [Header("Transforms")]
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform shootingMuzzle;
 
-    [Header("Player's unit of ammunation")]
+    [Header("Player's shoot properties")]
     [SerializeField] private GameObject weaponGameobject;
     [SerializeField] private GameObject ammoPrefab;
-
-    [Header("The lenght of the clip will be the fire rate speed")]
-    [SerializeField] private AnimationClip shootingAnimClip;
-    [SerializeField] private float ammoShotAnimationDelay;
+    [SerializeField] private float attacksPerSecond;
+    [SerializeField] private float shootingRadius;
 
     [Header("Others")]
     [SerializeField] private Animator animator;
     [SerializeField] private PlayerStateController playerStateController;
-    [SerializeField] private float shootingRadius;
-
-    public float fireRate;
 
     private Transform closestTarget;
     private bool isShooting = false;
+    private float fireRate;
 
 
-    private void Start() => fireRate = shootingAnimClip.length;
+    private void Start()
+    {
+        animator.SetFloat("AttackSpeed", attacksPerSecond);
+        fireRate = 1 / attacksPerSecond;
+    }
+
 
     private void Update()
     {
@@ -76,13 +76,13 @@ public class PlayerShootingHARDCODED : NetworkBehaviour
     {
         isShooting = true;
         playerStateController.SetState(PlayerStates.Shooting);
-
-        RotateToTarget(closestTarget.position);
-
         weaponGameobject.SetActive(true);
         animator.SetBool("IsShooting", isShooting);
 
-        Invoke(nameof(ShootTarget_UseWithDelay), ammoShotAnimationDelay);
+        //  Invoke(nameof(ShootTarget_UseWithDelay), ammoShotAnimationDelay);
+        //shot calls in animation BowShotLooped
+
+        RotateToTarget(closestTarget.position);
         Invoke(nameof(Reload), fireRate);
     }
 
@@ -94,7 +94,7 @@ public class PlayerShootingHARDCODED : NetworkBehaviour
     }
 
 
-    private void ShootTarget_UseWithDelay()
+    public void ShootTarget_UseWithDelay()
     {
         Vector3 targetPos = Vector3.zero;
         if (closestTarget != null)
@@ -104,7 +104,7 @@ public class PlayerShootingHARDCODED : NetworkBehaviour
         if (playerStateController.GetState() != PlayerStates.Shooting)
             return;
 
-        ShotTheTarget(shootingMuzzle.position, targetPos);
+        InstantiateAmmo(shootingMuzzle.position, targetPos);
     }
 
     private void DeactivateWeapon() => weaponGameobject.SetActive(false);
@@ -112,9 +112,9 @@ public class PlayerShootingHARDCODED : NetworkBehaviour
     private void Reload() => isShooting = false;
 
 
-    private void ShotTheTarget(Vector3 muzzleOfShot, Vector3 target)
+    private void InstantiateAmmo(Vector3 muzzleOfShot, Vector3 target)
     {
-        target.y += 0.3f;
+        target.y += 0.6f;
         ammoPrefab.GetComponent<Bullet>().SetTarget(target);
         Instantiate(ammoPrefab, muzzleOfShot, ammoPrefab.transform.rotation);
     }

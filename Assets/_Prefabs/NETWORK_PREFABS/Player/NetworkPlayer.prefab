@@ -231,7 +231,6 @@ GameObject:
   - component: {fileID: 5675896857310808948}
   - component: {fileID: 1900526516208280557}
   - component: {fileID: 4675665954523136799}
-  - component: {fileID: 4841103604741037252}
   - component: {fileID: 4499324933063092131}
   m_Layer: 0
   m_Name: NetworkPlayer
@@ -318,28 +317,6 @@ MonoBehaviour:
   - {fileID: 2828957187357410795}
   - {fileID: 4238772129656061295}
   - {fileID: 7901273936507689743}
---- !u!114 &4841103604741037252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3718327506131536881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5aee35390e6413d48879d51507b8773d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 1668148999509830039}
-  shootingMuzzle: {fileID: 6102781207393276885}
-  weaponGameobject: {fileID: 99818814883396995}
-  ammoPrefab: {fileID: 6148801845604655073, guid: c01e70b26ee5a994bad16ca3c6ce743a, type: 3}
-  shootingAnimClip: {fileID: -1169289577551834828, guid: 9cbb2a4d135c31e4cbeadac255ba4ecb, type: 3}
-  ammoShotAnimationDelay: 0.6
-  animator: {fileID: 8872796273970797614}
-  playerStateController: {fileID: 2081884835191954744}
-  shootingRadius: 10
-  fireRate: 0
 --- !u!114 &4499324933063092131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1118,6 +1095,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7025709780423544513, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4482666119143832372}
+    - targetCorrespondingSourceObject: {fileID: 7025709780423544513, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2898645352951784373}
   m_SourcePrefab: {fileID: 100100000, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
 --- !u!1 &99818814883396995 stripped
 GameObject:
@@ -1199,9 +1179,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 70
   playerMovementScript: {fileID: 1900526516208280557}
-  playerShooting: {fileID: 4841103604741037252}
+  playerShooting: {fileID: 0}
   getHitClip: {fileID: -7880898593064695190, guid: 83e28e7ec15604e4e936c71d31a7ebad, type: 3}
   respawnButton: {fileID: 5947559085956474994}
+--- !u!114 &2898645352951784373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6497477801574293882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aee35390e6413d48879d51507b8773d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 1668148999509830039}
+  shootingMuzzle: {fileID: 6102781207393276885}
+  weaponGameobject: {fileID: 99818814883396995}
+  ammoPrefab: {fileID: 6148801845604655073, guid: c01e70b26ee5a994bad16ca3c6ce743a, type: 3}
+  attacksPerSecond: 2
+  shootingRadius: 13
+  animator: {fileID: 8872796273970797614}
+  playerStateController: {fileID: 2081884835191954744}
 --- !u!54 &7349971264018700376 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6749681554766280675, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
