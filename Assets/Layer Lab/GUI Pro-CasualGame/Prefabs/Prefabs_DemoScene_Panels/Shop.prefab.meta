@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b1f75c71da2ce4fe1aa267c15faae3ed
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Shop.prefab
+  uploadId: 630624

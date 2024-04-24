@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c40f618992f6e4c43a76aea8e0d17557
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Play_Continue.prefab
+  uploadId: 630624

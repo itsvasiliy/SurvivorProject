@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a374666a3753c4a0c8c86df77f6f0d55
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Component_Popups/Popup_Frame03.prefab
+  uploadId: 630624

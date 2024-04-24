@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: c16eb7d7c3953489db00312b8b09df4b
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Lilita One
+  fontNames:
+  - Lilita One
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular.ttf
+  uploadId: 630624

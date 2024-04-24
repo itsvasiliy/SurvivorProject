@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a6ad203b971da49cb8bd8d65d307901d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Component_Frames/_PrefabsPanel_TableFrames.prefab
+  uploadId: 630624

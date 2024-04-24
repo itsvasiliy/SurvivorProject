@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: daeca100a3cc04b7b8d24be444ebc7e8
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Component_Label/Label_TitleRibbon_Yellow.prefab
+  uploadId: 630624

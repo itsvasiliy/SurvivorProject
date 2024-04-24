@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 89ea9318d347c4f26befb0de30c4cc64
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Demo_UI/Button_Trash.prefab
+  uploadId: 630624

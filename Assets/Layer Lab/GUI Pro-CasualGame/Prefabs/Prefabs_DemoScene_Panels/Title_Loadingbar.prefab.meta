@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 88059d080a85f4f9f8424db5f647d6a8
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Title_Loadingbar.prefab
+  uploadId: 630624

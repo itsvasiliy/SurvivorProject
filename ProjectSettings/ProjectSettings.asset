@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: Gaminal Games
   productName: SurvivorProject
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -160,7 +160,9 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   androidMinAspectRatio: 1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Android: com.DefaultCompany.SurvivorProject
+    Standalone: com.Gaminal-Games.SurvivorProject
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -384,6 +386,68 @@ PlayerSettings:
   - m_BuildTarget: Android
     m_Icons:
     - m_Textures: []
+      m_Width: 192
+      m_Height: 192
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 144
+      m_Height: 144
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 96
+      m_Height: 96
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 72
+      m_Height: 72
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 48
+      m_Height: 48
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 36
+      m_Height: 36
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 192
+      m_Height: 192
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 144
+      m_Height: 144
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 96
+      m_Height: 96
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 72
+      m_Height: 72
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 48
+      m_Height: 48
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 36
+      m_Height: 36
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: 22af35e8c260849d0921e81d49134c1c, type: 3}
+      - {fileID: 2800000, guid: 22af35e8c260849d0921e81d49134c1c, type: 3}
       m_Width: 432
       m_Height: 432
       m_Kind: 2
@@ -413,65 +477,42 @@ PlayerSettings:
       m_Height: 81
       m_Kind: 2
       m_SubKind: 
+  - m_BuildTarget: tvOS
+    m_Icons:
     - m_Textures: []
-      m_Width: 192
-      m_Height: 192
-      m_Kind: 1
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 144
-      m_Height: 144
-      m_Kind: 1
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 96
-      m_Height: 96
-      m_Kind: 1
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 72
-      m_Height: 72
-      m_Kind: 1
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 48
-      m_Height: 48
-      m_Kind: 1
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 36
-      m_Height: 36
-      m_Kind: 1
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 192
-      m_Height: 192
+      m_Width: 1280
+      m_Height: 768
       m_Kind: 0
       m_SubKind: 
     - m_Textures: []
-      m_Width: 144
-      m_Height: 144
+      m_Width: 800
+      m_Height: 480
       m_Kind: 0
       m_SubKind: 
     - m_Textures: []
-      m_Width: 96
-      m_Height: 96
+      m_Width: 400
+      m_Height: 240
       m_Kind: 0
       m_SubKind: 
     - m_Textures: []
-      m_Width: 72
-      m_Height: 72
-      m_Kind: 0
+      m_Width: 4640
+      m_Height: 1440
+      m_Kind: 1
       m_SubKind: 
     - m_Textures: []
-      m_Width: 48
-      m_Height: 48
-      m_Kind: 0
+      m_Width: 2320
+      m_Height: 720
+      m_Kind: 1
       m_SubKind: 
     - m_Textures: []
-      m_Width: 36
-      m_Height: 36
-      m_Kind: 0
+      m_Width: 3840
+      m_Height: 1440
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 1920
+      m_Height: 720
+      m_Kind: 1
       m_SubKind: 
   m_BuildTargetBatching:
   - m_BuildTarget: Standalone
@@ -726,7 +767,23 @@ PlayerSettings:
   webGLWebAssemblyBigInt: 0
   webGLCloseOnQuit: 0
   webWasm2023: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
+    EmbeddedLinux: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
+    GameCoreScarlett: DOTWEEN
+    GameCoreXboxOne: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
+    LinuxHeadlessSimulation: DOTWEEN
+    Nintendo Switch: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
+    PS4: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
+    PS5: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
+    QNX: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
+    Standalone: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
+    VisionOS: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
+    WebGL: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
+    Windows Store Apps: DOTWEEN
+    XboxOne: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
+    iPhone: DOTWEEN
+    tvOS: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
@@ -839,10 +896,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 53fcd87b-6ee8-41e6-87cc-48fbea7496bc
+  cloudProjectId: 4c541078-e7fd-41b8-ad95-090de8df7ba0
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: SurvivorProject 2024-02-15_10-54-08
+  projectName: SurvivorProject
   organizationId: vasyl-kyrlyk
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

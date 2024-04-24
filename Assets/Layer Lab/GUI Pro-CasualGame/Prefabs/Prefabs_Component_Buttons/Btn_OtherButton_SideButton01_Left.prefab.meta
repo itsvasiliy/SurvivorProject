@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c4727d5c45d9d41c3a274e7ffab962dc
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Component_Buttons/Btn_OtherButton_SideButton01_Left.prefab
+  uploadId: 630624

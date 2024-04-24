@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f8592fab6f46b40bba6328b02a6ec81b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Demo_UI/Play_Minimap.prefab
+  uploadId: 630624

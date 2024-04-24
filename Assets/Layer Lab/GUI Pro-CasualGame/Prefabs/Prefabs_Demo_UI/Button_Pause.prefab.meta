@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 732cea236a696485a80ae3ce15e08b5c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176695
+  packageName: GUI Pro - Casual Game
+  packageVersion: 3.0.1
+  assetPath: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Demo_UI/Button_Pause.prefab
+  uploadId: 630624
