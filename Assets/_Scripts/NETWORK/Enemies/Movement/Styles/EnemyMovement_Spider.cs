@@ -39,7 +39,7 @@ public class EnemyMovement_Spider : EnemyMovement
 
             if(closestPlayer != null)
             {
-                if (Vector3.Distance(base.enemyTransform.position, closestPlayer.position) < (base.detectionRadius / 2f))
+                if (Vector3.Distance(base.enemyTransform.position, closestPlayer.position) < (base.detectionRadius / 1.7f))
                 {
                     StartCoroutine(AccelerateTowardsPlayer(closestPlayer, accelerationDuration));
                     yield return new WaitForSeconds(accelerationDuration);
