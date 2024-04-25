@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float lifeTime;
 
-    [HideInInspector] public Vector3 targetPosition;
+     public Vector3 targetPosition;
 
     private bool isExploded = false;
 
@@ -24,7 +24,11 @@ public class Bullet : MonoBehaviour
         Invoke(nameof(DestroyThis), lifeTime);
     }
 
-    public void SetTarget(Vector3 vector3) => targetPosition = vector3;
+    public void SetTarget(Vector3 vector3)
+    {
+        targetPosition = vector3;
+        targetPosition.y += 1f;
+    }
 
     private void RotateToTarget(Vector3 targetPosition)
     {
