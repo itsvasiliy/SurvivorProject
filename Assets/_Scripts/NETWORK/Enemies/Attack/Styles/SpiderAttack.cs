@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class SpiderAttack : MonoBehaviour
 {
     [Header("Spider parameters")]
@@ -12,10 +14,14 @@ public class SpiderAttack : MonoBehaviour
 
     [SerializeField] private MonoBehaviour movementScript;
 
+    private NavMeshAgent navMeshAgent;
+
     private float checkForPlayerRate = 0.3f;
 
     private void Start()
     {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+
         StartCoroutine(PlayerDetecting());   
     }
 
@@ -30,6 +36,7 @@ public class SpiderAttack : MonoBehaviour
                 if (collider.TryGetComponent<PlayerHealthController>(out PlayerHealthController playerHealth))
                 {
                     movementScript.enabled = false;
+                    navMeshAgent.SetDestination(transform.position);
                 }
             }
 
