@@ -1179,7 +1179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 70
   playerMovementScript: {fileID: 1900526516208280557}
-  playerShooting: {fileID: 0}
+  playerShooting: {fileID: 2898645352951784373}
   getHitClip: {fileID: -7880898593064695190, guid: 83e28e7ec15604e4e936c71d31a7ebad, type: 3}
   respawnButton: {fileID: 5947559085956474994}
 --- !u!114 &2898645352951784373
