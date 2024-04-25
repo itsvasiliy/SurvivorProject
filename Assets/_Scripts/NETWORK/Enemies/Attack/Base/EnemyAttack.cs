@@ -7,9 +7,7 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] AnimationClip attackClip;
     [SerializeField] float damageAnimationDelay;
 
-
     [SerializeField] EnemyMovement movement;
-
 
     public Animator animator;
 
@@ -18,7 +16,6 @@ public class EnemyAttack : MonoBehaviour
     private bool isAttacking = false;
 
     private bool IsAttackAborted = false;
-
 
     private void Start() => attackSpeed = attackClip.length;
 
