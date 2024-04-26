@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8216201971186236293}
   - component: {fileID: 1246719186453978813}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wing1M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3404894921494119319}
   - component: {fileID: 8670578095657251296}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PoleM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4133752258590575066}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MeshG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4109301229569308945}
   - component: {fileID: 1265497994362581306}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HeadM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4636414999486988294}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Root_JNT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 6369944538861253125}
   - component: {fileID: 3706977250176539610}
   - component: {fileID: 8650557320012419079}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,10 +385,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transform: {fileID: 3992844942602162049}
   damage: 20
-  damageRadius: 0.22
   speed: 20
   lifeTime: 1.5
-  targetPosition: {x: 0, y: 0, z: 0}
+  targetPosition: {x: -7.517209, y: 1.6, z: 17.49197}
 --- !u!136 &3706977250176539610
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -449,7 +448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8608492265919526022}
   - component: {fileID: 1634948108157374204}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wing3M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -537,7 +536,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1278913741819189661}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: JNTG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 597692096945716435}
   - component: {fileID: 255187162746580626}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TipM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,7 +658,7 @@ GameObject:
   m_Component:
   - component: {fileID: 825655818600174450}
   - component: {fileID: 1690990800484459814}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wing2M
   m_TagString: Untagged
   m_Icon: {fileID: 0}

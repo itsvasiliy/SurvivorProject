@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4731067011504946876}
   - component: {fileID: 6309880895801775612}
   - component: {fileID: 6476842141889933250}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Turret Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transform: {fileID: 2138154035449911344}
   damage: 60
-  damageRadius: 2
   speed: 15
   lifeTime: 1.2
-  targetPosition: {x: -0.6413046, y: 0.08458042, z: 5.867886}
+  targetPosition: {x: -50.536186, y: 1.0845804, z: 1.2212785}
