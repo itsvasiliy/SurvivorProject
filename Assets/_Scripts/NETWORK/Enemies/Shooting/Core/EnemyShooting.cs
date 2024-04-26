@@ -20,7 +20,7 @@ public class EnemyShooting : NetworkBehaviour
     [SerializeField] private EnemyMovement movement;
 
 
-    protected Vector3 detectedPlayer;
+    protected Transform detectedPlayer;
 
     private IEnemyShooting enemyShooting;
 
@@ -33,8 +33,6 @@ public class EnemyShooting : NetworkBehaviour
             return;
 
         enemyShooting = GetComponent<IEnemyShooting>();
-
-        InvokeRepeating(nameof(PlayerDetector), 0f, reloadingTime);
     }
 
     private void Update()
@@ -74,18 +72,17 @@ public class EnemyShooting : NetworkBehaviour
         {
             Vector3 spawnOrigin = transform.position;
             spawnOrigin.y += 5f;
-            detectedPlayer = new Vector3(closestCollider.transform.position.x,
-                closestCollider.transform.position.y + 1.8f, closestCollider.transform.position.z);
-
+            detectedPlayer = closestCollider.transform;
             StartShooting();
         }
     }
 
     private void StartShooting()
     {
-        movement.SetCanMoveStatus(false);
+        if (movement != null)
+            movement.SetCanMoveStatus(false);
         StartShootingAnimation();
-        RotateToTarget(detectedPlayer);
+        RotateToTarget(detectedPlayer.position);
         Invoke(nameof(ShootTarget_UseWithDelay), bulletSpawnDelay);
         Invoke(nameof(StopShooting), attackClip.length);
     }
@@ -93,14 +90,19 @@ public class EnemyShooting : NetworkBehaviour
     private void StopShooting()
     {
         StopShootingAnimation();
-        movement.SetCanMoveStatus(true);
+        if (movement != null)
+            movement.SetCanMoveStatus(true);
     }
 
     private void StartShootingAnimation() => animator.SetBool("Attack", true);
     private void StopShootingAnimation() => animator.SetBool("Attack", false);
 
-    private void ShootTarget_UseWithDelay() =>
-                GetComponent<IEnemyShooting>().ShootTheBullet(muzzleOfShot.position, detectedPlayer);
+    private void ShootTarget_UseWithDelay()
+    {
+        var targetPos = detectedPlayer.position;
+        targetPos.y += 0.7f;
+        GetComponent<IEnemyShooting>().ShootTheBullet(muzzleOfShot.position, targetPos);
+    }
 
 
     private void RotateToTarget(Vector3 targetPosition)
