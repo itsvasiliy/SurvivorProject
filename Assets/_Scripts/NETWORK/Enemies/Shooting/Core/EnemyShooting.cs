@@ -17,9 +17,15 @@ public class EnemyShooting : NetworkBehaviour
     [Header("Enemy")]
     [SerializeField] protected Transform EnemyTransform;
 
+    [SerializeField] private EnemyMovement movement;
+
+
     protected Vector3 detectedPlayer;
 
     private IEnemyShooting enemyShooting;
+
+    private Collider closestCollider;
+
 
     private void Start()
     {
@@ -27,18 +33,22 @@ public class EnemyShooting : NetworkBehaviour
             return;
 
         enemyShooting = GetComponent<IEnemyShooting>();
-        reloadingTime = attackClip.length;
 
         InvokeRepeating(nameof(PlayerDetector), 0f, reloadingTime);
     }
 
+    private void Update()
+    {
+        if (closestCollider != null)
+            transform.LookAt(closestCollider.transform);
+    }
 
     private void PlayerDetector()
     {
         Collider[] colliders = Physics.OverlapSphere(EnemyTransform.position, shootingRadius);
 
         float closestDistance = float.MaxValue;
-        Collider closestCollider = null;
+        closestCollider = null;
 
         foreach (Collider collider in colliders)
         {
@@ -73,13 +83,21 @@ public class EnemyShooting : NetworkBehaviour
 
     private void StartShooting()
     {
+        movement.SetCanMoveStatus(false);
         StartShootingAnimation();
         RotateToTarget(detectedPlayer);
-        Invoke("ShootTarget_UseWithDelay", bulletSpawnDelay);
+        Invoke(nameof(ShootTarget_UseWithDelay), bulletSpawnDelay);
+        Invoke(nameof(StopShooting), attackClip.length);
     }
 
-    private void StopShooting() => animator.SetBool("Attack", false);
+    private void StopShooting()
+    {
+        StopShootingAnimation();
+        movement.SetCanMoveStatus(true);
+    }
+
     private void StartShootingAnimation() => animator.SetBool("Attack", true);
+    private void StopShootingAnimation() => animator.SetBool("Attack", false);
 
     private void ShootTarget_UseWithDelay() =>
                 GetComponent<IEnemyShooting>().ShootTheBullet(muzzleOfShot.position, detectedPlayer);
