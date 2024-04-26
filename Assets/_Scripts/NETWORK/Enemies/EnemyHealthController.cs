@@ -70,4 +70,6 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
     public NetworkVariable<int> GetHealthVariable() => _health;
 
     bool IAimTarget.IsEnabled() => this.enabled;
+
+    public bool IsAlive() => _health.Value > 0;
 }

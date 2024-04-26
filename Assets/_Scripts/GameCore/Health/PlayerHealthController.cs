@@ -111,10 +111,9 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
 
 
     public void ResetGetHit() => animator.SetBool("IsGetHit", false);
-
     public int GetMaxHealth() => maxHealth;
-
     public int GetCurrentHealth() => _health.Value;
-
     public NetworkVariable<int> GetHealthVariable() => _health;
+    public bool IsAlive() => _health.Value > 0;
+
 }
