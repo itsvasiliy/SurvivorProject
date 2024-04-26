@@ -8,6 +8,8 @@ public class SpiderAttack : MonoBehaviour
 {
     [Header("Spider parameters")]
 
+    [SerializeField] private Animator _animator;
+
     [SerializeField] private Transform bitingOrigin;
 
     [SerializeField] private Vector3 bitigZoneSize;
@@ -30,15 +32,21 @@ public class SpiderAttack : MonoBehaviour
         while (true)
         {
             Collider[] colliders = Physics.OverlapBox(bitingOrigin.position, bitigZoneSize, Quaternion.identity);
+            //bool playerWasDetected = false;
 
             foreach (Collider collider in colliders)
             {
                 if (collider.TryGetComponent<PlayerHealthController>(out PlayerHealthController playerHealth))
                 {
-                    movementScript.enabled = false;
-                    navMeshAgent.SetDestination(transform.position);
+                    _animator.SetTrigger("IsAttacking");
+                    //playerWasDetected = true;
                 }
             }
+
+            //if(playerWasDetected == false)
+            //{
+
+            //}
 
             yield return new WaitForSeconds(checkForPlayerRate);
         }
