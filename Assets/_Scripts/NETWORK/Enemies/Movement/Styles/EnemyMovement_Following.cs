@@ -5,11 +5,14 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMovement_Following : EnemyMovement
 {
+    [SerializeField] float stopFollowingAt;
+
     private NavMeshAgent _navMeshAgent;
 
     private Animator animator;
 
     private Transform detectedPlayer;
+
 
     private void Start()
     {
@@ -24,7 +27,11 @@ public class EnemyMovement_Following : EnemyMovement
     {
         while (true)
         {
-            if (IsCanMove() && enabled)
+            if (detectedPlayer != null)
+                if (base.IsPlayerInDetectionRadius(detectedPlayer) == false)
+                    ResetDestination();
+
+            if (IsCanMove() && enabled && IsDistanceReached() == false)
             {
                 if (detectedPlayer == null)
                     detectedPlayer = GetClosestPlayer();
@@ -33,6 +40,7 @@ public class EnemyMovement_Following : EnemyMovement
                 {
                     if (detectedPlayer.gameObject.GetComponent<PlayerHealthController>().enabled)
                     {
+                        Debug.Log("Setting new destination");
                         animator.SetBool("IsWalking", true);
                         _navMeshAgent.SetDestination(detectedPlayer.position);
                     }
@@ -57,16 +65,36 @@ public class EnemyMovement_Following : EnemyMovement
             {
                 float distance = Vector3.Distance(detectedPlayer.position, base.enemyTransform.position);
 
-                if (distance > base.detectionRadius)
-                    ResetDestination();
+                if (distance > base.detectionRadius || distance <= stopFollowingAt)
+                    StopFollowing();
             }
         }
     }
 
+    private float GetDistanceToTarget() =>
+        Vector3.Distance(detectedPlayer.position, base.enemyTransform.position);
+
+    private bool IsDistanceReached()
+    {
+        if (detectedPlayer != null)
+        {
+            if (GetDistanceToTarget() < stopFollowingAt)
+                return true;
+            else return false;
+        }
+        return false;
+    }
+
+
     private void ResetDestination()
     {
-        animator.SetBool("IsWalking", false);
         detectedPlayer = null;
+        StopFollowing();
+    }
+
+    private void StopFollowing()
+    {
+        animator.SetBool("IsWalking", false);
         _navMeshAgent.SetDestination(transform.position);
     }
 }

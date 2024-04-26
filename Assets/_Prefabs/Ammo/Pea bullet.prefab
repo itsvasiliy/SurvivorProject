@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7475573274408639215}
   - component: {fileID: 162983929833520152}
   - component: {fileID: 917018434828712678}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pea bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transform: {fileID: 1549381480479683960}
   damage: 20
-  damageRadius: 0.3
   speed: 12
   lifeTime: 2
-  targetPosition: {x: -30.405752, y: 1.938686, z: 10.650027}
+  targetPosition: {x: -9.644106, y: 2.9386868, z: 10.136349}

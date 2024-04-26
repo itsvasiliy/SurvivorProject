@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7475573274408639215}
   - component: {fileID: 162983929833520152}
   - component: {fileID: 917018434828712678}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FireBall_Beta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transform: {fileID: 1549381480479683960}
   damage: 60
-  damageRadius: 2
   speed: 6
   lifeTime: 1.7
   targetPosition: {x: 0, y: 0, z: 0}
