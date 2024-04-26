@@ -1337,7 +1337,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad8deae8091111f4eb30a56c1f4e0d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TransitionStateInfoList: []
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: -212988096
+    DestinationState: 1080829965
+    TransitionDuration: 0.003427446
+    TriggerNameHash: -1130678506
+    TransitionIndex: 2
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 1648848515
+    DestinationState: 1080829965
+    TransitionDuration: 0.12472525
+    TriggerNameHash: -1130678506
+    TransitionIndex: 1
   m_Animator: {fileID: 209840845563600001}
 --- !u!114 &446764818291322690
 MonoBehaviour:
@@ -1384,9 +1398,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 209840845563600001}
+  attackAnimClip: {fileID: 7400000, guid: 5012a6d962774ad0ae7be31887390c55, type: 3}
   bitingOrigin: {fileID: 1728760399021395405}
   bitigZoneSize: {x: 1, y: 1, z: 1}
   movementScript: {fileID: 446764818291322690}
+  spiderDamage: 20
+  damageDelay: 0
 --- !u!65 &4489197811011855361
 BoxCollider:
   m_ObjectHideFlags: 0

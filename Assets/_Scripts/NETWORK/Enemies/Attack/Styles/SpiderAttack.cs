@@ -1,14 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
 public class SpiderAttack : MonoBehaviour
 {
     [Header("Spider parameters")]
 
     [SerializeField] private Animator _animator;
+
+    [SerializeField] private AnimationClip attackAnimClip;
 
     [SerializeField] private Transform bitingOrigin;
 
@@ -16,14 +15,14 @@ public class SpiderAttack : MonoBehaviour
 
     [SerializeField] private MonoBehaviour movementScript;
 
-    private NavMeshAgent navMeshAgent;
+    [SerializeField] private int spiderDamage;
+
+    [SerializeField] private float damageDelay;
 
     private float checkForPlayerRate = 0.3f;
 
     private void Start()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();
-
         StartCoroutine(PlayerDetecting());   
     }
 
@@ -32,25 +31,19 @@ public class SpiderAttack : MonoBehaviour
         while (true)
         {
             Collider[] colliders = Physics.OverlapBox(bitingOrigin.position, bitigZoneSize, Quaternion.identity);
-            //bool playerWasDetected = false;
 
             foreach (Collider collider in colliders)
             {
                 if (collider.TryGetComponent<PlayerHealthController>(out PlayerHealthController playerHealth))
                 {
                     _animator.SetTrigger("IsAttacking");
-                    //playerWasDetected = true;
+                    playerHealth.GetDamage(spiderDamage);
+                    yield return new WaitForSeconds(attackAnimClip.length);
                 }
             }
 
-            //if(playerWasDetected == false)
-            //{
-
-            //}
-
             yield return new WaitForSeconds(checkForPlayerRate);
         }
-
     }
 
     private void OnDrawGizmos()
