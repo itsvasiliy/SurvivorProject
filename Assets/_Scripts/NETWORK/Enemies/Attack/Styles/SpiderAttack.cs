@@ -17,8 +17,6 @@ public class SpiderAttack : MonoBehaviour
 
     [SerializeField] private int spiderDamage;
 
-    [SerializeField] private float damageDelay;
-
     private float checkForPlayerRate = 0.3f;
 
     private void Start()
@@ -38,6 +36,7 @@ public class SpiderAttack : MonoBehaviour
                 {
                     _animator.SetTrigger("IsAttacking");
                     playerHealth.GetDamage(spiderDamage);
+
                     yield return new WaitForSeconds(attackAnimClip.length);
                 }
             }
