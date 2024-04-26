@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
 
 public class EnemyMovement : NetworkBehaviour
 {
@@ -14,8 +12,8 @@ public class EnemyMovement : NetworkBehaviour
 
     public bool IsCanMove() => canMove;
 
-    public void SetCanMoveStatus(bool status) => canMove = status;  
-  
+    public void SetCanMoveStatus(bool status) => canMove = status;
+
 
     protected Transform GetClosestPlayer()
     {
@@ -47,6 +45,17 @@ public class EnemyMovement : NetworkBehaviour
 
         return null;
     }
+
+
+    protected bool IsPlayerInDetectionRadius(Transform detectedPlayer)
+    {
+        var distanceToPlayer = Vector3.Distance(detectedPlayer.position, enemyTransform.position);
+
+        if (distanceToPlayer < detectionRadius)
+            return true;
+        return false;
+    }
+
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()
