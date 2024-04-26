@@ -319,6 +319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTransform: {fileID: 237086053037073085}
   detectionRadius: 10
+  stopFollowingAt: 0
 --- !u!114 &7272261485754269828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,6 +768,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1710706542480050162}
   - component: {fileID: 4663783449633893326}
+  - component: {fileID: 3475346466555135594}
   m_Layer: 0
   m_Name: Slider
   m_TagString: Untagged
@@ -846,6 +848,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3475346466555135594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7239803552105288437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f301f7d1462445bb9723816fd3ce83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7283097497799909645
 GameObject:
   m_ObjectHideFlags: 0
@@ -1130,8 +1144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dac0fe65d3a745428b86333d854a27b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyDamage: 30
+  meleeDamage: 0
   attackClip: {fileID: 7400004, guid: 9c0d466fa9c1a73449a3cc928261a2f9, type: 3}
+  damageAnimationDelay: 0
   movement: {fileID: -3299142029327150291}
   animator: {fileID: 819945521472461007}
 --- !u!65 &8342029490534528325

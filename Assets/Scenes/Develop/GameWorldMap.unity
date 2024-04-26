@@ -14547,6 +14547,7 @@ MonoBehaviour:
   spawnArea: {fileID: 758507163}
   PrefabsToSpawn:
   - {fileID: 9082734614929198623, guid: 0609fb3d75ef3e24ca52ff3894476f1c, type: 3}
+  - {fileID: 1838965859709689233, guid: e37d948b8541445618f1acb326bb530f, type: 3}
   DestroyWithSpawner: 0
   SpawnCount: 1
   SpawnInterval: 1

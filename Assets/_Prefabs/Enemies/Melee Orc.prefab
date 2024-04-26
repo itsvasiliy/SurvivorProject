@@ -1152,6 +1152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7212166055531748366}
   - component: {fileID: 2407726443972071636}
+  - component: {fileID: 7412759043868930820}
   m_Layer: 0
   m_Name: Slider
   m_TagString: Untagged
@@ -1231,6 +1232,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7412759043868930820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8250965213416717894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f301f7d1462445bb9723816fd3ce83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8770353609937194773
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,7 +1345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 88289221
+  GlobalObjectIdHash: 1251791155
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -1419,6 +1432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTransform: {fileID: 2155093905271394501}
   detectionRadius: 10
+  stopFollowingAt: 0
 --- !u!136 &8541832270946394996
 CapsuleCollider:
   m_ObjectHideFlags: 0

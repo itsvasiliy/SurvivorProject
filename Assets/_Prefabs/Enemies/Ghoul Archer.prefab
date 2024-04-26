@@ -1299,7 +1299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2465917760
+  GlobalObjectIdHash: 2047249798
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -1421,11 +1421,12 @@ MonoBehaviour:
   bullet: {fileID: 6148801845604655073, guid: c01e70b26ee5a994bad16ca3c6ce743a, type: 3}
   shootingRadius: 15
   muzzleOfShot: {fileID: 6040959091796024762}
-  lifeTime: 2
   reloadingTime: 2
   animator: {fileID: 5468753942303886510}
   attackClip: {fileID: 7400000, guid: eac4644bcacd6c34bb5a4fde91918a5c, type: 2}
+  bulletSpawnDelay: 0
   EnemyTransform: {fileID: 3302507219267063099}
+  movement: {fileID: 0}
 --- !u!1 &4483667412949514085
 GameObject:
   m_ObjectHideFlags: 0
@@ -2582,6 +2583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8917285576062006332}
   - component: {fileID: 6105791082722087923}
+  - component: {fileID: 5111325332406341185}
   m_Layer: 0
   m_Name: Slider
   m_TagString: Untagged
@@ -2661,6 +2663,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5111325332406341185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8952941275293958893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f301f7d1462445bb9723816fd3ce83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8979773348892956931
 GameObject:
   m_ObjectHideFlags: 0
