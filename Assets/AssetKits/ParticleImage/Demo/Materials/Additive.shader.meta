@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: cb509033262254f16b335271027c5c13
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Demo/Materials/Additive.shader
+  uploadId: 620919
