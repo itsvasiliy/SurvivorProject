@@ -24,6 +24,8 @@ public class SpiderAttack : MonoBehaviour
         StartCoroutine(PlayerDetecting());   
     }
 
+    private void OnDisable() => StopAllCoroutines();
+
     private IEnumerator PlayerDetecting()
     {
         while (true)

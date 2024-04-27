@@ -1385,7 +1385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 140
   movementScript: {fileID: 446764818291322690}
-  shootingScript: {fileID: 446764818291322690}
+  shootingScript: {fileID: 3284387352436335621}
 --- !u!114 &3284387352436335621
 MonoBehaviour:
   m_ObjectHideFlags: 0

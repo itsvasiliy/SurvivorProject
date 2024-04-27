@@ -29,6 +29,10 @@ public class EnemyMovement_Spider : EnemyMovement
         StartCoroutine(CheckForPlayer());
     }
 
+
+    private void OnDisable() => StopAllCoroutines();
+
+
     private IEnumerator CheckForPlayer()
     {
         while (true)
