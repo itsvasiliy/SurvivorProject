@@ -8,10 +8,13 @@ public class NetworkObjectHealth : NetworkBehaviour, IHealthController
     [HideInInspector]
     public NetworkVariable<int> _health = new NetworkVariable<int>(writePerm: NetworkVariableWritePermission.Server);
 
+    private bool isDead;
+
     void Start()
     {
         if (IsServer)
             _health.Value = maxHealth;
+        isDead = false;
     }
 
     public void GetDamage(int damage)
@@ -24,6 +27,7 @@ public class NetworkObjectHealth : NetworkBehaviour, IHealthController
     {
         if (IsOwner)
             DespawnServerRpc();
+        isDead = true;
     }
 
 
@@ -42,7 +46,7 @@ public class NetworkObjectHealth : NetworkBehaviour, IHealthController
     public int GetMaxHealth() => maxHealth;
     public int GetCurrentHealth() => _health.Value;
     public NetworkVariable<int> GetHealthVariable() => _health;
-    public bool IsAlive() => _health.Value > 0;
+    public bool IsAlive() => !isDead;
 
 
 }

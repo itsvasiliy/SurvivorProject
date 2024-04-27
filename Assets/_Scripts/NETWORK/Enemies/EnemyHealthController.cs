@@ -11,12 +11,15 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
 
     private NetworkVariable<int> _health = new NetworkVariable<int>(writePerm: NetworkVariableWritePermission.Server);
 
+    private bool isDead;
+
 
     void Start()
     {
         if (IsServer)
             _health.Value = maxHealth;
 
+        isDead = false;
         animator = GetComponent<Animator>();
     }
 
@@ -35,6 +38,7 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
 
     public void Dead()
     {
+        isDead = true;
         SetDeathStatusServerRpc(false);
         animator.SetTrigger("Death");
         Invoke(nameof(DespawnServerRpc), 4.5f);
@@ -71,5 +75,5 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
 
     bool IAimTarget.IsEnabled() => this.enabled;
 
-    public bool IsAlive() => _health.Value > 0;
+    public bool IsAlive() => !isDead;
 }

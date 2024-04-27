@@ -15,6 +15,7 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
 
     private NetworkVariable<int> _health = new NetworkVariable<int>(writePerm: NetworkVariableWritePermission.Server);
 
+    bool isDead;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
             _health.Value = maxHealth;
 
         animator = GetComponent<Animator>();
+        isDead = false;
     }
 
     public bool IsHealthMax() => maxHealth == _health.Value;
@@ -59,7 +61,7 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
 
         animator.SetBool("IsRunning", false);
         animator.SetTrigger("Death");
-
+        isDead = true;
     }
 
     public void Respawn()
@@ -114,6 +116,6 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
     public int GetMaxHealth() => maxHealth;
     public int GetCurrentHealth() => _health.Value;
     public NetworkVariable<int> GetHealthVariable() => _health;
-    public bool IsAlive() => _health.Value > 0;
+    public bool IsAlive() => !isDead;
 
 }
