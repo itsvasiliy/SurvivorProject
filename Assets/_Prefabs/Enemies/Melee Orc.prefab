@@ -1325,7 +1325,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1345,7 +1345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1251791155
+  GlobalObjectIdHash: 88289221
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -1400,21 +1400,21 @@ MonoBehaviour:
     Layer: 0
     OriginatingState: 2081823275
     DestinationState: 20298039
-    TransitionDuration: 0.25
+    TransitionDuration: 0.010981262
     TriggerNameHash: 646380074
     TransitionIndex: 2
   - IsCrossFadeExit: 0
     Layer: 0
     OriginatingState: 1331344109
     DestinationState: 20298039
-    TransitionDuration: 0.25
+    TransitionDuration: 0.02850473
     TriggerNameHash: 646380074
     TransitionIndex: 2
   - IsCrossFadeExit: 0
     Layer: 0
     OriginatingState: 1748754976
     DestinationState: 20298039
-    TransitionDuration: 0.25
+    TransitionDuration: 0.0030373335
     TriggerNameHash: 646380074
     TransitionIndex: 2
   m_Animator: {fileID: 6108563788788199500}
