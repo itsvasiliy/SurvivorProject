@@ -16,7 +16,10 @@ public class ShootingTracking : MonoBehaviour
     public Vector3Delegate rotatorDelegate;
 
     Transform closestTarget;
+
     private bool isShooting = false;
+
+    float targetHeight;
 
 
     private void Update()
@@ -35,6 +38,7 @@ public class ShootingTracking : MonoBehaviour
             {
                 if (collider.TryGetComponent<EnemyHealthController>(out EnemyHealthController _aimTarget))
                 {
+                    targetHeight = collider.bounds.size.y;
                     if (_aimTarget.enabled == false)
                         return;
 
@@ -67,6 +71,7 @@ public class ShootingTracking : MonoBehaviour
     [ClientRpc]
     private void ShotTheTargetliientRpc(Vector3 ammoOrigin, Vector3 targetPosition)
     {
+        targetPosition.y = targetHeight / 3;
         ammoPrefab.GetComponent<Bullet>().SetTarget(targetPosition);
         Instantiate(ammoPrefab, ammoOrigin, Quaternion.identity);
     }

@@ -18,7 +18,9 @@ public class PlayerShootingHARDCODED : MonoBehaviour
 
     private Transform closestTarget;
     private bool isShooting = false;
+
     private float fireRate;
+    private float targetHeight;
 
 
     private void Start()
@@ -50,6 +52,7 @@ public class PlayerShootingHARDCODED : MonoBehaviour
 
                     if (distance < distanceToClosestTarget)
                     {
+                        targetHeight = collider.bounds.size.y;
                         closestTarget = collider.transform;
                         distanceToClosestTarget = distance;
                     }
@@ -104,6 +107,7 @@ public class PlayerShootingHARDCODED : MonoBehaviour
         if (playerStateController.GetState() != PlayerStates.Shooting)
             return;
 
+        targetPos.y = targetHeight / 3;
         InstantiateAmmo(shootingMuzzle.position, targetPos);
     }
 
