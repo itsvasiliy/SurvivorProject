@@ -1205,6 +1205,7 @@ GameObject:
   - component: {fileID: 4244710793279252485}
   - component: {fileID: 3284387352436335621}
   - component: {fileID: 4489197811011855361}
+  - component: {fileID: 7604473487649249233}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -1287,7 +1288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3532025228
+  GlobalObjectIdHash: 3171028996
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -1382,7 +1383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f578196405549a047affa4aefe22d639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 140
   movementScript: {fileID: 446764818291322690}
   shootingScript: {fileID: 446764818291322690}
 --- !u!114 &3284387352436335621
@@ -1403,7 +1404,6 @@ MonoBehaviour:
   bitigZoneSize: {x: 1, y: 1, z: 1}
   movementScript: {fileID: 446764818291322690}
   spiderDamage: 20
-  damageDelay: 0
 --- !u!65 &4489197811011855361
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1425,6 +1425,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &7604473487649249233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6280719829975945733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3129caee9e6bd0648bc408cf35ee84ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 6718424348378003512}
 --- !u!1 &6325209650808101739
 GameObject:
   m_ObjectHideFlags: 0
