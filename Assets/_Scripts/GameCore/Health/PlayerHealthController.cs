@@ -4,8 +4,8 @@ using UnityEngine;
 public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthController
 {
     [SerializeField] public int maxHealth;
-    [SerializeField] PlayerMovement playerMovementScript;
-    [SerializeField] PlayerShootingHARDCODED playerShooting;
+    [SerializeField] MonoBehaviour playerMovementScript;
+    [SerializeField] MonoBehaviour playerShooting;
     [SerializeField] AnimationClip getHitClip;
 
 
