@@ -3,38 +3,54 @@ using UnityEngine;
 
 public class PlayerShooting : NetworkBehaviour
 {
-    [Header("Transforms")]
-    [SerializeField] private Transform playerTransform;
-    [SerializeField] private Transform shootingMuzzle;
-
-    [Header("PlayerController")]
-    [SerializeField] private PlayerStateController playerStateController;
-
-    [Header("Player's unit of ammunation")]
+    [Header("Player's shoot properties")]
+    [SerializeField] private GameObject ammoPrefab;
     [SerializeField] private GameObject weaponGameobject;
 
-    [Header("The lenght of the clip will be the fire rate speed")]
-    [SerializeField] private AnimationClip shootingAnimClip;
+    [SerializeField] private Transform muzzleOfShot;
+
+    [SerializeField] private float shootingRadius;
+    [SerializeField] private float attacksPerSecond;
+
+
+    [Header("Player")]
+    [SerializeField] private Transform playerTransform;
 
     [SerializeField] private Animator animator;
 
-    [Header("The shooting distance")]
-    [SerializeField] private float shootingRadius;
+    [SerializeField] private PlayerStateController playerStateController;
+
+
+
+    private Transform closestTarget;
 
     private bool isShooting = false;
 
-    private WeaponBase weaponScript;
-    private Transform closestTarget;
-    public float fireRate;
+    private float targetHeight;
+
+    private float fireRate;
 
 
-    private void Start() => fireRate = shootingAnimClip.length;
+    private void Start()
+    {
+        animator.SetFloat("AttackSpeed", attacksPerSecond);
+        fireRate = 1 / attacksPerSecond;
+    }
+
 
     private void Update()
     {
-        if (!IsOwner) return;
-        if (playerStateController.GetState() != PlayerStates.Idle) return;
-        if (isShooting) return;
+        var playerState = playerStateController.GetState();
+        if (playerState != PlayerStates.Idle && playerState != PlayerStates.Shooting)
+            return;
+
+
+        if (isShooting)
+        {
+            RotateToTarget(closestTarget.position);
+            return;
+        }
+
 
         Collider[] colliders = Physics.OverlapSphere(playerTransform.position, shootingRadius);
 
@@ -45,45 +61,54 @@ public class PlayerShooting : NetworkBehaviour
         {
             if (collider.TryGetComponent<IAimTarget>(out IAimTarget _aimTarget))
             {
-                float distance = Vector3.Distance(playerTransform.position, collider.transform.position);
-
-                if (distance < distanceToClosestTarget)
+                if (_aimTarget.IsEnabled()) // means _aimTarget is alive
                 {
-                    closestTarget = collider.transform;
-                    distanceToClosestTarget = distance;
+                    float distance = Vector3.Distance(playerTransform.position, collider.transform.position);
+
+                    if (distance < distanceToClosestTarget)
+                    {
+                        targetHeight = collider.bounds.size.y;
+                        closestTarget = collider.transform;
+                        distanceToClosestTarget = distance;
+                    }
                 }
+
             }
         }
 
         if (closestTarget != null)
-            ShotTheTarget(closestTarget.position);
+            StartShooting();
         else
             StopShooting();
     }
 
-    private void StopShooting()
+    private void StartShooting()
     {
-        isShooting = false;
-        animator.SetBool("IsShooting", isShooting);
-        Invoke("DeactivateWeapon", 0.15f);
+        SetShootingStatus(true);
+
+        //ShootTheTarget() calls in animation to avoid calculating ShootTheTarget delay
+        //for each attack speed and attack aborting
+        Invoke(nameof(Reload), fireRate);
     }
 
 
-    private void ShotTheTarget(Vector3 targetPosition)
+    // this calls in animation event to avoid calculating ShootTheTarget delay for each attack speed and attack aborting
+    public void ShootTheTarget()
     {
-        isShooting = true;
-        RotateToTarget(targetPosition);
+        Vector3 targetPos = Vector3.zero;
+        if (closestTarget != null)
+            targetPos = closestTarget.position;
+        else return;
 
-        weaponGameobject.SetActive(true);
-        if (weaponScript == null)
-            weaponScript = weaponGameobject.GetComponent<WeaponBase>();
+        if (playerStateController.GetState() != PlayerStates.Shooting)
+            return;
 
-        ShotTheTargetServerRpc(shootingMuzzle.position);  // !! weaponScript.Shoot(shootingMuzzle.position); !!
+        targetPos.y = targetHeight / 3;
 
-        animator.SetBool("IsShooting", isShooting);
-
-        Invoke(nameof(Reload), fireRate);   // Invoke(nameof(Reload), weaponScript.fireRate);
+        ammoPrefab.GetComponent<Bullet>().SetTarget(targetPos);
+        Instantiate(ammoPrefab, muzzleOfShot.position, ammoPrefab.transform.rotation);
     }
+
 
     private void RotateToTarget(Vector3 targetPosition)
     {
@@ -92,19 +117,22 @@ public class PlayerShooting : NetworkBehaviour
         playerTransform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
     }
 
-    private void DeactivateWeapon() => weaponGameobject.SetActive(false);
+    private void StopShooting() => SetShootingStatus(false);
 
     private void Reload() => isShooting = false;
 
-
-
-    [ServerRpc(RequireOwnership = false)]
-    private void ShotTheTargetServerRpc(Vector3 muzzleOfShot) //tmp solution
+    private void SetShootingStatus(bool status)
     {
-        NetworkObject ammo = Instantiate(weaponScript.ammoPrefab, muzzleOfShot,
-            weaponScript.ammoPrefab.transform.rotation);
-        ammo.Spawn();
+        isShooting = status;
+        animator.SetBool("IsShooting", status);
+        SetWeaponStatusClientRpc(status);
+
+        if (status == true)
+            playerStateController.SetState(PlayerStates.Shooting);
     }
+
+    [ClientRpc]
+    private void SetWeaponStatusClientRpc(bool status) => weaponGameobject.SetActive(status);
 
     private void OnDrawGizmosSelected()
     {
