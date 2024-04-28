@@ -74,6 +74,7 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
             Debug.Log("Need tent to respawn the player");
 
         animator.ResetTrigger("Death");
+        animator.SetTrigger("Respawn");
         SetDeathStatusServerRpc(true);
         respawnButton.SetActive(false);
 
