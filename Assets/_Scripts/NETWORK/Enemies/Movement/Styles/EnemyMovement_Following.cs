@@ -40,7 +40,6 @@ public class EnemyMovement_Following : EnemyMovement
                 {
                     if (detectedPlayer.gameObject.GetComponent<PlayerHealthController>().enabled)
                     {
-                        Debug.Log("Setting new destination");
                         animator.SetBool("IsWalking", true);
                         _navMeshAgent.SetDestination(detectedPlayer.position);
                     }
