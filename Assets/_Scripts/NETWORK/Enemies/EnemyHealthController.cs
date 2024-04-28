@@ -24,23 +24,30 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
     }
 
 
-    public void GetDamage(int damage)
+    public void GetDamage(int damage, ResourceController resourceController = null)
     {
         GetDamageServerRpc(damage);
 
         if (_health.Value <= 0)
-            Dead();
+            Dead(resourceController);
     }
 
 
     [ServerRpc(RequireOwnership = false)]
     private void GetDamageServerRpc(int damage) => _health.Value -= damage;
 
-    public void Dead()
+    public void Dead(ResourceController resourceController = null)
     {
+        if (isDead)
+            return;
+
         isDead = true;
         SetDeathStatusServerRpc(false);
         animator.SetTrigger("Death");
+
+        if (resourceController != null)
+            DropResourcesInDeathCase(resourceController);
+
         Invoke(nameof(DespawnServerRpc), 4.5f);
     }
 
@@ -64,6 +71,15 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
         movementScript.enabled = status;
         shootingScript.enabled = status;
         this.enabled = status;
+    }
+
+    private void DropResourcesInDeathCase(ResourceController resourceController)
+    {
+        var dropScript = GetComponent<DropResourcesOnDeath>();
+        if (dropScript != null)
+            dropScript.DropResources(resourceController);
+        else
+            Debug.Log($"Now resources drop from {name}");
     }
 
 

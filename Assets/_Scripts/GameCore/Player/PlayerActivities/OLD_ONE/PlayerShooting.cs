@@ -20,6 +20,8 @@ public class PlayerShooting : NetworkBehaviour
 
     [SerializeField] private PlayerStateController playerStateController;
 
+    [SerializeField] private ResourceController playerResourceController;
+
 
 
     private Transform closestTarget;
@@ -105,7 +107,9 @@ public class PlayerShooting : NetworkBehaviour
 
         targetPos.y = targetHeight / 3;
 
-        ammoPrefab.GetComponent<Bullet>().SetTarget(targetPos);
+       var bulletSetter =  ammoPrefab.GetComponent<Bullet>();
+        bulletSetter.SetTarget(targetPos);
+        bulletSetter.SetPlayerResourceController(playerResourceController);
         Instantiate(ammoPrefab, muzzleOfShot.position, ammoPrefab.transform.rotation);
     }
 

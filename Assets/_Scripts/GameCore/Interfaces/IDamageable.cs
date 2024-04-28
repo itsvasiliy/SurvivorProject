@@ -1,6 +1,6 @@
 interface IDamageable
 {
-    public void GetDamage(int damage);
+    void GetDamage(int damage, ResourceController resourceControllerIfKill = null);
 
-    public void Dead();
+    public void Dead(ResourceController resourceController = null);
 }

@@ -35,7 +35,7 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
     }
 
 
-    public void GetDamage(int damage)
+    public void GetDamage(int damage, ResourceController resourceController = null)
     {
         if (!IsOwner)
             return;
@@ -51,7 +51,7 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
     [ServerRpc(RequireOwnership = false)]
     private void GetDamageServerRpc(int damage) => _health.Value -= damage;
 
-    public void Dead()
+    public void Dead(ResourceController resourceController = null)
     {
         if (!IsOwner)
             return;

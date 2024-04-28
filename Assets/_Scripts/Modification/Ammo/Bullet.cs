@@ -6,12 +6,15 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Transform _transform;
 
     [SerializeField] private int damage;
+
     [SerializeField] private float speed;
     [SerializeField] private float lifeTime;
 
     [HideInInspector] public Vector3 targetPosition;
 
     private bool isExploded = false;
+
+    [SerializeField] private ResourceController playerResourceController;
 
     private void Start()
     {
@@ -25,6 +28,8 @@ public class Bullet : MonoBehaviour
     }
 
     public void SetTarget(Vector3 vector3) => targetPosition = vector3;
+    public void SetPlayerResourceController(ResourceController value) => playerResourceController = value;
+
 
     private void RotateToTarget(Vector3 targetPosition)
     {
@@ -59,7 +64,8 @@ public class Bullet : MonoBehaviour
         isExploded = true;
 
         if (_go.TryGetComponent<IDamageable>(out IDamageable _aimTarget))
-            _aimTarget.GetDamage(damage);
+            _aimTarget.GetDamage(damage, playerResourceController);
+
         Destroy(gameObject);
     }
 }
