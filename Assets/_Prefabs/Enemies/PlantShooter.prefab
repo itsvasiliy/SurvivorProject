@@ -431,6 +431,7 @@ MonoBehaviour:
   emergeUpAnimation: {fileID: 7400000, guid: 0f3ed777511184b4b8ee658d5c707332, type: 2}
   underGroundYValue: -8.5
   groundDefaultYValue: 0
+  rangeToEmergeNearPlayer: 10
   emergeUpRechargeTime: 10
   timeToBuryAfterMergeUp: 5
   enemyTransform: {fileID: 1740486431481808492}
@@ -925,7 +926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 513041401
+  GlobalObjectIdHash: 3678106355
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -1016,7 +1017,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
@@ -1087,7 +1088,7 @@ MonoBehaviour:
     Layer: 0
     OriginatingState: 2073555363
     DestinationState: 20298039
-    TransitionDuration: 0.25
+    TransitionDuration: 0.012461007
     TriggerNameHash: 646380074
     TransitionIndex: 2
   - IsCrossFadeExit: 0
@@ -1101,14 +1102,14 @@ MonoBehaviour:
     Layer: 0
     OriginatingState: 1689962724
     DestinationState: 20298039
-    TransitionDuration: 0.25
+    TransitionDuration: 0.01168251
     TriggerNameHash: 646380074
     TransitionIndex: 0
   - IsCrossFadeExit: 0
     Layer: 0
     OriginatingState: -1620366568
     DestinationState: 20298039
-    TransitionDuration: 0.25
+    TransitionDuration: 0.025233507
     TriggerNameHash: 646380074
     TransitionIndex: 1
   m_Animator: {fileID: 2744483633067241307}
