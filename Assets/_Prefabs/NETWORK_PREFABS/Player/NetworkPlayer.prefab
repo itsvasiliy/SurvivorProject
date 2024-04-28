@@ -1210,6 +1210,7 @@ MonoBehaviour:
   playerTransform: {fileID: 1668148999509830039}
   animator: {fileID: 8872796273970797614}
   playerStateController: {fileID: 2081884835191954744}
+  playerResourceController: {fileID: 8088873630574627842}
 --- !u!54 &7349971264018700376 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6749681554766280675, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
