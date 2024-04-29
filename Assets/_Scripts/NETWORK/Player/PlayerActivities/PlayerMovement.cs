@@ -25,10 +25,14 @@ public class PlayerMovement : NetworkBehaviour
     private void FixedUpdate()
     {
         Vector3 movement = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
-        Vector3 velocity = movement.normalized * speed * Time.fixedDeltaTime;
+        float movementMagnitude = movement.magnitude;
+
+        Vector3 scaledMovement = movement.normalized * Mathf.Lerp(0f, speed, movementMagnitude);
+
+        Vector3 velocity = scaledMovement * Time.fixedDeltaTime;
         _rigidbody.MovePosition(_rigidbody.position + velocity);
 
-        if (movement != Vector3.zero)
+        if (movementMagnitude > 0)
         {
             Quaternion targetRotation = Quaternion.LookRotation(movement);
             _rigidbody.MoveRotation(Quaternion.RotateTowards(playerTransform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
