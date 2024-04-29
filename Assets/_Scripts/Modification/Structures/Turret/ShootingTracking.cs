@@ -21,9 +21,15 @@ public class ShootingTracking : MonoBehaviour
 
     float targetHeight;
 
+    Structure structure;
+
+    private void Start() => structure = GetComponent<Structure>();
 
     private void Update()
     {
+        if (structure.isViewing) 
+            return;
+
         if (closestTarget != null)
             rotatorDelegate?.Invoke(closestTarget.position);
 

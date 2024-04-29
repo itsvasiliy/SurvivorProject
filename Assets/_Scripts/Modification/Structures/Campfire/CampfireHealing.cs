@@ -4,12 +4,21 @@ public class CampfireHealing : MonoBehaviour
 {
     [SerializeField] private int healRadius;
     [SerializeField] private int healAmountPerTick;
+
     [SerializeField] private float tickDuration;
+
+    [SerializeField] private Structure structure;
 
     RaycastHit[] hits;
 
 
-    private void Start() => InvokeRepeating(nameof(TrackPlayerToHeal), 0f, tickDuration);
+    private void Start()
+    {
+        if (structure.isViewing)
+            return;
+
+        InvokeRepeating(nameof(TrackPlayerToHeal), 0f, tickDuration);
+    }
 
 
     private void TrackPlayerToHeal()

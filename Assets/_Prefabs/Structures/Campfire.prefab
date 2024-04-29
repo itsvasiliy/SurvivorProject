@@ -147,6 +147,7 @@ MonoBehaviour:
   structureName: Campfire
   maxHealth: 400
   health: 0
+  isViewing: 0
   constructionCost:
   - resourceType: 0
     cost: 10
@@ -199,3 +200,4 @@ MonoBehaviour:
   healRadius: 7
   healAmountPerTick: 10
   tickDuration: 2
+  structure: {fileID: 6865007140255509898}
