@@ -20,14 +20,16 @@ public class StructurePlacementParams : INetworkSerializable
 
 public class StructurePlacement : NetworkBehaviour
 {
-    [SerializeField] private NetworkObject structurePrefab;
     [SerializeField] private GameObject buildButton;
     [SerializeField] private GameObject cancelButton;
     [SerializeField] private ResourceController resourceController;
 
+    private NetworkObject structurePrefab;
 
     private StructurePrefabFactory structurePrefabFactory;
+
     private Transform viewingStructureTransform;
+
     private StructPlacementAvailability placementAvailability;
 
 
@@ -40,8 +42,9 @@ public class StructurePlacement : NetworkBehaviour
 
         var viewPosition = new Vector3(transform.position.x, netStructureOrigin.transform.position.y + 0.04f, transform.position.z);
 
-
         var obj = Instantiate(netStructureOrigin.gameObject, viewPosition, Quaternion.identity, transform);
+        obj.transform.localRotation = Quaternion.identity;
+
         obj.GetComponent<Structure>().isViewing = true;
 
         obj.AddComponent<StructPlacementAvailability>();
@@ -65,7 +68,6 @@ public class StructurePlacement : NetworkBehaviour
             Destroy(child.gameObject);
         }
     }
-
 
 
     private void SpendResources(Structure structureScript)
