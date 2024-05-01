@@ -6,8 +6,6 @@ using Unity.Netcode;
 public class Structure : NetworkBehaviour
 {
     public string structureName;
-    public int maxHealth;
-    public int health;
 
     public bool isViewing = false;
 

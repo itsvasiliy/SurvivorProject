@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: -7502992221352869769}
   - component: {fileID: 5201075566196438278}
   - component: {fileID: 1393018774169082705}
+  - component: {fileID: -1296013677200758743}
   m_Layer: 6
   m_Name: Fence
   m_TagString: Untagged
@@ -134,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1530349574
+  GlobalObjectIdHash: 3747076688
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -155,8 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   structureName: Fence
-  maxHealth: 1200
-  health: 1200
+  isViewing: 0
   constructionCost:
   - resourceType: 1
     cost: 45
@@ -181,6 +181,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0132009, z: 0.59581053}
   m_Center: {x: 0, y: 0.5176211, z: 0.0032233}
+--- !u!114 &-1296013677200758743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7971249499718688860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1bf20c0b7a6cbc4e9905c0a1419ee2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 340
 --- !u!1 &8217040454571868477
 GameObject:
   m_ObjectHideFlags: 0

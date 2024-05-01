@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -7711143906303537154}
   - component: {fileID: 4672361257266405247}
   - component: {fileID: 5360321958584178087}
+  - component: {fileID: -2314299317975906066}
   m_Layer: 6
   m_Name: Tent
   m_TagString: Untagged
@@ -145,9 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   structureName: Tree
-  maxHealth: 1200
-  health: 1200
-  isPlaced: 0
+  isViewing: 0
   constructionCost:
   - resourceType: 0
     cost: 5
@@ -166,3 +165,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   structureScrript: {fileID: 4672361257266405247}
+--- !u!114 &-2314299317975906066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4751848957554412110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1bf20c0b7a6cbc4e9905c0a1419ee2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 90
