@@ -109,6 +109,8 @@ public class StructurePlacement : NetworkBehaviour
 
         if (IsEnoughResources() == false)
             CancelPlacing();
+        else
+            viewingStructureTransform.GetComponent<Structure>().canFollow = true;
     }
 
 

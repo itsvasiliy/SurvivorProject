@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 
 public class StructPlacementAvailability : MonoBehaviour
@@ -30,8 +29,11 @@ public class StructPlacementAvailability : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (canBuild)
-            SetColorAndBuildStatus(red035alpha, false);
+        if (other.CompareTag("FenceConnection"))
+            return;
+
+            if (canBuild)
+                SetColorAndBuildStatus(red035alpha, false);
     }
 
     private void OnTriggerExit(Collider other) => SetColorAndBuildStatus(green035alpha, true);
