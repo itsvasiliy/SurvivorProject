@@ -13,8 +13,7 @@ public class StructureUISelection : MonoBehaviour
         var structureScript = structure.GetComponent<Structure>();
         foreach (var requiredResource in structureScript.constructionCost)
         {
-            if (requiredResource.cost > resourceController.
-                GetResourceAmount(requiredResource.resourceType))
+            if (!resourceController.HasEnoughResource(requiredResource.resourceType, requiredResource.cost))
                 return false;
         }
         return true;

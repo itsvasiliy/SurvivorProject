@@ -8,6 +8,7 @@ public class Structure : NetworkBehaviour
     public string structureName;
 
     public bool isViewing = false;
+    public bool canFollow = true;
 
     [Serializable]
     public class ResourceCost

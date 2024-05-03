@@ -42,12 +42,15 @@ public class StructurePlacement : NetworkBehaviour
 
         var viewPosition = new Vector3(transform.position.x, netStructureOrigin.transform.position.y + 0.04f, transform.position.z);
 
-        var obj = Instantiate(netStructureOrigin.gameObject, viewPosition, Quaternion.identity, transform);
+        var obj = Instantiate(netStructureOrigin.gameObject, viewPosition, Quaternion.identity);
         obj.transform.localRotation = Quaternion.identity;
 
         obj.GetComponent<Structure>().isViewing = true;
 
         obj.AddComponent<StructPlacementAvailability>();
+        var follower = obj.AddComponent<StructurePlayerFrontFollower>();
+        follower.playerTransform = resourceController.transform;
+        follower.structure = obj.GetComponent<Structure>();
 
         var colliders = obj.GetComponentsInChildren<Collider>();
         foreach (var collider in colliders)
@@ -62,11 +65,8 @@ public class StructurePlacement : NetworkBehaviour
 
     private void ClearViewer()
     {
-        for (int i = transform.childCount - 1; i >= 0; i--)
-        {
-            Transform child = transform.GetChild(i);
-            Destroy(child.gameObject);
-        }
+        if (viewingStructureTransform != null)
+            Destroy(viewingStructureTransform.gameObject);
     }
 
 
@@ -77,6 +77,17 @@ public class StructurePlacement : NetworkBehaviour
             resourceController.RemoveResource(requiredResource.resourceType,
                 requiredResource.cost);
         }
+    }
+
+    public bool IsEnoughResources()
+    {
+        var structureScript = structurePrefab.GetComponent<Structure>();
+        foreach (var requiredResource in structureScript.constructionCost)
+        {
+            if (!resourceController.HasEnoughResource(requiredResource.resourceType, requiredResource.cost))
+                return false;
+        }
+        return true;
     }
 
 
@@ -95,8 +106,9 @@ public class StructurePlacement : NetworkBehaviour
 
         SpendResources(structureScript);
         PlaceStructureServerRpc(_structParams);
-        ClearViewer();
-        SetButtonStatus(false);
+
+        if (IsEnoughResources() == false)
+            CancelPlacing();
     }
 
 
