@@ -36,10 +36,30 @@ public class SpiderAttack : MonoBehaviour
             {
                 if (collider.TryGetComponent<PlayerHealthController>(out PlayerHealthController playerHealth))
                 {
-                    _animator.SetTrigger("IsAttacking");
-                    playerHealth.GetDamage(spiderDamage);
+                    if (playerHealth.enabled)
+                    {
+                        _animator.SetTrigger("IsAttacking");
 
-                    yield return new WaitForSeconds(attackAnimClip.length);
+                        // "For your mantal health" DO NOT READ THIS CODE
+                        #region Confirming that player inside attack zone in a middle of attack animation
+
+                        yield return new WaitForSeconds(attackAnimClip.length / 2f);
+
+                        Collider[] colliders2 = Physics.OverlapBox(bitingOrigin.position, bitigZoneSize, Quaternion.identity);
+
+                        foreach (Collider collider2 in colliders2)
+                        {
+                            if (collider2.TryGetComponent<PlayerHealthController>(out PlayerHealthController playerHealth2))
+                            {
+                                playerHealth.GetDamage(spiderDamage);
+                            }
+                        }
+
+                        yield return new WaitForSeconds(attackAnimClip.length / 2f);
+
+                        #endregion
+                    }
+
                 }
             }
 
