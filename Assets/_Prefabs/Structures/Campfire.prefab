@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7836667670780662829}
   - component: {fileID: 6865007140255509898}
   - component: {fileID: 6144233415835658210}
+  - component: {fileID: 6786448403603640381}
   m_Layer: 0
   m_Name: Campfire
   m_TagString: Untagged
@@ -125,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 978924729
+  GlobalObjectIdHash: 2490089440
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -147,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   structureName: Campfire
   isViewing: 0
+  canFollow: 1
   constructionCost:
   - resourceType: 0
     cost: 10
@@ -165,6 +167,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+--- !u!208 &6786448403603640381
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146515069448229785}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.317, y: 0.231, z: 0.34500003}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.021000002, y: 0.231, z: -0.001}
+  m_TimeToStationary: 0.5
 --- !u!1 &6536119315388162780
 GameObject:
   m_ObjectHideFlags: 0
