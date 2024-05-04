@@ -1314,6 +1314,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_UI
       objectReference: {fileID: 0}
+    - target: {fileID: 7007150719734777117, guid: 646e6bca719d40d4683fddb54cf45cef, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007150719734777117, guid: 646e6bca719d40d4683fddb54cf45cef, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8342294665239130369, guid: 646e6bca719d40d4683fddb54cf45cef, type: 3}
       propertyPath: type
       value: 1
