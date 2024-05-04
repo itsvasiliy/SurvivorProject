@@ -24,7 +24,7 @@ public class EnemyMovement_AccelerationHit : EnemyMovement
         {
             if (IsCanMove())
             {
-                Transform closestPlayer = GetClosestPlayer();
+                Transform closestPlayer = GetClosestTarget();
 
                 if (closestPlayer != null)
                 {

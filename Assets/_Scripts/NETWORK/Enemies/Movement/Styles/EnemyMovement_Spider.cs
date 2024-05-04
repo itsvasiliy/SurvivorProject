@@ -39,7 +39,7 @@ public class EnemyMovement_Spider : EnemyMovement
         {
             yield return new WaitForSeconds(checkForPlayerRate);
 
-            Transform closestPlayer = base.GetClosestPlayer();
+            Transform closestPlayer = base.GetClosestTarget();
 
             if(closestPlayer != null)
             {

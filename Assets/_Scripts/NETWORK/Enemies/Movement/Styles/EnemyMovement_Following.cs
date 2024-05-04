@@ -11,7 +11,7 @@ public class EnemyMovement_Following : EnemyMovement
 
     private Animator animator;
 
-    private Transform detectedPlayer;
+    private Transform detectedTarget;
 
 
     private void Start()
@@ -27,21 +27,23 @@ public class EnemyMovement_Following : EnemyMovement
     {
         while (true)
         {
-            if (detectedPlayer != null)
-                if (base.IsPlayerInDetectionRadius(detectedPlayer) == false)
+            detectedTarget = GetClosestTarget();
+
+            if (detectedTarget != null)
+                if (base.IsPlayerInDetectionRadius(detectedTarget) == false)
                     ResetDestination();
 
             if (IsCanMove() && enabled && IsDistanceReached() == false)
             {
-                if (detectedPlayer == null)
-                    detectedPlayer = GetClosestPlayer();
+                if (detectedTarget == null)
+                    detectedTarget = GetClosestTarget();
 
-                if (detectedPlayer != null)
+                if (detectedTarget != null)
                 {
-                    if (detectedPlayer.gameObject.GetComponent<PlayerHealthController>().enabled)
+                    if (detectedTarget.gameObject.GetComponent<IHealthController>().IsAlive())
                     {
                         animator.SetBool("IsWalking", true);
-                        _navMeshAgent.SetDestination(detectedPlayer.position);
+                        _navMeshAgent.SetDestination(detectedTarget.position);
                     }
                     else
                         ResetDestination();
@@ -60,9 +62,9 @@ public class EnemyMovement_Following : EnemyMovement
         {
             yield return new WaitForSeconds(0.1f);
 
-            if (detectedPlayer != null)
+            if (detectedTarget != null)
             {
-                float distance = Vector3.Distance(detectedPlayer.position, base.enemyTransform.position);
+                float distance = Vector3.Distance(detectedTarget.position, base.enemyTransform.position);
 
                 if (distance > base.detectionRadius || distance <= stopFollowingAt)
                     StopFollowing();
@@ -71,11 +73,11 @@ public class EnemyMovement_Following : EnemyMovement
     }
 
     private float GetDistanceToTarget() =>
-        Vector3.Distance(detectedPlayer.position, base.enemyTransform.position);
+        Vector3.Distance(detectedTarget.position, base.enemyTransform.position);
 
     private bool IsDistanceReached()
     {
-        if (detectedPlayer != null)
+        if (detectedTarget != null)
         {
             if (GetDistanceToTarget() < stopFollowingAt)
                 return true;
@@ -87,7 +89,7 @@ public class EnemyMovement_Following : EnemyMovement
 
     private void ResetDestination()
     {
-        detectedPlayer = null;
+        detectedTarget = null;
         StopFollowing();
     }
 

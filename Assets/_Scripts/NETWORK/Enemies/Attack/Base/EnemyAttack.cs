@@ -22,33 +22,33 @@ public class EnemyAttack : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (isAttacking || !enabled) return;
-        if (other.gameObject.TryGetComponent<PlayerHealthController>(out PlayerHealthController _playerHealthController))
-            if (_playerHealthController.enabled)
-                Attack(_playerHealthController);
+        if (other.gameObject.TryGetComponent<IHealthController>(out IHealthController targetHealth))
+            if (targetHealth.IsAlive())
+                Attack(targetHealth);
             else StopToAttack();
     }
 
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.TryGetComponent<PlayerHealthController>(out PlayerHealthController player))
+        if (other.gameObject.TryGetComponent<IHealthController>(out IHealthController player))
             StopToAttack();
     }
 
 
-    private void Attack(PlayerHealthController _playerHealthController)
+    private void Attack(IHealthController targetHealth)
     {
         IsAttackAborted = false;
         movement.SetCanMoveStatus(false);
         isAttacking = true;
-        animator.SetBool("IsAttacking", true);
+        animator.SetTrigger("Attack");
 
 
-        StartCoroutine(DamagePlayerWithDelay(_playerHealthController));
-        Invoke(nameof(ResetAttackStatus), attackSpeed);
+        StartCoroutine(DamagePlayerWithDelay(targetHealth));
+        Invoke(nameof(StopToAttack), attackSpeed);
     }
 
-    private IEnumerator DamagePlayerWithDelay(PlayerHealthController _playerHealth)
+    private IEnumerator DamagePlayerWithDelay(IHealthController _playerHealth)
     {
         yield return new WaitForSeconds(damageAnimationDelay);
 
@@ -59,9 +59,13 @@ public class EnemyAttack : MonoBehaviour
     private void StopToAttack()
     {
         IsAttackAborted = true;
-        animator.SetBool("IsAttacking", false);
+        ResetAttackStatus();
         movement.SetCanMoveStatus(true);
     }
 
-    private void ResetAttackStatus() => isAttacking = false;
+    private void ResetAttackStatus()
+    {
+        animator.ResetTrigger("Attack");
+        isAttacking = false;
+    }
 }
