@@ -1457,9 +1457,9 @@ Transform:
   m_LocalScale: {x: 1.1948155, y: 1.1948155, z: 1.1948155}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8432632617042230519}
   - {fileID: 7450737140030453829}
   - {fileID: 1984569085129849638}
-  - {fileID: 8432632617042230519}
   - {fileID: 1045528494136617326}
   - {fileID: 165447705803927504}
   m_Father: {fileID: 0}
@@ -1574,24 +1574,17 @@ MonoBehaviour:
   - IsCrossFadeExit: 0
     Layer: 0
     OriginatingState: 2081823275
-    DestinationState: 20298039
-    TransitionDuration: 0.010981262
-    TriggerNameHash: 646380074
-    TransitionIndex: 2
-  - IsCrossFadeExit: 0
-    Layer: 0
-    OriginatingState: 1331344109
-    DestinationState: 20298039
-    TransitionDuration: 0.02850473
-    TriggerNameHash: 646380074
-    TransitionIndex: 2
+    DestinationState: 1331344109
+    TransitionDuration: 0.25
+    TriggerNameHash: 1080829965
+    TransitionIndex: 1
   - IsCrossFadeExit: 0
     Layer: 0
     OriginatingState: 1748754976
-    DestinationState: 20298039
-    TransitionDuration: 0.0030373335
-    TriggerNameHash: 646380074
-    TransitionIndex: 2
+    DestinationState: 1331344109
+    TransitionDuration: 0.25
+    TriggerNameHash: 1080829965
+    TransitionIndex: 1
   m_Animator: {fileID: 6108563788788199500}
 --- !u!114 &1936705993078936164
 MonoBehaviour:
@@ -1605,8 +1598,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a72b2a5f64d4c0685980e37e75eb0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetPriority: 1
   enemyTransform: {fileID: 2155093905271394501}
-  detectionRadius: 10
+  detectionRadius: 13
+  isPlayerNear: 0
   stopFollowingAt: 0
 --- !u!136 &8541832270946394996
 CapsuleCollider:
