@@ -18,7 +18,11 @@ public class StructureHealthController : NetworkBehaviour, IDamageable, IHealthC
         isDead = false;
     }
 
-    public void GetDamage(int damage, ResourceController resourceController = null)
+    public void GetDamage(int damage) => ((IDamageable)this).GetDamage(damage);
+
+    void IHealthController.GetDamage(int damage) => ((IDamageable)this).GetDamage(damage);
+
+    void IDamageable.GetDamage(int damage, ResourceController resourceController = null)
     {
         GetDamageServerRpc(damage);
 
@@ -37,6 +41,7 @@ public class StructureHealthController : NetworkBehaviour, IDamageable, IHealthC
             return;
 
         isDead = true;
+        enabled = false;
         DespawnServerRpc();
     }
 
@@ -45,11 +50,16 @@ public class StructureHealthController : NetworkBehaviour, IDamageable, IHealthC
     private void DespawnServerRpc() => GetComponent<NetworkObject>().Despawn();
 
 
-
-
     public int GetCurrentHealth() => _health.Value;
     public NetworkVariable<int> GetHealthVariable() => _health;
     public int GetMaxHealth() => maxHealth;
-    public bool IsAlive() => isDead;
+    public bool IsAlive()
+    {
+        var isViewing = GetComponent<Structure>().isViewing; //structure implies dead when in viewing mode
+        if (isViewing == false && isDead == false)
+            return true;
+        return false;
+    }
+    public GameObject GetGameObject() => gameObject;
 
 }

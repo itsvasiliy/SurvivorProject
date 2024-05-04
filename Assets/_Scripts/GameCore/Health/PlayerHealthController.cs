@@ -34,8 +34,10 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
             _health.Value = maxHealth;
     }
 
+    public void GetDamage(int damage) => ((IDamageable)this).GetDamage(damage);
+    void IHealthController.GetDamage(int damage) => ((IDamageable)this).GetDamage(damage);
 
-    public void GetDamage(int damage, ResourceController resourceController = null)
+    void IDamageable.GetDamage(int damage, ResourceController resourceController = null)
     {
         if (!IsOwner)
             return;
@@ -80,6 +82,8 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
 
         HealMaxServerRpc();
         transform.position = tentPosition;
+
+        isDead = false;
     }
 
 
@@ -118,5 +122,4 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
     public int GetCurrentHealth() => _health.Value;
     public NetworkVariable<int> GetHealthVariable() => _health;
     public bool IsAlive() => !isDead;
-
 }
