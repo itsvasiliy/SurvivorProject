@@ -55,7 +55,7 @@ public class EnemyMovement_Spider : EnemyMovement
                 }
             }
 
-            if(_navMeshAgent.remainingDistance < 0.1f)
+            if (_navMeshAgent.remainingDistance < 0.1f || _navMeshAgent.velocity == Vector3.zero)
             {
                 _animator.SetBool("Following", false);
             }
