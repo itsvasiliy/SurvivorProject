@@ -2,12 +2,10 @@ using UnityEngine;
 
 public class OpenStructuresBTN : MonoBehaviour
 {
-    [SerializeField] private GameObject PlayerJoystick;
-    [SerializeField] private GameObject StructuresPanel;
+    [SerializeField] private GameObject structuresPanel;
 
     public void OnClick()
     {
-        PlayerJoystick.SetActive(!PlayerJoystick.activeSelf);
-        StructuresPanel.SetActive(!StructuresPanel.activeSelf);
+        structuresPanel.SetActive(!structuresPanel.activeSelf);
     }
 }
