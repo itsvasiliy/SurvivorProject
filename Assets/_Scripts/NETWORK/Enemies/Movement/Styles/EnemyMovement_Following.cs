@@ -33,11 +33,9 @@ public class EnemyMovement_Following : EnemyMovement
                 if (base.IsPlayerInDetectionRadius(detectedTarget) == false)
                     ResetDestination();
 
+
             if (IsCanMove() && enabled && IsDistanceReached() == false)
             {
-                if (detectedTarget == null)
-                    detectedTarget = GetClosestTarget();
-
                 if (detectedTarget != null)
                 {
                     if (detectedTarget.gameObject.GetComponent<IHealthController>().IsAlive())

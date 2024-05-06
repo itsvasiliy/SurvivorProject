@@ -39,10 +39,8 @@ public class EnemyAttack : MonoBehaviour
     private void Attack(IHealthController targetHealth)
     {
         IsAttackAborted = false;
-        movement.SetCanMoveStatus(false);
         isAttacking = true;
         animator.SetTrigger("Attack");
-
 
         StartCoroutine(DamagePlayerWithDelay(targetHealth));
         Invoke(nameof(StopToAttack), attackSpeed);
