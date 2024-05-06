@@ -22,7 +22,8 @@ public class StructurePlacement : NetworkBehaviour
 {
     [SerializeField] private GameObject buildButton;
     [SerializeField] private GameObject cancelButton;
-    [SerializeField] private ResourceController resourceController;
+
+    [SerializeField] public ResourceController resourceController;
 
     private NetworkObject structurePrefab;
 
