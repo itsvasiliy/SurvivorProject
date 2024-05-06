@@ -23,7 +23,8 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
         animator = GetComponent<Animator>();
     }
 
-
+    public void GetDamage(int damage) => ((IDamageable)this).GetDamage(damage);
+    void IHealthController.GetDamage(int damage) => ((IDamageable)this).GetDamage(damage);
     public void GetDamage(int damage, ResourceController resourceController = null)
     {
         GetDamageServerRpc(damage);
