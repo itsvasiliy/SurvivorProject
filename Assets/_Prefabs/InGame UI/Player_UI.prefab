@@ -2361,6 +2361,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   structuresPanel: {fileID: 3808549090549239257}
+  _icon: {fileID: 2373409739575775423}
+  buildIcon: {fileID: 21300000, guid: 79b47bb526f2f407ea5a899bf93524fc, type: 3}
+  closeIcon: {fileID: 21300000, guid: bbf8014c593bc4f0ea84a44f4365cff4, type: 3}
 --- !u!1 &7620219153791962988
 GameObject:
   m_ObjectHideFlags: 0
