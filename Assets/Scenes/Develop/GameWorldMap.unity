@@ -59061,7 +59061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8098a3e601a142ebbfed29620415b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputField: {fileID: 0}
+  inputField: {fileID: 1228864327}
 --- !u!1001 &1796254561
 PrefabInstance:
   m_ObjectHideFlags: 0
