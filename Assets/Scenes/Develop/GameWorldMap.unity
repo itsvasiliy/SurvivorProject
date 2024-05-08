@@ -13116,7 +13116,7 @@ GameObject:
   - component: {fileID: 417181346}
   - component: {fileID: 417181345}
   m_Layer: 5
-  m_Name: ConnectHostButton
+  m_Name: CreteRelay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13129,13 +13129,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417181343}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 197758303}
-  m_Father: {fileID: 519371266}
+  m_Father: {fileID: 1794746003}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -13186,10 +13186,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1806177816}
-        m_TargetAssemblyTypeName: NETWORK_CONNECTION_UI, Assembly-CSharp
-        m_MethodName: StartHost
+      - m_Target: {fileID: 1794746004}
+        m_TargetAssemblyTypeName: TestRelay, Assembly-CSharp
+        m_MethodName: CreateRelay
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2002770278}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -16537,8 +16549,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1502621457}
-  - {fileID: 417181344}
+  - {fileID: 1093776310}
+  - {fileID: 1969559323}
   - {fileID: 1794746003}
   m_Father: {fileID: 1806177815}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -34576,7 +34588,7 @@ GameObject:
   - component: {fileID: 1093776312}
   - component: {fileID: 1093776311}
   m_Layer: 5
-  m_Name: CreateRelay
+  m_Name: ConnectHostButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34595,7 +34607,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1482856897}
-  m_Father: {fileID: 1794746003}
+  m_Father: {fileID: 519371266}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -34646,9 +34658,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1794746004}
-        m_TargetAssemblyTypeName: TestRelay, Assembly-CSharp
-        m_MethodName: CreateRelay
+      - m_Target: {fileID: 1806177816}
+        m_TargetAssemblyTypeName: NETWORK_CONNECTION_UI, Assembly-CSharp
+        m_MethodName: StartHost
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -48259,7 +48271,7 @@ GameObject:
   - component: {fileID: 1502621459}
   - component: {fileID: 1502621458}
   m_Layer: 5
-  m_Name: ConnectClientButton
+  m_Name: JoinRelay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48272,13 +48284,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502621456}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 297848844}
-  m_Father: {fileID: 519371266}
+  m_Father: {fileID: 1794746003}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -48329,10 +48341,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1806177816}
-        m_TargetAssemblyTypeName: NETWORK_CONNECTION_UI, Assembly-CSharp
-        m_MethodName: StartClient
+      - m_Target: {fileID: 1794746004}
+        m_TargetAssemblyTypeName: TestRelay, Assembly-CSharp
+        m_MethodName: JoinRelay
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2002770278}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -59040,8 +59064,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1228864326}
-  - {fileID: 1969559323}
-  - {fileID: 1093776310}
+  - {fileID: 1502621457}
+  - {fileID: 417181344}
   m_Father: {fileID: 519371266}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -64827,7 +64851,7 @@ GameObject:
   - component: {fileID: 1969559325}
   - component: {fileID: 1969559324}
   m_Layer: 5
-  m_Name: JoinRelay
+  m_Name: ConnectClientButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64846,7 +64870,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 613899517}
-  m_Father: {fileID: 1794746003}
+  m_Father: {fileID: 519371266}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -64897,9 +64921,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1794746004}
-        m_TargetAssemblyTypeName: TestRelay, Assembly-CSharp
-        m_MethodName: JoinRelay
+      - m_Target: {fileID: 1806177816}
+        m_TargetAssemblyTypeName: NETWORK_CONNECTION_UI, Assembly-CSharp
+        m_MethodName: StartClient
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

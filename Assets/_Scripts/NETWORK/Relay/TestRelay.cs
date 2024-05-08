@@ -6,6 +6,7 @@ using Unity.Services.Core;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
 using UnityEngine;
+using System.Threading.Tasks;
 using TMPro;
 
 public class TestRelay : MonoBehaviour
@@ -31,12 +32,12 @@ public class TestRelay : MonoBehaviour
         try
         {
             Allocation allocation = await RelayService.Instance.CreateAllocationAsync(maxPlayers);
+         
+            RelayServerData relayServerData = new RelayServerData(allocation,"dtls");
+            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
 
             string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
             Debug.Log(joinCode);
-
-            RelayServerData relayServerData = new RelayServerData(allocation,"dtls");
-            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
 
             NetworkManager.Singleton.StartHost();
 
@@ -58,8 +59,6 @@ public class TestRelay : MonoBehaviour
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
 
             NetworkManager.Singleton.StartClient();
-
-
         }
         catch (RelayServiceException e)
         {
