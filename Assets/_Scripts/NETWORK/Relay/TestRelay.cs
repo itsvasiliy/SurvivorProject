@@ -5,10 +5,11 @@ using Unity.Services.Core;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TestRelay : MonoBehaviour
 {
-    [SerializeField] private string joinCodeEditor;
+    [SerializeField] private InputField inputField;
 
     private int maxPlayers = 1;
 
@@ -24,26 +25,9 @@ public class TestRelay : MonoBehaviour
         };
 
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
-
-        Invoke(nameof(CreateRelay), 10f);
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyUp(KeyCode.S) && joined == false)
-        {
-            CreateRelay();
-            joined = true;
-        }
-
-        if (Input.GetKeyUp(KeyCode.C) && joined == false)
-        {
-            JoinRelay(joinCodeEditor);
-            joined = true;
-        }
-    }
-
-    private async void CreateRelay()
+    public async void CreateRelay()
     {
         try
         {
@@ -71,12 +55,12 @@ public class TestRelay : MonoBehaviour
         }
     }
 
-    private async void JoinRelay(string joinCode)
+    public async void JoinRelay()
     {
         try
         {
-            Debug.Log("Joining relay with " + joinCode);
-            JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
+            Debug.Log("Joining relay with " + inputField.text);
+            JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(inputField.text);
 
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetClientRelayData
                 (
