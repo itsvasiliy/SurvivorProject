@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scripts/GameCore/Weather/Weather.unity
     guid: 1fffe1d4930929c41a35eec9e0890601
+  - enabled: 1
+    path: Assets/Scenes/Develop/Map.unity
+    guid: 371c3e78a217ce545b9f03667b8c1527
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
