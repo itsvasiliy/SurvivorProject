@@ -129,7 +129,7 @@ public class PlayerShooting : NetworkBehaviour
     {
         isShooting = status;
         animator.SetBool("IsShooting", status);
-        SetWeaponStatusClientRpc(status);
+       SetWeaponStatusClientRpc(status);
 
         if (status == true)
             playerStateController.SetState(PlayerStates.Shooting);

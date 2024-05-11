@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 4499324933063092131}
   - component: {fileID: 5550036558105962757}
   - component: {fileID: 8867478249175897675}
+  - component: {fileID: 4330829380909408073}
   m_Layer: 0
   m_Name: NetworkPlayer
   m_TagString: Untagged
@@ -300,7 +301,7 @@ MonoBehaviour:
   playerStateController: {fileID: 2081884835191954744}
   playerTransform: {fileID: 1668148999509830039}
   _rigidbody: {fileID: 7349971264018700376}
-  animator: {fileID: 8872796273970797614}
+  animator: {fileID: 5550036558105962757}
   speed: 11
   rotationSpeed: 800
 --- !u!114 &4675665954523136799
@@ -331,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c442544d2225140029f7cd65dfd5a262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 8872796273970797614}
+  animator: {fileID: 5550036558105962757}
   attackingAnimClip: {fileID: -1582444622346850160, guid: 10fa50c59af8fd440a0348904414802a, type: 3}
   dropResourceDelay: 1
   tool: {fileID: 8964809590559148772}
@@ -348,8 +349,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3718327506131536881}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: de13a7420582ded45a8d7d3f96889aca, type: 3}
+  m_Controller: {fileID: 9100000, guid: 4c7fe8e1a3919c549a79a706afefd1ce, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -381,7 +382,28 @@ MonoBehaviour:
     TransitionDuration: 0.74254227
     TriggerNameHash: 657687027
     TransitionIndex: 0
-  m_Animator: {fileID: 8872796273970797614}
+  m_Animator: {fileID: 5550036558105962757}
+--- !u!114 &4330829380909408073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3718327506131536881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9bf21cc9e264516b89e29c6d66d82a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoPrefab: {fileID: 6148801845604655073, guid: c01e70b26ee5a994bad16ca3c6ce743a, type: 3}
+  weaponGameobject: {fileID: 99818814883396995}
+  muzzleOfShot: {fileID: 6102781207393276885}
+  shootingRadius: 13
+  attacksPerSecond: 1.3
+  playerTransform: {fileID: 1668148999509830039}
+  animator: {fileID: 5550036558105962757}
+  playerStateController: {fileID: 2081884835191954744}
+  playerResourceController: {fileID: 8088873630574627842}
 --- !u!1 &3921874426839128100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,6 +1024,10 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 95259708
       objectReference: {fileID: 0}
+    - target: {fileID: 1872115031079811531, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.069
+      objectReference: {fileID: 0}
     - target: {fileID: 2659515700652396422, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1132,6 +1158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5810953079232442929, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
+    - {fileID: 4650381421548942229, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1141,9 +1168,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7025709780423544513, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4482666119143832372}
-    - targetCorrespondingSourceObject: {fileID: 7025709780423544513, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8943812666300649502}
   m_SourcePrefab: {fileID: 100100000, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
 --- !u!1 &99818814883396995 stripped
 GameObject:
@@ -1214,30 +1238,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 70
   playerMovementScript: {fileID: 1900526516208280557}
-  playerShooting: {fileID: 8943812666300649502}
+  playerShooting: {fileID: 0}
   getHitClip: {fileID: -7880898593064695190, guid: 83e28e7ec15604e4e936c71d31a7ebad, type: 3}
   respawnButton: {fileID: 5947559085956474994}
---- !u!114 &8943812666300649502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6497477801574293882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e9bf21cc9e264516b89e29c6d66d82a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammoPrefab: {fileID: 6148801845604655073, guid: c01e70b26ee5a994bad16ca3c6ce743a, type: 3}
-  weaponGameobject: {fileID: 99818814883396995}
-  muzzleOfShot: {fileID: 6102781207393276885}
-  shootingRadius: 13
-  attacksPerSecond: 1.3
-  playerTransform: {fileID: 1668148999509830039}
-  animator: {fileID: 8872796273970797614}
-  playerStateController: {fileID: 2081884835191954744}
-  playerResourceController: {fileID: 8088873630574627842}
 --- !u!54 &7349971264018700376 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6749681554766280675, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
@@ -1254,11 +1257,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e3789cf82cc4440bd23d67b0d4c170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &8872796273970797614 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4650381421548942229, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
-  m_PrefabInstance: {fileID: 4299803433066590139}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8964809590559148772 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5170869748643882335, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
