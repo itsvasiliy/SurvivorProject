@@ -232,6 +232,8 @@ GameObject:
   - component: {fileID: 1900526516208280557}
   - component: {fileID: 4675665954523136799}
   - component: {fileID: 4499324933063092131}
+  - component: {fileID: 5550036558105962757}
+  - component: {fileID: 8867478249175897675}
   m_Layer: 0
   m_Name: NetworkPlayer
   m_TagString: Untagged
@@ -337,6 +339,49 @@ MonoBehaviour:
   playerStateController: {fileID: 2081884835191954744}
   playerResourceController: {fileID: 8088873630574627842}
   playerLevelSystem: {fileID: 5761590759926257498}
+--- !u!95 &5550036558105962757
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3718327506131536881}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8867478249175897675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3718327506131536881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad8deae8091111f4eb30a56c1f4e0d3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 646380074
+    DestinationState: 2081823275
+    TransitionDuration: 0.74254227
+    TriggerNameHash: 657687027
+    TransitionIndex: 0
+  m_Animator: {fileID: 8872796273970797614}
 --- !u!1 &3921874426839128100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,7 +1130,8 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 95259708
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5810953079232442929, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
