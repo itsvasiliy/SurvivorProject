@@ -113,7 +113,7 @@ public class EnemyMovement : NetworkBehaviour
 
     private IHealthController GetPlayerHealth(Collider collider)
     {
-        var healthController = collider.GetComponent<PlayerHealthController>();
+        var healthController = collider.GetComponent<PlayerHealthHandlerForController>();
         if (healthController != null)
         {
             isCurrentTargetStructure = false;

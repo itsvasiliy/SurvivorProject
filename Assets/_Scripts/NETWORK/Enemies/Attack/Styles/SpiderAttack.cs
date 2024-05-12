@@ -34,9 +34,9 @@ public class SpiderAttack : MonoBehaviour
 
             foreach (Collider collider in colliders)
             {
-                if (collider.TryGetComponent<PlayerHealthController>(out PlayerHealthController playerHealth))
+                if (collider.TryGetComponent<PlayerHealthHandlerForController>(out PlayerHealthHandlerForController playerHealth))
                 {
-                    if (playerHealth.enabled)
+                    if (playerHealth.IsAlive())
                     {
                         _animator.SetTrigger("IsAttacking");
 
@@ -49,7 +49,7 @@ public class SpiderAttack : MonoBehaviour
 
                         foreach (Collider collider2 in colliders2)
                         {
-                            if (collider2.TryGetComponent<PlayerHealthController>(out PlayerHealthController playerHealth2))
+                            if (collider2.TryGetComponent<PlayerHealthHandlerForController>(out PlayerHealthHandlerForController playerHealth2))
                             {
                                 playerHealth.GetDamage(spiderDamage);
                             }

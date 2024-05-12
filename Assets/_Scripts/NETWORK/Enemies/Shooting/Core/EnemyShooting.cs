@@ -50,7 +50,7 @@ public class EnemyShooting : NetworkBehaviour
 
         foreach (Collider collider in colliders)
         {
-            PlayerHealthController aimTarget = collider.GetComponent<PlayerHealthController>();
+            PlayerHealthHandlerForController aimTarget = collider.GetComponent<PlayerHealthHandlerForController>();
 
             if (aimTarget != null && aimTarget.enabled) //aimTarget.enabled means player is alive
             {
