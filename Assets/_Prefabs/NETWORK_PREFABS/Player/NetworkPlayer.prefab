@@ -420,7 +420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 70
   playerMovementScript: {fileID: 1900526516208280557}
-  playerShooting: {fileID: 0}
+  playerShooting: {fileID: 5675896857310808948}
   getHitClip: {fileID: -7880898593064695190, guid: 83e28e7ec15604e4e936c71d31a7ebad, type: 3}
   respawnButton: {fileID: 5947559085956474994}
 --- !u!114 &91800319337762354
@@ -632,7 +632,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2687275662132328187}
         m_TargetAssemblyTypeName: PlayerHealthController, Assembly-CSharp
         m_MethodName: Respawn
         m_Mode: 1

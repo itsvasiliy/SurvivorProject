@@ -58,7 +58,7 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
         if (!IsOwner)
             return;
 
-        SetDeathStatusServerRpc(false);
+        SetDeathStatus(true);
         respawnButton.SetActive(true);
 
         animator.SetBool("IsRunning", false);
@@ -77,7 +77,7 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
 
         animator.ResetTrigger("Death");
         animator.SetTrigger("Respawn");
-        SetDeathStatusServerRpc(true);
+        SetDeathStatus(false);
         respawnButton.SetActive(false);
 
         HealMaxServerRpc();
@@ -91,22 +91,11 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
     private void HealMaxServerRpc() => _health.Value = maxHealth;
 
 
-    [ServerRpc(RequireOwnership = false)]
-    private void SetDeathStatusServerRpc(bool status)
+    private void SetDeathStatus(bool status)
     {
-
-        playerMovementScript.enabled = status;
-        playerShooting.enabled = status;
-        this.enabled = status;
-        SetDeathStatusClientRpc(status);
-    }
-
-    [ClientRpc]
-    private void SetDeathStatusClientRpc(bool status)
-    {
-        playerMovementScript.enabled = status;
-        playerShooting.enabled = status;
-        this.enabled = status;
+        playerMovementScript.enabled = !status;
+        playerShooting.enabled = !status;
+        this.enabled = !status;
     }
 
 
