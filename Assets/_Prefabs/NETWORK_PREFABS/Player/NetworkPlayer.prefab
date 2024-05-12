@@ -235,6 +235,8 @@ GameObject:
   - component: {fileID: 5550036558105962757}
   - component: {fileID: 8867478249175897675}
   - component: {fileID: 4330829380909408073}
+  - component: {fileID: 2687275662132328187}
+  - component: {fileID: 91800319337762354}
   m_Layer: 0
   m_Name: NetworkPlayer
   m_TagString: Untagged
@@ -404,6 +406,36 @@ MonoBehaviour:
   animator: {fileID: 5550036558105962757}
   playerStateController: {fileID: 2081884835191954744}
   playerResourceController: {fileID: 8088873630574627842}
+--- !u!114 &2687275662132328187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3718327506131536881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2ab609923b68e4ab102f14023482ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 70
+  playerMovementScript: {fileID: 1900526516208280557}
+  playerShooting: {fileID: 0}
+  getHitClip: {fileID: -7880898593064695190, guid: 83e28e7ec15604e4e936c71d31a7ebad, type: 3}
+  respawnButton: {fileID: 5947559085956474994}
+--- !u!114 &91800319337762354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3718327506131536881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3129caee9e6bd0648bc408cf35ee84ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 3243023485972845724}
 --- !u!1 &3921874426839128100
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,7 +632,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4482666119143832372}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerHealthController, Assembly-CSharp
         m_MethodName: Respawn
         m_Mode: 1
@@ -1164,10 +1196,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7025709780423544513, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6780016102449918150}
-    - targetCorrespondingSourceObject: {fileID: 7025709780423544513, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4482666119143832372}
+      addedObject: {fileID: 7443596068161995560}
   m_SourcePrefab: {fileID: 100100000, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
 --- !u!1 &99818814883396995 stripped
 GameObject:
@@ -1211,7 +1240,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7025709780423544513, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
   m_PrefabInstance: {fileID: 4299803433066590139}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6780016102449918150
+--- !u!114 &7443596068161995560
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1220,27 +1249,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6497477801574293882}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3129caee9e6bd0648bc408cf35ee84ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d050af3a0b83954184f7fa0eba2b03a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSlider: {fileID: 3243023485972845724}
---- !u!114 &4482666119143832372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6497477801574293882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f2ab609923b68e4ab102f14023482ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 70
-  playerMovementScript: {fileID: 1900526516208280557}
-  playerShooting: {fileID: 0}
-  getHitClip: {fileID: -7880898593064695190, guid: 83e28e7ec15604e4e936c71d31a7ebad, type: 3}
-  respawnButton: {fileID: 5947559085956474994}
+  healthController: {fileID: 2687275662132328187}
 --- !u!54 &7349971264018700376 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6749681554766280675, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
