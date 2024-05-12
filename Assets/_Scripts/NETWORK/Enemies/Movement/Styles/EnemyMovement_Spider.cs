@@ -6,18 +6,24 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMovement_Spider : EnemyMovement
 {
-    [Header("Spyder")]
+    [Header("Spider")]
 
     [SerializeField] private Animator _animator;
 
     [SerializeField] private AnimationClip accelerationClip;
 
     [SerializeField] private float accelerationSpeed;
+    [SerializeField] private float distanceToStartAcceleration;
+
+    [SerializeField] private EnemyHealthController healthController;
+
+    [SerializeField] private GameObject healthSlider;
 
     private NavMeshAgent _navMeshAgent;
 
     private float accelerationDuration;
     private float checkForPlayerRate = 0.4f;
+
 
     private void Start()
     {
@@ -25,6 +31,8 @@ public class EnemyMovement_Spider : EnemyMovement
         _navMeshAgent.avoidancePriority = Random.Range(1, 99);
 
         accelerationDuration = accelerationClip.length;
+
+        SetStealthModeStatus(true); //turn on stealth mode
 
         StartCoroutine(CheckForPlayer());
     }
@@ -41,15 +49,17 @@ public class EnemyMovement_Spider : EnemyMovement
 
             Transform closestPlayer = base.GetClosestTarget();
 
-            if(closestPlayer != null)
+            if (closestPlayer != null)
             {
-                if (Vector3.Distance(base.enemyTransform.position, closestPlayer.position) < (base.detectionRadius / 1.7f))
+                if (Vector3.Distance(base.enemyTransform.position, closestPlayer.position) < distanceToStartAcceleration)
                 {
                     StartCoroutine(AccelerateTowardsPlayer(closestPlayer, accelerationDuration));
+                    SetStealthModeStatus(false); //turn off stealth mode
                     yield return new WaitForSeconds(accelerationDuration);
                 }
                 else
                 {
+                    SetStealthModeStatus(true); //turn on stealth mode
                     _animator.SetBool("Following", true);
                     _navMeshAgent.SetDestination(closestPlayer.position);
                 }
@@ -81,5 +91,12 @@ public class EnemyMovement_Spider : EnemyMovement
 
         _navMeshAgent.speed = regularSpeed;
         _animator.SetBool("Acceleration", false);
+    }
+
+
+    private void SetStealthModeStatus(bool status)
+    {
+        healthSlider.SetActive(!status);
+        healthController.enabled = !status;
     }
 }

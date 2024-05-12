@@ -1265,7 +1265,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1289,7 +1289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3532025228
+  GlobalObjectIdHash: 3171028996
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -1367,11 +1367,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba507df22c8f04db9acd89c5b6b2d5b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetPriority: 0
   enemyTransform: {fileID: 2538168242486159776}
   detectionRadius: 16
+  isPlayerNear: 0
   _animator: {fileID: 209840845563600001}
   accelerationClip: {fileID: 7400000, guid: 46432682b19d4d3694642365c4f8827b, type: 3}
-  accelerationSpeed: 6
+  accelerationSpeed: 8
+  distanceToStartAcceleration: 6
+  healthController: {fileID: 4244710793279252485}
+  healthSlider: {fileID: 3121193008344818015}
 --- !u!114 &4244710793279252485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1384,7 +1389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f578196405549a047affa4aefe22d639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 140
+  maxHealth: 35
   movementScript: {fileID: 446764818291322690}
   shootingScript: {fileID: 3284387352436335621}
 --- !u!114 &3284387352436335621
