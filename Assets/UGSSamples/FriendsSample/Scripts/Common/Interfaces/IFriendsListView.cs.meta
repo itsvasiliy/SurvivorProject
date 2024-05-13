@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: fba2b7a30425346649e64bf239143c2f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 247503
+  packageName: Friends
+  packageVersion: 1.0.1
+  assetPath: Assets/UGSSamples/FriendsSample/Scripts/Common/Interfaces/IFriendsListView.cs
+  uploadId: 579644

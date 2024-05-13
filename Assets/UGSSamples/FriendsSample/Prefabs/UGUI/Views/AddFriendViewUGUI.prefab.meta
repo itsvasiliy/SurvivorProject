@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 93e84604e3d19a74a92909b15e3261cf
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 247503
+  packageName: Friends
+  packageVersion: 1.0.1
+  assetPath: Assets/UGSSamples/FriendsSample/Prefabs/UGUI/Views/AddFriendViewUGUI.prefab
+  uploadId: 579644

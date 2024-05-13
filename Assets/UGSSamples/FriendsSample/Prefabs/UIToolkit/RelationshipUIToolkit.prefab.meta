@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b61da0cc8a775cc46bb22db214fc2a70
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 247503
+  packageName: Friends
+  packageVersion: 1.0.1
+  assetPath: Assets/UGSSamples/FriendsSample/Prefabs/UIToolkit/RelationshipUIToolkit.prefab
+  uploadId: 579644

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 78f6a78dafb304bf4b52eb66b64fa6e1
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 247503
+  packageName: Friends
+  packageVersion: 1.0.1
+  assetPath: Assets/UGSSamples/FriendsSample/Scripts/Unity.Services.Samples.Friends.asmdef
+  uploadId: 579644

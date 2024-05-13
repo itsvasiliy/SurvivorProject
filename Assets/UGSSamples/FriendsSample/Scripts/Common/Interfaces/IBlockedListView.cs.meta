@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e8a048c5560f442968b78686f62ca66f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 247503
+  packageName: Friends
+  packageVersion: 1.0.1
+  assetPath: Assets/UGSSamples/FriendsSample/Scripts/Common/Interfaces/IBlockedListView.cs
+  uploadId: 579644

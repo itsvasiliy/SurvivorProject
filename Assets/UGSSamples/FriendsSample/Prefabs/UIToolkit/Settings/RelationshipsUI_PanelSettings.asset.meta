@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 94ca07b59cebafa42812a2eea58a87d1
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 247503
+  packageName: Friends
+  packageVersion: 1.0.1
+  assetPath: Assets/UGSSamples/FriendsSample/Prefabs/UIToolkit/Settings/RelationshipsUI_PanelSettings.asset
+  uploadId: 579644

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: ccfb7ac78d6755d4d84969716b7a2f54
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 247503
+  packageName: Friends
+  packageVersion: 1.0.1
+  assetPath: Assets/UGSSamples/FriendsSample/Scripts/Common/Managers/RelationshipsManager.cs
+  uploadId: 579644

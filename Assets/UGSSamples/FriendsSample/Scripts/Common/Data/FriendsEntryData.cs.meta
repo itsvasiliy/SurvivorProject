@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 65b930f0d961431b90907d09785386da
+timeCreated: 1664893169
+AssetOrigin:
+  serializedVersion: 1
+  productId: 247503
+  packageName: Friends
+  packageVersion: 1.0.1
+  assetPath: Assets/UGSSamples/FriendsSample/Scripts/Common/Data/FriendsEntryData.cs
+  uploadId: 579644
