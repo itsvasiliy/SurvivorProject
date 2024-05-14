@@ -35,7 +35,12 @@ public class StructurePlacement : NetworkBehaviour
 
 
 
-    private void Start() => structurePrefabFactory = FindFirstObjectByType<StructurePrefabFactory>();
+    private void Start()
+    {
+        structurePrefabFactory = FindFirstObjectByType<StructurePrefabFactory>();
+        if (structurePrefabFactory == null)
+            Debug.LogWarning("Add StructurePrefabFactory to the scene to be able place structures");
+    }
 
     public void PreviewBuildingPlacement(NetworkObject netStructureOrigin)
     {
@@ -96,6 +101,12 @@ public class StructurePlacement : NetworkBehaviour
     {
         if (placementAvailability.canBuild == false)
             return;
+
+        if (structurePrefabFactory == null)
+        {
+            Debug.LogError("Add StructurePrefabFactory to the scene to be able place structures");
+            return;
+        }
 
         var structureScript = structurePrefab.GetComponent<Structure>();
         var _structParams = new StructurePlacementParams()
