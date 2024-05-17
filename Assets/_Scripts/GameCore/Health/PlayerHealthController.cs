@@ -8,7 +8,6 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
     [SerializeField] MonoBehaviour playerShooting;
     [SerializeField] AnimationClip getHitClip;
 
-
     [SerializeField] GameObject respawnButton;
 
     private Animator animator;
@@ -42,7 +41,6 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
         if (!IsOwner)
             return;
 
-        PlayGetHitAnimation();
         GetDamageServerRpc(damage);
 
         if (_health.Value <= 0)
@@ -68,9 +66,6 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
 
     public void Respawn()
     {
-        if (!IsOwner)
-            return;
-
         var tentPosition = TentPlayerRespawner.GetLastTentPosition();
         if (tentPosition == Vector3.zero)
             Debug.Log("Need tent to respawn the player");
@@ -98,12 +93,6 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
         this.enabled = !status;
     }
 
-
-    public void PlayGetHitAnimation()
-    {
-        animator.SetBool("IsGetHit", true);
-        Invoke(nameof(ResetGetHit), getHitClip.length);
-    }
 
 
     public void ResetGetHit() => animator.SetBool("IsGetHit", false);
