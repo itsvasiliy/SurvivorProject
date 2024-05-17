@@ -95,7 +95,8 @@ public class PlayerShooting : NetworkBehaviour
 
 
     // this calls in animation event to avoid calculating ShootTheTarget delay for each attack speed and attack aborting
-    public void ShootTheTarget()
+    [ClientRpc]
+    public void ShootTheTargetClientRpc()
     {
         Vector3 targetPos = Vector3.zero;
         if (closestTarget != null)
