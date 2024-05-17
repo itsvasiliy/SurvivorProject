@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8222502d7aa1f814fb98463f27d569a9
+timeCreated: 1552239491
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 142285
+  packageName: Unlit Stylized Water Pack
+  packageVersion: 1.01
+  assetPath: Assets/Stylized Ocean Materials/Shader/Water_Ocean_02.shader
+  uploadId: 303373

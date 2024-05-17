@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 75db86cbc3c0c6a48966d73edd908d8f
+timeCreated: 1551911121
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 142285
+  packageName: Unlit Stylized Water Pack
+  packageVersion: 1.01
+  assetPath: Assets/Stylized Ocean Materials/Ocean_material_05.mat
+  uploadId: 303373
