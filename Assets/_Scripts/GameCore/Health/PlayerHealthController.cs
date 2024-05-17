@@ -64,14 +64,17 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
         isDead = true;
     }
 
+
     public void Respawn()
     {
+        if (!IsOwner)
+            return;
+
         var tentPosition = TentPlayerRespawner.GetLastTentPosition();
         if (tentPosition == Vector3.zero)
             Debug.Log("Need tent to respawn the player");
 
-        animator.ResetTrigger("Death");
-        animator.SetTrigger("Respawn");
+        PlayRespawnAnimationServerRpc();
         SetDeathStatus(false);
         respawnButton.SetActive(false);
 
@@ -85,6 +88,21 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
     [ServerRpc(RequireOwnership = false)]
     private void HealMaxServerRpc() => _health.Value = maxHealth;
 
+
+    [ServerRpc(RequireOwnership = false)]
+    private void PlayRespawnAnimationServerRpc()
+    {
+        animator.ResetTrigger("Death");
+        animator.SetTrigger("Respawn");
+        PlayRespawnAnimationClientRpc();
+    }
+
+    [ClientRpc]
+    private void PlayRespawnAnimationClientRpc()
+    {
+        animator.ResetTrigger("Death");
+        animator.SetTrigger("Respawn");
+    }
 
     private void SetDeathStatus(bool status)
     {
