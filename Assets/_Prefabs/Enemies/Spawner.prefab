@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4634239145759102952}
   - component: {fileID: 6412608287189270054}
-  - component: {fileID: 9201262947877087327}
+  - component: {fileID: 24921414263692088}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -53,7 +53,7 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &9201262947877087327
+--- !u!114 &24921414263692088
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,11 +62,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 34629721927129789}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c946adba6adc1046a51c17d5c4b4ba6, type: 3}
+  m_Script: {fileID: 11500000, guid: 4246a769730d76b4d9a5df6c421d5c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnArea: {fileID: 0}
-  PrefabsToSpawn: []
-  DestroyWithSpawner: 0
-  SpawnCount: 1
-  SpawnInterval: 1
+  objectToSpawn: {fileID: 0}
+  minSpawnTime: 1
+  maxSpawnTime: 1
