@@ -49,12 +49,21 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
         if (resourceController != null)
             DropResourcesInDeathCase(resourceController);
 
+        DisableColliderClientRpc();
+
         Invoke(nameof(DespawnServerRpc), 4.5f);
     }
 
 
     [ServerRpc(RequireOwnership = false)]
     private void DespawnServerRpc() => GetComponent<NetworkObject>().Despawn();
+
+    [ClientRpc]
+    private void DisableColliderClientRpc()
+    {
+        Collider collider = GetComponent<Collider>();
+        collider.enabled = false;
+    }
 
 
     [ServerRpc(RequireOwnership = false)]
