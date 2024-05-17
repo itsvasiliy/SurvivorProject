@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3221203944030668369}
   - component: {fileID: 2825677302097030441}
   - component: {fileID: 956836479497533890}
+  - component: {fileID: -3577341104647491954}
   m_Layer: 0
   m_Name: tree-jungle-sapling-a
   m_TagString: Untagged
@@ -111,3 +112,17 @@ CapsuleCollider:
   m_Height: 1.3979954
   m_Direction: 1
   m_Center: {x: -0.033328846, y: 0.44805554, z: -0.0025923504}
+--- !u!114 &-3577341104647491954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2182268768715067420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66be94a299585194c90ab346157090d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: 0
+  resourceDropAmount: 4

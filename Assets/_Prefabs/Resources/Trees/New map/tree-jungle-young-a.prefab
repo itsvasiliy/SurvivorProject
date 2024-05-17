@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6985179422062219484}
   - component: {fileID: 5121895581810418710}
   - component: {fileID: 5570976522404087838}
+  - component: {fileID: 499239342540921922}
   m_Layer: 0
   m_Name: tree-jungle-young-a
   m_TagString: Untagged
@@ -111,3 +112,17 @@ CapsuleCollider:
   m_Height: 2.70802
   m_Direction: 1
   m_Center: {x: 0.014623119, y: 0.93998635, z: -0.012478197}
+--- !u!114 &499239342540921922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6635029947064534467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66be94a299585194c90ab346157090d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: 0
+  resourceDropAmount: 4
