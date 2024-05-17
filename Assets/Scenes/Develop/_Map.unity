@@ -37653,7 +37653,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2054271320690633112, guid: d38a49b25b3e4404e8c7522ecde905da, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -38089,11 +38090,11 @@ PrefabInstance:
       objectReference: {fileID: 1956238596}
     - target: {fileID: 24921414263692088, guid: 041ee230e4d927a48a871c1732f3a0b1, type: 3}
       propertyPath: SpawnCount
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 24921414263692088, guid: 041ee230e4d927a48a871c1732f3a0b1, type: 3}
       propertyPath: SpawnInterval
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 24921414263692088, guid: 041ee230e4d927a48a871c1732f3a0b1, type: 3}
       propertyPath: objectToSpawn
@@ -40978,7 +40979,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5228931386158592997, guid: e608556f5f975cd499d78b1577df1c16, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
