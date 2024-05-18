@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -79,36 +80,33 @@ public class PlayerShooting : NetworkBehaviour
         }
 
         if (closestTarget != null)
-            StartShooting();
+            StartCoroutine(StartShooting());
         else
             StopShooting();
     }
 
-    private void StartShooting()
+    private IEnumerator StartShooting()
     {
         SetShootingStatus(true);
-
-        //ShootTheTarget() calls in animation to avoid calculating ShootTheTarget delay
-        //for each attack speed and attack aborting
         Invoke(nameof(Reload), fireRate);
+
+        yield return new WaitForSeconds(fireRate / 2); 
+        ShootTheTargetClientRpc(closestTarget.position); 
     }
 
 
-    // this calls in animation event to avoid calculating ShootTheTarget delay for each attack speed and attack aborting
     [ClientRpc]
-    public void ShootTheTargetClientRpc()
+    public void ShootTheTargetClientRpc(Vector3 targetPos)
     {
-        Vector3 targetPos = Vector3.zero;
-        if (closestTarget != null)
-            targetPos = closestTarget.position;
-        else return;
-
-        if (playerStateController.GetState() != PlayerStates.Shooting)
+        if (playerStateController.GetState() != PlayerStates.Shooting && IsOwner)
+        {
+            Debug.Log("Not shooted because state is not shooting");
             return;
+        }
 
         targetPos.y = targetHeight / 3;
 
-       var bulletSetter =  ammoPrefab.GetComponent<Bullet>();
+        var bulletSetter = ammoPrefab.GetComponent<Bullet>();
         bulletSetter.SetTarget(targetPos);
         bulletSetter.SetPlayerResourceController(playerResourceController);
         Instantiate(ammoPrefab, muzzleOfShot.position, ammoPrefab.transform.rotation);
@@ -130,7 +128,7 @@ public class PlayerShooting : NetworkBehaviour
     {
         isShooting = status;
         animator.SetBool("IsShooting", status);
-       SetWeaponStatusClientRpc(status);
+        SetWeaponStatusClientRpc(status);
 
         if (status == true)
             playerStateController.SetState(PlayerStates.Shooting);

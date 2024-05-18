@@ -421,8 +421,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 70
   playerMovementScript: {fileID: 1900526516208280557}
-  playerShooting: {fileID: 5675896857310808948}
-  getHitClip: {fileID: -7880898593064695190, guid: 83e28e7ec15604e4e936c71d31a7ebad, type: 3}
+  playerShooting: {fileID: 4330829380909408073}
+  playerCollider: {fileID: 7690590061793995789}
   respawnButton: {fileID: 5947559085956474994}
 --- !u!114 &91800319337762354
 MonoBehaviour:
@@ -1275,6 +1275,11 @@ MonoBehaviour:
 --- !u!54 &7349971264018700376 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6749681554766280675, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
+  m_PrefabInstance: {fileID: 4299803433066590139}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7690590061793995789 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 5841606987201184694, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
   m_PrefabInstance: {fileID: 4299803433066590139}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &8088873630574627842 stripped
