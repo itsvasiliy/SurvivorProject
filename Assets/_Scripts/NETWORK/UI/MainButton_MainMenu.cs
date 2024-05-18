@@ -4,7 +4,7 @@ using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.SceneManagement;
 
-public class StartTheGame : NetworkBehaviour
+public class MainButton_MainMenu : NetworkBehaviour
 {
     public void StartGame()
     {
