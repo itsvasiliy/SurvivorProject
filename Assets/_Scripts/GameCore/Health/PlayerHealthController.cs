@@ -4,13 +4,17 @@ using UnityEngine;
 public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthController
 {
     [SerializeField] public int maxHealth;
+
     [SerializeField] MonoBehaviour playerMovementScript;
     [SerializeField] MonoBehaviour playerShooting;
-    [SerializeField] AnimationClip getHitClip;
+
+    [SerializeField] Collider playerCollider;
 
     [SerializeField] GameObject respawnButton;
 
     private Animator animator;
+
+    private int bulletIgnoreLayer = 128; //128 - bulletIgnoreLayer, it is layer 7
 
     private NetworkVariable<int> _health = new NetworkVariable<int>(writePerm: NetworkVariableWritePermission.Server);
 
@@ -18,6 +22,7 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
 
     void Start()
     {
+
         if (IsServer)
             _health.Value = maxHealth;
 
@@ -62,6 +67,8 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
         animator.SetBool("IsRunning", false);
         animator.SetTrigger("Death");
         isDead = true;
+
+        DisableColliderClientRpc();
     }
 
 
@@ -82,6 +89,7 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
         transform.position = tentPosition;
 
         isDead = false;
+        EnableColliderClientRpc();
     }
 
 
@@ -104,6 +112,22 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
         animator.SetTrigger("Respawn");
     }
 
+    [ClientRpc]
+    private void DisableColliderClientRpc()
+    {
+        var ignoreBulletsLayerMask = playerCollider.excludeLayers;
+        ignoreBulletsLayerMask.value = bulletIgnoreLayer;
+        playerCollider.excludeLayers = ignoreBulletsLayerMask;
+    }
+
+    [ClientRpc]
+    private void EnableColliderClientRpc()
+    {
+        var ignoreBulletsLayerMask = playerCollider.excludeLayers;
+        ignoreBulletsLayerMask.value = 0;
+        playerCollider.excludeLayers = ignoreBulletsLayerMask;
+    }
+
     private void SetDeathStatus(bool status)
     {
         playerMovementScript.enabled = !status;
@@ -112,8 +136,6 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
     }
 
 
-
-    public void ResetGetHit() => animator.SetBool("IsGetHit", false);
     public int GetMaxHealth() => maxHealth;
     public int GetCurrentHealth() => _health.Value;
     public NetworkVariable<int> GetHealthVariable() => _health;
