@@ -13,6 +13,8 @@ public class LobbyInfo : MonoBehaviour
 
     private LobbyMenu lobbyMenu;
 
+    private string lobbyID;
+
     private void Start()
     {
         lobbyMenu = GetComponentInParent<LobbyMenu>();
@@ -23,14 +25,16 @@ public class LobbyInfo : MonoBehaviour
         }
     }
 
-    public void LoadInfo(string lobbyName, int currentPlayerCount, int maxPlayers)
+    public void LoadInfo(string lobbyID, string lobbyName, int currentPlayerCount, int maxPlayers)
     {
+        this.lobbyID = lobbyID;
         this.lobbyName.text = lobbyName;
+
         playersCount.text = (currentPlayerCount + "/" + maxPlayers).ToString();
     }
 
     public void SelectLobby()
     {
-        lobbyMenu.JoinLobby();
+        lobbyMenu.JoinLobby(lobbyID);
     }
 }

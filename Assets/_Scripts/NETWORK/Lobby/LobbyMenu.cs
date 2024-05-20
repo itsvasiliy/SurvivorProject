@@ -10,11 +10,13 @@ using UnityEngine;
 public class LobbyMenu : MonoBehaviour
 {
     [SerializeField] private GameObject lobbiesBoard;
-    [SerializeField] private GameObject joinedLobby;
+    [SerializeField] private GameObject joinedLobbyBoard;
 
     [SerializeField] private Transform lobbiesParent;
 
     [SerializeField] private LobbyInfo lobbyTemplate;
+
+    private Dictionary<string, GameObject> instantiatedLobbies = new Dictionary<string, GameObject>();
 
     private Lobby hostLobby; 
     private float heartbeatTimer = 15f;
@@ -40,13 +42,10 @@ public class LobbyMenu : MonoBehaviour
             hostLobby = lobby;
             StartCoroutine(LobbyHeartbeat());
 
-            Debug.Log("Created: " + lobby.Name + " " + lobby.MaxPlayers);
-
+            joinedLobbyBoard.SetActive(true);
             lobbiesBoard.SetActive(false);
-            joinedLobby.SetActive(true);
 
-            joinedLobby.GetComponent<JoinedLobbyInfo>().LoadInfo(lobby.Name, lobby.Players.Count, lobby.MaxPlayers);
-
+            joinedLobbyBoard.GetComponent<JoinedLobbyInfo>().LoadInfo(lobby.Name, lobby.Players.Count, lobby.MaxPlayers);
         }
         catch (LobbyServiceException error)
         {
@@ -54,18 +53,26 @@ public class LobbyMenu : MonoBehaviour
         }
     }
 
-    public void JoinLobby()
+    public async void JoinLobby(string lobbyID)
     {
-        joinedLobby.SetActive(true);
-        lobbiesBoard.SetActive(false);
+        try
+        {
+            joinedLobbyBoard.SetActive(true);
+            lobbiesBoard.SetActive(false);
+
+            await Lobbies.Instance.JoinLobbyByIdAsync(lobbyID);
+        }
+        catch(LobbyServiceException error)
+        {
+            Debug.Log(error);
+        }
+
     }
 
     public void LeaveTheLobby()
     {
 
     }
-
-
 
     public async void ListLobbies()
     {
@@ -77,10 +84,13 @@ public class LobbyMenu : MonoBehaviour
 
             foreach (Lobby lobby in queryResponse.Results)
             {
-                Instantiate(lobbyTemplate, lobbiesParent);
-                lobbyTemplate.LoadInfo(lobby.Name, lobby.Players.Count, lobby.MaxPlayers);
+                if (!instantiatedLobbies.ContainsKey(lobby.Id))
+                {
+                    LobbyInfo newLobby = Instantiate(lobbyTemplate, lobbiesParent);
+                    newLobby.LoadInfo(lobby.Id, lobby.Name, lobby.Players.Count, lobby.MaxPlayers);
 
-                //Debug.Log(lobby.Name + " " + lobby.MaxPlayers);
+                    instantiatedLobbies.Add(lobby.Id, newLobby.gameObject);
+                }
             }
         }
         catch (LobbyServiceException error)
