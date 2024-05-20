@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Lobbies;
@@ -26,19 +27,22 @@ public class LobbyMenu : MonoBehaviour
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
     }
 
-    public async void CreateLobby()
+    public async Task CreateLobby(string lobbyName, int maxPlayers)
     {
         try
         {
-            string lobbyName = "New lobby";
-            int maxPlayers = 4;
-
             Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName, maxPlayers);
 
             hostLobby = lobby;
             StartCoroutine(LobbyHeartbeat());
 
             Debug.Log("Created: " + lobby.Name + " " + lobby.MaxPlayers);
+
+            lobbiesBoard.SetActive(false);
+            joinedLobby.SetActive(true);
+
+            joinedLobby.GetComponent<JoinedLobbyInfo>().LoadInfo(lobby.Name, lobby.Players.Count, lobby.MaxPlayers);
+
         }
         catch (LobbyServiceException error)
         {

@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 11855607}
   - component: {fileID: 11855606}
   m_Layer: 5
-  m_Name: LobbyNameText
+  m_Name: PlayerNamesText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,8 +210,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 115, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 152.83148, y: 0}
+  m_SizeDelta: {x: 275.6629, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &11855606
 MonoBehaviour:
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lobby name
+  m_text: Player's name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c1482dbce654844b9ba1c753cbea5d80, type: 2}
   m_sharedMaterial: {fileID: 7374927986402738804, guid: c1482dbce654844b9ba1c753cbea5d80, type: 2}
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -8339,10 +8339,10 @@ RectTransform:
   - {fileID: 562334869}
   m_Father: {fileID: 1966807190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 100}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 480, y: -60}
+  m_SizeDelta: {x: 960, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &738596925
 MonoBehaviour:
@@ -12408,6 +12408,7 @@ GameObject:
   - component: {fileID: 1114899949}
   - component: {fileID: 1114899948}
   - component: {fileID: 1114899950}
+  - component: {fileID: 1114899951}
   m_Layer: 5
   m_Name: CreateButton
   m_TagString: Untagged
@@ -12516,7 +12517,45 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1114899948}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 711591339}
+        m_TargetAssemblyTypeName: LobbyMenu, Assembly-CSharp
+        m_MethodName: CreateLobby
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1114899951}
+        m_TargetAssemblyTypeName: LobbyMaker, Assembly-CSharp
+        m_MethodName: CreateLobby
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1114899951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114899946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c7a53da3073d4992bc3f0842806853c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lobbyNameInputField: {fileID: 228808777}
+  maxPlayersNumber: {fileID: 1082603701}
 --- !u!1 &1116014748
 GameObject:
   m_ObjectHideFlags: 0
@@ -13573,13 +13612,14 @@ GameObject:
   - component: {fileID: 1176752522}
   - component: {fileID: 1176752524}
   - component: {fileID: 1176752523}
+  - component: {fileID: 1176752525}
   m_Layer: 5
   m_Name: JoinedLobby
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1176752522
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13644,6 +13684,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176752521}
   m_CullTransparentMesh: 0
+--- !u!114 &1176752525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176752521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed9b199b66d334842bd7091b77a83a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lobbyName: {fileID: 11855606}
+  countOfPlayers: {fileID: 1048400838}
 --- !u!1 &1178002591
 GameObject:
   m_ObjectHideFlags: 0
@@ -22021,10 +22075,10 @@ RectTransform:
   - {fileID: 1547404312}
   m_Father: {fileID: 2035374522}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 480, y: -60}
-  m_SizeDelta: {x: 960, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1784321468
 MonoBehaviour:
@@ -23201,13 +23255,14 @@ GameObject:
   - component: {fileID: 1892263516}
   - component: {fileID: 1892263518}
   - component: {fileID: 1892263517}
+  - component: {fileID: 1892263519}
   m_Layer: 5
   m_Name: LobbiesBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1892263516
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23272,6 +23327,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892263515}
   m_CullTransparentMesh: 0
+--- !u!114 &1892263519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892263515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed9b199b66d334842bd7091b77a83a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lobbyName: {fileID: 0}
+  countOfPlayers: {fileID: 0}
 --- !u!1 &1896705548
 GameObject:
   m_ObjectHideFlags: 0
