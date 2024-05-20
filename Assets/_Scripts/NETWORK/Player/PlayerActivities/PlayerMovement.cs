@@ -44,8 +44,7 @@ public class PlayerMovement : NetworkBehaviour
         {
             if (!IsOwner) return;
             animator.SetBool("IsRunning", false);
-            if (playerStateController.GetState() != PlayerStates.Shooting)
-                playerStateController.SetState(PlayerStates.Idle);
+            playerStateController.TryToSetIdleState();
         }
     }
 
