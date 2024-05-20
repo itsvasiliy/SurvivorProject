@@ -92,8 +92,6 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
             Debug.Log($"Now resources drop from {name}");
     }
 
-    private void OnDisable() => isDead = true;
-    private void OnEnable() => isDead = false;
 
     public int GetMaxHealth() => maxHealth;
 
