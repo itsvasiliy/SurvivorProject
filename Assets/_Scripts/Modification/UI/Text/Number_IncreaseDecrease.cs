@@ -34,4 +34,9 @@ public class Number_IncreaseDecrease : MonoBehaviour
             numberTextMeshPro.text = currentNumber.ToString();
         }
     }
+
+    public int GetCurrentNumber()
+    {
+        return currentNumber;
+    }
 }
