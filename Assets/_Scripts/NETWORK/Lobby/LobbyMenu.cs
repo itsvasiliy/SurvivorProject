@@ -12,6 +12,10 @@ public class LobbyMenu : MonoBehaviour
     [SerializeField] private GameObject lobbiesBoard;
     [SerializeField] private GameObject joinedLobby;
 
+    [SerializeField] private Transform lobbiesParent;
+
+    [SerializeField] private LobbyInfo lobbyTemplate;
+
     private Lobby hostLobby; 
     private float heartbeatTimer = 15f;
 
@@ -73,7 +77,10 @@ public class LobbyMenu : MonoBehaviour
 
             foreach (Lobby lobby in queryResponse.Results)
             {
-                Debug.Log(lobby.Name + " " + lobby.MaxPlayers);
+                Instantiate(lobbyTemplate, lobbiesParent);
+                lobbyTemplate.LoadInfo(lobby.Name, lobby.Players.Count, lobby.MaxPlayers);
+
+                //Debug.Log(lobby.Name + " " + lobby.MaxPlayers);
             }
         }
         catch (LobbyServiceException error)

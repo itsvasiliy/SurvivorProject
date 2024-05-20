@@ -11,11 +11,7 @@ public class LobbyInfo : MonoBehaviour
 
     [SerializeField] private Image lobbyPrivacyIcon;
 
-    [SerializeField] private Sprite lockedSprite;
-
     private LobbyMenu lobbyMenu;
-
-    private int maxPlayersCount;
 
     private void Start()
     {
@@ -27,15 +23,10 @@ public class LobbyInfo : MonoBehaviour
         }
     }
 
-    public void LoadInfo(string lobbyName, int currentPlayerCount, int maxPlayers, bool isPrivate)
+    public void LoadInfo(string lobbyName, int currentPlayerCount, int maxPlayers)
     {
         this.lobbyName.text = lobbyName;
         playersCount.text = (currentPlayerCount + "/" + maxPlayers).ToString();
-
-        if(isPrivate == true)
-        {
-            lobbyPrivacyIcon.sprite = lockedSprite;
-        }
     }
 
     public void SelectLobby()

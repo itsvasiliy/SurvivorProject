@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System.Threading.Tasks;
 
 public class LobbyMaker : MonoBehaviour
 {
@@ -10,25 +7,20 @@ public class LobbyMaker : MonoBehaviour
 
     [SerializeField] private Number_IncreaseDecrease maxPlayersNumber;
 
-    //public async void CreateLobby123()
-    //{
-    //    await CreateLobby();
-    //}
-
     public async void CreateLobby()
     {
         string lobbyName;
-        lobbyName = lobbyNameInputField.text;
 
-        LobbyMenu lobbyMenu = GetComponentInParent<LobbyMenu>();
-
-        if(lobbyMenu != null)
+        if (string.IsNullOrEmpty(lobbyNameInputField.text))
         {
-            await lobbyMenu.CreateLobby(lobbyName, maxPlayersNumber.GetCurrentNumber());
+            lobbyName = "New lobby";
         }
         else
         {
-
+            lobbyName = lobbyNameInputField.text;
         }
+
+        LobbyMenu lobbyMenu = GetComponentInParent<LobbyMenu>();
+        await lobbyMenu.CreateLobby(lobbyName, maxPlayersNumber.GetCurrentNumber());
     }
 }
