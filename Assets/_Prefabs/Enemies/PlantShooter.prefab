@@ -433,7 +433,7 @@ MonoBehaviour:
   groundDefaultYValue: 0
   rangeToEmergeNearPlayer: 10
   emergeUpRechargeTime: 10
-  timeToBuryAfterMergeUp: 5
+  timeToBuryAfterMergeUp: 5.5
   enemyTransform: {fileID: 1740486431481808492}
 --- !u!136 &2441650726144373959
 CapsuleCollider:
@@ -926,7 +926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3678106355
+  GlobalObjectIdHash: 513041401
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -949,7 +949,6 @@ MonoBehaviour:
   bullet: {fileID: 4872098413557925136, guid: 37a8d0bf11f6d0a458324a589b132288, type: 3}
   shootingRadius: 14
   muzzleOfShot: {fileID: 6463025025898077753}
-  reloadingTime: 2
   animator: {fileID: 2744483633067241307}
   attackClip: {fileID: 7400000, guid: b8585e977e41db24daa56afffe6ae65c, type: 2}
   bulletSpawnDelay: 0.45

@@ -7,7 +7,6 @@ public class EnemyShooting : NetworkBehaviour
     [SerializeField] protected GameObject bullet;
     [SerializeField] protected float shootingRadius;
     [SerializeField] protected Transform muzzleOfShot;
-    [SerializeField] protected float reloadingTime;
 
     [Header("Animation")]
     [SerializeField] protected Animator animator;
@@ -22,9 +21,12 @@ public class EnemyShooting : NetworkBehaviour
 
     protected Transform detectedPlayer;
 
-    private IEnemyShooting enemyShooting;
+    private IEnemyShooting shootingStyle;
 
     private Collider closestCollider;
+
+    protected float reloadingTime;
+
 
 
     private void Start()
@@ -32,7 +34,8 @@ public class EnemyShooting : NetworkBehaviour
         if (IsServer == false)
             return;
 
-        enemyShooting = GetComponent<IEnemyShooting>();
+        shootingStyle = GetComponent<IEnemyShooting>();
+        reloadingTime = attackClip.length;
     }
 
     private void Update()
@@ -70,8 +73,6 @@ public class EnemyShooting : NetworkBehaviour
 
         if (closestCollider != null)
         {
-            Vector3 spawnOrigin = transform.position;
-            spawnOrigin.y += 5f;
             detectedPlayer = closestCollider.transform;
             StartShooting();
         }
@@ -84,7 +85,7 @@ public class EnemyShooting : NetworkBehaviour
         StartShootingAnimation();
         RotateToTarget(detectedPlayer.position);
         Invoke(nameof(ShootTarget_UseWithDelay), bulletSpawnDelay);
-        Invoke(nameof(StopShooting), attackClip.length);
+     //   Invoke(nameof(StopShooting), reloadingTime);
     }
 
     private void StopShooting()
@@ -101,7 +102,7 @@ public class EnemyShooting : NetworkBehaviour
     {
         var targetPos = detectedPlayer.position;
         targetPos.y += 0.7f;
-        GetComponent<IEnemyShooting>().ShootTheBullet(muzzleOfShot.position, targetPos);
+        shootingStyle.ShootTheBullet(muzzleOfShot.position, targetPos);
     }
 
 
