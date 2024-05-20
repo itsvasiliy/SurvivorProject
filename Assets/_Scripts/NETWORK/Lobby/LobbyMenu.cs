@@ -8,6 +8,9 @@ using UnityEngine;
 
 public class LobbyMenu : MonoBehaviour
 {
+    [SerializeField] private GameObject lobbiesBoard;
+    [SerializeField] private GameObject joinedLobby;
+
     private Lobby hostLobby; 
     private float heartbeatTimer = 15f;
 
@@ -41,6 +44,12 @@ public class LobbyMenu : MonoBehaviour
         {
             Debug.Log(error);
         }
+    }
+
+    public void JoinLobby()
+    {
+        joinedLobby.SetActive(true);
+        lobbiesBoard.SetActive(false);
     }
 
     public void LeaveTheLobby()

@@ -13,7 +13,19 @@ public class LobbyInfo : MonoBehaviour
 
     [SerializeField] private Sprite lockedSprite;
 
+    private LobbyMenu lobbyMenu;
+
     private int maxPlayersCount;
+
+    private void Start()
+    {
+        lobbyMenu = GetComponentInParent<LobbyMenu>();
+
+        if (lobbyMenu == null)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 
     public void LoadInfo(string lobbyName, int currentPlayerCount, int maxPlayers, bool isPrivate)
     {
@@ -26,4 +38,8 @@ public class LobbyInfo : MonoBehaviour
         }
     }
 
+    public void SelectLobby()
+    {
+        lobbyMenu.JoinLobby();
+    }
 }
