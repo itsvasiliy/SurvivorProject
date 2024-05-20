@@ -6,7 +6,7 @@ public class StructurePlayerFrontFollower : MonoBehaviour
 
     public Structure structure;
 
-    public float distance = 3f; 
+    public float distance = 3.25f; 
 
     void Start()
     {

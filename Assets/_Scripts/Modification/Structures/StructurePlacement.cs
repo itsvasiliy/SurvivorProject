@@ -49,7 +49,7 @@ public class StructurePlacement : NetworkBehaviour
         var viewPosition = new Vector3(transform.position.x, netStructureOrigin.transform.position.y + 0.04f, transform.position.z);
 
         var obj = Instantiate(netStructureOrigin.gameObject, viewPosition, Quaternion.identity);
-        obj.transform.localRotation = Quaternion.identity;
+        obj.transform.localRotation = netStructureOrigin.transform.rotation;
 
         obj.GetComponent<Structure>().isViewing = true;
 
