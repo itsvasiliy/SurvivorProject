@@ -55,7 +55,8 @@ public class IDamageableDetectionCube : MonoBehaviour
 
     private void DamageableDetected()
     {
-        if (playerStateController.GetState() == PlayerStates.Idle)
+        if (playerStateController.GetState() == PlayerStates.Idle ||
+            playerStateController.GetState() == PlayerStates.Mining)
             detected?.Invoke();
     }
 
