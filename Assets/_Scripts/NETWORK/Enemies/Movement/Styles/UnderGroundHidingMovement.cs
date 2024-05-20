@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using UnityEngine;
 
 public class UnderGroundHidingMovement : MonoBehaviour
@@ -43,7 +43,7 @@ public class UnderGroundHidingMovement : MonoBehaviour
         Invoke(nameof(ResetEmergeTrigger), emergeUpAnimation.length);
         Invoke(nameof(EnableComponents), emergeUpAnimation.length); // delay to prevent shooting before emerge up
 
-        yield return new WaitForSeconds(0.14f); //wait for animation to change the enemy position
+        yield return new WaitForSeconds(0.14f); //wait for animation to change the plant shooter position
             SetYPosition(groundDefaultYValue);
 
         yield return new WaitForSeconds(timeToBuryAfterMergeUp); //wait for moment to bury back
@@ -59,7 +59,7 @@ public class UnderGroundHidingMovement : MonoBehaviour
         SetComponentsStatus(false);
         animator.SetTrigger("BuryDown");
 
-        yield return new WaitForSeconds(buryDownAnimation.length - 0.1f); //wait for animation to change the enemy position
+        yield return new WaitForSeconds(buryDownAnimation.length - 0.1f); //wait for animation to change the plant shooter position
         if (healthController.IsAlive())
             SetYPosition(underGroundYValue);
     }
@@ -69,8 +69,8 @@ public class UnderGroundHidingMovement : MonoBehaviour
     {
         if (isCanEmergeUp && this.enabled)
         {
-            PlayerHealthController player = other.GetComponent<PlayerHealthController>();
-            if (player != null && player.enabled) //player.enabled means player is alive
+            var player = other.GetComponent<PlayerHealthHandlerForController>();
+            if (player != null && player.IsAlive())
             {
                 StartCoroutine(EmergeUp(other.transform.position));
                 Invoke(nameof(RechargeEmergeUp), emergeUpRechargeTime);
