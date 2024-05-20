@@ -47,13 +47,11 @@ public class PlayerShooting : NetworkBehaviour
         if (playerState != PlayerStates.Idle && playerState != PlayerStates.Shooting)
             return;
 
-
         if (isShooting)
         {
             RotateToTarget(closestTarget.position);
             return;
         }
-
 
         Collider[] colliders = Physics.OverlapSphere(playerTransform.position, shootingRadius);
 
@@ -66,16 +64,20 @@ public class PlayerShooting : NetworkBehaviour
             {
                 if (_aimTarget.IsEnabled()) // means _aimTarget is alive
                 {
-                    float distance = Vector3.Distance(playerTransform.position, collider.transform.position);
+                    Vector3 directionToTarget = collider.transform.position - playerTransform.position;
+                    float distance = directionToTarget.magnitude;
 
-                    if (distance < distanceToClosestTarget)
+                    // Check if there's an obstacle between the player and the target
+                    if (IsTargetBehindObstacle(collider.transform,directionToTarget,distance) == false)
                     {
-                        targetHeight = collider.bounds.size.y;
-                        closestTarget = collider.transform;
-                        distanceToClosestTarget = distance;
+                        if (distance < distanceToClosestTarget)
+                        {
+                            targetHeight = collider.bounds.size.y;
+                            closestTarget = collider.transform;
+                            distanceToClosestTarget = distance;
+                        }
                     }
                 }
-
             }
         }
 
@@ -84,6 +86,7 @@ public class PlayerShooting : NetworkBehaviour
         else
             StopShooting();
     }
+
 
     private IEnumerator StartShooting()
     {
@@ -118,6 +121,22 @@ public class PlayerShooting : NetworkBehaviour
         Vector3 relativePosition = targetPosition - playerTransform.position;
         Quaternion targetRotation = Quaternion.LookRotation(relativePosition, Vector3.up);
         playerTransform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
+    }
+
+    private bool IsTargetBehindObstacle(Transform targetTransform, Vector3 directionToTarget , float distance)
+    {
+        // Check if there's an obstacle between the player and the target
+        var playerpos = new Vector3(playerTransform.position.x, playerTransform.position.y + 1.2f, playerTransform.position.z);
+        if (Physics.Raycast(playerpos, directionToTarget, out RaycastHit hit, distance))
+        {
+            Debug.Log($"obstacle is {hit.transform.name}");
+            // Ensure that the hit object is not the target itself
+            if (hit.transform != targetTransform)
+                return true;
+        }
+        Debug.Log($"there is no obstacle");
+
+        return false;
     }
 
     private void StopShooting() => SetShootingStatus(false);
