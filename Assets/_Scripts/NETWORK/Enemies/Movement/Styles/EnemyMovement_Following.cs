@@ -65,7 +65,7 @@ public class EnemyMovement_Following : EnemyMovement
                 float distance = Vector3.Distance(detectedTarget.position, base.enemyTransform.position);
 
                 if (distance > base.detectionRadius || distance <= stopFollowingAt)
-                    StopFollowing();
+                    detectedTarget = null;
             }
         }
     }
