@@ -31,6 +31,8 @@ public class LobbyMenu : MonoBehaviour
         };
 
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
+
+        ListLobbies();
     }
 
     public async Task CreateLobby(string lobbyName, int maxPlayers)
