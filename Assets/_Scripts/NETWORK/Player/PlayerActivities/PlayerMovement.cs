@@ -17,10 +17,6 @@ public class PlayerMovement : NetworkBehaviour
 
     [SerializeField] float rotationSpeed;
 
-    public override void OnNetworkSpawn()
-    {
-        // if (!IsOwner) Destroy(this);
-    }
 
     private void FixedUpdate()
     {
@@ -38,7 +34,7 @@ public class PlayerMovement : NetworkBehaviour
             _rigidbody.MoveRotation(Quaternion.RotateTowards(playerTransform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
 
             animator.SetBool("IsRunning", true);
-            playerStateController.SetState(PlayerStates.Running);
+            playerStateController.TryToSetRunningState();
         }
         else
         {
@@ -47,5 +43,4 @@ public class PlayerMovement : NetworkBehaviour
             playerStateController.TryToSetIdleState();
         }
     }
-
 }

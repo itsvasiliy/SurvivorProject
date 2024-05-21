@@ -25,6 +25,9 @@ public class StructurePlacement : NetworkBehaviour
 
     [SerializeField] public ResourceController resourceController;
 
+    [SerializeField] private PlayerStateController playerStateController;
+
+
     private NetworkObject structurePrefab;
 
     private StructurePrefabFactory structurePrefabFactory;
@@ -140,6 +143,7 @@ public class StructurePlacement : NetworkBehaviour
     {
         ClearViewer();
         SetButtonStatus(false);
+        playerStateController.SetState(PlayerStates.Idle);
     }
 
     private void SetButtonStatus(bool status)

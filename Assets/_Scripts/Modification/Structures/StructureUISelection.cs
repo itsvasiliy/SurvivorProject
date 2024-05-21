@@ -5,6 +5,7 @@ public class StructureUISelection : MonoBehaviour
 {
     [SerializeField] NetworkObject structure;
     [SerializeField] StructurePlacement structurePlacement;
+    [SerializeField] PlayerStateController playerStateController;
 
 
     public bool IsEnoughResources()
@@ -27,7 +28,7 @@ public class StructureUISelection : MonoBehaviour
             return;
         }
 
-        //  playerStateController.SetState(PlayerStates.BuildViewing);
+        playerStateController.SetState(PlayerStates.BuildViewing);
         structurePlacement.PreviewBuildingPlacement(structure);
     }
 }

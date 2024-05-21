@@ -11,8 +11,14 @@ public class PlayerStateController : MonoBehaviour, IPlayerStateController
     {
         if (currentState != PlayerStates.Idle &&
              currentState != PlayerStates.Shooting &&
+             currentState != PlayerStates.BuildViewing &&
               currentState != PlayerStates.Mining)
             currentState = PlayerStates.Idle;
     }
 
+    public void TryToSetRunningState()
+    {
+        if (currentState != PlayerStates.BuildViewing)
+            currentState = PlayerStates.Running;
+    }
 }
