@@ -10,10 +10,27 @@ public class EnemySpawner : NetworkBehaviour
     public float SpawnInterval = 1f;
     private NetworkObject[] m_SpawnedNetworkObjects;
 
+    private bool canSpawn = true;
+    public void StopSpawning()
+    {
+        canSpawn = false;
+        StopCoroutine(StartSpawningCoroutine());
+    }
+    public void StartSpawning()
+    {
+        canSpawn = true;
+        StartCoroutine(StartSpawningCoroutine());
+    }
+
+
+
     private IEnumerator StartSpawningCoroutine()
     {
         for (int i = 0; i < SpawnCount; i++)
         {
+            if (!canSpawn)
+                yield break;
+
             SpawnWithServerRpc();
             yield return new WaitForSeconds(SpawnInterval);
         }
