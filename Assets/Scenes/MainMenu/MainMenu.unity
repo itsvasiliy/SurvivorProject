@@ -12783,7 +12783,7 @@ GameObject:
   - component: {fileID: 1163565601}
   - component: {fileID: 1163565600}
   m_Layer: 0
-  m_Name: Friends
+  m_Name: Lobbies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15250,12 +15250,12 @@ GameObject:
   - component: {fileID: 1296092902}
   - component: {fileID: 1296092901}
   m_Layer: 0
-  m_Name: AddPlayers_RightButton
+  m_Name: AddPlayers_RightButton_BETA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1296092900
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16459,12 +16459,12 @@ GameObject:
   - component: {fileID: 1409430707}
   - component: {fileID: 1409430706}
   m_Layer: 0
-  m_Name: AddPlayers_LeftButton
+  m_Name: AddPlayers_LeftButton_BETA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1409430705
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19435,7 +19435,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 120, y: 110}
+  m_SizeDelta: {x: 135, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1624070899
 MonoBehaviour:
