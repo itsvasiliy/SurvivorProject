@@ -45,6 +45,7 @@ public class LobbyMenu : MonoBehaviour
             joinedLobbyBoard.SetActive(true);
             lobbiesBoard.SetActive(false);
 
+
             joinedLobbyBoard.GetComponent<JoinedLobbyInfo>().LoadInfo(lobby.Name, lobby.Players.Count, lobby.MaxPlayers);
         }
         catch (LobbyServiceException error)
@@ -69,11 +70,24 @@ public class LobbyMenu : MonoBehaviour
 
     }
 
-    public void LeaveTheLobby()
+    public async void LeaveTheLobby()
     {
+        try
+        {
+            if (hostLobby != null)
+            {
+                await LobbyService.Instance.RemovePlayerAsync(hostLobby.Id, AuthenticationService.Instance.PlayerId);
 
+                joinedLobbyBoard.SetActive(false);
+                lobbiesBoard.SetActive(true);
+            }
+        }
+        catch (LobbyServiceException error)
+        {
+            Debug.Log(error);
+        }
     }
-
+    
     public async void ListLobbies()
     {
         try
