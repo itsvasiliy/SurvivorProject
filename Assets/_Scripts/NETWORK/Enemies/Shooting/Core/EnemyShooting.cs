@@ -63,7 +63,7 @@ public class EnemyShooting : NetworkBehaviour
         {
             PlayerHealthHandlerForController aimTarget = collider.GetComponent<PlayerHealthHandlerForController>();
 
-            if (aimTarget != null && aimTarget.IsAlive()) 
+            if (aimTarget != null && aimTarget.IsAlive())
             {
                 float distance = Vector3.Distance(EnemyTransform.position, collider.transform.position);
 
@@ -111,6 +111,9 @@ public class EnemyShooting : NetworkBehaviour
 
     private void ShootTarget_UseWithDelay()
     {
+        if (!IsOwner)
+            return;
+
         var targetPos = detectedPlayer.position;
         targetPos.y += 0.7f;
         shootingStyle.ShootTheBullet(muzzleOfShot.position, targetPos);

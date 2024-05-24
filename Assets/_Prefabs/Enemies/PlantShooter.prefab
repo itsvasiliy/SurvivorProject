@@ -379,85 +379,6 @@ Transform:
   - {fileID: 3106965752126640665}
   m_Father: {fileID: 8753715702236783700}
   m_LocalEulerAnglesHint: {x: 42.135735, y: 137.00427, z: 40.622208}
---- !u!1 &2155762217053037395
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3658951568643521183}
-  - component: {fileID: 1731975913203479427}
-  - component: {fileID: 2441650726144373959}
-  m_Layer: 0
-  m_Name: UnderGroundHiding
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3658951568643521183
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2155762217053037395}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.04021454, y: 0.73005056, z: -0.06760454}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1740486431481808492}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1731975913203479427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2155762217053037395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eabe8804505fa2343b314f7a3a43d8db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  peaAttackScript: {fileID: 88977516979804575}
-  healthController: {fileID: 1558182289921705278}
-  animator: {fileID: 2744483633067241307}
-  buryDownAnimation: {fileID: 7400000, guid: 65dc86634aab6a74986bc1f7b52bb25f, type: 2}
-  emergeUpAnimation: {fileID: 7400000, guid: 0f3ed777511184b4b8ee658d5c707332, type: 2}
-  underGroundYValue: -8.5
-  groundDefaultYValue: 0
-  rangeToEmergeNearPlayer: 7
-  emergeUpRechargeTime: 10
-  timeToBuryAfterMergeUp: 5.5
-  enemyTransform: {fileID: 1740486431481808492}
---- !u!136 &2441650726144373959
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2155762217053037395}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 12.608458
-  m_Height: 32.881104
-  m_Direction: 1
-  m_Center: {x: 0, y: 12.08942, z: 0}
 --- !u!1 &2169579851323703101
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,6 +786,8 @@ GameObject:
   - component: {fileID: 3230319876461540076}
   - component: {fileID: 5923621659964526196}
   - component: {fileID: 1307578575755363367}
+  - component: {fileID: 551676180337289239}
+  - component: {fileID: 2557781017927630657}
   m_Layer: 0
   m_Name: PlantShooter
   m_TagString: Untagged
@@ -885,7 +808,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3658951568643521183}
   - {fileID: 6463025025898077753}
   - {fileID: 6812185944120413816}
   - {fileID: 1307144514747983013}
@@ -969,7 +891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  movementScript: {fileID: 1731975913203479427}
+  movementScript: {fileID: 551676180337289239}
   shootingScript: {fileID: 88977516979804575}
 --- !u!136 &5246326801387730418
 CapsuleCollider:
@@ -1113,6 +1035,41 @@ MonoBehaviour:
     TriggerNameHash: 646380074
     TransitionIndex: 1
   m_Animator: {fileID: 2744483633067241307}
+--- !u!114 &551676180337289239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3382907340185419293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eabe8804505fa2343b314f7a3a43d8db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  peaAttackScript: {fileID: 88977516979804575}
+  healthController: {fileID: 1558182289921705278}
+  animator: {fileID: 2744483633067241307}
+  buryDownAnimation: {fileID: 7400000, guid: 65dc86634aab6a74986bc1f7b52bb25f, type: 2}
+  emergeUpAnimation: {fileID: 7400000, guid: 0f3ed777511184b4b8ee658d5c707332, type: 2}
+  underGroundYValue: -8.5
+  groundDefaultYValue: 0
+  rangeToEmergeNearPlayer: 7
+  emergeUpRechargeTime: 10
+  timeToBuryAfterMergeUp: 5.5
+  detectionRadius: 14
+--- !u!114 &2557781017927630657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3382907340185419293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3520746468109051666
 GameObject:
   m_ObjectHideFlags: 0
