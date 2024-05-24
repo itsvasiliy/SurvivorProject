@@ -5,13 +5,20 @@ public class EnemyShooting : NetworkBehaviour
 {
     [Header("Shooting properties")]
     [SerializeField] protected GameObject bullet;
+
     [SerializeField] protected float shootingRadius;
+
     [SerializeField] protected Transform muzzleOfShot;
+
 
     [Header("Animation")]
     [SerializeField] protected Animator animator;
+
     [SerializeField] protected AnimationClip attackClip;
+
     [SerializeField] protected float bulletSpawnDelay;
+    [SerializeField] protected float reloadingTime;
+
 
     [Header("Enemy")]
     [SerializeField] protected Transform EnemyTransform;
@@ -25,8 +32,7 @@ public class EnemyShooting : NetworkBehaviour
 
     private Collider closestCollider;
 
-    protected float reloadingTime;
-
+    private bool isShooting = false;
 
 
     private void Start()
@@ -35,7 +41,6 @@ public class EnemyShooting : NetworkBehaviour
             return;
 
         shootingStyle = GetComponent<IEnemyShooting>();
-        reloadingTime = attackClip.length;
     }
 
     private void Update()
@@ -46,6 +51,9 @@ public class EnemyShooting : NetworkBehaviour
 
     private void PlayerDetector()
     {
+        if (isShooting)
+            return;
+
         Collider[] colliders = Physics.OverlapSphere(EnemyTransform.position, shootingRadius);
 
         float closestDistance = float.MaxValue;
@@ -55,7 +63,7 @@ public class EnemyShooting : NetworkBehaviour
         {
             PlayerHealthHandlerForController aimTarget = collider.GetComponent<PlayerHealthHandlerForController>();
 
-            if (aimTarget != null && aimTarget.enabled) //aimTarget.enabled means player is alive
+            if (aimTarget != null && aimTarget.IsAlive()) 
             {
                 float distance = Vector3.Distance(EnemyTransform.position, collider.transform.position);
 
@@ -80,12 +88,15 @@ public class EnemyShooting : NetworkBehaviour
 
     private void StartShooting()
     {
+        isShooting = true;
         if (movement != null)
             movement.SetCanMoveStatus(false);
         StartShootingAnimation();
         RotateToTarget(detectedPlayer.position);
         Invoke(nameof(ShootTarget_UseWithDelay), bulletSpawnDelay);
-     //   Invoke(nameof(StopShooting), reloadingTime);
+        Invoke(nameof(Reload), reloadingTime);
+
+        Invoke(nameof(StopShooting), attackClip.length); //if reloading is 4 seconds, shooter dont need to be in shooting state all time so disabling it
     }
 
     private void StopShooting()
@@ -119,7 +130,9 @@ public class EnemyShooting : NetworkBehaviour
         Gizmos.DrawWireSphere(transform.position, shootingRadius);
     }
 
-    private void OnEnable() => InvokeRepeating(nameof(PlayerDetector), 0f, reloadingTime);
+    private void Reload() => isShooting = false;
+
+    private void OnEnable() => InvokeRepeating(nameof(PlayerDetector), 0f, 0.2f);
 
     private void OnDisable()
     {
