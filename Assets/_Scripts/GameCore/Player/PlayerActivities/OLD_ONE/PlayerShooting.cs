@@ -1,4 +1,3 @@
-using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -68,7 +67,7 @@ public class PlayerShooting : NetworkBehaviour
                     float distance = directionToTarget.magnitude;
 
                     // Check if there's an obstacle between the player and the target
-                    if (IsTargetBehindObstacle(collider.transform,directionToTarget,distance) == false)
+                    if (IsTargetBehindObstacle(collider.transform, directionToTarget, distance) == false)
                     {
                         if (distance < distanceToClosestTarget)
                         {
@@ -82,31 +81,31 @@ public class PlayerShooting : NetworkBehaviour
         }
 
         if (closestTarget != null)
-            StartCoroutine(StartShooting());
-        else
-            StopShooting();
+            StartShooting();
     }
 
 
-    private IEnumerator StartShooting()
+    private void StartShooting()
     {
+        playerStateController.SetState(PlayerStates.Shooting);
+
         SetShootingStatus(true);
         Invoke(nameof(Reload), fireRate);
+        Invoke(nameof(StopShooting), fireRate);
 
-        yield return new WaitForSeconds(fireRate / 2); 
-        ShootTheTargetClientRpc(closestTarget.position); 
+        // yield return new WaitForSeconds(fireRate / 2);
+        // ShootTheTarget(closestTarget.position);
+        //ShootTheTarget call in animation event
     }
 
-
-    [ClientRpc]
-    public void ShootTheTargetClientRpc(Vector3 targetPos)
+    public void ShootTheTarget()
     {
-        if (playerStateController.GetState() != PlayerStates.Shooting && IsOwner)
-        {
-            Debug.Log("Not shooted because state is not shooting");
+        Vector3 targetPos = Vector3.zero;
+        if (playerStateController.GetState() != PlayerStates.Shooting)
             return;
-        }
 
+        if (closestTarget != null)
+        targetPos = closestTarget.position;
         targetPos.y = targetHeight / 3;
 
         var bulletSetter = ammoPrefab.GetComponent<Bullet>();
@@ -123,16 +122,18 @@ public class PlayerShooting : NetworkBehaviour
         playerTransform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
     }
 
-    private bool IsTargetBehindObstacle(Transform targetTransform, Vector3 directionToTarget , float distance)
+    private bool IsTargetBehindObstacle(Transform targetTransform, Vector3 directionToTarget, float distance)
     {
         // Check if there's an obstacle between the player and the target
         var playerpos = new Vector3(playerTransform.position.x, playerTransform.position.y + 1.2f, playerTransform.position.z);
         if (Physics.Raycast(playerpos, directionToTarget, out RaycastHit hit, distance))
         {
-            Debug.Log($"obstacle is {hit.transform.name}");
             // Ensure that the hit object is not the target itself
             if (hit.transform != targetTransform)
+            {
+                Debug.Log($"obstacle is {hit.transform.name}");
                 return true;
+            }
         }
         Debug.Log($"there is no obstacle");
 
@@ -148,9 +149,6 @@ public class PlayerShooting : NetworkBehaviour
         isShooting = status;
         animator.SetBool("IsShooting", status);
         SetWeaponStatusClientRpc(status);
-
-        if (status == true)
-            playerStateController.SetState(PlayerStates.Shooting);
     }
 
     [ClientRpc]
