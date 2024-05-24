@@ -20,8 +20,12 @@ public class StructurePlacementParams : INetworkSerializable
 
 public class StructurePlacement : NetworkBehaviour
 {
-    [SerializeField] private GameObject buildButton;
-    [SerializeField] private GameObject cancelButton;
+    [SerializeField] private GameObject buildButtons;
+    [SerializeField] private GameObject joystick;
+
+    [SerializeField] private Transform structureSpawnTransform;
+
+    [SerializeField] private new Camera camera;
 
     [SerializeField] public ResourceController resourceController;
 
@@ -49,7 +53,8 @@ public class StructurePlacement : NetworkBehaviour
     {
         ClearViewer();
 
-        var viewPosition = new Vector3(transform.position.x, netStructureOrigin.transform.position.y + 0.04f, transform.position.z);
+        var viewPosition = new Vector3(structureSpawnTransform.position.x,
+            netStructureOrigin.transform.position.y + 0.04f, structureSpawnTransform.transform.position.z);
 
         var obj = Instantiate(netStructureOrigin.gameObject, viewPosition, Quaternion.identity);
         obj.transform.localRotation = netStructureOrigin.transform.rotation;
@@ -57,9 +62,8 @@ public class StructurePlacement : NetworkBehaviour
         obj.GetComponent<Structure>().isViewing = true;
 
         obj.AddComponent<StructPlacementAvailability>();
-        var follower = obj.AddComponent<StructurePlayerFrontFollower>();
-        follower.playerTransform = resourceController.transform;
-        follower.structure = obj.GetComponent<Structure>();
+        var dragNdrop = obj.AddComponent<DragAndDropStructure>();
+        dragNdrop.SetCamera(camera);
 
         var colliders = obj.GetComponentsInChildren<Collider>();
         foreach (var collider in colliders)
@@ -122,10 +126,10 @@ public class StructurePlacement : NetworkBehaviour
         SpendResources(structureScript);
         PlaceStructureServerRpc(_structParams);
 
-        if (IsEnoughResources() == false)
-            CancelPlacing();
+        if (IsEnoughResources() && structureScript.name == "Fence") //continue building in case sctruct is fence
+            ResetViewPosition();
         else
-            viewingStructureTransform.GetComponent<Structure>().canFollow = true;
+            CancelPlacing();
     }
 
 
@@ -148,8 +152,16 @@ public class StructurePlacement : NetworkBehaviour
 
     private void SetButtonStatus(bool status)
     {
-        buildButton.SetActive(status);
-        cancelButton.SetActive(status);
+        buildButtons.SetActive(status);
+
+        joystick.SetActive(!status);
+    }
+
+    private void ResetViewPosition()
+    {
+        var viewPosition = new Vector3(structureSpawnTransform.position.x,
+         viewingStructureTransform.transform.position.y + 0.04f, structureSpawnTransform.transform.position.z);
+        viewingStructureTransform.position = viewPosition;
     }
 }
 
