@@ -431,7 +431,7 @@ MonoBehaviour:
   emergeUpAnimation: {fileID: 7400000, guid: 0f3ed777511184b4b8ee658d5c707332, type: 2}
   underGroundYValue: -8.5
   groundDefaultYValue: 0
-  rangeToEmergeNearPlayer: 10
+  rangeToEmergeNearPlayer: 7
   emergeUpRechargeTime: 10
   timeToBuryAfterMergeUp: 5.5
   enemyTransform: {fileID: 1740486431481808492}
@@ -951,7 +951,8 @@ MonoBehaviour:
   muzzleOfShot: {fileID: 6463025025898077753}
   animator: {fileID: 2744483633067241307}
   attackClip: {fileID: 7400000, guid: b8585e977e41db24daa56afffe6ae65c, type: 2}
-  bulletSpawnDelay: 0.45
+  bulletSpawnDelay: 0.62
+  reloadingTime: 3
   EnemyTransform: {fileID: 1740486431481808492}
   movement: {fileID: 0}
   deviationAngle: 4

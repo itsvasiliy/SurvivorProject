@@ -672,7 +672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2239499521
+  GlobalObjectIdHash: 1092345689
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -714,8 +714,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a72b2a5f64d4c0685980e37e75eb0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetPriority: 0
   enemyTransform: {fileID: 7683849398213563647}
   detectionRadius: 20
+  isPlayerNear: 0
   stopFollowingAt: 10.5
 --- !u!114 &7816384077181831170
 MonoBehaviour:
@@ -732,10 +734,10 @@ MonoBehaviour:
   bullet: {fileID: 3200686405938504060, guid: 8274b84e0914ea0429f9244c0ac8c6f0, type: 3}
   shootingRadius: 12
   muzzleOfShot: {fileID: 5284918409507946624}
-  reloadingTime: 5
   animator: {fileID: 5708808183338540821}
   attackClip: {fileID: 7400000, guid: e6a938fc0f2114d4ca28f2513e1fcac3, type: 2}
-  bulletSpawnDelay: 0.7
+  bulletSpawnDelay: 0.85
+  reloadingTime: 3
   EnemyTransform: {fileID: 7683849398213563647}
   movement: {fileID: 8918364737747715330}
   positionsToShot:
@@ -3027,7 +3029,7 @@ Transform:
   m_GameObject: {fileID: 9169747389510960802}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.44, z: 1.17}
+  m_LocalPosition: {x: -0, y: 1.634, z: 1.275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
