@@ -11,6 +11,8 @@ public class StructPlacementAvailability : MonoBehaviour
 
     private void Start()
     {
+        SetCollidersAsTrigger();
+
         material = new Material(Shader.Find("Standard"));
 
         meshRenderers = GetComponentsInChildren<MeshRenderer>();
@@ -37,4 +39,11 @@ public class StructPlacementAvailability : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other) => SetColorAndBuildStatus(green035alpha, true);
+
+    private void SetCollidersAsTrigger()
+    {
+        var colliders = GetComponentsInChildren<Collider>();
+        foreach (var collider in colliders)
+            collider.isTrigger = true;
+    }
 }

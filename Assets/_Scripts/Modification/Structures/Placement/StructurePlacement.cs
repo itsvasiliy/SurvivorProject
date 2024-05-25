@@ -20,15 +20,17 @@ public class StructurePlacementParams : INetworkSerializable
 
 public class StructurePlacement : NetworkBehaviour
 {
+    [Header("UI Elements")]
     [SerializeField] private GameObject buildButtons;
     [SerializeField] private GameObject joystick;
 
+    [Header("Drag And Drop Components")]
+    [SerializeField] private GameObject dragAndDropController;
     [SerializeField] private Transform structureSpawnTransform;
-
     [SerializeField] private new Camera camera;
 
+    [Header("Player dependencies")]
     [SerializeField] public ResourceController resourceController;
-
     [SerializeField] private PlayerStateController playerStateController;
 
 
@@ -37,6 +39,8 @@ public class StructurePlacement : NetworkBehaviour
     private StructurePrefabFactory structurePrefabFactory;
 
     private Transform viewingStructureTransform;
+
+    private GameObject dndController;
 
     private StructPlacementAvailability placementAvailability;
 
@@ -47,33 +51,33 @@ public class StructurePlacement : NetworkBehaviour
         structurePrefabFactory = FindFirstObjectByType<StructurePrefabFactory>();
         if (structurePrefabFactory == null)
             Debug.LogWarning("Add StructurePrefabFactory to the scene to be able place structures");
+
     }
 
     public void PreviewBuildingPlacement(NetworkObject netStructureOrigin)
     {
         ClearViewer();
 
-        var viewPosition = new Vector3(structureSpawnTransform.position.x,
-            netStructureOrigin.transform.position.y + 0.04f, structureSpawnTransform.transform.position.z);
+        if (dndController == null)
+        {
+            dndController = Instantiate(dragAndDropController, structureSpawnTransform.position, dragAndDropController.transform.rotation);
+            dndController.GetComponent<DragAndDropStructure>().SetCamera(camera);
+        }
+        else
+        {
+            ResetViewPosition();
+            dndController.SetActive(true);
+        }
 
-        var obj = Instantiate(netStructureOrigin.gameObject, viewPosition, Quaternion.identity);
-        obj.transform.localRotation = netStructureOrigin.transform.rotation;
-
-        obj.GetComponent<Structure>().isViewing = true;
-
-        obj.AddComponent<StructPlacementAvailability>();
-        var dragNdrop = obj.AddComponent<DragAndDropStructure>();
-        dragNdrop.SetCamera(camera);
-
-        var colliders = obj.GetComponentsInChildren<Collider>();
-        foreach (var collider in colliders)
-            collider.isTrigger = true;
-
-        SetButtonStatus(true);
+        var obj = Instantiate(netStructureOrigin.gameObject, Vector3.zero, Quaternion.identity, dndController.transform);
+        obj.transform.localPosition = Vector3.zero;
 
         structurePrefab = netStructureOrigin;
         viewingStructureTransform = obj.transform;
-        placementAvailability = obj.GetComponent<StructPlacementAvailability>();
+        placementAvailability = obj.AddComponent<StructPlacementAvailability>();
+        obj.GetComponent<Structure>().isViewing = true;
+
+        SetButtonStatus(true);
     }
 
     private void ClearViewer()
@@ -148,6 +152,7 @@ public class StructurePlacement : NetworkBehaviour
         ClearViewer();
         SetButtonStatus(false);
         playerStateController.SetState(PlayerStates.Idle);
+        dndController.SetActive(false);
     }
 
     private void SetButtonStatus(bool status)
@@ -157,11 +162,6 @@ public class StructurePlacement : NetworkBehaviour
         joystick.SetActive(!status);
     }
 
-    private void ResetViewPosition()
-    {
-        var viewPosition = new Vector3(structureSpawnTransform.position.x,
-         viewingStructureTransform.transform.position.y + 0.04f, structureSpawnTransform.transform.position.z);
-        viewingStructureTransform.position = viewPosition;
-    }
+    private void ResetViewPosition() => dndController.transform.position = structureSpawnTransform.position;
 }
 
