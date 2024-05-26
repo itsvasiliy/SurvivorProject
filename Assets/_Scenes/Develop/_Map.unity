@@ -26735,8 +26735,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5580539f49e599c4b9658ac76f18b89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayDurationInSeconds: 15
-  nightDurationInSeconds: 5
+  dayDurationInSeconds: 120
+  nightDurationInSeconds: 70
+  sun: {fileID: 2092563299}
+  moon: {fileID: 1911022953}
   nightSpawners:
   - {fileID: 299181114}
 --- !u!114 &891707629
