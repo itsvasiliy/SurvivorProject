@@ -27,7 +27,8 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
     void IHealthController.GetDamage(int damage) => ((IDamageable)this).GetDamage(damage);
     public void GetDamage(int damage, ResourceController resourceController = null)
     {
-        GetDamageServerRpc(damage);
+        if (IsOwner)
+            GetDamageServerRpc(damage);
 
         if (_health.Value <= 0)
             Dead(resourceController);
