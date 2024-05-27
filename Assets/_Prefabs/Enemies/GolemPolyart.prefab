@@ -720,7 +720,7 @@ MonoBehaviour:
   enemyTransform: {fileID: 7683849398213563647}
   detectionRadius: 20
   isPlayerNear: 0
-  stopFollowingAt: 10.5
+  stopFollowingAt: 8
 --- !u!114 &7816384077181831170
 MonoBehaviour:
   m_ObjectHideFlags: 0
