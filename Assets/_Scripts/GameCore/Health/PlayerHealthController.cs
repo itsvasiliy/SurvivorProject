@@ -17,17 +17,16 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
     private int bulletIgnoreLayer = 128; //128 - bulletIgnoreLayer, it is layer 7
 
     private NetworkVariable<int> _health = new NetworkVariable<int>(writePerm: NetworkVariableWritePermission.Server);
-
-    bool isDead;
+    private NetworkVariable<bool> _isDead = new NetworkVariable<bool>(writePerm: NetworkVariableWritePermission.Owner);
 
     void Start()
     {
 
         if (IsServer)
             _health.Value = maxHealth;
+        _isDead.Value = false;
 
         animator = GetComponent<Animator>();
-        isDead = false;
     }
 
     public bool IsHealthMax() => maxHealth == _health.Value;
@@ -66,7 +65,8 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
 
         animator.SetBool("IsRunning", false);
         animator.SetTrigger("Death");
-        isDead = true;
+
+        _isDead.Value = true;
 
         DisableColliderClientRpc();
     }
@@ -88,7 +88,7 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
         HealMaxServerRpc();
         transform.position = tentPosition;
 
-        isDead = false;
+        _isDead.Value = true;
         EnableColliderClientRpc();
     }
 
@@ -139,5 +139,5 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
     public int GetMaxHealth() => maxHealth;
     public int GetCurrentHealth() => _health.Value;
     public NetworkVariable<int> GetHealthVariable() => _health;
-    public bool IsAlive() => !isDead;
+    public bool IsAlive() => !_isDead.Value;
 }
