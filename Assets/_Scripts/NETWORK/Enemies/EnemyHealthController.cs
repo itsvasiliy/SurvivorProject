@@ -34,7 +34,7 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
     }
 
 
-    [ServerRpc(RequireOwnership = false)]
+    [ServerRpc(RequireOwnership = true)]
     private void GetDamageServerRpc(int damage) => _health.Value -= damage;
 
     public void Dead(ResourceController resourceController = null)
