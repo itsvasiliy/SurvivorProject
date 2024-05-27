@@ -32,6 +32,7 @@ public class EnemyShooting : NetworkBehaviour
 
     private Collider closestCollider;
 
+    private bool isReloading = false;
     private bool isShooting = false;
 
 
@@ -51,7 +52,7 @@ public class EnemyShooting : NetworkBehaviour
 
     private void PlayerDetector()
     {
-        if (isShooting)
+        if (isReloading)
             return;
 
         Collider[] colliders = Physics.OverlapSphere(EnemyTransform.position, shootingRadius);
@@ -73,9 +74,10 @@ public class EnemyShooting : NetworkBehaviour
                     closestCollider = collider;
                 }
             }
-            else
+            else if(isShooting)
             {
                 StopShooting();
+                return;
             }
         }
 
@@ -88,13 +90,17 @@ public class EnemyShooting : NetworkBehaviour
 
     private void StartShooting()
     {
-        isShooting = true;
         if (movement != null)
             movement.SetCanMoveStatus(false);
+
         StartShootingAnimation();
         RotateToTarget(detectedPlayer.position);
+
         Invoke(nameof(ShootTarget_UseWithDelay), bulletSpawnDelay);
         Invoke(nameof(Reload), reloadingTime);
+
+        isShooting = true;
+        isReloading = true;
 
         Invoke(nameof(StopShooting), attackClip.length); //if reloading is 4 seconds, shooter dont need to be in shooting state all time so disabling it
     }
@@ -104,6 +110,7 @@ public class EnemyShooting : NetworkBehaviour
         StopShootingAnimation();
         if (movement != null)
             movement.SetCanMoveStatus(true);
+        isShooting = false;
     }
 
     private void StartShootingAnimation() => animator.SetBool("Attack", true);
@@ -133,7 +140,7 @@ public class EnemyShooting : NetworkBehaviour
         Gizmos.DrawWireSphere(transform.position, shootingRadius);
     }
 
-    private void Reload() => isShooting = false;
+    private void Reload() => isReloading = false;
 
     private void OnEnable() => InvokeRepeating(nameof(PlayerDetector), 0f, 0.2f);
 
