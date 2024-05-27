@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 2687275662132328187}
   - component: {fileID: 91800319337762354}
   - component: {fileID: 4772596382200541730}
+  - component: {fileID: 1303804993517252924}
   m_Layer: 0
   m_Name: NetworkPlayer
   m_TagString: Untagged
@@ -268,6 +269,19 @@ MonoBehaviour:
   camera: {fileID: 6995192273342017243}
   resourceController: {fileID: 8088873630574627842}
   playerStateController: {fileID: 2081884835191954744}
+--- !u!114 &1303804993517252924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3718327506131536881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44772e6e7e44045baaa5a53037dffa55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nickname: {fileID: 4652700105786234506}
 --- !u!1 &7053030598041664797
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,6 +725,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be10e8ee79c0478997abbf36e6709bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4652700105786234506 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8879495827056228657, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
+  m_PrefabInstance: {fileID: 4299803433066590139}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6102781207393276885 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8005877711135013998, guid: 70c318c5eb41c3845a245952233f9614, type: 3}
@@ -856,6 +875,10 @@ PrefabInstance:
       propertyPath: playerStateController
       value: 
       objectReference: {fileID: 2081884835191954744}
+    - target: {fileID: 3059007922816023653, guid: 646e6bca719d40d4683fddb54cf45cef, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1320
+      objectReference: {fileID: 0}
     - target: {fileID: 3109580868510712450, guid: 646e6bca719d40d4683fddb54cf45cef, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
