@@ -159,11 +159,7 @@ public class PlayerShooting : MonoBehaviour
 
 
     public Bullet Preload() => Instantiate(ammoPrefab).GetComponent<Bullet>();
-    public void GetAction(Bullet bullet)
-    {
-        bullet.transform.position = muzzleOfShot.position;
-        bullet.gameObject.SetActive(true);
-    }
+    public void GetAction(Bullet bullet) => bullet.gameObject.SetActive(true);
     public void ReturnAction(Bullet bullet) => bullet.gameObject.SetActive(false);
 
 
