@@ -41,11 +41,7 @@ public class EnemyShooting : NetworkBehaviour
     private bool isShooting = false;
 
 
-    private void Awake()
-    {
-        int bulletPoolAmount = 3;
-        bulletPool = new ObjectPool<Bullet>(Preload, GetAction, ReturnAction, bulletPoolAmount);
-    }
+    private void Awake() => bulletPool = new ObjectPool<Bullet>(Preload, GetAction, ReturnAction, bulletPoolAmount);
 
 
     private void Start()
