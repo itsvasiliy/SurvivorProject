@@ -11,23 +11,16 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float lifeTime;
 
-    [HideInInspector] public Vector3 targetPosition;
+    public Vector3 targetPosition;
 
     private bool isExploded = false;
 
     private Action onBulletCollision;
 
-    [SerializeField] private ResourceController playerResourceController;
+    private ResourceController playerResourceController;
 
-    private void OnEnable()
-    {
-        if (targetPosition == Vector3.zero)
-            Debug.LogError($"Set target position first before spawn bullet.\n Error caused by {name}");
+    private Coroutine moveCoroutine;
 
-        Invoke(nameof(ReturnToPool), lifeTime);
-    }
-
-    public void SetTarget(Vector3 vector3) => targetPosition = vector3;
     public void SetPlayerResourceController(ResourceController value) => playerResourceController = value;
 
     public void Launch(Vector3 startPosition, Vector3 target, Action _onBulletCollision)
@@ -35,8 +28,14 @@ public class Bullet : MonoBehaviour
         transform.position = startPosition;
         targetPosition = target;
         onBulletCollision = _onBulletCollision;
+
         RotateToTarget(targetPosition);
-        StartCoroutine(MoveToTarget());
+
+        if (moveCoroutine != null)
+            StopCoroutine(moveCoroutine);
+        moveCoroutine = StartCoroutine(MoveToTarget());
+
+        Invoke(nameof(ReturnToPool), lifeTime);
     }
 
     private void RotateToTarget(Vector3 targetPosition)
@@ -64,9 +63,14 @@ public class Bullet : MonoBehaviour
 
     private void ReturnToPool()
     {
+        if (moveCoroutine != null)
+            StopCoroutine(moveCoroutine);
+
+        moveCoroutine = null;
         targetPosition = Vector3.zero;
         isExploded = false;
         playerResourceController = null;
+
         onBulletCollision?.Invoke();
     }
 
