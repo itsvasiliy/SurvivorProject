@@ -6,6 +6,8 @@ public class EnemyShooting : NetworkBehaviour
     [Header("Shooting properties")]
     [SerializeField] protected GameObject bullet;
 
+    [SerializeField] private int bulletPoolAmount;
+
     [SerializeField] protected float shootingRadius;
 
     [SerializeField] protected Transform muzzleOfShot;
@@ -27,13 +29,23 @@ public class EnemyShooting : NetworkBehaviour
 
 
     protected Transform detectedPlayer;
+    
+    protected ObjectPool<Bullet> bulletPool;
 
     private IEnemyShooting shootingStyle;
 
     private Collider closestCollider;
 
+
     private bool isReloading = false;
     private bool isShooting = false;
+
+
+    private void Awake()
+    {
+        int bulletPoolAmount = 3;
+        bulletPool = new ObjectPool<Bullet>(Preload, GetAction, ReturnAction, bulletPoolAmount);
+    }
 
 
     private void Start()
@@ -115,6 +127,7 @@ public class EnemyShooting : NetworkBehaviour
 
     private void StartShootingAnimation() => animator.SetBool("Attack", true);
     private void StopShootingAnimation() => animator.SetBool("Attack", false);
+    private void Reload() => isReloading = false;
 
     private void ShootTarget_UseWithDelay()
     {
@@ -140,7 +153,12 @@ public class EnemyShooting : NetworkBehaviour
         Gizmos.DrawWireSphere(transform.position, shootingRadius);
     }
 
-    private void Reload() => isReloading = false;
+
+
+    public Bullet Preload() => Instantiate(bullet).GetComponent<Bullet>();
+    public void GetAction(Bullet bullet) => bullet.gameObject.SetActive(true);
+    public void ReturnAction(Bullet bullet) => bullet.gameObject.SetActive(false);
+
 
     private void OnEnable() => InvokeRepeating(nameof(PlayerDetector), 0f, 0.2f);
 
