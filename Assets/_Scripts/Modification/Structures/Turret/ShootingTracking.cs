@@ -23,11 +23,27 @@ public class ShootingTracking : MonoBehaviour
 
     Structure structure;
 
-    private void Start() => structure = GetComponent<Structure>();
+    private int bulletPoolAmount = 2;
+
+    private ObjectPool<Bullet> bulletPool;
+
+
+    private void Awake()
+    {
+        if (structure.isViewing)
+            return;
+        bulletPool = new ObjectPool<Bullet>(Preload, GetAction, ReturnAction, bulletPoolAmount);
+    }
+
+    private void Start()
+    {
+        if (structure.isViewing)
+            return; structure = GetComponent<Structure>();
+    }
 
     private void Update()
     {
-        if (structure.isViewing) 
+        if (structure.isViewing)
             return;
 
         if (closestTarget != null)
@@ -77,12 +93,18 @@ public class ShootingTracking : MonoBehaviour
     [ClientRpc]
     private void ShotTheTargetliientRpc(Vector3 ammoOrigin, Vector3 targetPosition)
     {
-        targetPosition.y = targetHeight / 3;
-        ammoPrefab.GetComponent<Bullet>().SetTarget(targetPosition);
-        Instantiate(ammoPrefab, ammoOrigin, Quaternion.identity);
+        var bullet = bulletPool.Get();
+        bullet.Launch(ammoOrigin, targetPosition, OnBulletCollision);
+
+        void OnBulletCollision() => bulletPool.Return(bullet);
     }
 
     private void Reload() => isShooting = false;
+
+    public Bullet Preload() => Instantiate(ammoPrefab).GetComponent<Bullet>();
+    public void GetAction(Bullet bullet) => bullet.gameObject.SetActive(true);
+    public void ReturnAction(Bullet bullet) => bullet.gameObject.SetActive(false);
+
 
     private void OnDrawGizmosSelected()
     {
