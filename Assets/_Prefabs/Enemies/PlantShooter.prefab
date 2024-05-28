@@ -869,6 +869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 4872098413557925136, guid: 37a8d0bf11f6d0a458324a589b132288, type: 3}
+  bulletPoolAmount: 3
   shootingRadius: 14
   muzzleOfShot: {fileID: 6463025025898077753}
   animator: {fileID: 2744483633067241307}

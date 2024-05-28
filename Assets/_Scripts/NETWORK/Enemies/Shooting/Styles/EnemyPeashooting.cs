@@ -14,8 +14,10 @@ public class EnemyPeashooting : EnemyShooting, IEnemyShooting
     [ClientRpc]
     private void ShotTheTargetClientRpc(Vector3 muzzleOfShot, Vector3 target)
     {
-        bullet.GetComponent<Bullet>().SetTarget(target);
-        Instantiate(bullet, muzzleOfShot, bullet.transform.rotation);
+        var bullet = bulletPool.Get();
+        bullet.Launch(muzzleOfShot, target, OnBulletCollision);
+        
+        void OnBulletCollision() => bulletPool.Return(bullet);
     }
 
     IEnumerator ShootAreaWithDelay(Vector3 muzzleOfShot, Vector3 _targetPosition)
