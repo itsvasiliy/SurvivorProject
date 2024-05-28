@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
 
 public class EnemyFireballShooting : EnemyShooting, IEnemyShooting
 {
@@ -13,7 +11,9 @@ public class EnemyFireballShooting : EnemyShooting, IEnemyShooting
     [ClientRpc]
     private void SpawnTheBulletClientRpc(Vector3 muzzleOfShot, Vector3 target)
     {
-        bullet.GetComponent<Bullet>().SetTarget(target);
-        Instantiate(bullet, muzzleOfShot, bullet.transform.rotation);
+        var bullet = bulletPool.Get();
+        bullet.Launch(muzzleOfShot, target, OnBulletCollision);
+
+        void OnBulletCollision() => bulletPool.Return(bullet);
     }
 }
