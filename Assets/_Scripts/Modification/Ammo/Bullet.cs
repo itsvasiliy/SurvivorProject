@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -14,22 +15,29 @@ public class Bullet : MonoBehaviour
 
     private bool isExploded = false;
 
+    private Action onBulletCollision;
+
     [SerializeField] private ResourceController playerResourceController;
 
-    private void Start()
+    private void OnEnable()
     {
         if (targetPosition == Vector3.zero)
             Debug.LogError($"Set target position first before spawn bullet.\n Error caused by {name}");
 
-        RotateToTarget(targetPosition);
-        StartCoroutine(MoveToTarget());
-
-        Invoke(nameof(DestroyThis), lifeTime);
+        Invoke(nameof(ReturnToPool), lifeTime);
     }
 
     public void SetTarget(Vector3 vector3) => targetPosition = vector3;
     public void SetPlayerResourceController(ResourceController value) => playerResourceController = value;
 
+    public void Launch(Vector3 startPosition, Vector3 target, Action _onBulletCollision)
+    {
+        transform.position = startPosition;
+        targetPosition = target;
+        onBulletCollision = _onBulletCollision;
+        RotateToTarget(targetPosition);
+        StartCoroutine(MoveToTarget());
+    }
 
     private void RotateToTarget(Vector3 targetPosition)
     {
@@ -54,7 +62,13 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) => Explode(collision.gameObject);
 
-    private void DestroyThis() => Destroy(gameObject);
+    private void ReturnToPool()
+    {
+        targetPosition = Vector3.zero;
+        isExploded = false;
+        playerResourceController = null;
+        onBulletCollision?.Invoke();
+    }
 
     private void Explode(GameObject _go)
     {
@@ -66,6 +80,6 @@ public class Bullet : MonoBehaviour
         if (_go.TryGetComponent<IDamageable>(out IDamageable _aimTarget))
             _aimTarget.GetDamage(damage, playerResourceController);
 
-        Destroy(gameObject);
+        ReturnToPool();
     }
 }

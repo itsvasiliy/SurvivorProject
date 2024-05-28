@@ -1,7 +1,6 @@
-using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerShooting : NetworkBehaviour
+public class PlayerShooting : MonoBehaviour
 {
     [Header("Player's shoot properties")]
     [SerializeField] private GameObject ammoPrefab;
@@ -22,7 +21,14 @@ public class PlayerShooting : NetworkBehaviour
 
     [SerializeField] private ResourceController playerResourceController;
 
+    private ObjectPool<Bullet> bulletPool;
 
+
+    private void Awake()
+    {
+        int bulletPoolAmount = 3;
+        bulletPool = new ObjectPool<Bullet>(Preload, GetAction, ReturnAction, bulletPoolAmount);
+    }
 
     private Transform closestTarget;
 
@@ -85,6 +91,8 @@ public class PlayerShooting : NetworkBehaviour
     }
 
 
+
+
     private void StartShooting()
     {
         playerStateController.SetState(PlayerStates.Shooting);
@@ -93,9 +101,6 @@ public class PlayerShooting : NetworkBehaviour
         Invoke(nameof(Reload), fireRate);
         Invoke(nameof(StopShooting), fireRate);
 
-        // yield return new WaitForSeconds(fireRate / 2);
-        // ShootTheTarget(closestTarget.position);
-        //ShootTheTarget call in animation event
     }
 
     public void ShootTheTarget()
@@ -105,15 +110,14 @@ public class PlayerShooting : NetworkBehaviour
             return;
 
         if (closestTarget != null)
-        targetPos = closestTarget.position;
+            targetPos = closestTarget.position;
         targetPos.y = targetHeight / 3;
 
-        var bulletSetter = ammoPrefab.GetComponent<Bullet>();
-        bulletSetter.SetTarget(targetPos);
-        bulletSetter.SetPlayerResourceController(playerResourceController);
-        Instantiate(ammoPrefab, muzzleOfShot.position, ammoPrefab.transform.rotation);
-    }
+        var bullet = bulletPool.Get();
+        bullet.Launch(muzzleOfShot.position, targetPos, OnBulletCollision);
 
+        void OnBulletCollision() => bulletPool.Return(bullet);
+    }
 
     private void RotateToTarget(Vector3 targetPosition)
     {
@@ -148,11 +152,20 @@ public class PlayerShooting : NetworkBehaviour
     {
         isShooting = status;
         animator.SetBool("IsShooting", status);
-        SetWeaponStatusClientRpc(status);
+        SetWeaponStatus(status);
     }
 
-    [ClientRpc]
-    private void SetWeaponStatusClientRpc(bool status) => weaponGameobject.SetActive(status);
+    private void SetWeaponStatus(bool status) => weaponGameobject.SetActive(status);
+
+
+    public Bullet Preload() => Instantiate(ammoPrefab).GetComponent<Bullet>();
+    public void GetAction(Bullet bullet)
+    {
+        bullet.transform.position = muzzleOfShot.position;
+        bullet.gameObject.SetActive(true);
+    }
+    public void ReturnAction(Bullet bullet) => bullet.gameObject.SetActive(false);
+
 
     private void OnDrawGizmosSelected()
     {
