@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     public Vector3 targetPosition;
 
     private bool isExploded = false;
+    private bool isPooled = false;
 
     private Action onBulletCollision;
 
@@ -25,6 +26,7 @@ public class Bullet : MonoBehaviour
 
     public void Launch(Vector3 startPosition, Vector3 target, Action _onBulletCollision)
     {
+        isPooled = false;
         transform.position = startPosition;
         targetPosition = target;
         onBulletCollision = _onBulletCollision;
@@ -63,6 +65,11 @@ public class Bullet : MonoBehaviour
 
     private void ReturnToPool()
     {
+        if (isPooled)
+            return;
+
+        isPooled = true;
+
         if (moveCoroutine != null)
             StopCoroutine(moveCoroutine);
 
