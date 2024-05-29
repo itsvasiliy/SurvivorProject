@@ -30,15 +30,11 @@ public class ShootingTracking : MonoBehaviour
 
     private void Awake()
     {
+        structure = GetComponent<Structure>();
+
         if (structure.isViewing)
             return;
         bulletPool = new ObjectPool<Bullet>(Preload, GetAction, ReturnAction, bulletPoolAmount);
-    }
-
-    private void Start()
-    {
-        if (structure.isViewing)
-            return; structure = GetComponent<Structure>();
     }
 
     private void Update()
