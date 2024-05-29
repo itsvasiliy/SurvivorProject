@@ -6,14 +6,15 @@ public class SpikeStructure : MonoBehaviour
     [SerializeField] private Transform spikeTransform;
 
     [SerializeField] private float damageRadius;
-    [SerializeField] private float damagingRate; 
+    [SerializeField] private float damagingRate;
 
 
     [SerializeField] private int damage;
 
     private void Start()
     {
-        StartCoroutine(Damaging());
+        if (GetComponent<Structure>().isViewing == false)
+            StartCoroutine(Damaging());
     }
 
     private IEnumerator Damaging()
