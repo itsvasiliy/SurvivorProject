@@ -71,6 +71,7 @@ public class StructurePlacement : NetworkBehaviour
 
         var obj = Instantiate(netStructureOrigin.gameObject, Vector3.zero, Quaternion.identity, dndController.transform);
         obj.transform.localPosition = Vector3.zero;
+        obj.transform.localRotation = netStructureOrigin.transform.rotation;
 
         structurePrefab = netStructureOrigin;
         viewingStructureTransform = obj.transform;

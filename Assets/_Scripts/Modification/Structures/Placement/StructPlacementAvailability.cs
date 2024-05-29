@@ -17,7 +17,15 @@ public class StructPlacementAvailability : MonoBehaviour
 
         meshRenderers = GetComponentsInChildren<MeshRenderer>();
         foreach (var renderer in meshRenderers)
-            renderer.material = material;
+        {
+            var materials = renderer.materials;
+            for (int i = 0; i < materials.Length; i++)
+                materials[i] = material;
+
+            renderer.materials = materials;
+        }
+
+
 
         material.SetFloat("_Mode", 3); //Transparent render mode
         SetColorAndBuildStatus(green035alpha, true);
@@ -34,8 +42,8 @@ public class StructPlacementAvailability : MonoBehaviour
         if (other.CompareTag("FenceConnection"))
             return;
 
-            if (canBuild)
-                SetColorAndBuildStatus(red035alpha, false);
+        if (canBuild)
+            SetColorAndBuildStatus(red035alpha, false);
     }
 
     private void OnTriggerExit(Collider other) => SetColorAndBuildStatus(green035alpha, true);
