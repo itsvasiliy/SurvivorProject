@@ -88,7 +88,7 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
         HealMaxServerRpc();
         transform.position = tentPosition;
 
-        _isDead.Value = true;
+        _isDead.Value = false;
         EnableColliderClientRpc();
     }
 
