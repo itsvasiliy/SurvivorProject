@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -25,6 +24,17 @@ public class EnemyMovement_Spider : EnemyMovement
     private float checkForPlayerRate = 0.4f;
 
 
+    private void OnEnable()
+    {
+        if (IsSpawned)
+        {
+            SetStealthModeStatus(true); //turn on stealth mode
+            StartCoroutine(CheckForPlayer());
+        }
+    }
+    private void OnDisable() => StopAllCoroutines();
+
+
     private void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -36,9 +46,6 @@ public class EnemyMovement_Spider : EnemyMovement
 
         StartCoroutine(CheckForPlayer());
     }
-
-
-    private void OnDisable() => StopAllCoroutines();
 
 
     private IEnumerator CheckForPlayer()
@@ -97,6 +104,6 @@ public class EnemyMovement_Spider : EnemyMovement
     private void SetStealthModeStatus(bool status)
     {
         healthSlider.SetActive(!status);
-        healthController.enabled = !status;
+        healthController.SetAttackableStatus(!status);
     }
 }
