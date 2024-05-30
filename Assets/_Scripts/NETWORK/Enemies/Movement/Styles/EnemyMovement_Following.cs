@@ -12,27 +12,44 @@ public class EnemyMovement_Following : EnemyMovement
     private Animator animator;
 
     private Transform detectedTarget;
+    private Coroutine searchForPlayerCoroutine;
 
+
+    private void OnEnable()
+    {
+        if (IsSpawned == false)
+            return;
+        searchForPlayerCoroutine = StartCoroutine(SearchForPlayer());
+        StartCoroutine(CheckPlayerDistance());
+    }
+
+    private void OnDisable()
+    {
+        if(IsSpawned == false) 
+            return;
+
+        if (searchForPlayerCoroutine != null)
+            StopAllCoroutines();
+        searchForPlayerCoroutine = null;
+        ResetDestination();
+
+    }
 
     private void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
 
-        StartCoroutine(SearchForPlayer());
+        searchForPlayerCoroutine = StartCoroutine(SearchForPlayer());
         StartCoroutine(CheckPlayerDistance());
     }
+
 
     private IEnumerator SearchForPlayer()
     {
         while (true)
         {
             detectedTarget = GetClosestTarget();
-
-            if (detectedTarget != null)
-                if (base.IsPlayerInDetectionRadius(detectedTarget) == false)
-                    ResetDestination();
-
 
             if (IsCanMove() && enabled && IsDistanceReached() == false)
             {
@@ -84,6 +101,7 @@ public class EnemyMovement_Following : EnemyMovement
         return false;
     }
 
+    
 
     private void ResetDestination()
     {
