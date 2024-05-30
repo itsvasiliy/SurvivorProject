@@ -848,7 +848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 513041401
+  GlobalObjectIdHash: 3678106355
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -969,9 +969,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SyncPositionX: 0
+  SyncPositionX: 1
   SyncPositionY: 1
-  SyncPositionZ: 0
+  SyncPositionZ: 1
   SyncRotAngleX: 1
   SyncRotAngleY: 1
   SyncRotAngleZ: 1
@@ -1010,31 +1010,17 @@ MonoBehaviour:
   - IsCrossFadeExit: 0
     Layer: 0
     OriginatingState: 2073555363
-    DestinationState: 20298039
-    TransitionDuration: 0.012461007
-    TriggerNameHash: 646380074
-    TransitionIndex: 2
-  - IsCrossFadeExit: 0
-    Layer: 0
-    OriginatingState: 2073555363
     DestinationState: -1620366568
     TransitionDuration: 0.25
     TriggerNameHash: -1620366568
-    TransitionIndex: 3
+    TransitionIndex: 2
   - IsCrossFadeExit: 0
     Layer: 0
-    OriginatingState: 1689962724
-    DestinationState: 20298039
-    TransitionDuration: 0.01168251
-    TriggerNameHash: 646380074
+    OriginatingState: 20298039
+    DestinationState: 2073555363
+    TransitionDuration: 0.25
+    TriggerNameHash: 657687027
     TransitionIndex: 0
-  - IsCrossFadeExit: 0
-    Layer: 0
-    OriginatingState: -1620366568
-    DestinationState: 20298039
-    TransitionDuration: 0.025233507
-    TriggerNameHash: 646380074
-    TransitionIndex: 1
   m_Animator: {fileID: 2744483633067241307}
 --- !u!114 &551676180337289239
 MonoBehaviour:
@@ -1048,7 +1034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eabe8804505fa2343b314f7a3a43d8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  peaAttackScript: {fileID: 88977516979804575}
+  plantAttackScript: {fileID: 88977516979804575}
   healthController: {fileID: 1558182289921705278}
   animator: {fileID: 2744483633067241307}
   buryDownAnimation: {fileID: 7400000, guid: 65dc86634aab6a74986bc1f7b52bb25f, type: 2}

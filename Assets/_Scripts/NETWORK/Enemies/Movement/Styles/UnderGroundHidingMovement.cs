@@ -1,10 +1,11 @@
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 
-public class UnderGroundHidingMovement : MonoBehaviour
+public class UnderGroundHidingMovement : NetworkBehaviour
 {
     [Header("Components to disable when hiding")]
-    [SerializeField] EnemyShooting peaAttackScript;
+    [SerializeField] EnemyShooting plantAttackScript;
     [SerializeField] EnemyHealthController healthController;
 
     [Header("Animations")]
@@ -28,13 +29,20 @@ public class UnderGroundHidingMovement : MonoBehaviour
     private bool isCanEmergeUp = true;
 
 
-    private void Start()
-    {
-        //bury under ground in an instant
-        SetComponentsStatus(false);
-        SetYPosition(underGroundYValue);
-    }
+    private void OnEnable() => BuryOnSpawn();
 
+    private void Start() => BuryOnSpawn();
+
+    private void BuryOnSpawn()
+    {
+        if (IsSpawned)
+        {
+            //bury under ground in an instant
+            isCanEmergeUp = true;
+            SetComponentsStatus(false);
+            SetYPosition(underGroundYValue);
+        }
+    }
 
     private void Update()
     {
@@ -61,7 +69,7 @@ public class UnderGroundHidingMovement : MonoBehaviour
         isCanEmergeUp = false;
         animator.SetTrigger("EmergeUp");
 
-       // SetRandomPositionNearPlayer(playerPosition);
+        SetRandomPositionNearPlayer(playerPosition);
 
         Invoke(nameof(ResetEmergeTrigger), emergeUpAnimation.length);
         Invoke(nameof(EnableComponents), emergeUpAnimation.length); // delay to prevent shooting before emerge up
@@ -107,8 +115,8 @@ public class UnderGroundHidingMovement : MonoBehaviour
 
     private void SetComponentsStatus(bool status)
     {
-        peaAttackScript.enabled = status;
-        healthController.enabled = status;
+        plantAttackScript.enabled = status;
+        healthController.SetAttackableStatus(status);
     }
 
 
