@@ -65,9 +65,9 @@ public class PlayerShooting : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            if (collider.TryGetComponent<IAimTarget>(out IAimTarget _aimTarget))
+            if (collider.TryGetComponent<EnemyHealthController>(out EnemyHealthController enemy))
             {
-                if (_aimTarget.IsEnabled()) // means _aimTarget is alive
+                if (enemy.IsAlive() && enemy.IsAttackable())
                 {
                     Vector3 directionToTarget = collider.transform.position - playerTransform.position;
                     float distance = directionToTarget.magnitude;

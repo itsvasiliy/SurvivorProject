@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthController
 {
     [SerializeField] public int maxHealth;
+
     [SerializeField] MonoBehaviour movementScript;
     [SerializeField] MonoBehaviour shootingScript;
 
@@ -13,7 +14,9 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
     private NetworkVariable<int> _health = new NetworkVariable<int>(writePerm: NetworkVariableWritePermission.Server);
 
     private Action returnToPoolAction;
+
     private bool isDead;
+    private bool isAttackable = true;
 
     private float bodyDisableTime = 3f;
 
@@ -115,9 +118,10 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
 
     private void OnDisable()
     {
-        if (IsSpawned)
+        if (IsSpawned && isDead)
             DisableActiveSelfStatus();
     }
+  
 
     [ClientRpc]
     private void SetActiveSelfStatusClientRpc(bool status) => gameObject.SetActive(status);
@@ -127,4 +131,6 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
     public NetworkVariable<int> GetHealthVariable() => _health;
     bool IAimTarget.IsEnabled() => this.enabled;
     public bool IsAlive() => !isDead;
+    public void SetAttackableStatus(bool status) => isAttackable = status;
+    public bool IsAttackable() => isAttackable;
 }
