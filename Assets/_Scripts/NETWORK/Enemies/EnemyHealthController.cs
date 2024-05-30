@@ -1,3 +1,4 @@
+using System;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -11,8 +12,10 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
 
     private NetworkVariable<int> _health = new NetworkVariable<int>(writePerm: NetworkVariableWritePermission.Server);
 
+    private Action returnToPoolAction;
     private bool isDead;
 
+    private float bodyDisableTime = 3f;
 
     void Start()
     {
@@ -22,6 +25,8 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
         isDead = false;
         animator = GetComponent<Animator>();
     }
+
+    public void SetReturnAction(Action _returnToPoolAction) => returnToPoolAction = _returnToPoolAction;
 
     public void GetDamage(int damage) => ((IDamageable)this).GetDamage(damage);
     void IHealthController.GetDamage(int damage) => ((IDamageable)this).GetDamage(damage);
@@ -44,36 +49,46 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
             return;
 
         isDead = true;
-        SetDeathStatusServerRpc(false);
+        SetDeathStatusServerRpc(true);
         animator.SetTrigger("Death");
 
         if (resourceController != null)
             DropResourcesInDeathCase(resourceController);
 
-        DisableColliderClientRpc();
+        SetColliderStatusColliderClientRpc(false);
 
-        Invoke(nameof(DespawnServerRpc), 4.5f);
+        Invoke(nameof(ReturnToPool), bodyDisableTime);
     }
 
+    public void Respawn()
+    {
+        gameObject.SetActive(true);
+        animator.SetTrigger("Respawn");
+        SetColliderStatusColliderClientRpc(true);
+        SetDeathStatusServerRpc(false);
 
-    [ServerRpc(RequireOwnership = false)]
-    private void DespawnServerRpc() => GetComponent<NetworkObject>().Despawn();
+        if (IsServer)
+            _health.Value = maxHealth;
+        isDead = false;
+    }
+
+    private void ReturnToPool() => returnToPoolAction?.Invoke();
+
 
     [ClientRpc]
-    private void DisableColliderClientRpc()
+    private void SetColliderStatusColliderClientRpc(bool status)
     {
         Collider collider = GetComponent<Collider>();
-        collider.enabled = false;
+        collider.enabled = status;
     }
 
 
     [ServerRpc(RequireOwnership = false)]
     private void SetDeathStatusServerRpc(bool status)
     {
-        movementScript.enabled = status;
-        shootingScript.enabled = status;
-        this.enabled = status;
-        SetDeathStatusClientRpc(status);
+        movementScript.enabled = !status;
+        shootingScript.enabled = !status;
+        SetDeathStatusClientRpc(!status);
     }
 
     [ClientRpc]
@@ -81,7 +96,6 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
     {
         movementScript.enabled = status;
         shootingScript.enabled = status;
-        this.enabled = status;
     }
 
     private void DropResourcesInDeathCase(ResourceController resourceController)
@@ -93,14 +107,24 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
             Debug.Log($"Now resources drop from {name}");
     }
 
+    private void OnEnable()
+    {
+        if (IsSpawned)
+            SetActiveSelfStatusClientRpc(true);
+    }
 
+    private void OnDisable()
+    {
+        if (IsSpawned)
+            DisableActiveSelfStatus();
+    }
+
+    [ClientRpc]
+    private void SetActiveSelfStatusClientRpc(bool status) => gameObject.SetActive(status);
+    private void DisableActiveSelfStatus() => SetActiveSelfStatusClientRpc(false);
     public int GetMaxHealth() => maxHealth;
-
     public int GetCurrentHealth() => _health.Value;
-
     public NetworkVariable<int> GetHealthVariable() => _health;
-
     bool IAimTarget.IsEnabled() => this.enabled;
-
     public bool IsAlive() => !isDead;
 }

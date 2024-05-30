@@ -5,12 +5,20 @@ using UnityEngine;
 public class EnemySpawner : NetworkBehaviour
 {
     [SerializeField] private GameObject spawnArea;
-    public NetworkObject[] PrefabsToSpawn;
-    public int SpawnCount = 1;
-    public float SpawnInterval = 1f;
-    private NetworkObject[] m_SpawnedNetworkObjects;
+    [SerializeField] private NetworkObject[] prefabsToSpawn;
+
+    [SerializeField] private int poolCount;
+    [SerializeField] private int spawnCount;
+    [SerializeField] private float spawnInterval;
+
+    private ObjectPool<NetworkObject> enemiesPool;
 
     private bool canSpawn = true;
+
+
+
+    private void Awake() => enemiesPool = new ObjectPool<NetworkObject>(Preload, GetAction, ReturnAction, poolCount);
+
     public void StopSpawning()
     {
         canSpawn = false;
@@ -26,23 +34,25 @@ public class EnemySpawner : NetworkBehaviour
 
     private IEnumerator StartSpawningCoroutine()
     {
-        for (int i = 0; i < SpawnCount; i++)
+        for (int i = 0; i < spawnCount; i++)
         {
             if (!canSpawn)
                 yield break;
 
-            SpawnWithServerRpc();
-            yield return new WaitForSeconds(SpawnInterval);
+            var enemy = enemiesPool.Get();
+            if (enemy.IsSpawned == false)
+                enemy.Spawn();
+
+            yield return new WaitForSeconds(spawnInterval);
         }
     }
 
 
-    [ServerRpc(RequireOwnership = false)]
-    private void SpawnWithServerRpc()
+    private NetworkObject CreateEnemy()
     {
-        var randomPrefab = PrefabsToSpawn[Random.Range(0, PrefabsToSpawn.Length)];
-        NetworkObject no = Instantiate(randomPrefab, GetRandomPositionInSpawnArea(), Quaternion.identity);
-        no.Spawn();
+        var randomPrefab = prefabsToSpawn[Random.Range(0, prefabsToSpawn.Length)];
+        NetworkObject no = Instantiate(randomPrefab, Vector3.zero, Quaternion.identity);
+        return no;
     }
 
 
@@ -68,14 +78,28 @@ public class EnemySpawner : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         enabled = IsServer;
-        if (!enabled || PrefabsToSpawn.Length == 0 || spawnArea == null)
-        {
+        if (!enabled || prefabsToSpawn.Length == 0 || spawnArea == null)
             return;
-        }
-
-        m_SpawnedNetworkObjects = new NetworkObject[SpawnCount];
 
         StartCoroutine(StartSpawningCoroutine());
     }
 
+
+    public NetworkObject Preload() => CreateEnemy();
+
+    public void GetAction(NetworkObject enemy)
+    {
+        var enemyhealth = enemy.GetComponent<EnemyHealthController>();
+
+        enemyhealth.SetReturnAction(OnDeathCase);
+        void OnDeathCase() => enemiesPool.Return(enemy);
+
+        enemy.transform.position = GetRandomPositionInSpawnArea();
+        if (enemyhealth.IsAlive())
+            enemy.gameObject.SetActive(true);
+        else
+            enemyhealth.Respawn();
+    }
+
+    public void ReturnAction(NetworkObject enemy) => enemy.gameObject.SetActive(false);
 }
