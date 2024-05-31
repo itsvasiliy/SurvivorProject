@@ -57,7 +57,7 @@ public class ChangeNickname : MonoBehaviour
     }
 
 
-    //name must be null, contain spaces and should have a maximum length of 50 characters
+    //name must be not null, don't contain spaces and should have a maximum length of 50 characters
     private bool IsNameValid(string _name)
     {
         return !string.IsNullOrWhiteSpace(_name) && _name.Length <= 50 && !_name.Contains(" ");
