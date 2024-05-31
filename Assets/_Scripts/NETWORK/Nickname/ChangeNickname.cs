@@ -1,9 +1,7 @@
+using TMPro;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using UnityEngine;
-using TMPro;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 public class ChangeNickname : MonoBehaviour
 {
@@ -30,9 +28,7 @@ public class ChangeNickname : MonoBehaviour
 
     public async void SaveNewNickname()
     {
-        InitializationOptions initializationOptions = new InitializationOptions();
-        initializationOptions.SetProfile(nickname_TMP_InputField.text);
-
-        await UnityServices.InitializeAsync(initializationOptions);
+        await AuthenticationService.Instance.UpdatePlayerNameAsync(nickname_TMP_InputField.text);
+        LoadPlayerName();
     }
 }
