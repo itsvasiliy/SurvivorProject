@@ -30,7 +30,7 @@ public class LobbyMenu : MonoBehaviour
             Debug.Log("Singed in " + AuthenticationService.Instance.PlayerId);
         };
 
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        //await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
         ListLobbies();
     }
