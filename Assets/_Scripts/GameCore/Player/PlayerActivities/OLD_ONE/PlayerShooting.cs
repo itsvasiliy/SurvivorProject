@@ -1,3 +1,6 @@
+using NUnit.Framework.Constraints;
+using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
@@ -87,13 +90,13 @@ public class PlayerShooting : MonoBehaviour
         }
 
         if (closestTarget != null)
-            StartShooting();
+            StartCoroutine(StartShooting());
     }
 
 
 
 
-    private void StartShooting()
+    private IEnumerator StartShooting()
     {
         playerStateController.SetState(PlayerStates.Shooting);
 
@@ -101,9 +104,15 @@ public class PlayerShooting : MonoBehaviour
         Invoke(nameof(Reload), fireRate);
         Invoke(nameof(StopShooting), fireRate);
 
+        yield return new WaitForSeconds(fireRate / 2);
+        ShootTheTargetClientRpc();
+
+        yield break;
     }
 
-    public void ShootTheTarget()
+
+    [ClientRpc]
+    public void ShootTheTargetClientRpc()
     {
         Vector3 targetPos = Vector3.zero;
         if (playerStateController.GetState() != PlayerStates.Shooting)
