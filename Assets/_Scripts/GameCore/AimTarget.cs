@@ -16,6 +16,8 @@ public class AimTarget : MonoBehaviour, IAimTarget
         throw new System.NotImplementedException();
     }
 
-    public bool IsEnabled() => this.enabled;
-  
+    public bool IsAlive()
+    {
+        throw new System.NotImplementedException();
+    }
 }
