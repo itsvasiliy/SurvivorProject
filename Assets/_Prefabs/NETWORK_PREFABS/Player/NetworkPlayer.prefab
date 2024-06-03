@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 95259708
+  GlobalObjectIdHash: 3771194895
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -215,7 +215,9 @@ MonoBehaviour:
   weaponGameobject: {fileID: 99818814883396995}
   muzzleOfShot: {fileID: 6102781207393276885}
   shootingRadius: 15
-  attacksPerSecond: 1.3
+  shootingRate: 1
+  checkForEnemyRate: 0.1
+  arrowSpeed: 25
   playerTransform: {fileID: 1668148999509830039}
   animator: {fileID: 5550036558105962757}
   playerStateController: {fileID: 2081884835191954744}
