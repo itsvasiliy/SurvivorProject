@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3771194895
+  GlobalObjectIdHash: 95259708
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -1061,6 +1061,14 @@ PrefabInstance:
       propertyPath: resourceController
       value: 
       objectReference: {fileID: 8088873630574627842}
+    - target: {fileID: 8386941946705938969, guid: 646e6bca719d40d4683fddb54cf45cef, type: 3}
+      propertyPath: structurePlacement
+      value: 
+      objectReference: {fileID: 4772596382200541730}
+    - target: {fileID: 8386941946705938969, guid: 646e6bca719d40d4683fddb54cf45cef, type: 3}
+      propertyPath: playerStateController
+      value: 
+      objectReference: {fileID: 2081884835191954744}
     - target: {fileID: 8742597165804453171, guid: 646e6bca719d40d4683fddb54cf45cef, type: 3}
       propertyPath: type
       value: 2
