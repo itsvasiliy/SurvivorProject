@@ -24,9 +24,7 @@ public class PlayerMovement : NetworkBehaviour
         float movementMagnitude = movement.magnitude;
 
         Vector3 scaledMovement = movement.normalized * Mathf.Lerp(0f, speed, movementMagnitude);
-
-        Vector3 velocity = scaledMovement * Time.fixedDeltaTime;
-        _rigidbody.MovePosition(_rigidbody.position + velocity);
+        _rigidbody.linearVelocity = scaledMovement;
 
         if (movementMagnitude > 0)
         {
@@ -39,8 +37,10 @@ public class PlayerMovement : NetworkBehaviour
         else
         {
             if (!IsOwner) return;
+            _rigidbody.linearVelocity = Vector3.zero;
             animator.SetBool("IsRunning", false);
             playerStateController.TryToSetIdleState();
         }
     }
+
 }
