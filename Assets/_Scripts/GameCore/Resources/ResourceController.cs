@@ -1,24 +1,40 @@
+using AssetKits.ParticleImage;
 using Assets.Scripts.GameCore.Interfaces;
 using Assets.Scripts.GameCore.Resources;
 using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 public class ResourceController : MonoBehaviour, IResourceController
 {
     [SerializeField] ResourcesUIControl resourcesUIControl;
 
+    [SerializeField] ParticleImage getResourceParticle;
+
+    [SerializeField] Sprite woodImage;
+    [SerializeField] Sprite stoneImage;
+
     private Dictionary<ResourceTypes, int> resources = new Dictionary<ResourceTypes, int>();
 
 
-    public void AddResource(ResourceTypes type, int amount)
+    public void AddResource(ResourceTypes type, int amount, Transform resourceSourceTransform = null)
     {
         if (resources.ContainsKey(type))
             resources[type] += amount;
         else
             resources[type] = amount;
 
-       resourcesUIControl.UpdateResource(type);
+        if (resourceSourceTransform != null)
+            getResourceParticle.emitterConstraintTransform = resourceSourceTransform;
+        getResourceParticle.rateOverTime = amount;
+
+        if (type == ResourceTypes.WOOD)
+            getResourceParticle.sprite = woodImage;
+        else
+            getResourceParticle.sprite = stoneImage;
+
+        getResourceParticle.Play();
+
+        resourcesUIControl.UpdateResource(type);
     }
 
     public int GetResourceAmount(ResourceTypes type)

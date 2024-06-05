@@ -10,6 +10,6 @@ public class DropResourcesOnDeath : MonoBehaviour
 
     public void DropResources(ResourceController resourceController)
     {
-        resourceController.AddResource(resourceType, resourceAmount);
+        resourceController.AddResource(resourceType, resourceAmount, transform);
     }
 }

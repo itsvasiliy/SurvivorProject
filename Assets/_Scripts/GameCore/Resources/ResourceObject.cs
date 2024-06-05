@@ -8,5 +8,5 @@ public class ResourceObject : MonoBehaviour, IMineable
 
 
     public void MineResource(ResourceController playerResourceController) =>
-        playerResourceController.AddResource(resourceType, resourceDropAmount);
+        playerResourceController.AddResource(resourceType, resourceDropAmount, transform);
 }
