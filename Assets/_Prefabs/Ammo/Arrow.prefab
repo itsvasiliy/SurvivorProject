@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8216201971186236293}
   - component: {fileID: 1246719186453978813}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wing1M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3404894921494119319}
   - component: {fileID: 8670578095657251296}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PoleM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4133752258590575066}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MeshG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4109301229569308945}
   - component: {fileID: 1265497994362581306}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HeadM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4636414999486988294}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Root_JNT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,9 +344,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3992844942602162049}
+  - component: {fileID: 6369944538861253125}
   - component: {fileID: 3706977250176539610}
   - component: {fileID: 8650557320012419079}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,15 +362,32 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6148801845604655073}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 1.04}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: -0.08506, y: 0.019445, z: -0.00018934}
   m_LocalScale: {x: 44.748077, y: 9.211353, z: 44.748074}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1278913741819189661}
   - {fileID: 4133752258590575066}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
+--- !u!114 &6369944538861253125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6148801845604655073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 739e9d7c6db41458ea8ed71942934710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transform: {fileID: 3992844942602162049}
+  damage: 20
+  speed: 20
+  lifeTime: 1.5
+  targetPosition: {x: -7.517209, y: 1.6, z: 17.49197}
 --- !u!136 &3706977250176539610
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -401,7 +419,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6148801845604655073}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 20
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -430,7 +448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8608492265919526022}
   - component: {fileID: 1634948108157374204}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wing3M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,7 +536,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1278913741819189661}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: JNTG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,7 +569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 597692096945716435}
   - component: {fileID: 255187162746580626}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TipM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -640,7 +658,7 @@ GameObject:
   m_Component:
   - component: {fileID: 825655818600174450}
   - component: {fileID: 1690990800484459814}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wing2M
   m_TagString: Untagged
   m_Icon: {fileID: 0}

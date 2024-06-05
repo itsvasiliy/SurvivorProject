@@ -215,9 +215,7 @@ MonoBehaviour:
   weaponGameobject: {fileID: 99818814883396995}
   muzzleOfShot: {fileID: 6102781207393276885}
   shootingRadius: 15
-  shootingRate: 1
-  checkForEnemyRate: 0.1
-  arrowSpeed: 25
+  attacksPerSecond: 1.3
   playerTransform: {fileID: 1668148999509830039}
   animator: {fileID: 5550036558105962757}
   playerStateController: {fileID: 2081884835191954744}
