@@ -21,6 +21,7 @@ public class LobbyMaker : MonoBehaviour
         }
 
         LobbyMenu lobbyMenu = GetComponentInParent<LobbyMenu>();
+
         await lobbyMenu.CreateLobby(lobbyName, maxPlayersNumber.GetCurrentNumber());
     }
 }

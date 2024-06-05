@@ -6,6 +6,7 @@ using Unity.Services.Core;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LobbyMenu : MonoBehaviour
 {
@@ -44,11 +45,10 @@ public class LobbyMenu : MonoBehaviour
             hostLobby = lobby;
             StartCoroutine(LobbyHeartbeat());
 
-            joinedLobbyBoard.SetActive(true);
-            lobbiesBoard.SetActive(false);
+            //lobbiesBoard.SetActive(false);
 
 
-            joinedLobbyBoard.GetComponent<JoinedLobbyInfo>().LoadInfo(lobby.Name, lobby.Players.Count, lobby.MaxPlayers);
+
         }
         catch (LobbyServiceException error)
         {
