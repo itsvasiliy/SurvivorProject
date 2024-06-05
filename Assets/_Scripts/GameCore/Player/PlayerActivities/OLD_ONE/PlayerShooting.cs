@@ -67,7 +67,7 @@ public class PlayerShooting : MonoBehaviour
         {
             if (collider.TryGetComponent<IAimTarget>(out IAimTarget _aimTarget))
             {
-                if (_aimTarget.IsEnabled()) // means _aimTarget is alive
+                if (_aimTarget.IsAlive())
                 {
                     Vector3 directionToTarget = collider.transform.position - playerTransform.position;
                     float distance = directionToTarget.magnitude;
@@ -114,6 +114,7 @@ public class PlayerShooting : MonoBehaviour
         targetPos.y = targetHeight / 3;
 
         var bullet = bulletPool.Get();
+        bullet.SetPlayerResourceController(playerResourceController);
         bullet.Launch(muzzleOfShot.position, targetPos, OnBulletCollision);
 
         void OnBulletCollision() => bulletPool.Return(bullet);
