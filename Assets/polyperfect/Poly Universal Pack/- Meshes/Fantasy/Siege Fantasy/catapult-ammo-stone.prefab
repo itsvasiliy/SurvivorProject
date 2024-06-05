@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &688779782010858202
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 4cd37d38b1164ef49aa9a561af764b19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.229401
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4cd37d38b1164ef49aa9a561af764b19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.08460617
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4cd37d38b1164ef49aa9a561af764b19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.1884391
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4cd37d38b1164ef49aa9a561af764b19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99323046
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4cd37d38b1164ef49aa9a561af764b19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.08456304
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4cd37d38b1164ef49aa9a561af764b19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.01580538
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4cd37d38b1164ef49aa9a561af764b19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.07805482
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4cd37d38b1164ef49aa9a561af764b19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -9.527
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4cd37d38b1164ef49aa9a561af764b19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -2.592
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4cd37d38b1164ef49aa9a561af764b19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 9.203
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 4cd37d38b1164ef49aa9a561af764b19, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d9391c9f57d14554ba261f774f8dcde6, type: 2}
+    - target: {fileID: 919132149155446097, guid: 4cd37d38b1164ef49aa9a561af764b19, type: 3}
+      propertyPath: m_Name
+      value: catapult-ammo-stone
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4cd37d38b1164ef49aa9a561af764b19, type: 3}
