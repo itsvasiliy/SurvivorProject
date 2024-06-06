@@ -15,6 +15,7 @@ public class LobbyMenu : MonoBehaviour
 
     [SerializeField] private Transform lobbiesParent;
 
+    [SerializeField] private LobbyRelay lobbyRelay;
     [SerializeField] private LobbyInfo lobbyTemplate;
 
     private Dictionary<string, GameObject> instantiatedLobbies = new Dictionary<string, GameObject>();
@@ -44,6 +45,10 @@ public class LobbyMenu : MonoBehaviour
 
             hostLobby = lobby;
             StartCoroutine(LobbyHeartbeat());
+
+
+            string relayCode = await lobbyRelay.CreateRelay(maxPlayers);
+
 
             //lobbiesBoard.SetActive(false);
 

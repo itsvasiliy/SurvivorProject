@@ -26,6 +26,9 @@ public class LobbyRelay : MonoBehaviour
 
             RelayServerData relayServerData = new RelayServerData(allocation, "dtls");
 
+            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
+            NetworkManager.Singleton.StartHost();
+
             return joinCode;
 
         }
