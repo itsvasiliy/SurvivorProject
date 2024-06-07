@@ -58,17 +58,11 @@ public class TestRelay : MonoBehaviour
         }
     }
 
-    public async void JoinRelay()
+    public void JoinRelay()
     {
         try
         {
-            Debug.Log("Joining relay with " + inputField.text);
-            JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(inputField.text);
-
-            RelayServerData relayServerData = new RelayServerData(joinAllocation, "dtls");
-            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
-
-            NetworkManager.Singleton.StartClient();
+            JoinRelayClient(inputField.text);
         }
         catch (RelayServiceException e)
         {
@@ -76,7 +70,7 @@ public class TestRelay : MonoBehaviour
         }
     }
 
-    private async void JoinRelayAutomatic()
+    private void JoinRelayAutomatic()
     {
         connElements.SetActive(false);
         try
@@ -84,24 +78,36 @@ public class TestRelay : MonoBehaviour
             var asHost = RelayServerDataManagerSingleton.isHost ? " as host" : " as client";
             Debug.Log("Conneting to " + RelayServerDataManagerSingleton.relayCode + asHost);
 
-
             if (RelayServerDataManagerSingleton.isHost)
-            {
-                RelayServerData relayServerData = RelayServerDataManagerSingleton.relayServerData;
-                NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
-                NetworkManager.Singleton.StartHost();
-
-            }
+                JoinRelayHost();
             else
-            {
-                JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(RelayServerDataManagerSingleton.relayCode);
+                JoinRelayClient(RelayServerDataManagerSingleton.relayCode);
+        }
+        catch (RelayServiceException e)
+        {
+            Debug.LogError(e);
+        }
+    }
 
-                RelayServerData relayServerData = new RelayServerData(joinAllocation, "dtls");
-                NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
-                NetworkManager.Singleton.StartClient();
-            }
 
+    private void JoinRelayHost()
+    {
+        RelayServerData relayServerData = RelayServerDataManagerSingleton.relayServerData;
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
+        NetworkManager.Singleton.StartHost();
+    }
 
+    private async void JoinRelayClient(string joinCode)
+    {
+        try
+        {
+            Debug.Log("Joining relay with " + inputField.text);
+            JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
+
+            RelayServerData relayServerData = new RelayServerData(joinAllocation, "dtls");
+            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
+
+            NetworkManager.Singleton.StartClient();
         }
         catch (RelayServiceException e)
         {
