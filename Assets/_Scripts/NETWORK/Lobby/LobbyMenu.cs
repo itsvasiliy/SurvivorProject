@@ -20,7 +20,7 @@ public class LobbyMenu : MonoBehaviour
 
     private Dictionary<string, GameObject> instantiatedLobbies = new Dictionary<string, GameObject>();
 
-    private Lobby hostLobby; 
+    private Lobby hostLobby;
     private float heartbeatTimer = 15f;
 
     private async void Start()
@@ -31,33 +31,38 @@ public class LobbyMenu : MonoBehaviour
         {
             Debug.Log("Singed in " + AuthenticationService.Instance.PlayerId);
         };
-
-        //await AuthenticationService.Instance.SignInAnonymouslyAsync();
-
-        ListLobbies();
     }
+
+    private void OnEnable() => ListLobbies();
 
     public async Task CreateLobby(string lobbyName, int maxPlayers)
     {
         try
         {
-            Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName, maxPlayers);
+            var joinCode = await lobbyRelay.InitRelay(maxPlayers);
 
+            CreateLobbyOptions options = new CreateLobbyOptions();
+            options.Data = new Dictionary<string, DataObject>()
+                {
+                    {
+                        "joinCode", new DataObject(
+                            visibility: DataObject.VisibilityOptions.Member,
+                            value: joinCode)
+                    },
+                };
+
+
+            Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName, maxPlayers, options);
+
+            lobby.Data.TryGetValue("joinCode", out DataObject data);
             hostLobby = lobby;
+
             StartCoroutine(LobbyHeartbeat());
-
-
-            string relayCode = await lobbyRelay.CreateRelay(maxPlayers);
-
-
-            //lobbiesBoard.SetActive(false);
-
-
-
+            SceneManager.LoadScene("_Map");
         }
         catch (LobbyServiceException error)
         {
-            Debug.Log(error);
+            Debug.LogError(error);
         }
     }
 
@@ -68,11 +73,16 @@ public class LobbyMenu : MonoBehaviour
             joinedLobbyBoard.SetActive(true);
             lobbiesBoard.SetActive(false);
 
-            await Lobbies.Instance.JoinLobbyByIdAsync(lobbyID);
+            var joinedLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobbyID);
+            joinedLobby.Data.TryGetValue("joinCode", out DataObject lobbyData);
+
+            RelayServerDataManagerSingleton.relayCode = lobbyData.Value;
+            RelayServerDataManagerSingleton.isHost = false;
+            SceneManager.LoadScene("_Map");
         }
-        catch(LobbyServiceException error)
+        catch (LobbyServiceException error)
         {
-            Debug.Log(error);
+            Debug.LogError(error);
         }
 
     }
@@ -91,10 +101,10 @@ public class LobbyMenu : MonoBehaviour
         }
         catch (LobbyServiceException error)
         {
-            Debug.Log(error);
+            Debug.LogError(error);
         }
     }
-    
+
     public async void ListLobbies()
     {
         try
@@ -116,16 +126,16 @@ public class LobbyMenu : MonoBehaviour
         }
         catch (LobbyServiceException error)
         {
-            Debug.Log(error);
+            Debug.LogError(error);
         }
     }
 
 
     private IEnumerator LobbyHeartbeat()
     {
-        while(true)
+        while (true)
         {
-            if(hostLobby != null)
+            if (hostLobby != null)
             {
                 yield return new WaitForSeconds(heartbeatTimer);
 

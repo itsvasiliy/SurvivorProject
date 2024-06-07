@@ -1,5 +1,6 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LobbyMaker : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class LobbyMaker : MonoBehaviour
 
     public async void CreateLobby()
     {
+        var maxPlayers = maxPlayersNumber.GetCurrentNumber();
         string lobbyName;
 
         if (string.IsNullOrEmpty(lobbyNameInputField.text))
@@ -22,6 +24,6 @@ public class LobbyMaker : MonoBehaviour
 
         LobbyMenu lobbyMenu = GetComponentInParent<LobbyMenu>();
 
-        await lobbyMenu.CreateLobby(lobbyName, maxPlayersNumber.GetCurrentNumber());
+        await lobbyMenu.CreateLobby(lobbyName, maxPlayers);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.Services.Lobbies;
 
 public class LobbyInfo : MonoBehaviour
 {
@@ -35,6 +36,13 @@ public class LobbyInfo : MonoBehaviour
 
     public void SelectLobby()
     {
-        lobbyMenu.JoinLobby(lobbyID);
+        try
+        {
+            lobbyMenu.JoinLobby(lobbyID);
+        }
+        catch (LobbyServiceException e)
+        {
+            Debug.Log(e);
+        }
     }
 }

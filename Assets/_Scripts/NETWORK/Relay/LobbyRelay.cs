@@ -1,21 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Unity.Services.Lobbies;
-using Unity.Services.Lobbies.Models;
 using Unity.Netcode;
-using Unity.Networking.Transport.Relay;
 using Unity.Netcode.Transports.UTP;
-using Unity.Services.Authentication;
-using Unity.Services.Core;
+using Unity.Networking.Transport.Relay;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
 using UnityEngine;
-using TMPro;
 
 public class LobbyRelay : MonoBehaviour
 {
-   public async Task<string> CreateRelay(int maxConnections)
+    public async Task<string> CreateRelay(int maxConnections)
     {
         try
         {
@@ -32,10 +25,32 @@ public class LobbyRelay : MonoBehaviour
             return joinCode;
 
         }
-        catch(RelayServiceException error)
+        catch (RelayServiceException error)
         {
-            Debug.Log(error);
+            Debug.LogError(error);
             return null;
         }
+    }
+
+    public async Task<string> InitRelay(int maxConnections)
+    {
+        try
+        {
+            Allocation allocation = await RelayService.Instance.CreateAllocationAsync(maxConnections);
+            string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
+
+            RelayServerData relayServerData = new RelayServerData(allocation, "dtls");
+
+            RelayServerDataManagerSingleton.relayServerData = relayServerData;
+            RelayServerDataManagerSingleton.relayCode = joinCode;
+            RelayServerDataManagerSingleton.isHost = true;
+
+            return joinCode;
+        }
+        catch (RelayServiceException error)
+        {
+            Debug.LogError(error);
+        }
+        return null;
     }
 }
