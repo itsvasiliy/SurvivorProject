@@ -465,6 +465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   amountText: {fileID: 5362703916244495152}
+  resourceController: {fileID: 0}
 --- !u!1 &4923243311714743303
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,7 +620,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2891150800028528566
 RectTransform:
   m_ObjectHideFlags: 0
@@ -693,6 +694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   amountText: {fileID: 907227569601261089}
+  resourceController: {fileID: 0}
 --- !u!1 &6640070886742226734
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,6 +787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   amountText: {fileID: 447506890196173561}
+  resourceController: {fileID: 0}
 --- !u!1 &7058413619347350050
 GameObject:
   m_ObjectHideFlags: 0

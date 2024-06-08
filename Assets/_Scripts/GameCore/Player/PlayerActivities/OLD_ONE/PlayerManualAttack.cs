@@ -15,7 +15,7 @@ public class PlayerManualAttack : NetworkBehaviour
     [Header("Player properties")]
     [SerializeField] PlayerStateController playerStateController;
     [SerializeField] ResourceController playerResourceController;
-    [SerializeField] private PlayerLevelSystem playerLevelSystem;
+   // [SerializeField] private PlayerLevelSystem playerLevelSystem;
 
     private float attackSpeed;
     private bool isAttacking = false;
@@ -72,7 +72,7 @@ public class PlayerManualAttack : NetworkBehaviour
         animator.SetBool("IsMining", true);
 
         playerStateController.SetState(PlayerStates.Mining);
-        playerLevelSystem.AddExperience = 10;
+       // playerLevelSystem.AddExperience = 10;
 
         Invoke(nameof(MineResourceAfterAnimation), dropResourceDelay);
     }

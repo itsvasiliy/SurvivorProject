@@ -7,7 +7,7 @@ public class PlayerShooting : NetworkBehaviour
 {
     [Header("Player's shoot properties")]
     [SerializeField] private GameObject ammoPrefab;
-    [SerializeField] private GameObject weaponGameobject;
+   // [SerializeField] private GameObject weaponGameobject;
 
     [SerializeField] private Transform muzzleOfShot;
 
@@ -19,16 +19,17 @@ public class PlayerShooting : NetworkBehaviour
     [Header("Player")]
     [SerializeField] private Transform playerTransform;
 
-    [SerializeField] private Animator animator;
+    //[SerializeField] private Animator animator;
 
-    [SerializeField] private PlayerStateController playerStateController;
+    //[SerializeField] private PlayerStateController playerStateController;
 
-    [SerializeField] private ResourceController playerResourceController;
+    //[SerializeField] private ResourceController playerResourceController;
 
     private void Start()
     {
         if (IsOwner)
         {
+            Debug.Log($"{name} started enemy detecting");
             StartCoroutine(enemyDetecting());
         }
     }
@@ -63,8 +64,8 @@ public class PlayerShooting : NetworkBehaviour
         {
             yield return new WaitForSeconds(checkForEnemyRate);
 
-            if (playerStateController.GetState() == PlayerStates.Idle)
-            {
+            //if (playerStateController.GetState() == PlayerStates.Idle)
+            //{
                 Transform closestEnemy = GetClosestEnemy();
 
                 if (closestEnemy != null)
@@ -72,7 +73,7 @@ public class PlayerShooting : NetworkBehaviour
                     ShootTheTargetServerRPC(closestEnemy.position);
                     yield return new WaitForSeconds(shootingRate);
                 }
-            }
+           // }
         }
     }
 
@@ -90,6 +91,8 @@ public class PlayerShooting : NetworkBehaviour
 
     private void ShootTheTarget(Vector3 targetPosition)
     {
+        Debug.Log($"{name} shooting the target");
+
         RotatePlayerToTheTarget(targetPosition);
         
         GameObject bullet = Instantiate(ammoPrefab, muzzleOfShot.position, Quaternion.identity);
