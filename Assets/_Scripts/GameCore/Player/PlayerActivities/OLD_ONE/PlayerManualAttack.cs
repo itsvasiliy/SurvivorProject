@@ -15,7 +15,7 @@ public class PlayerManualAttack : NetworkBehaviour
     [Header("Player properties")]
     [SerializeField] PlayerStateController playerStateController;
     [SerializeField] ResourceController playerResourceController;
-   // [SerializeField] private PlayerLevelSystem playerLevelSystem;
+    // [SerializeField] private PlayerLevelSystem playerLevelSystem;
 
     private float attackSpeed;
     private bool isAttacking = false;
@@ -61,54 +61,40 @@ public class PlayerManualAttack : NetworkBehaviour
     private void StopAttack()
     {
         isAttackAborted = true;
-        Invoke(nameof(DeactivateTool), 2.5f);
+        Invoke(nameof(DeactivateTool), 3.5f);
         animator.SetBool("IsMining", false);
     }
 
     private void MineResource()
     {
-        if (tool.activeSelf == false)
-            ActivateTool();
         animator.SetBool("IsMining", true);
 
         playerStateController.SetState(PlayerStates.Mining);
-       // playerLevelSystem.AddExperience = 10;
+        // playerLevelSystem.AddExperience = 10;
 
-        Invoke(nameof(MineResourceAfterAnimation), dropResourceDelay);
+        //Invoke(nameof(MineResourceAfterAnimation), dropResourceDelay); // this call in animation
     }
 
-    private void MineResourceAfterAnimation()
+    private void MineResourceAfterAnimation() // this call in animation
     {
-        if (isAttackAborted)
-            return;
-
+        //if (isAttackAborted)
+        //    return;
         mineableResource.MineResource(playerResourceController);
     }
 
-    private void ActivateTool()
-    {
-        if (tool.activeSelf)
-            return;
-        SetToolActiveStatus(true);
 
-        if (tool.activeSelf == false)
+
+    private void ActivateTool() // this call in animation
+    {
+        if (!tool.activeSelf)
             tool.SetActive(true);
     }
-
-    private void DeactivateTool() => SetToolActiveStatus(false);
-
-    private void SetToolActiveStatus(bool status)
+    private void DeactivateToolWitDelay() => Invoke(nameof(DeactivateTool), 6f); // this call in animation
+    private void DeactivateTool()
     {
-        SetToolStatusServerRpc(status);
-        SetToolStatusClientRpc(status);
+        if (!isAttacking)
+            tool.SetActive(false);
     }
-
-
-    [ServerRpc(RequireOwnership = false)]
-    private void SetToolStatusServerRpc(bool status) => tool.SetActive(status);
-
-    [ClientRpc]
-    private void SetToolStatusClientRpc(bool status) => tool.SetActive(status);
 
 
     private void OnDestroy()
