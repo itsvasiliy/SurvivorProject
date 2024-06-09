@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2267477519089691146}
   - component: {fileID: 4731067011504946876}
   - component: {fileID: 6309880895801775612}
-  - component: {fileID: 6476842141889933250}
   - component: {fileID: 5386344259716907347}
+  - component: {fileID: 7450688908050171761}
   m_Layer: 7
   m_Name: Turret Bullet
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3770064, y: 0.3770064, z: 0.3770064}
+  m_LocalScale: {x: 0.63334495, y: 0.63334495, z: 0.63334495}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -110,23 +110,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.50995266
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6476842141889933250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 556971294840989878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 739e9d7c6db41458ea8ed71942934710, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _transform: {fileID: 2138154035449911344}
-  damage: 60
-  speed: 15
-  lifeTime: 1.2
-  targetPosition: {x: -46.66013, y: 0.094649434, z: 2.1050975}
 --- !u!54 &5386344259716907347
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -149,8 +132,26 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7450688908050171761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556971294840989878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17cfd7872f45b2e45b4b6768f2936278, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transform: {fileID: 2138154035449911344}
+  damage: 85
+  speed: 15
+  lifeTime: 3
+  targetPosition: {x: 0, y: 0, z: 0}
+  launchAngle: 40

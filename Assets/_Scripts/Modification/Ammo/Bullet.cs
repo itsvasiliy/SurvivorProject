@@ -8,15 +8,15 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] private int damage;
 
-    [SerializeField] private float speed;
-    [SerializeField] private float lifeTime;
+    [SerializeField] protected float speed;
+    [SerializeField] protected float lifeTime;
 
     public Vector3 targetPosition;
 
-    private bool isExploded = false;
-    private bool isPooled = false;
+    protected bool isExploded = false;
+    protected bool isPooled = false;
 
-    private Action onBulletCollision;
+    protected Action onBulletCollision;
 
     private ResourceController playerResourceController;
 
@@ -24,12 +24,9 @@ public class Bullet : MonoBehaviour
 
     public void SetPlayerResourceController(ResourceController value) => playerResourceController = value;
 
-    public void Launch(Vector3 startPosition, Vector3 target, Action _onBulletCollision)
+    public virtual void Launch(Vector3 startPosition, Vector3 target, Action _onBulletCollision)
     {
-        isPooled = false;
-        transform.position = startPosition;
-        targetPosition = target;
-        onBulletCollision = _onBulletCollision;
+        LaunchInit(startPosition, target, _onBulletCollision);
 
         RotateToTarget(targetPosition);
 
@@ -40,7 +37,15 @@ public class Bullet : MonoBehaviour
         Invoke(nameof(ReturnToPool), lifeTime);
     }
 
-    private void RotateToTarget(Vector3 targetPosition)
+    protected void LaunchInit(Vector3 startPosition, Vector3 target, Action _onBulletCollision)
+    {
+        isPooled = false;
+        transform.position = startPosition;
+        targetPosition = target;
+        onBulletCollision = _onBulletCollision;
+    }
+
+    protected void RotateToTarget(Vector3 targetPosition)
     {
         Vector3 relativePosition = targetPosition - transform.position;
         Quaternion targetRotation = Quaternion.LookRotation(relativePosition);
@@ -63,12 +68,13 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) => Explode(collision.gameObject);
 
-    private void ReturnToPool()
+    protected void ReturnToPool()
     {
         if (isPooled)
             return;
-
         isPooled = true;
+
+        CancelInvoke();
 
         if (moveCoroutine != null)
             StopCoroutine(moveCoroutine);
@@ -81,12 +87,13 @@ public class Bullet : MonoBehaviour
         onBulletCollision?.Invoke();
     }
 
-    private void Explode(GameObject _go)
+    protected void Explode(GameObject _go)
     {
         if (isExploded)
             return;
 
         isExploded = true;
+        Debug.Log($"damaging {_go.name}");
 
         if (_go.TryGetComponent<IDamageable>(out IDamageable _aimTarget))
             _aimTarget.GetDamage(damage, playerResourceController);
