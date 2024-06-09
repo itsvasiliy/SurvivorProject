@@ -10,13 +10,11 @@ public class InGameNickname : NetworkBehaviour
 
     private void Start()
     {
+        SetPlayerUINicknameServerRpc(RelayServerDataManagerSingleton.playerName);
+
         if (IsOwner)
         {
             Destroy(nickname);
-        }
-        else
-        {
-            SetPlayerUINicknameServerRpc(RelayServerDataManagerSingleton.playerName);
         }
     }
 
