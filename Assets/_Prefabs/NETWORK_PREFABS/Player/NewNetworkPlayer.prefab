@@ -1423,6 +1423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nickname: {fileID: 8782680480251420959}
+  nicknameText: {fileID: 776212899082737453}
 --- !u!1 &7256877499767979966
 GameObject:
   m_ObjectHideFlags: 0

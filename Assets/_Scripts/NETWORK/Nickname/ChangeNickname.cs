@@ -28,7 +28,12 @@ public class ChangeNickname : MonoBehaviour
     }
 
 
-    public async void LoadPlayerName() => nickname.text = await AuthenticationService.Instance.GetPlayerNameAsync();
+    public async void LoadPlayerName()
+    {
+        nickname.text = await AuthenticationService.Instance.GetPlayerNameAsync();
+        RelayServerDataManagerSingleton.playerName = nickname.text; //save for transfering data into game scene
+    }
+
     public void SetPlayerName(string _name) => nickname.text = _name; //use instead of LoadPlayerName because AuthenticationService has rate limit for requests
 
 
@@ -37,6 +42,7 @@ public class ChangeNickname : MonoBehaviour
         var _name = nickname_TMP_InputField.text;
         await AuthenticationService.Instance.UpdatePlayerNameAsync(_name);
         SetPlayerName(_name);
+        RelayServerDataManagerSingleton.playerName = _name; //save for transfering data into game scene
     }
 
     
