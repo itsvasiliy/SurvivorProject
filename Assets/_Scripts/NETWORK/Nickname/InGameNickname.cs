@@ -21,5 +21,8 @@ public class InGameNickname : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void SetPlayerUINicknameServerRpc(string _nickname) => nicknameText.text = _nickname;
+    private void SetPlayerUINicknameServerRpc(string _nickname) => SetPlayerUINicknameClientRpc(_nickname);
+
+    [ClientRpc]
+    private void SetPlayerUINicknameClientRpc(string _nickname) => nicknameText.text = _nickname;
 }
