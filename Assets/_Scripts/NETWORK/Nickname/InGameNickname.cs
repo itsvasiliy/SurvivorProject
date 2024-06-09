@@ -20,6 +20,8 @@ public class InGameNickname : NetworkBehaviour
 
         UpdateNicknameText(nick.Value.ToString());
 
+        if (IsOwner)
+            Destroy(nickname);
     }
     private void UpdateNicknameText(string nickname) => nicknameText.text = nickname;
 
