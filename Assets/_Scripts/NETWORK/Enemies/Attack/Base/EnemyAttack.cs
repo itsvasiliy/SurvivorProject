@@ -23,9 +23,9 @@ public class EnemyAttack : MonoBehaviour
     {
         if (isAttacking || !enabled) return;
         if (other.gameObject.TryGetComponent<IHealthController>(out IHealthController targetHealth))
-            if (targetHealth.IsAlive())
+            if (targetHealth.IsAlive() && other.gameObject.GetComponent<EnemyHealthController>() == null) // 2nd condition. make sure this is not another enemy
                 Attack(targetHealth);
-            else StopToAttack();
+           // else StopToAttack();
     }
 
 
