@@ -1,5 +1,13 @@
 {
   "dependencies": {
+    "com.blockadelabs.sdk": {
+      "version": "file:com.blockadelabs.sdk",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "2.0.0"
+      }
+    },
     "com.distantlands.cozy.core": {
       "version": "file:com.distantlands.cozy.core",
       "depth": 0,
