@@ -2399,6 +2399,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 644089217800650312}
     m_Modifications:
+    - target: {fileID: 277911604769752317, guid: 646e6bca719d40d4683fddb54cf45cef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1874408386582700782, guid: 646e6bca719d40d4683fddb54cf45cef, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2495,6 +2499,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6096582286798727506, guid: 646e6bca719d40d4683fddb54cf45cef, type: 3}
+      propertyPath: healthController
+      value: 
+      objectReference: {fileID: 6616914718425423398}
     - target: {fileID: 6256510704927311995, guid: 646e6bca719d40d4683fddb54cf45cef, type: 3}
       propertyPath: resourceController
       value: 
