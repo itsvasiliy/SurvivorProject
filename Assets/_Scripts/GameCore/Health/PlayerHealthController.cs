@@ -7,6 +7,7 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
 
     [SerializeField] MonoBehaviour playerMovementScript;
     [SerializeField] MonoBehaviour playerShooting;
+    [SerializeField] Transform playerTransform;
 
     [SerializeField] Collider playerCollider;
 
@@ -86,7 +87,7 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
         respawnButton.SetActive(false);
 
         HealMaxServerRpc();
-        transform.position = tentPosition;
+        playerTransform.position = tentPosition;
 
         _isDead.Value = false;
         EnableColliderClientRpc();

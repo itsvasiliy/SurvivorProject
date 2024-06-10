@@ -1323,6 +1323,7 @@ MonoBehaviour:
   maxHealth: 70
   playerMovementScript: {fileID: 5471603051193986486}
   playerShooting: {fileID: 5050978276499650539}
+  playerTransform: {fileID: 1514999868393994080}
   playerCollider: {fileID: 4298306508520317256}
   respawnButton: {fileID: 6071321998714353015}
 --- !u!114 &5050978276499650539
