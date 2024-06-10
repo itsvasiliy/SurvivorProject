@@ -11,6 +11,12 @@ public class InGameNickname : NetworkBehaviour
     private NetworkVariable<FixedString128Bytes> nick = new NetworkVariable<FixedString128Bytes>(writePerm: NetworkVariableWritePermission.Owner);
 
 
+    private void Start()
+    {
+        if (IsOwner)
+            Destroy(nickname);
+    }
+
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
@@ -19,10 +25,8 @@ public class InGameNickname : NetworkBehaviour
         SetPlayerUINickname(RelayServerDataManagerSingleton.playerName);
 
         UpdateNicknameText(nick.Value.ToString());
-
-        if (IsOwner)
-            Destroy(nickname);
     }
+
     private void UpdateNicknameText(string nickname) => nicknameText.text = nickname;
 
 
