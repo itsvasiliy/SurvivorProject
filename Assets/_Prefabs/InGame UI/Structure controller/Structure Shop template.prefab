@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8820959399874244875}
   - component: {fileID: 8321026084775269008}
   - component: {fileID: 7849111044166325918}
+  - component: {fileID: 1602262691119433550}
   m_Layer: 5
   m_Name: Structure Shop template
   m_TagString: Untagged
@@ -150,6 +151,20 @@ MonoBehaviour:
   structure: {fileID: 0}
   woodPrice: {fileID: 4751117694883151779}
   stonePrice: {fileID: 5160876070547325222}
+--- !u!114 &1602262691119433550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096534615840020807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c526acda500144103bfab945647eebdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  structureGameObject: {fileID: 0}
+  structurePreviewGameObject: {fileID: 0}
 --- !u!1 &3783541734729425101
 GameObject:
   m_ObjectHideFlags: 0
