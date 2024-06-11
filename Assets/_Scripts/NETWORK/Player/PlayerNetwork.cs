@@ -16,5 +16,10 @@ public class PlayerNetwork : NetworkBehaviour
                 Destroy(localObjects[i]);
             }
         }
+        else
+        {
+            var loadingScreen = Object.FindAnyObjectByType<SceneLoadingRelay>();
+            loadingScreen.gameObject.SetActive(false);
+        }
     }
 }

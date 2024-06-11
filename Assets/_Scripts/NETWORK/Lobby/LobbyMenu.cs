@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 public class LobbyMenu : MonoBehaviour
 {
     [SerializeField] private GameObject lobbiesBoard;
-    [SerializeField] private GameObject joinedLobbyBoard;
+    [SerializeField] private GameObject loadingScreen;
 
     [SerializeField] private Transform lobbiesParent;
 
@@ -39,6 +39,8 @@ public class LobbyMenu : MonoBehaviour
     {
         try
         {
+            loadingScreen.SetActive(true);
+
             var joinCode = await lobbyRelay.InitRelay(maxPlayers);
 
             CreateLobbyOptions options = new CreateLobbyOptions();
@@ -70,7 +72,7 @@ public class LobbyMenu : MonoBehaviour
     {
         try
         {
-            joinedLobbyBoard.SetActive(true);
+            loadingScreen.SetActive(true);
             lobbiesBoard.SetActive(false);
 
             var joinedLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobbyID);
@@ -95,7 +97,7 @@ public class LobbyMenu : MonoBehaviour
             {
                 await LobbyService.Instance.RemovePlayerAsync(hostLobby.Id, AuthenticationService.Instance.PlayerId);
 
-                joinedLobbyBoard.SetActive(false);
+             //   joinedLobbyBoard.SetActive(false);
                 lobbiesBoard.SetActive(true);
             }
         }
