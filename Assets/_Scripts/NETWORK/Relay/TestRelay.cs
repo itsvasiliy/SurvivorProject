@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using TMPro;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
@@ -13,6 +14,7 @@ public class TestRelay : MonoBehaviour
     [SerializeField] private TMP_InputField inputField;
 
     [SerializeField] private GameObject connElements;
+    [SerializeField] private GameObject loadingScreen;
 
     private int maxPlayers = 1;
 
@@ -41,6 +43,8 @@ public class TestRelay : MonoBehaviour
     {
         try
         {
+            loadingScreen.SetActive(true);
+
             Allocation allocation = await RelayService.Instance.CreateAllocationAsync(maxPlayers);
 
             RelayServerData relayServerData = new RelayServerData(allocation, "dtls");
@@ -62,6 +66,7 @@ public class TestRelay : MonoBehaviour
     {
         try
         {
+            loadingScreen.SetActive(true);
             JoinRelayClient(inputField.text);
         }
         catch (RelayServiceException e)
@@ -73,6 +78,7 @@ public class TestRelay : MonoBehaviour
     private void JoinRelayAutomatic()
     {
         connElements.SetActive(false);
+        loadingScreen.SetActive(true);
         try
         {
             var asHost = RelayServerDataManagerSingleton.isHost ? " as host" : " as client";
