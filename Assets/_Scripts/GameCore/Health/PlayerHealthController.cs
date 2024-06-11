@@ -72,6 +72,8 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
         DisableColliderClientRpc();
     }
 
+    public void Suicide() => Dead();
+
 
     public void Respawn()
     {
