@@ -43619,9 +43619,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3058737694653312642, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3058737694653312642, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4195663145000736237, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4195663145000736237, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4195663145000736237, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4195663145000736237, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4195663145000736237, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 4195663145000736237, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5102270678707836478, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2560311880
+      objectReference: {fileID: 0}
     - target: {fileID: 6459433058571336102, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 4177245024
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634372593684870428, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2912278337
       objectReference: {fileID: 0}
     - target: {fileID: 7172534170540501561, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
       propertyPath: m_Name
@@ -43630,6 +43670,10 @@ PrefabInstance:
     - target: {fileID: 7172534170540501561, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7209929494244483813, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 296199264
       objectReference: {fileID: 0}
     - target: {fileID: 8988497944945505032, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
       propertyPath: m_AnchorMax.x
