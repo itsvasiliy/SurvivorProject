@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class StructureDragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler,IEndDragHandler, IDropHandler
+public class StructureDragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
     [SerializeField] private StructureSpawnManager spawnManager;
 
     [SerializeField] private Transform structurePreviewGameObject;
     [SerializeField] private GameObject structure;
+
+    [SerializeField] public ResourceController resourceController;
 
     private Camera mainCamera;
 
@@ -19,6 +19,12 @@ public class StructureDragDrop : MonoBehaviour, IPointerDownHandler, IDragHandle
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (IsEnoughResources() == false)
+        {
+            Debug.Log("Player has no resources");
+            return;
+        }
+
         structurePreviewGameObject.gameObject.SetActive(true);
 
         Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, mainCamera.WorldToScreenPoint(structurePreviewGameObject.position).z);
@@ -39,13 +45,14 @@ public class StructureDragDrop : MonoBehaviour, IPointerDownHandler, IDragHandle
         }
     }
 
-    public void OnEndDrag(PointerEventData eventData) 
+    public void OnEndDrag(PointerEventData eventData)
     {
-        if(structurePreviewGameObject.gameObject.activeSelf == true)
+        if (structurePreviewGameObject.gameObject.activeSelf == true)
         {
             Vector3 spawnPosition = structurePreviewGameObject.position;
             structurePreviewGameObject.gameObject.SetActive(false);
 
+            SpendResources(structure.GetComponent<Structure>());
             spawnManager.SpawnStrucutre(structure, spawnPosition);
         }
     }
@@ -77,4 +84,26 @@ public class StructureDragDrop : MonoBehaviour, IPointerDownHandler, IDragHandle
         }
     }
 
+
+
+
+    private void SpendResources(Structure structureScript)
+    {
+        foreach (var requiredResource in structureScript.constructionCost)
+        {
+            resourceController.RemoveResource(requiredResource.resourceType,
+                requiredResource.cost);
+        }
+    }
+
+    public bool IsEnoughResources()
+    {
+        var structureScript = structure.GetComponent<Structure>();
+        foreach (var requiredResource in structureScript.constructionCost)
+        {
+            if (!resourceController.HasEnoughResource(requiredResource.resourceType, requiredResource.cost))
+                return false;
+        }
+        return true;
+    }
 }
