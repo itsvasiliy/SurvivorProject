@@ -5,24 +5,36 @@ using Unity.Netcode;
 
 public class StructureSpawnManager : NetworkBehaviour
 {
-    private GameObject structure;
+    [SerializeField] private List<GameObject> structurePrefabs;
 
     public void SpawnStrucutre(GameObject structure, Vector3 spawnPosition)
     {
-        this.structure = structure;
-        SpawnStrucutreServerRpc(spawnPosition);
+        int prefabIndex = structurePrefabs.IndexOf(structure);
+
+        if (prefabIndex == -1)
+        {
+            Debug.LogError("Structure prefab not found in the list!");
+            return;
+        }
+
+        SpawnStructureServerRpc(prefabIndex, spawnPosition);
     }
 
-
     [ServerRpc(RequireOwnership = false)]
-    private void SpawnStrucutreServerRpc(Vector3 spawnPosition)
+    private void SpawnStructureServerRpc(int prefabIndex, Vector3 spawnPosition)
     {
-        SpawnStrucutreClientRpc(spawnPosition);
+        SpawnStructureClientRpc(prefabIndex, spawnPosition);
     }
 
     [ClientRpc]
-    private void SpawnStrucutreClientRpc(Vector3 spawnPosition)
+    private void SpawnStructureClientRpc(int prefabIndex, Vector3 spawnPosition)
     {
-        Instantiate(structure, spawnPosition, Quaternion.identity);
+        if (prefabIndex < 0 || prefabIndex >= structurePrefabs.Count)
+        {
+            Debug.LogError("Invalid prefab index!");
+            return;
+        }
+
+        Instantiate(structurePrefabs[prefabIndex], spawnPosition, structurePrefabs[prefabIndex].transform.rotation);
     }
 }
