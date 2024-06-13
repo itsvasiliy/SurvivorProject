@@ -21,7 +21,7 @@ public class PlayerShooting : NetworkBehaviour
 
     //[SerializeField] private Animator animator;
 
-    //[SerializeField] private PlayerStateController playerStateController;
+    [SerializeField] private PlayerStateController playerStateController;
 
     //[SerializeField] private ResourceController playerResourceController;
 
@@ -29,8 +29,26 @@ public class PlayerShooting : NetworkBehaviour
     {
         if (IsOwner)
         {
-            Debug.Log($"{name} started enemy detecting");
-            StartCoroutine(enemyDetecting());
+            StartCoroutine(EnemyDetecting());
+        }
+    }
+
+    private IEnumerator EnemyDetecting()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(checkForEnemyRate);
+
+            if (playerStateController.GetState() == PlayerStates.Idle)
+            {
+                Transform closestEnemy = GetClosestEnemy();
+
+                if (closestEnemy != null)
+                {
+                    ShootTheTargetServerRPC(closestEnemy.position);
+                    yield return new WaitForSeconds(shootingRate);
+                }
+            }
         }
     }
 
@@ -58,25 +76,6 @@ public class PlayerShooting : NetworkBehaviour
         return closestTarget;
     }
 
-    private IEnumerator enemyDetecting()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(checkForEnemyRate);
-
-            //if (playerStateController.GetState() == PlayerStates.Idle)
-            //{
-                Transform closestEnemy = GetClosestEnemy();
-
-                if (closestEnemy != null)
-                {
-                    ShootTheTargetServerRPC(closestEnemy.position);
-                    yield return new WaitForSeconds(shootingRate);
-                }
-           // }
-        }
-    }
-
     [ServerRpc(RequireOwnership = false)]
     private void ShootTheTargetServerRPC(Vector3 targetPosition)
     {
@@ -86,15 +85,10 @@ public class PlayerShooting : NetworkBehaviour
     [ClientRpc]
     private void ShootTheTargetClientRpc(Vector3 targetPosition)
     {
-        ShootTheTarget(targetPosition);
-    }
-
-    private void ShootTheTarget(Vector3 targetPosition)
-    {
         Debug.Log($"{name} shooting the target");
 
         RotatePlayerToTheTarget(targetPosition);
-        
+
         GameObject bullet = Instantiate(ammoPrefab, muzzleOfShot.position, Quaternion.identity);
 
         Vector3 direction = (targetPosition - muzzleOfShot.position).normalized;
@@ -103,7 +97,7 @@ public class PlayerShooting : NetworkBehaviour
         Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
         bulletRigidbody.AddForce(direction * arrowSpeed, ForceMode.Impulse);
 
-        Destroy(bullet, 1.5f); 
+        Destroy(bullet, 1.5f);
     }
 
     private void RotatePlayerToTheTarget(Vector3 targetPosition)

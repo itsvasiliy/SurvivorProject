@@ -1195,8 +1195,8 @@ Transform:
   m_GameObject: {fileID: 4415909184007391718}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.07727507, z: 0.8210809}
-  m_LocalScale: {x: 1.3889002, y: 1.3889002, z: 1.3889002}
+  m_LocalPosition: {x: 0, y: 1.25, z: 0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1514999868393994080}
@@ -7368,13 +7368,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9bf21cc9e264516b89e29c6d66d82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoPrefab: {fileID: 6148801845604655073, guid: c01e70b26ee5a994bad16ca3c6ce743a, type: 3}
+  ammoPrefab: {fileID: 4866440818120058180, guid: 5553c0407d4324070802d889294de082, type: 3}
   muzzleOfShot: {fileID: 4822823028064514937}
   shootingRadius: 11
   shootingRate: 1
   checkForEnemyRate: 0.1
   arrowSpeed: 18
   playerTransform: {fileID: 1514999868393994080}
+  playerStateController: {fileID: 6665669728106944153}
 --- !u!114 &9167287806797371623
 MonoBehaviour:
   m_ObjectHideFlags: 0
