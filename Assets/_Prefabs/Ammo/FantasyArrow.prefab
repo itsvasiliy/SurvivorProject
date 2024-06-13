@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 190683465996513058}
   - component: {fileID: 1262871091935107626}
   - component: {fileID: 461152689424319036}
+  - component: {fileID: -1457644938439806310}
   m_Layer: 0
   m_Name: FantasyArrow
   m_TagString: Untagged
@@ -107,8 +108,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.05, y: 0.05, z: 1.15}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.05, y: 0.05, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0.52}
 --- !u!54 &461152689424319036
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -136,3 +137,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &-1457644938439806310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4866440818120058180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d07aa1b54974c24b49f1f8e95cef5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20

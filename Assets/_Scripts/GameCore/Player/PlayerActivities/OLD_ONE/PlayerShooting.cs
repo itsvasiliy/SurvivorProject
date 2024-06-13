@@ -85,8 +85,6 @@ public class PlayerShooting : NetworkBehaviour
     [ClientRpc]
     private void ShootTheTargetClientRpc(Vector3 targetPosition)
     {
-        Debug.Log($"{name} shooting the target");
-
         RotatePlayerToTheTarget(targetPosition);
 
         GameObject bullet = Instantiate(ammoPrefab, muzzleOfShot.position, Quaternion.identity);
@@ -100,14 +98,16 @@ public class PlayerShooting : NetworkBehaviour
         Destroy(bullet, 1.5f);
     }
 
+    #region AutoRotate
     private void RotatePlayerToTheTarget(Vector3 targetPosition)
     {
         Vector3 direction = (targetPosition - playerTransform.position).normalized;
-        direction.y = 0; // Keep the player upright
+        direction.y = 0;
 
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         playerTransform.rotation = Quaternion.Slerp(playerTransform.rotation, lookRotation, 1f);
     }
+    #endregion
 
     private void OnDrawGizmosSelected()
     {
