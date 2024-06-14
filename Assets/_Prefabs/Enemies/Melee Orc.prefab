@@ -1437,6 +1437,7 @@ GameObject:
   - component: {fileID: 5772545932253892897}
   - component: {fileID: 2880465976386444256}
   - component: {fileID: 2122984033095839805}
+  - component: {fileID: -2689449746690909484}
   m_Layer: 0
   m_Name: Melee Orc
   m_TagString: Untagged
@@ -1520,7 +1521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1251791155
+  GlobalObjectIdHash: 88289221
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -1681,3 +1682,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 2407726443972071636}
+--- !u!114 &-2689449746690909484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8770353609937194773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3c7f2d680f5114eb8455fbf49b968d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: 0
+  resourceAmount: 10

@@ -788,6 +788,7 @@ GameObject:
   - component: {fileID: 1307578575755363367}
   - component: {fileID: 551676180337289239}
   - component: {fileID: 2557781017927630657}
+  - component: {fileID: -2100163050652753029}
   m_Layer: 0
   m_Name: PlantShooter
   m_TagString: Untagged
@@ -848,7 +849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 513041401
+  GlobalObjectIdHash: 3678106355
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -1071,6 +1072,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2100163050652753029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3382907340185419293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3c7f2d680f5114eb8455fbf49b968d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: 0
+  resourceAmount: 15
 --- !u!1 &3520746468109051666
 GameObject:
   m_ObjectHideFlags: 0

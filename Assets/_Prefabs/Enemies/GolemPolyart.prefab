@@ -613,6 +613,7 @@ GameObject:
   - component: {fileID: 2523281317537108492}
   - component: {fileID: 8778568679670508499}
   - component: {fileID: 1879970622079606491}
+  - component: {fileID: -1224983719922209826}
   m_Layer: 0
   m_Name: GolemPolyart
   m_TagString: Untagged
@@ -674,7 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2239499521
+  GlobalObjectIdHash: 1092345689
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -863,6 +864,20 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &-1224983719922209826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360002344577393781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3c7f2d680f5114eb8455fbf49b968d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: 1
+  resourceAmount: 20
 --- !u!1 &1625580253597961850
 GameObject:
   m_ObjectHideFlags: 0
