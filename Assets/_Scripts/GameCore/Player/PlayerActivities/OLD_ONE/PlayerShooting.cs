@@ -7,7 +7,7 @@ public class PlayerShooting : NetworkBehaviour
 {
     [Header("Player's shoot properties")]
     [SerializeField] private GameObject ammoPrefab;
-   // [SerializeField] private GameObject weaponGameobject;
+    [SerializeField] private GameObject bowGameobject;
 
     [SerializeField] private Transform muzzleOfShot;
 
@@ -21,7 +21,6 @@ public class PlayerShooting : NetworkBehaviour
     [SerializeField] private Transform playerTransform;
 
     [SerializeField] private Animator animator;
-    [SerializeField] private AnimationClip shootAnimClip;
 
     [SerializeField] private PlayerStateController playerStateController;
 
@@ -51,6 +50,8 @@ public class PlayerShooting : NetworkBehaviour
                 {
                     ShootTheTargetServerRPC(closestEnemy.position);
                     yield return new WaitForSeconds(shootingRate);
+
+                    HideTheWeaponServerRpc();
                 }
             }
         }
@@ -89,12 +90,25 @@ public class PlayerShooting : NetworkBehaviour
     [ClientRpc]
     private void ShootTheTargetClientRpc(Vector3 targetPosition)
     {
+        bowGameobject.SetActive(true);
         RotatePlayerToTheTarget(targetPosition);
 
         animator.SetTrigger("IsShooting");
         this.targetPosition = targetPosition;
 
         Invoke(nameof(ShootAnArrow), shootAnArrowDelay);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void HideTheWeaponServerRpc()
+    {
+        HideTheWeaponClientRpc();
+    }
+
+    [ClientRpc]
+    private void HideTheWeaponClientRpc()
+    {
+        bowGameobject.SetActive(true);
     }
 
     private void ShootAnArrow()
