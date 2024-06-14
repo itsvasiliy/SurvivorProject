@@ -26,7 +26,7 @@ public class PlayerShooting : NetworkBehaviour
 
     private Vector3 targetPosition;
 
-    //[SerializeField] private ResourceController playerResourceController;
+    [SerializeField] private ResourceController playerResourceController;
 
     private void Start()
     {
@@ -114,7 +114,7 @@ public class PlayerShooting : NetworkBehaviour
     private void ShootAnArrow()
     {
         GameObject arrow = Instantiate(ammoPrefab, muzzleOfShot.position, Quaternion.identity);
-
+        arrow.GetComponent<Arrow>().SetResourceController(playerResourceController); //set player's resource controller for get drop resource from enemy
         Vector3 direction = (targetPosition - muzzleOfShot.position).normalized;
         arrow.transform.rotation = Quaternion.LookRotation(direction);
 

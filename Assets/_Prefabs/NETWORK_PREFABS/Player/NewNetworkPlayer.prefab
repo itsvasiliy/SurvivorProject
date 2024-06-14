@@ -7497,6 +7497,7 @@ MonoBehaviour:
   playerTransform: {fileID: 1514999868393994080}
   animator: {fileID: 766157448288659564}
   playerStateController: {fileID: 6665669728106944153}
+  playerResourceController: {fileID: 6752075130053884414}
 --- !u!114 &9167287806797371623
 MonoBehaviour:
   m_ObjectHideFlags: 0
