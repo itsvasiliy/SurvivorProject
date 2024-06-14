@@ -13,6 +13,7 @@ public class PlayerShooting : NetworkBehaviour
 
     [SerializeField] private float shootingRadius;
     [SerializeField] private float shootingRate;
+    [SerializeField] private float shootAnArrowDelay;
     [SerializeField] private float checkForEnemyRate;
     [SerializeField] private float arrowSpeed;
 
@@ -20,8 +21,11 @@ public class PlayerShooting : NetworkBehaviour
     [SerializeField] private Transform playerTransform;
 
     [SerializeField] private Animator animator;
+    [SerializeField] private AnimationClip shootAnimClip;
 
     [SerializeField] private PlayerStateController playerStateController;
+
+    private Vector3 targetPosition;
 
     //[SerializeField] private ResourceController playerResourceController;
 
@@ -85,10 +89,16 @@ public class PlayerShooting : NetworkBehaviour
     [ClientRpc]
     private void ShootTheTargetClientRpc(Vector3 targetPosition)
     {
-        animator.SetTrigger("IsShooting");
-
         RotatePlayerToTheTarget(targetPosition);
 
+        animator.SetTrigger("IsShooting");
+        this.targetPosition = targetPosition;
+
+        Invoke(nameof(ShootAnArrow), shootAnArrowDelay);
+    }
+
+    private void ShootAnArrow()
+    {
         GameObject arrow = Instantiate(ammoPrefab, muzzleOfShot.position, Quaternion.identity);
 
         Vector3 direction = (targetPosition - muzzleOfShot.position).normalized;

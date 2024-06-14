@@ -7313,6 +7313,13 @@ MonoBehaviour:
   TransitionStateInfoList:
   - IsCrossFadeExit: 0
     Layer: 0
+    OriginatingState: 2081823275
+    DestinationState: 1877016939
+    TransitionDuration: 0.024685979
+    TriggerNameHash: 1120429326
+    TransitionIndex: 2
+  - IsCrossFadeExit: 0
+    Layer: 0
     OriginatingState: 646380074
     DestinationState: 2081823275
     TransitionDuration: 0.014444351
@@ -7372,10 +7379,12 @@ MonoBehaviour:
   muzzleOfShot: {fileID: 4822823028064514937}
   shootingRadius: 11
   shootingRate: 1
+  shootAnArrowDelay: 0.5
   checkForEnemyRate: 0.1
   arrowSpeed: 18
   playerTransform: {fileID: 1514999868393994080}
   animator: {fileID: 766157448288659564}
+  shootAnimClip: {fileID: 0}
   playerStateController: {fileID: 6665669728106944153}
 --- !u!114 &9167287806797371623
 MonoBehaviour:

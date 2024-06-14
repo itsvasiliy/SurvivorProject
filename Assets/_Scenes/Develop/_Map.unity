@@ -8605,6 +8605,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5050978276499650539, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
+      propertyPath: shootAnArrowDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6459433058571336102, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 1029669218
@@ -80533,9 +80537,12 @@ MonoBehaviour:
   muzzleOfShot: {fileID: 4822823026836001146}
   shootingRadius: 11
   shootingRate: 1
+  shootAnArrowDelay: 0
   checkForEnemyRate: 0.1
   arrowSpeed: 18
   playerTransform: {fileID: 1514999867164497251}
+  animator: {fileID: 0}
+  shootAnimClip: {fileID: 0}
   playerStateController: {fileID: 6665669729058436250}
 --- !u!4 &5137643801130332737
 Transform:
