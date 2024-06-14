@@ -19,7 +19,7 @@ public class PlayerShooting : NetworkBehaviour
     [Header("Player")]
     [SerializeField] private Transform playerTransform;
 
-    //[SerializeField] private Animator animator;
+    [SerializeField] private Animator animator;
 
     [SerializeField] private PlayerStateController playerStateController;
 
@@ -85,17 +85,19 @@ public class PlayerShooting : NetworkBehaviour
     [ClientRpc]
     private void ShootTheTargetClientRpc(Vector3 targetPosition)
     {
+        animator.SetTrigger("IsShooting");
+
         RotatePlayerToTheTarget(targetPosition);
 
-        GameObject bullet = Instantiate(ammoPrefab, muzzleOfShot.position, Quaternion.identity);
+        GameObject arrow = Instantiate(ammoPrefab, muzzleOfShot.position, Quaternion.identity);
 
         Vector3 direction = (targetPosition - muzzleOfShot.position).normalized;
-        bullet.transform.rotation = Quaternion.LookRotation(direction);
+        arrow.transform.rotation = Quaternion.LookRotation(direction);
 
-        Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
-        bulletRigidbody.AddForce(direction * arrowSpeed, ForceMode.Impulse);
+        Rigidbody arrowRigidbody = arrow.GetComponent<Rigidbody>();
+        arrowRigidbody.AddForce(direction * arrowSpeed, ForceMode.Impulse);
 
-        Destroy(bullet, 1.5f);
+        Destroy(arrow, 1.5f);
     }
 
     #region AutoRotate

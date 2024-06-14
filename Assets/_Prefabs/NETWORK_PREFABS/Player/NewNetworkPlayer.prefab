@@ -7286,7 +7286,7 @@ Animator:
   m_GameObject: {fileID: 7172534170540501561}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e6f8c6b4cd0c5d24fbefebd224edfdb5, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4c7fe8e1a3919c549a79a706afefd1ce, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6ab3352e295f14f4bb086713fd4197cf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 1
   m_ApplyRootMotion: 0
@@ -7315,7 +7315,7 @@ MonoBehaviour:
     Layer: 0
     OriginatingState: 646380074
     DestinationState: 2081823275
-    TransitionDuration: 0.74254227
+    TransitionDuration: 0.014444351
     TriggerNameHash: 657687027
     TransitionIndex: 0
   m_Animator: {fileID: 766157448288659564}
@@ -7375,6 +7375,7 @@ MonoBehaviour:
   checkForEnemyRate: 0.1
   arrowSpeed: 18
   playerTransform: {fileID: 1514999868393994080}
+  animator: {fileID: 766157448288659564}
   playerStateController: {fileID: 6665669728106944153}
 --- !u!114 &9167287806797371623
 MonoBehaviour:
