@@ -1,4 +1,3 @@
-using NUnit.Framework.Constraints;
 using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
@@ -68,12 +67,19 @@ public class PlayerShooting : NetworkBehaviour
         {
             if (collider.TryGetComponent<IAimTarget>(out IAimTarget aimTarget))
             {
-                float distance = Vector3.Distance(playerTransform.position, collider.transform.position);
-
-                if (distance < closestDistance)
+                if (aimTarget.IsAlive())
                 {
-                    closestDistance = distance;
-                    closestTarget = collider.transform;
+                    float distance = Vector3.Distance(playerTransform.position, collider.transform.position);
+                    Vector3 directionToTarget = collider.transform.position - playerTransform.position;
+
+                    if (IsTargetBehindObstacle(collider.transform, directionToTarget, distance) == false)
+                    {
+                        if (distance < closestDistance)
+                        {
+                            closestDistance = distance;
+                            closestTarget = collider.transform;
+                        }
+                    }
                 }
             }
         }
@@ -134,6 +140,23 @@ public class PlayerShooting : NetworkBehaviour
         playerTransform.rotation = Quaternion.Slerp(playerTransform.rotation, lookRotation, 1f);
     }
     #endregion
+
+    private bool IsTargetBehindObstacle(Transform targetTransform, Vector3 directionToTarget, float distance)
+    {
+        // Check if there's an obstacle between the player and the target
+        var playerpos = new Vector3(playerTransform.position.x, playerTransform.position.y + 1.2f, playerTransform.position.z);
+        if (Physics.Raycast(playerpos, directionToTarget, out RaycastHit hit, distance))
+        {
+            // Ensure that the hit object is not the target itself
+            if (hit.transform != targetTransform)
+            {
+                Debug.Log($"obstacle to shoot is {hit.transform.name}");
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     private void OnDrawGizmosSelected()
     {
