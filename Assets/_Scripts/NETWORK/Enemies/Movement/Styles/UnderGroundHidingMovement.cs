@@ -108,7 +108,7 @@ public class UnderGroundHidingMovement : MonoBehaviour
     private void SetComponentsStatus(bool status)
     {
         peaAttackScript.enabled = status;
-        healthController.enabled = status;
+        healthController.SetVisibleStatus(status);
     }
 
 

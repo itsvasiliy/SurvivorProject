@@ -97,6 +97,6 @@ public class EnemyMovement_Spider : EnemyMovement
     private void SetStealthModeStatus(bool status)
     {
         healthSlider.SetActive(!status);
-        healthController.enabled = !status;
+        healthController.SetVisibleStatus(!status);
     }
 }

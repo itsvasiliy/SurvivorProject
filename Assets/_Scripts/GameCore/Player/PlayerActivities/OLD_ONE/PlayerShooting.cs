@@ -67,7 +67,7 @@ public class PlayerShooting : NetworkBehaviour
         {
             if (collider.TryGetComponent<IAimTarget>(out IAimTarget aimTarget))
             {
-                if (aimTarget.IsAlive())
+                if (aimTarget.IsAlive() && aimTarget.IsVisible())
                 {
                     float distance = Vector3.Distance(playerTransform.position, collider.transform.position);
                     Vector3 directionToTarget = collider.transform.position - playerTransform.position;
