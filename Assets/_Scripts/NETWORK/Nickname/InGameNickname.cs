@@ -22,7 +22,8 @@ public class InGameNickname : NetworkBehaviour
         base.OnNetworkSpawn();
         nick.OnValueChanged += OnNicknameChanged;
 
-        SetPlayerUINickname(RelayServerDataManagerSingleton.playerName);
+        var name = RelayServerDataManagerSingleton.playerName != null ? RelayServerDataManagerSingleton.playerName : IsHost ? "Host" : "Client";
+        SetPlayerUINickname(name);
 
         UpdateNicknameText(nick.Value.ToString());
     }
