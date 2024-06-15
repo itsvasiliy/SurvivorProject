@@ -23,9 +23,12 @@ public class PlayerShooting : NetworkBehaviour
 
     [SerializeField] private PlayerStateController playerStateController;
 
-    private Vector3 targetPosition;
 
     [SerializeField] private ResourceController playerResourceController;
+
+    private Coroutine hideBowCoroutine;
+
+    private Vector3 targetPosition;
 
     private void Start()
     {
@@ -49,8 +52,6 @@ public class PlayerShooting : NetworkBehaviour
                 {
                     ShootTheTargetServerRPC(closestEnemy.position);
                     yield return new WaitForSeconds(shootingRate);
-
-                    HideTheWeaponServerRpc();
                 }
             }
         }
@@ -97,6 +98,15 @@ public class PlayerShooting : NetworkBehaviour
     private void ShootTheTargetClientRpc(Vector3 targetPosition)
     {
         bowGameobject.SetActive(true);
+
+        if(hideBowCoroutine != null)
+        {
+            StopCoroutine(hideBowCoroutine);
+        }
+
+        hideBowCoroutine = StartCoroutine(HideBowIEnumerator(3f));
+
+
         RotatePlayerToTheTarget(targetPosition);
 
         animator.SetTrigger("IsShooting");
@@ -105,16 +115,10 @@ public class PlayerShooting : NetworkBehaviour
         Invoke(nameof(ShootAnArrow), shootAnArrowDelay);
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    private void HideTheWeaponServerRpc()
+    private IEnumerator HideBowIEnumerator(float delay)
     {
-        HideTheWeaponClientRpc();
-    }
-
-    [ClientRpc]
-    private void HideTheWeaponClientRpc()
-    {
-        bowGameobject.SetActive(true);
+        yield return new WaitForSeconds(delay);
+        bowGameobject.SetActive(false);
     }
 
     private void ShootAnArrow()
