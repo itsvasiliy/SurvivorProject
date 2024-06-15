@@ -106,7 +106,6 @@ public class PlayerShooting : NetworkBehaviour
 
         hideBowCoroutine = StartCoroutine(HideBowIEnumerator(3f));
 
-
         RotatePlayerToTheTarget(targetPosition);
 
         animator.SetTrigger("IsShooting");
@@ -123,6 +122,8 @@ public class PlayerShooting : NetworkBehaviour
 
     private void ShootAnArrow()
     {
+        RotatePlayerToTheTarget(targetPosition);
+
         GameObject arrow = Instantiate(ammoPrefab, muzzleOfShot.position, Quaternion.identity);
         arrow.GetComponent<Arrow>().SetResourceController(playerResourceController); //set player's resource controller for get drop resource from enemy
         Vector3 direction = (targetPosition - muzzleOfShot.position).normalized;
