@@ -8976,6 +8976,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2537810605768603887, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
+      propertyPath: m_Name
+      value: Suicide_Button
+      objectReference: {fileID: 0}
     - target: {fileID: 5050978276499650539, guid: 98522b98980e0c74bb737d450aefdb75, type: 3}
       propertyPath: shootAnArrowDelay
       value: 0.5
