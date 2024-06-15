@@ -12,7 +12,7 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
     private NetworkVariable<int> _health = new NetworkVariable<int>(writePerm: NetworkVariableWritePermission.Server);
 
     private bool isDead;
-    private bool isVisible;
+    private bool isVisible = true;
 
 
     void Start()
