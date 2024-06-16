@@ -8980,7 +8980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnManager: {fileID: 5487756100878888144}
-  scrollRect: {fileID: 0}
+  scrollRect: {fileID: 3660063532332042917}
   structurePreviewGameObject: {fileID: 9222222395957024260}
   structure: {fileID: 4751848957554412110, guid: 485002966ccd8b941a5a5f06c8e82a04, type: 3}
   resourceController: {fileID: 6752075130053884414}
@@ -8997,7 +8997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollRect: {fileID: 3660063532332042917}
-  structureDragDrop: {fileID: 0}
+  structureDragDrop: {fileID: 8060262898316157173}
 --- !u!1 &1007129804387760208 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6512476818826398170, guid: 646e6bca719d40d4683fddb54cf45cef, type: 3}
@@ -9068,7 +9068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnManager: {fileID: 5487756100878888144}
-  scrollRect: {fileID: 0}
+  scrollRect: {fileID: 3660063532332042917}
   structurePreviewGameObject: {fileID: 3051950764438858597}
   structure: {fileID: 6675144914559932779, guid: 225ec3a514992bb46ad98af09a3f1459, type: 3}
   resourceController: {fileID: 6752075130053884414}
@@ -9085,7 +9085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollRect: {fileID: 3660063532332042917}
-  structureDragDrop: {fileID: 0}
+  structureDragDrop: {fileID: 64294501756472296}
 --- !u!114 &3178599369069530084 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8900902147588831854, guid: 646e6bca719d40d4683fddb54cf45cef, type: 3}
@@ -9142,7 +9142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnManager: {fileID: 5487756100878888144}
-  scrollRect: {fileID: 0}
+  scrollRect: {fileID: 3660063532332042917}
   structurePreviewGameObject: {fileID: 5732578917847054566}
   structure: {fileID: 2146515069448229785, guid: 1dbf677198248a14bbd7b51c08b34bd9, type: 3}
   resourceController: {fileID: 6752075130053884414}
@@ -9159,7 +9159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollRect: {fileID: 3660063532332042917}
-  structureDragDrop: {fileID: 0}
+  structureDragDrop: {fileID: 1056102441755471267}
 --- !u!1 &6864268604720226220 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 637325302537104934, guid: 646e6bca719d40d4683fddb54cf45cef, type: 3}
@@ -9178,7 +9178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnManager: {fileID: 5487756100878888144}
-  scrollRect: {fileID: 0}
+  scrollRect: {fileID: 3660063532332042917}
   structurePreviewGameObject: {fileID: 8772244399554100465}
   structure: {fileID: 5495912530917082448, guid: 0461690871af74b24bae7eb67eec6f98, type: 3}
   resourceController: {fileID: 6752075130053884414}
@@ -9195,7 +9195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollRect: {fileID: 3660063532332042917}
-  structureDragDrop: {fileID: 0}
+  structureDragDrop: {fileID: 5739598844251461105}
 --- !u!1 &8014285526615242703 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4080976119125509701, guid: 646e6bca719d40d4683fddb54cf45cef, type: 3}
@@ -9214,7 +9214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnManager: {fileID: 5487756100878888144}
-  scrollRect: {fileID: 0}
+  scrollRect: {fileID: 3660063532332042917}
   structurePreviewGameObject: {fileID: 4195663145000736237}
   structure: {fileID: 4705807833778498714, guid: 2cc58c15e7065bd4f9f87523194ba292, type: 3}
   resourceController: {fileID: 6752075130053884414}
@@ -9231,7 +9231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollRect: {fileID: 3660063532332042917}
-  structureDragDrop: {fileID: 0}
+  structureDragDrop: {fileID: 8288195982258459086}
 --- !u!1 &8410604498624272786 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2531731264880109592, guid: 646e6bca719d40d4683fddb54cf45cef, type: 3}
