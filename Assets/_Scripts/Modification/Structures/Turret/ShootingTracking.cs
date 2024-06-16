@@ -58,14 +58,14 @@ public class ShootingTracking : MonoBehaviour
                 {
                     targetHeight = collider.bounds.size.y;
                     if (_aimTarget.IsAlive() && _aimTarget.IsVisible())
-                        return;
-
-                    float distance = Vector3.Distance(transform.position, collider.transform.position);
-
-                    if (distance < distanceToClosestTarget)
                     {
-                        closestTarget = collider.transform;
-                        distanceToClosestTarget = distance;
+                        float distance = Vector3.Distance(transform.position, collider.transform.position);
+
+                        if (distance < distanceToClosestTarget)
+                        {
+                            closestTarget = collider.transform;
+                            distanceToClosestTarget = distance;
+                        }
                     }
                 }
             }
