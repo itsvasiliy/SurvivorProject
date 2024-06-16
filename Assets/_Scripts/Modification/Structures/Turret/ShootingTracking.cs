@@ -54,10 +54,10 @@ public class ShootingTracking : MonoBehaviour
 
             foreach (Collider collider in colliders)
             {
-                if (collider.TryGetComponent<EnemyHealthController>(out EnemyHealthController _aimTarget))
+                if (collider.TryGetComponent<IAimTarget>(out IAimTarget _aimTarget))
                 {
                     targetHeight = collider.bounds.size.y;
-                    if (_aimTarget.enabled == false)
+                    if (_aimTarget.IsAlive() && _aimTarget.IsVisible())
                         return;
 
                     float distance = Vector3.Distance(transform.position, collider.transform.position);
