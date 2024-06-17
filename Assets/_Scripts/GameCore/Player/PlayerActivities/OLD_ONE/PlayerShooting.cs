@@ -44,7 +44,8 @@ public class PlayerShooting : NetworkBehaviour
         {
             yield return new WaitForSeconds(checkForEnemyRate);
 
-            if (playerStateController.GetState() == PlayerStates.Idle)
+            if (playerStateController.GetState() == PlayerStates.Idle ||
+                playerStateController.GetState() == PlayerStates.Shooting)
             {
                 Transform closestEnemy = GetClosestEnemy();
 
@@ -97,9 +98,12 @@ public class PlayerShooting : NetworkBehaviour
     [ClientRpc]
     private void ShootTheTargetClientRpc(Vector3 targetPosition)
     {
-        bowGameobject.SetActive(true);
+        RotatePlayerToTheTarget(targetPosition);
 
-        if(hideBowCoroutine != null)
+        bowGameobject.SetActive(true);
+        playerStateController.SetState(PlayerStates.Shooting);
+
+        if (hideBowCoroutine != null)
         {
             StopCoroutine(hideBowCoroutine);
         }
@@ -110,6 +114,7 @@ public class PlayerShooting : NetworkBehaviour
 
         animator.SetTrigger("IsShooting");
         this.targetPosition = targetPosition;
+
 
         Invoke(nameof(ShootAnArrow), shootAnArrowDelay);
     }
@@ -122,7 +127,8 @@ public class PlayerShooting : NetworkBehaviour
 
     private void ShootAnArrow()
     {
-        RotatePlayerToTheTarget(targetPosition);
+        if (playerStateController.GetState() != PlayerStates.Shooting)
+            return; //player aborted attack by exiting the shooting state
 
         GameObject arrow = Instantiate(ammoPrefab, muzzleOfShot.position, Quaternion.identity);
         arrow.GetComponent<Arrow>().SetResourceController(playerResourceController); //set player's resource controller for get drop resource from enemy
