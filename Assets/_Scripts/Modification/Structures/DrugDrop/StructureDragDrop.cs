@@ -53,12 +53,19 @@ public class StructureDragDrop : MonoBehaviour, IPointerDownHandler, IDragHandle
     {
         if (structurePreviewGameObject.gameObject.activeSelf == true)
         {
-            Vector3 spawnPosition = structurePreviewGameObject.position;
-            structurePreviewGameObject.gameObject.SetActive(false);
-
-            SpendResources(structure.GetComponent<Structure>());
-            spawnManager.SpawnStrucutre(structure, spawnPosition);
+            Invoke(nameof(OnEndDragDelay), 0.2f);
         }
+    }
+
+    private void OnEndDragDelay() // wait for OnDrop to insure that player didn't return the structure 
+    {
+        if (structurePreviewGameObject.gameObject.activeSelf == false) return;
+
+        Vector3 spawnPosition = structurePreviewGameObject.position;
+        structurePreviewGameObject.gameObject.SetActive(false);
+
+        SpendResources(structure.GetComponent<Structure>());
+        spawnManager.SpawnStrucutre(structure, spawnPosition);
     }
 
     public void OnDrop(PointerEventData eventData) // Player return the item
