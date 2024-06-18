@@ -161,7 +161,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   androidMinAspectRatio: 1
   applicationIdentifier:
-    Android: com.DefaultCompany.SurvivorProject
+    Android: com.GaminalGames.SurvivorProject
     Standalone: com.Gaminal-Games.SurvivorProject
   buildNumber:
     Standalone: 0
