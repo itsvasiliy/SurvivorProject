@@ -1,0 +1,37 @@
+fileFormatVersion: 2
+guid: 9ecf47e1e218b6247b7a905b9de14f51
+labels:
+- usfx
+- imphenzia
+- explosion
+- explode
+- bang
+- stereo
+- implode
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 6
+  defaultSettings:
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 0
+    compressionFormat: 0
+    quality: 0
+    conversionMode: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  preloadAudioData: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 17256
+  packageName: Universal Sound FX
+  packageVersion: 1.5
+  assetPath: Assets/Universal Sound FX/EXPLOSIONS/Short/EXPLOSION_Short_Implosion_Bright_with_small_Kickback_stereo.wav
+  uploadId: 600188

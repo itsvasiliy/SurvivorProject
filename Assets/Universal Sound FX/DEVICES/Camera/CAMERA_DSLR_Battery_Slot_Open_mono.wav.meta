@@ -1,0 +1,41 @@
+fileFormatVersion: 2
+guid: 11a7cbe63aaaf0e489082d50b07158a9
+labels:
+- imphenzia
+- usfx
+- mono
+- device
+- camera
+- dslr
+- click
+- slot
+- close
+- open
+- hatch
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 6
+  defaultSettings:
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 0
+    compressionFormat: 0
+    quality: 0
+    conversionMode: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  preloadAudioData: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 17256
+  packageName: Universal Sound FX
+  packageVersion: 1.5
+  assetPath: Assets/Universal Sound FX/DEVICES/Camera/CAMERA_DSLR_Battery_Slot_Open_mono.wav
+  uploadId: 600188

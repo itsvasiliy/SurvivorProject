@@ -1,0 +1,40 @@
+fileFormatVersion: 2
+guid: 02e3e70d0a02d1e4ab508c3e14ce8e10
+labels:
+- usfx
+- imphenzia
+- weapon
+- firearm
+- rifle
+- assault
+- assault rifle
+- fire
+- stereo
+- FPS
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 6
+  defaultSettings:
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 0
+    compressionFormat: 0
+    quality: 0
+    conversionMode: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  preloadAudioData: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 17256
+  packageName: Universal Sound FX
+  packageVersion: 1.5
+  assetPath: Assets/Universal Sound FX/WEAPONS/Firearms/Fire_First_Person_Shooter_FPS/FIREARM_Assault_Rifle_Model_03b_Fire_Single_RR1_stereo.wav
+  uploadId: 600188
