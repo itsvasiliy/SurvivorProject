@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Unity.Services.Authentication;
@@ -17,6 +16,7 @@ public class LobbyMenu : MonoBehaviour
 
     [SerializeField] private LobbyRelay lobbyRelay;
     [SerializeField] private LobbyInfo lobbyTemplate;
+    [SerializeField] private LobbyHeartbeater lobbyHeartbeater;
 
     private Dictionary<string, GameObject> instantiatedLobbies = new Dictionary<string, GameObject>();
 
@@ -59,7 +59,7 @@ public class LobbyMenu : MonoBehaviour
             lobby.Data.TryGetValue("joinCode", out DataObject data);
             hostLobby = lobby;
 
-            StartCoroutine(LobbyHeartbeat());
+            lobbyHeartbeater.StartLobbyHeartbeat(hostLobby.Id);
             SceneManager.LoadScene("_Map");
         }
         catch (LobbyServiceException error)
@@ -97,7 +97,7 @@ public class LobbyMenu : MonoBehaviour
             {
                 await LobbyService.Instance.RemovePlayerAsync(hostLobby.Id, AuthenticationService.Instance.PlayerId);
 
-             //   joinedLobbyBoard.SetActive(false);
+                //   joinedLobbyBoard.SetActive(false);
                 lobbiesBoard.SetActive(true);
             }
         }
@@ -133,17 +133,17 @@ public class LobbyMenu : MonoBehaviour
     }
 
 
-    private IEnumerator LobbyHeartbeat()
-    {
-        while (true)
-        {
-            if (hostLobby != null)
-            {
-                yield return new WaitForSeconds(heartbeatTimer);
+    //private IEnumerator LobbyHeartbeat()
+    //{
+    //    while (true)
+    //    {
+    //        if (hostLobby != null)
+    //        {
+    //            yield return new WaitForSeconds(heartbeatTimer);
 
-                LobbyService.Instance.SendHeartbeatPingAsync(hostLobby.Id);
-            }
-        }
-    }
+    //            LobbyService.Instance.SendHeartbeatPingAsync(hostLobby.Id);
+    //        }
+    //    }
+    //}
 
 }
