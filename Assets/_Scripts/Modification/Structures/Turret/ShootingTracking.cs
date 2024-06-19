@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -34,46 +35,51 @@ public class ShootingTracking : MonoBehaviour
 
         if (structure.isViewing)
             return;
+
         bulletPool = new ObjectPool<Bullet>(Preload, GetAction, ReturnAction, bulletPoolAmount);
+        StartCoroutine(DetectEnemies());
     }
 
-    private void Update()
+
+    private IEnumerator DetectEnemies()
     {
-        if (structure.isViewing)
-            return;
-
-        if (closestTarget != null)
-            rotatorDelegate?.Invoke(closestTarget.position);
-
-        if (isShooting == false)
+        while (true)
         {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, shootingRadius);
+            if (closestTarget != null)
+                rotatorDelegate?.Invoke(closestTarget.position);
 
-            closestTarget = null;
-            float distanceToClosestTarget = Mathf.Infinity;
-
-            foreach (Collider collider in colliders)
+            if (isShooting == false)
             {
-                if (collider.TryGetComponent<IAimTarget>(out IAimTarget _aimTarget))
-                {
-                    targetHeight = collider.bounds.size.y;
-                    if (_aimTarget.IsAlive() && _aimTarget.IsVisible())
-                    {
-                        float distance = Vector3.Distance(transform.position, collider.transform.position);
+                Collider[] colliders = Physics.OverlapSphere(transform.position, shootingRadius);
 
-                        if (distance < distanceToClosestTarget)
+                closestTarget = null;
+                float distanceToClosestTarget = Mathf.Infinity;
+
+                foreach (Collider collider in colliders)
+                {
+                    if (collider.TryGetComponent<IAimTarget>(out IAimTarget _aimTarget))
+                    {
+                        targetHeight = collider.bounds.size.y;
+                        if (_aimTarget.IsAlive() && _aimTarget.IsVisible())
                         {
-                            closestTarget = collider.transform;
-                            distanceToClosestTarget = distance;
+                            float distance = Vector3.Distance(transform.position, collider.transform.position);
+
+                            if (distance < distanceToClosestTarget)
+                            {
+                                closestTarget = collider.transform;
+                                distanceToClosestTarget = distance;
+                            }
                         }
                     }
                 }
+
+                if (closestTarget != null)
+                {
+                    ShotTheTarget(closestTarget.position);
+                }
             }
 
-            if (closestTarget != null)
-            {
-                ShotTheTarget(closestTarget.position);
-            }
+            yield return new WaitForSeconds(0.3f);
         }
     }
 
@@ -107,4 +113,6 @@ public class ShootingTracking : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, shootingRadius);
     }
+
+    private void OnDisable() => StopAllCoroutines();
 }

@@ -28,33 +28,39 @@ public class UnderGroundHidingMovement : MonoBehaviour
     private bool isCanEmergeUp = true;
 
 
-    private void Start()
+    private void OnEnable()
     {
         //bury under ground in an instant
         SetComponentsStatus(false);
         SetYPosition(underGroundYValue);
+
+        StartCoroutine(DetectPlayers());
     }
 
 
-    private void Update()
+    private IEnumerator DetectPlayers()
     {
-        if (isCanEmergeUp == false)
-            return;
-
-        Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius);
-
-        foreach (Collider collider in colliders)
+        while (true)
         {
-            PlayerHealthHandlerForController aimTarget = collider.GetComponent<PlayerHealthHandlerForController>();
-
-            if (aimTarget != null && aimTarget.IsAlive())
+            if (isCanEmergeUp)
             {
-                StartCoroutine(EmergeUp(aimTarget.transform.position));
-                Invoke(nameof(RechargeEmergeUp), emergeUpRechargeTime);
+                Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius);
+
+                foreach (Collider collider in colliders)
+                {
+                    PlayerHealthHandlerForController aimTarget = collider.GetComponent<PlayerHealthHandlerForController>();
+
+                    if (aimTarget != null && aimTarget.IsAlive())
+                    {
+                        StartCoroutine(EmergeUp(aimTarget.transform.position));
+                        Invoke(nameof(RechargeEmergeUp), emergeUpRechargeTime);
+                    }
+                }
             }
+
+            yield return new WaitForSeconds(0.3f);
         }
     }
-
 
     private IEnumerator EmergeUp(Vector3 playerPosition)
     {
@@ -115,7 +121,7 @@ public class UnderGroundHidingMovement : MonoBehaviour
     private void EnableComponents() => SetComponentsStatus(true);
     private void RechargeEmergeUp() => isCanEmergeUp = true;
     private void ResetEmergeTrigger() => animator.ResetTrigger("EmergeUp");
-    private void OnDisable() => StopCoroutine(BuryInTheGround());
+    private void OnDisable() => StopAllCoroutines();
 
     private void OnDrawGizmosSelected()
     {
