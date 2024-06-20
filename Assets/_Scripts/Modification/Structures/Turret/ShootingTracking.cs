@@ -40,14 +40,16 @@ public class ShootingTracking : MonoBehaviour
         StartCoroutine(DetectEnemies());
     }
 
+    private void Update()
+    {
+        if (closestTarget != null)
+            rotatorDelegate?.Invoke(closestTarget.position);
+    }
 
     private IEnumerator DetectEnemies()
     {
         while (true)
         {
-            if (closestTarget != null)
-                rotatorDelegate?.Invoke(closestTarget.position);
-
             if (isShooting == false)
             {
                 Collider[] colliders = Physics.OverlapSphere(transform.position, shootingRadius);
