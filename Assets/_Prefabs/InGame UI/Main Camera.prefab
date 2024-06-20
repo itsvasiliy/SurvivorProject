@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8491579401812602179}
   - component: {fileID: 1363443465297574628}
   - component: {fileID: 1225011886423683547}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 4429952128415504355}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4096
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
   antialiasingMode: 1
@@ -180,7 +180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8950301823819352975}
   - component: {fileID: 2368185859420077861}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PP Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
