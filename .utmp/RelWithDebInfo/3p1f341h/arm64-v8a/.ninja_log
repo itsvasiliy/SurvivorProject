@@ -1,0 +1,11 @@
+# ninja log v5
+198	5005	7405236665027817	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	920f7e7752c031d5
+5007	6425	7405236686216445	C:/Users/yurab/Documents/GitHub/SurvivorProject/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3p1f341h/obj/arm64-v8a/libswappywrapper.so	d18ad050c4adfba1
+205	8361	7405236706150618	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	a5745f711ad6547b
+192	9009	7405236712908248	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	7335a9d7c8ceb332
+182	9105	7405236713815821	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	c1f4f298db8f9642
+217	9126	7405236714075131	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	c86ee42573f89072
+211	9132	7405236713696144	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	53c35be7d9dc442c
+0	9302	7405236714833312	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	77e62dcc4dd22009
+156	9377	7405236716734499	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	5a24bce2bd4b8413
+9378	9515	7405236717829990	C:/Users/yurab/Documents/GitHub/SurvivorProject/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3p1f341h/obj/arm64-v8a/libgame.so	5702b6efe43c4b20
