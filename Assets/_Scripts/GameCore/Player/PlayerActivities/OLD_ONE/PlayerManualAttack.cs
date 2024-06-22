@@ -48,6 +48,7 @@ public class PlayerManualAttack : NetworkBehaviour
                     {
                         mineableResource = _mineable;
                         MineResource();
+                        Firebase.Analytics.FirebaseAnalytics.LogEvent("Mining");
                     }
                 }
             }

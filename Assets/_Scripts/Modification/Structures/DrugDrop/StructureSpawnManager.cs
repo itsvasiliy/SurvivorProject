@@ -18,6 +18,8 @@ public class StructureSpawnManager : NetworkBehaviour
         }
 
         SpawnStructureServerRpc(prefabIndex, spawnPosition);
+
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("Building");
     }
 
     [ServerRpc(RequireOwnership = false)]

@@ -87,6 +87,8 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
 
     private void DropResourcesInDeathCase(ResourceController resourceController)
     {
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("Killing");
+
         var dropScript = GetComponent<DropResourcesOnDeath>();
         if (dropScript != null)
             dropScript.DropResources(resourceController);
