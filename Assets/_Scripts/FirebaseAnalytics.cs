@@ -25,10 +25,7 @@ public class FirebaseAnalytics : MonoBehaviour
             }
         });
 
-        Firebase.Analytics.FirebaseAnalytics.LogEvent("first_event", "event_name", 0.4f);
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("First_event_log");
     }
-
-
-
 
 }

@@ -7048,6 +7048,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8563784181435328858, guid: f2a23947c46ed2247bb58c3eb12606df, type: 3}
   m_PrefabInstance: {fileID: 161533021}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &166282210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 166282212}
+  - component: {fileID: 166282211}
+  m_Layer: 0
+  m_Name: FIrebaseConnect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &166282211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166282210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffb51d6794bcfd04eb860abdc1d7a44d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &166282212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166282210}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.132826, y: -30.031174, z: 5.8379097}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &167260720
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -87168,3 +87212,4 @@ SceneRoots:
   - {fileID: 580855209}
   - {fileID: 644089218994478155}
   - {fileID: 216046721}
+  - {fileID: 166282212}
