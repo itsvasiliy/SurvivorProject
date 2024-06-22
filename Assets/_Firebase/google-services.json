@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "361688016432",
-    "project_id": "survivalprojectdevelop",
-    "storage_bucket": "survivalprojectdevelop.appspot.com"
+    "project_number": "601250169448",
+    "project_id": "boomzilla-70e09",
+    "storage_bucket": "boomzilla-70e09.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:361688016432:android:5580e6a7d7cb7c6483aff5",
+        "mobilesdk_app_id": "1:601250169448:android:9d0f53c0a91459ec41f1dd",
         "android_client_info": {
           "package_name": "com.GaminalGames.SurvivorProject"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBe8KFUu5er7NdntZJwfyvSiGSttpUPEp0"
+          "current_key": "AIzaSyBRsixjiYag_K_X1Yb-7H1v-O493YDyNv8"
         }
       ],
       "services": {
