@@ -132,7 +132,6 @@ public class LobbyMenu : MonoBehaviour
         }
     }
 
-
     //private IEnumerator LobbyHeartbeat()
     //{
     //    while (true)
