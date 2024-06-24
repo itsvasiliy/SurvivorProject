@@ -60,6 +60,9 @@ public class LobbyMenu : MonoBehaviour
             hostLobby = lobby;
 
             lobbyHeartbeater.StartLobbyHeartbeat(hostLobby.Id);
+
+            RelayServerDataManagerSingleton.lobbyId = hostLobby.Id;
+
             SceneManager.LoadScene("_Map");
         }
         catch (LobbyServiceException error)
