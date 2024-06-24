@@ -28,7 +28,9 @@ public class PlayerShooting : NetworkBehaviour
 
     private Coroutine hideBowCoroutine;
 
-    private Vector3 targetPosition;
+    private Transform target;
+
+    private float targetHeight;
 
     private void Start()
     {
@@ -51,7 +53,7 @@ public class PlayerShooting : NetworkBehaviour
 
                 if (closestEnemy != null)
                 {
-                    ShootTheTargetServerRPC(closestEnemy.position);
+                    StartCoroutine(ShootTheTarget(closestEnemy));
                     yield return new WaitForSeconds(shootingRate);
                 }
             }
@@ -80,6 +82,7 @@ public class PlayerShooting : NetworkBehaviour
                         {
                             closestDistance = distance;
                             closestTarget = collider.transform;
+                            targetHeight = collider.bounds.size.y;
                         }
                     }
                 }
@@ -89,34 +92,20 @@ public class PlayerShooting : NetworkBehaviour
         return closestTarget;
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    private void ShootTheTargetServerRPC(Vector3 targetPosition)
+
+    private IEnumerator ShootTheTarget(Transform _target)
     {
-        ShootTheTargetClientRpc(targetPosition);
-    }
+        RotatePlayerToTheTarget(_target.position);
 
-    [ClientRpc]
-    private void ShootTheTargetClientRpc(Vector3 targetPosition)
-    {
-        RotatePlayerToTheTarget(targetPosition);
+        MakeRpcCallsServerRpc();
 
-        bowGameobject.SetActive(true);
-        playerStateController.SetState(PlayerStates.Shooting);
-
-        if (hideBowCoroutine != null)
-        {
-            StopCoroutine(hideBowCoroutine);
-        }
 
         hideBowCoroutine = StartCoroutine(HideBowIEnumerator(3f));
 
-        RotatePlayerToTheTarget(targetPosition);
-
         animator.SetTrigger("IsShooting");
-        this.targetPosition = targetPosition;
 
-
-        Invoke(nameof(ShootAnArrow), shootAnArrowDelay);
+        yield return new WaitForSeconds(shootAnArrowDelay);
+        ShootAnArrowServerRpc(_target.position);
     }
 
     private IEnumerator HideBowIEnumerator(float delay)
@@ -125,13 +114,21 @@ public class PlayerShooting : NetworkBehaviour
         bowGameobject.SetActive(false);
     }
 
-    private void ShootAnArrow()
+
+    [ServerRpc(RequireOwnership = false)]
+    private void ShootAnArrowServerRpc(Vector3 position) => ShootAnArrowClientRpc(position);
+
+
+    [ClientRpc]
+    private void ShootAnArrowClientRpc(Vector3 targetPosition)
     {
         if (playerStateController.GetState() != PlayerStates.Shooting)
             return; //player aborted attack by exiting the shooting state
 
         GameObject arrow = Instantiate(ammoPrefab, muzzleOfShot.position, Quaternion.identity);
         arrow.GetComponent<Arrow>().SetResourceController(playerResourceController); //set player's resource controller for get drop resource from enemy
+
+        targetPosition.y = targetHeight / 3;
         Vector3 direction = (targetPosition - muzzleOfShot.position).normalized;
         arrow.transform.rotation = Quaternion.LookRotation(direction);
 
@@ -140,6 +137,7 @@ public class PlayerShooting : NetworkBehaviour
 
         Destroy(arrow, 1.5f);
     }
+
 
     #region AutoRotate
     private void RotatePlayerToTheTarget(Vector3 targetPosition)
@@ -168,6 +166,23 @@ public class PlayerShooting : NetworkBehaviour
 
         return false;
     }
+
+
+    [ServerRpc(RequireOwnership = false)]
+    private void MakeRpcCallsServerRpc() => MakeRpcCallsClientRpc();
+
+
+    [ClientRpc]
+    private void MakeRpcCallsClientRpc()
+    {
+        playerStateController.SetState(PlayerStates.Shooting);
+        bowGameobject.SetActive(true);
+        if (hideBowCoroutine != null)
+        {
+            StopCoroutine(hideBowCoroutine);
+        }
+    }
+
 
     private void OnDrawGizmosSelected()
     {

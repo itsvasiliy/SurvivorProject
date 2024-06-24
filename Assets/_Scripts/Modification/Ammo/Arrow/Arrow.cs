@@ -13,6 +13,7 @@ public class Arrow : MonoBehaviour
         if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
         {
             DamageTheTarget(damageable);
+            Destroy(gameObject);
         }
     }
 
