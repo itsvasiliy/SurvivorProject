@@ -80,6 +80,8 @@ public class LobbyMenu : MonoBehaviour
 
             RelayServerDataManagerSingleton.relayCode = lobbyData.Value;
             RelayServerDataManagerSingleton.isHost = false;
+            RelayServerDataManagerSingleton.lobbyId = lobbyID;
+
             SceneManager.LoadScene("_Map");
         }
         catch (LobbyServiceException error)
