@@ -1,8 +1,6 @@
 using Unity.Netcode;
 using Unity.Services.Authentication;
 using Unity.Services.Lobbies;
-using Unity.Services.Relay;
-using Unity.Services.Relay.Models;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,10 +20,12 @@ public class ExitLobby : MonoBehaviour
         {
             Debug.LogError(e);
         }
+        finally
+        {
+            NetworkManager.Singleton.Shutdown();
+            SceneManager.LoadScene("MainMenu");
+        }
 
-        SceneManager.LoadScene("MainMenu");
     }
 
-
-   
 }
