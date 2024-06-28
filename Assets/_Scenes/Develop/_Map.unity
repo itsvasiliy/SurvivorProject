@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.55788934, g: 0.7378895, b: 1.0243523, a: 1}
+  m_IndirectSpecularColor: {r: 0.28275034, g: 0.53284335, b: 0.9063446, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5757,6 +5757,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5420151553886804829, guid: 0832cc1b3e6a46d4cbb2c707842edbf7, type: 3}
   m_PrefabInstance: {fileID: 122828737}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &125272006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 125272007}
+  m_Layer: 0
+  m_Name: Firebase Init
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &125272007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125272006}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.0421324, y: 7.919674, z: -2.6543903}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &127893756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -87405,3 +87436,4 @@ SceneRoots:
   - {fileID: 644089218994478155}
   - {fileID: 216046721}
   - {fileID: 184846706}
+  - {fileID: 125272007}

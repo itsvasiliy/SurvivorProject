@@ -1,3 +1,4 @@
+using Firebase.Analytics;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -73,6 +74,8 @@ public class PlayerManualAttack : NetworkBehaviour
         // playerLevelSystem.AddExperience = 10;
 
         //Invoke(nameof(MineResourceAfterAnimation), dropResourceDelay); // this call in animation
+
+        FirebaseAnalytics.LogEvent("mining");
     }
 
     private void MineResourceAfterAnimation() // this call in animation

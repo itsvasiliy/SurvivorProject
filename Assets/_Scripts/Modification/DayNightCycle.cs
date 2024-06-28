@@ -1,3 +1,4 @@
+using Firebase.Analytics;
 using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
@@ -21,6 +22,8 @@ public class DayNightCycle : NetworkBehaviour
     private float totalRotated = 0f;
 
     private bool isShadowsFaded = false;
+
+    private int daySurvivedCounter = 0;
 
     private void Start()
     {
@@ -114,6 +117,9 @@ public class DayNightCycle : NetworkBehaviour
 
     private void SetDayStatus()
     {
+        FirebaseAnalytics.LogEvent($"days_survived_{daySurvivedCounter}");
+        daySurvivedCounter++;
+
         ResetCycle(dayDurationInSeconds);
 
         for (int i = 0; i < nightSpawners.Length; i++)

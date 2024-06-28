@@ -1,3 +1,4 @@
+using Firebase.Analytics;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -92,6 +93,8 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
             dropScript.DropResources(resourceController);
         else
             Debug.Log($"Now resources drop from {name}");
+
+        FirebaseAnalytics.LogEvent("enemies_killed");
     }
 
 

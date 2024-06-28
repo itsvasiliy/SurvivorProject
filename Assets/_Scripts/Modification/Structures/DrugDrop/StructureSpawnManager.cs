@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using Firebase.Analytics;
 
 public class StructureSpawnManager : NetworkBehaviour
 {
@@ -18,6 +18,8 @@ public class StructureSpawnManager : NetworkBehaviour
         }
 
         SpawnStructureServerRpc(prefabIndex, spawnPosition);
+
+        FirebaseAnalytics.LogEvent("buildings_placed");
     }
 
     [ServerRpc(RequireOwnership = false)]

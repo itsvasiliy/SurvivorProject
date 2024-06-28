@@ -1,3 +1,4 @@
+using Firebase.Analytics;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -70,6 +71,8 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
         _isDead.Value = true;
 
         DisableColliderClientRpc();
+
+        FirebaseAnalytics.LogEvent("player_died");
     }
 
     public void Suicide() => Dead();
