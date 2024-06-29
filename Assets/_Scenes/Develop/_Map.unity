@@ -45877,8 +45877,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5580539f49e599c4b9658ac76f18b89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayDurationInSeconds: 45
-  nightDurationInSeconds: 25
+  dayDurationInSeconds: 120
+  nightDurationInSeconds: 60
   sun: {fileID: 1921122996}
   moon: {fileID: 1098827023}
   nightSpawners:
@@ -45911,7 +45911,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248109895}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40960452, y: 0, z: 0, w: 0.9122632}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.413708, y: 24.8, z: 14.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45919,7 +45919,7 @@ Transform:
   - {fileID: 1921122997}
   - {fileID: 1098827024}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 48.36, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1249179561
 PrefabInstance:
   m_ObjectHideFlags: 0
