@@ -1521,7 +1521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 88289221
+  GlobalObjectIdHash: 1251791155
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -1601,7 +1601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPriority: 2
   enemyTransform: {fileID: 2155093905271394501}
-  detectionRadius: 13
+  detectionRadius: 17
   isPlayerNear: 0
   stopFollowingAt: 2.5
 --- !u!136 &8541832270946394996

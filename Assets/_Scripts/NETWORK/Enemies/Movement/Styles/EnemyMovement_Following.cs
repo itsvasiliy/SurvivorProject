@@ -13,6 +13,8 @@ public class EnemyMovement_Following : EnemyMovement
 
     private Transform detectedTarget;
 
+    private bool isFollowing = false;
+
 
     private void Start()
     {
@@ -29,8 +31,8 @@ public class EnemyMovement_Following : EnemyMovement
         {
             detectedTarget = GetClosestTarget();
 
-            if (detectedTarget != null)
-                if (base.IsPlayerInDetectionRadius(detectedTarget) == false)
+            if (detectedTarget == null || base.IsPlayerInDetectionRadius(detectedTarget) == false)
+                if(isFollowing)
                     ResetDestination();
 
 
@@ -39,10 +41,7 @@ public class EnemyMovement_Following : EnemyMovement
                 if (detectedTarget != null)
                 {
                     if (detectedTarget.gameObject.GetComponent<IHealthController>().IsAlive())
-                    {
-                        animator.SetBool("IsWalking", true);
-                        _navMeshAgent.SetDestination(detectedTarget.position);
-                    }
+                        SetFollowPosition(detectedTarget.position);
                     else
                         ResetDestination();
                 }
@@ -52,6 +51,15 @@ public class EnemyMovement_Following : EnemyMovement
 
             yield return new WaitForSeconds(0.2f);
         }
+    }
+
+    private void SetFollowPosition(Vector3 position)
+    {
+        Debug.Log("Moving to player");
+
+        animator.SetBool("IsWalking", true);
+        _navMeshAgent.SetDestination(position);
+        isFollowing = true;
     }
 
     private IEnumerator CheckPlayerDistance()
@@ -87,12 +95,16 @@ public class EnemyMovement_Following : EnemyMovement
 
     private void ResetDestination()
     {
+        Debug.Log("Destination reseted");
+        isFollowing = false;
         detectedTarget = null;
         StopFollowing();
     }
 
     private void StopFollowing()
     {
+        Debug.Log("Following is stoped");
+
         animator.SetBool("IsWalking", false);
         _navMeshAgent.SetDestination(transform.position);
     }
