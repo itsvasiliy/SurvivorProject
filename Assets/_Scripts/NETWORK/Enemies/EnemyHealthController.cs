@@ -32,7 +32,7 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
     void IHealthController.GetDamage(int damage) => ((IDamageable)this).GetDamage(damage);
     public void GetDamage(int damage, ResourceController resourceController = null)
     {
-        onDamageFeedbacks.PlayFeedbacks();
+        onDamageFeedbacks?.PlayFeedbacks();
 
         if (IsOwner)
             GetDamageServerRpc(damage);

@@ -1,13 +1,18 @@
+using MoreMountains.Feedbacks;
 using System.Collections;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] int meleeDamage;
+
     [SerializeField] AnimationClip attackClip;
+
     [SerializeField] float damageAnimationDelay;
 
     [SerializeField] EnemyMovement movement;
+
+    [SerializeField] MMF_Player attackFeedback;
 
     public Animator animator;
 
@@ -51,7 +56,10 @@ public class EnemyAttack : MonoBehaviour
         yield return new WaitForSeconds(damageAnimationDelay);
 
         if (IsAttackAborted == false)
+        {
+            attackFeedback?.PlayFeedbacks();
             _playerHealth.GetDamage(meleeDamage);
+        }
     }
 
     private void StopToAttack()

@@ -60,6 +60,7 @@ public class EnemyMovement_Following : EnemyMovement
         animator.SetBool("IsWalking", true);
         _navMeshAgent.SetDestination(position);
         isFollowing = true;
+        base.footstepsSound.SetActive(isFollowing);
     }
 
     private IEnumerator CheckPlayerDistance()
@@ -107,5 +108,6 @@ public class EnemyMovement_Following : EnemyMovement
 
         animator.SetBool("IsWalking", false);
         _navMeshAgent.SetDestination(transform.position);
+        base.footstepsSound.SetActive(isFollowing);
     }
 }

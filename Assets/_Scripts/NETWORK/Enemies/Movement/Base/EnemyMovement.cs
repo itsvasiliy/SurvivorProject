@@ -18,6 +18,9 @@ public class EnemyMovement : NetworkBehaviour
 
     [SerializeField] protected float detectionRadius;
 
+    [SerializeField] protected GameObject footstepsSound;
+
+
     protected bool canMove = true;
     private bool isCurrentTargetStructure = false;
     [HideInInspector] public bool isPlayerNear;
