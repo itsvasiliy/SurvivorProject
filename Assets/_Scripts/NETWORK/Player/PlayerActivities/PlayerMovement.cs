@@ -17,6 +17,8 @@ public class PlayerMovement : NetworkBehaviour
 
     [SerializeField] float rotationSpeed;
 
+    [SerializeField] GameObject footStepsSound;
+
 
     private void FixedUpdate()
     {
@@ -33,13 +35,17 @@ public class PlayerMovement : NetworkBehaviour
 
             animator.SetBool("IsRunning", true);
             playerStateController.TryToSetRunningState();
+            footStepsSound.SetActive(true);
         }
         else
         {
-            if (!IsOwner) return;
+            if (!IsOwner)
+                return;
+
             _rigidbody.linearVelocity = Vector3.zero;
             animator.SetBool("IsRunning", false);
             playerStateController.TryToSetIdleState();
+            footStepsSound.SetActive(false);
         }
     }
 

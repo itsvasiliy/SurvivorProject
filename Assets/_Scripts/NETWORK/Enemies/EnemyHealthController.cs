@@ -1,4 +1,5 @@
 using Firebase.Analytics;
+using MoreMountains.Feedbacks;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
     [SerializeField] public int maxHealth;
     [SerializeField] MonoBehaviour movementScript;
     [SerializeField] MonoBehaviour shootingScript;
+
+    [SerializeField] MMF_Player onDamageFeedbacks;
 
     private Animator animator;
 
@@ -29,6 +32,8 @@ public class EnemyHealthController : NetworkBehaviour, IAimTarget, IHealthContro
     void IHealthController.GetDamage(int damage) => ((IDamageable)this).GetDamage(damage);
     public void GetDamage(int damage, ResourceController resourceController = null)
     {
+        onDamageFeedbacks.PlayFeedbacks();
+
         if (IsOwner)
             GetDamageServerRpc(damage);
 
