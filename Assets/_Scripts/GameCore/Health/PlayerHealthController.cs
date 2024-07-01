@@ -1,4 +1,5 @@
 using Firebase.Analytics;
+using MoreMountains.Feedbacks;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
     [SerializeField] Collider playerCollider;
 
     [SerializeField] GameObject respawnButton;
+
+    [SerializeField] MMF_Player onDamageFeedback;
 
     private Animator animator;
 
@@ -44,6 +47,8 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
 
     void IDamageable.GetDamage(int damage, ResourceController resourceController = null)
     {
+        onDamageFeedback?.PlayFeedbacks();
+
         if (!IsOwner)
             return;
 
@@ -51,6 +56,7 @@ public class PlayerHealthController : NetworkBehaviour, IDamageable, IHealthCont
 
         if (_health.Value <= 0)
             Dead();
+
     }
 
 
