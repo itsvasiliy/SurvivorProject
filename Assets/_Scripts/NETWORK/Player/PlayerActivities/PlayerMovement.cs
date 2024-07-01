@@ -49,4 +49,5 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
 
+    private void OnDisable() => footStepsSound.SetActive(false);
 }
